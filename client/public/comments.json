@@ -1,0 +1,57 @@
+[
+  {
+    "avatar": "https://www.bamboohr.com/media_19f01aaad2bb5c9afece9ef3df160784a262d918c.png?width=2000&format=webply&optimize=medium",
+    "testimonial": "A college (Latin: collegium) is an educational institution or a constituent part of one. A college may be a degree-awarding tertiary educational institution.",
+    "id": 1,
+    "name": "farhan adnan",
+    "rating": 3,
+    "companyName": "ABC Company",
+    "numberOfEmployees": 50,
+    "jobPosition": "Manager",
+    "titleOfComment": "SEAMLESS IMPLEMENTATION"
+  },
+  {
+    "avatar": "https://www.bamboohr.com/media_142ca8f57b9643b631e61e0f284b52e4b73acb916.png?width=2000&format=webply&optimize=medium",
+    "testimonial": "A college (Latin: collegium) is an educational institution or a constituent part of one. A college may be a degree-awarding tertiary educational institution.",
+    "name": "farhan adnan",
+    "rating": 3,
+    "id": 25,
+    "companyName": "ABCFFFF Company",
+    "numberOfEmployees": 150,
+    "jobPosition": "Production Manager",
+    "titleOfComment": "FAST ROI"
+  },
+  {
+    "avatar": "https://www.bamboohr.com/media_18d4ffc9cd751de2d2aadc8c0d5bf7701b0888bc0.png?width=2000&format=webply&optimize=medium",
+    "testimonial": "A college (Latin: collegium) is an educational institution or a constituent part of one. A college may be a degree-awarding tertiary educational institution.",
+    "name": "farhan adnan",
+    "rating": 3,
+    "id": 144,
+    "companyName": "YUETS Company",
+    "numberOfEmployees": 500,
+    "jobPosition": "General Manager",
+    "titleOfComment": "CONNECTED COMMUNICATION"
+  },
+  {
+    "avatar": "https://www.bamboohr.com/media_142ca8f57b9643b631e61e0f284b52e4b73acb916.png?width=2000&format=webply&optimize=medium",
+    "testimonial": "A college (Latin: collegium) is an educational institution or a constituent part of one. A college may be a degree-awarding tertiary educational institution.",
+    "name": "farhan adnan",
+    "rating": 3,
+    "id": 47,
+    "companyName": "ABCFFFF Company",
+    "numberOfEmployees": 150,
+    "jobPosition": "Production Manager",
+    "titleOfComment": "FAST ROI"
+  },
+  {
+    "avatar": "https://www.bamboohr.com/media_18d4ffc9cd751de2d2aadc8c0d5bf7701b0888bc0.png?width=2000&format=webply&optimize=medium",
+    "testimonial": "A college (Latin: collegium) is an educational institution or a constituent part of one. A college may be a degree-awarding tertiary educational institution.",
+    "name": "farhan adnan",
+    "rating": 3,
+    "id": 14720,
+    "companyName": "YUETS Company",
+    "numberOfEmployees": 500,
+    "jobPosition": "General Manager",
+    "titleOfComment": "CONNECTED COMMUNICATION"
+  }
+]

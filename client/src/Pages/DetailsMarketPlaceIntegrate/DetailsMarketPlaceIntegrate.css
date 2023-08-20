@@ -1,0 +1,8 @@
+.bg {
+  background: url("../../../src/assets/Image/backgroundImage01.svg");
+  background-position: cover;
+
+  background-repeat: no-repeat;
+  height: 70vh;
+  width: 100%;
+}

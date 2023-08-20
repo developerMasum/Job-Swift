@@ -1,0 +1,9 @@
+
+.bg-image{
+      background-image: url('../../../public//bg-image.jpg');
+     height: 80vh;
+      background-size: cover;
+     
+    
+     
+}
