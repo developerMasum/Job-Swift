@@ -32,15 +32,17 @@ const Jobs = () => {
         <div className="flex justify-between">
           <div className="flex items-center gap-1">
             <h2 className="text-3xl">MD MASUM</h2>
-            <LuEdit className="h-4 w-4 text-gray-500" />
+            <button className="pt-1">
+              {" "}
+              <LuEdit className="h-5 w-5  text-gray-500" />
+            </button>
           </div>
           <div>
-            <Link to='post-job'>
+            <Link to="post-job">
               <button className="bg-[#00756a] border-2 border-[#00756a] px-5 py-2 rounded-lg text-white font-medium hover:bg-[#005f56] hover:border-[#005f56] transition-colors 3s ease-in-out">
                 Create a new job
               </button>
             </Link>
-
           </div>
         </div>
       </div>
@@ -130,7 +132,7 @@ const Jobs = () => {
             and choose to publish on the most popular free and premium job
             boards.
           </p>
-          <Link to='post-job'>
+          <Link to="post-job">
             <button className=" text-[#00756a] px-5 py-1 border border-[#00756a] rounded-lg hover:bg-[#ffffdd] transition-colors 3s ease-in-out font-medium">
               Post a job
             </button>
@@ -146,7 +148,9 @@ const Jobs = () => {
       <div className="pt-10">
         <div className="flex items-center justify-between">
           <p className="text-xs font-bold text-secondary ">SAMPLE JOBS</p>
-          <p className="text-xs font-bold text-secondary ">Delete sample data</p>
+          <p className="text-xs font-bold text-secondary ">
+            Delete sample data
+          </p>
         </div>
         <div className="">
           {isJobs.map((jobs) => (
@@ -195,7 +199,13 @@ const Jobs = () => {
             </h2>
           </div>
           <div className="px-5 mx-auto pb-20 grid grid-cols-3 gap-7">
-            <div className="flex">
+            <div
+              className="flex px-4 py-3 rounded-lg"
+              style={{
+                boxShadow:
+                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
+              }}
+            >
               <div className="space-y-3">
                 <h4 className="font-semibold">Work as a team</h4>
                 <p className="text-secondary text-sm">
@@ -210,7 +220,13 @@ const Jobs = () => {
                 <img className="w-[200px] h-[100px]" src={icons1} alt="" />
               </div>
             </div>
-            <div className="flex">
+            <div
+              className="flex px-4 rounded-lg py-3"
+              style={{
+                boxShadow:
+                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
+              }}
+            >
               <div className="space-y-3">
                 <h4 className="font-semibold">Show off your brand</h4>
                 <p className="text-secondary text-sm">
@@ -225,7 +241,13 @@ const Jobs = () => {
                 <img className="w-[200px] h-[100px]" src={icons2} alt="" />
               </div>
             </div>
-            <div className="flex">
+            <div
+              className="flex rounded-lg px-4 py-3"
+              style={{
+                boxShadow:
+                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
+              }}
+            >
               <div className="space-y-3">
                 <h4 className="font-semibold">
                   Find the best features for you
