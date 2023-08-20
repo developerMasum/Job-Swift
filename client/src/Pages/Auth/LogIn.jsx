@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../Auth/AuthProvider";
 import logo from "../../assets/logo/logo3.png";
 import SocialLogIn from "./SocialLogIn";
+import { toast } from "react-hot-toast";
 
 const LogIn = () => {
   const {
@@ -18,7 +19,8 @@ const LogIn = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/dashboard/jobs";
+  // console.log(from);
 
   // const [error, setError] = useState(null)
 
@@ -35,12 +37,13 @@ const LogIn = () => {
         const user = userCredential.user;
         // ...
         console.log(user);
-        alert("Successfully LogIn");
+       
+        toast.success("Successfully LogIn")
         navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+        toast.error(errorMessage);
       });
   };
   return (

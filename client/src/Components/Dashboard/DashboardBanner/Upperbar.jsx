@@ -9,6 +9,7 @@ import { BsPieChart, BsGraphUp } from "react-icons/bs";
 import userBackupImage from "../../../assets/Image/userImage.jpeg";
 import { useContext } from "react";
 import { authContext } from "../../../Auth/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const UpperBar = () => {
 
@@ -28,10 +29,11 @@ const UpperBar = () => {
   const handleLogOut = () => {
     logout()
       .then(() => {
-        alert("Successfully LogOut")
+        toast.success('log out successful')
+     
       })
-      .catch(error => {
-        console.log(error);
+      .catch(error => { 
+        toast.error(error);
       })
   }
 

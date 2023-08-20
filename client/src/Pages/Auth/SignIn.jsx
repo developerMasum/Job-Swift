@@ -1,7 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../redux/jobSlice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { authContext } from "../../Auth/AuthProvider";
@@ -32,6 +32,8 @@ const countries = [
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dashboard/jobs";
   const { createAuthUser, updateUserProfile } = useContext(authContext);
 
   const {
@@ -44,8 +46,7 @@ const SignIn = () => {
     // console.log(data);
     try {
       await dispatch(createUser(data));
-      navigate("/dashboard");
-      alert("Form submitted successfully!");
+    
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -63,6 +64,7 @@ const SignIn = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate(from, { replace: true });
         })
         .catch((error) => {
           console.log(error);
