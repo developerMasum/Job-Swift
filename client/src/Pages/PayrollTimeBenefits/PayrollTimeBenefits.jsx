@@ -1,7 +1,7 @@
 import React from "react";
 import payroll1 from "../../assets/Image/paryroll1.png";
 import "./Payroll.css";
-import Title from "../../components/Title/Title";
+import Title from "../../Components/Title/Title";
 import Payroll from "../../assets/Image/payroll.svg";
 import Administration from "../../assets/Image/Administration.svg";
 import Time from "../../assets/Image/Time.svg";

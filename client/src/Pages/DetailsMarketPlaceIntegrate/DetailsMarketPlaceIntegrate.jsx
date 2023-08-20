@@ -1,13 +1,13 @@
 import React from "react";
 import imageMedia from "../../assets/Image/mediaImage.webp";
-import SearchField from "../../components/DetailsMarketPlace/SearchField";
-import Solutions from "../../components/DetailsMarketPlace/Solutions";
+import SearchField from "../../Components/DetailsMarketPlace/SearchField";
+import Solutions from "../../Components/DetailsMarketPlace/Solutions";
 import "./DetailsMarketPlaceIntegrate.css";
 import bgImage from "../../assets/Image/backgroundImage01.svg";
-import PreferredApps from "../../components/DetailsMarketPlace/PreferredApps";
-import ExclusiveOffers from "../../components/DetailsMarketPlace/ExclusiveOffers";
-import FreeApp from "../../components/DetailsMarketPlace/FreeApp";
-import Integration from "../../components/DetailsMarketPlace/Integration";
+import PreferredApps from "../../Components/DetailsMarketPlace/PreferredApps";
+import ExclusiveOffers from "../../Components/DetailsMarketPlace/ExclusiveOffers";
+import FreeApp from "../../Components/DetailsMarketPlace/FreeApp";
+import Integration from "../../Components/DetailsMarketPlace/Integration";
 
 const DetailsMarketPlaceIntegrate = () => {
   return (

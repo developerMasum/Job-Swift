@@ -1,5 +1,5 @@
 import React from 'react';
-import UpperBar from '../../../components/Dashboard/DashboardBanner/Upperbar';
+import UpperBar from '../../../Components/Dashboard/DashboardBanner/Upperbar';
 
 const Sidebar = () => {
     return (

@@ -1,6 +1,6 @@
 import React from "react";
-import EmployeeExplore from "../../components/EmployeePerformance/EmployeeExplore";
-import EmployeeResource from "../../components/EmployeePerformance/EmployeeResource";
+import EmployeeExplore from "../../Components/EmployeePerformance/EmployeeExplore";
+import EmployeeResource from "../../Components/EmployeePerformance/EmployeeResource";
 
 const EmployeePerformance = () => {
   return (

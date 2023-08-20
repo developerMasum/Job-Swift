@@ -1,11 +1,11 @@
 import React from "react";
 import { FaBackward, FaForward } from "react-icons/fa";
 
-import DemoForm from "../../components/DemoPage/DemoForm";
-import HrBusiness from "../../components/DemoPage/HrBusiness";
-import GreatWork from "../../components/DemoPage/GreatWork";
-import Heart from "../../components/DemoPage/Heart";
-import HeightLogo from "../../components/DemoPage/HeightLogo";
+import DemoForm from "../../Components/DemoPage/DemoForm";
+import HrBusiness from "../../Components/DemoPage/HrBusiness";
+import GreatWork from "../../Components/DemoPage/GreatWork";
+import Heart from "../../Components/DemoPage/Heart";
+import HeightLogo from "../../Components/DemoPage/HeightLogo";
 
 const DemoPage = () => {
   return (

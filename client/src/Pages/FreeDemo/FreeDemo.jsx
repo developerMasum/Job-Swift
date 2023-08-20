@@ -1,6 +1,6 @@
 import React from "react";
 import "./FreeDemo.css";
-import DemoForm from "../../components/DemoForm/DemoForm";
+import DemoForm from "../../Components/DemoForm/DemoForm";
 
 const FreeDemo = () => {
   return (
