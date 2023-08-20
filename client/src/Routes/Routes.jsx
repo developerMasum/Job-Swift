@@ -11,7 +11,6 @@ import HiringOnboarding from "../Components/HiringOnboarding/HiringOnboarding";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import LogIn from "../Pages/Auth/LogIn";
 import SignIn from "../Pages/Auth/SignIn";
-import Demo from "../components/Dashboard/Demo/Demo";
 import Jobs from "../Pages/Dashboard/Jobs/Jobs";
 import { PostJob } from "../Pages/Dashboard/PostJob/PostJob";
 import ReportCenter from "../Components/ReportCenter/ReportCenter";
@@ -70,10 +69,7 @@ const router = createBrowserRouter([
     path: "dashboard",
     element:<PrivateRoute> <DashboardLayout /> </PrivateRoute>,
     children: [
-      {
-        path: "demo",
-        element: <Demo />
-      },
+      
       {
         path:"jobs",
         element:<Jobs />,
