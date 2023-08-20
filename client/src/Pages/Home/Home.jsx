@@ -1,12 +1,12 @@
-import PaySection from "../../components/Home/PaySection";
-import HrPlatform from "../../components/Home/HrPlatform";
-import EmployeeExperience from "../../components/Home/EmployeeExperience";
+import PaySection from "../../Components/Home/PaySection";
+import HrPlatform from "../../Components/Home/HrPlatform";
+import EmployeeExperience from "../../Components/Home/EmployeeExperience";
 import HeadlineBar from "../Shared/HeadlineBar";
-import MarketPlaceIntegrate from "../../components/Home/MarketPlaceIntegrate/MarketPlaceIntegate";
-import Hiring from "../../components/Home/Hiring/Hiring";
-import Banner from "../../components/Home/Banner/Banner";
-import Slider from "../../components/Home/Slider/Slider";
-import HrData from "../../components/Home/MarketPlaceIntegrate/HrData";
+import MarketPlaceIntegrate from "../../Components/Home/MarketPlaceIntegrate/MarketPlaceIntegate";
+import Hiring from "../../Components/Home/Hiring/Hiring";
+import Banner from "../../Components/Home/Banner/Banner";
+import Slider from "../../Components/Home/Slider/Slider";
+import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
 
 const Home = () => {
   return (
