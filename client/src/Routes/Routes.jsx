@@ -15,6 +15,7 @@ import Jobs from "../Pages/Dashboard/Jobs/Jobs";
 import { PostJob } from "../Pages/Dashboard/PostJob/PostJob";
 import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
+import Overview from "../Components/Overview/Overview";
 
 
 
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
         path: "/register",
         element: <SignIn />,
       },
+      {
+        path: '/overview',
+        element: <Overview />
+      }
       
  
     ],
