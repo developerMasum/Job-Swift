@@ -15,6 +15,7 @@ import Jobs from "../Pages/Dashboard/Jobs/Jobs";
 import { PostJob } from "../Pages/Dashboard/PostJob/PostJob";
 import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
+import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
 
 
 
@@ -73,7 +74,8 @@ const router = createBrowserRouter([
       {
         path:"jobs",
         element:<Jobs />,
-      },{
+      },
+      {
         path:'jobs/post-job',
         element:<PostJob />
       },
@@ -81,7 +83,12 @@ const router = createBrowserRouter([
         path:'report-center',
         element: <ReportCenter />
         
+      },
+      {
+        path:'peopleSearch',
+        element:  <PeopleSearch></PeopleSearch>
       }
+      
     ],
   },
 ]);

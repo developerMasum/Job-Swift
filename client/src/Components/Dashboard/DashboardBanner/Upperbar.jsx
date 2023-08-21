@@ -73,7 +73,7 @@ const UpperBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link to={'peopleSearch'}>
                     <RiUserSearchFill></RiUserSearchFill>People Search
                   </Link>
                 </li>
@@ -144,7 +144,7 @@ const UpperBar = () => {
               <Link>CANDIDATES</Link>
             </li>
             <li>
-              <Link>PEOPLE SEARCH</Link>
+              <Link to={'peopleSearch'}>PEOPLE SEARCH</Link>
             </li>
 
             {/* icons */}
