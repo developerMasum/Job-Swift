@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { createUser, getUsers,createJobPost } from "./operations";
+import { createUser, getUsers,createJobPost, getAllPost } from "./operations";
 
 const jobSlice = createSlice({
   name: "jobs",
@@ -45,8 +45,19 @@ const jobSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message;
       })
+      .addCase(getAllPost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllPost.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.jobs = action.payload;
+      })
+      .addCase(getAllPost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error =  action.error.message;
+      })
   },
 });
 
-export { createUser, getUsers,createJobPost };
+export { createUser, getUsers,createJobPost, getAllPost };
 export default jobSlice.reducer;

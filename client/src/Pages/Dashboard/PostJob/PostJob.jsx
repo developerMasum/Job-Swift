@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { FiAlertCircle } from "react-icons/fi";
@@ -12,15 +12,19 @@ import {
   employmentTypes,
   experienceLevels,
 } from "../../../Components/Dashboard/UtilsJobPost/data";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createJobPost } from "../../../redux/jobSlice";
 import { toast } from "react-hot-toast";
 import Tips from "../../../Components/Dashboard/PostJob/Tips";
+import CustomModal from "./CustomModal";
+import { all } from "axios";
 
 export const PostJob = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showPop, setShowPop] = useState(false);
+  
   const {
     register,
     handleSubmit,
@@ -31,13 +35,22 @@ export const PostJob = () => {
     console.log(data);
     try {
       await dispatch(createJobPost(data));
+
       toast.success("Successfully post your job !");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
+
+    const allPost = useSelector((state)=> state)
+    console.log(allPost);
+
+
   return (
     <div className="pt-20">
+      {showPop && (
+        <CustomModal showPop={showPop} setShowPop={setShowPop}></CustomModal>
+      )}
       <Heading></Heading>
       <div className="md:flex justify-between items-center my-10">
         <div className=" w-full md:w-9/12 rounded-lg border-[1px]">
@@ -432,7 +445,10 @@ export const PostJob = () => {
 
                 <div>
                   <div className="space-x-4">
-                    <button className="bg-[#1F7068] text-white outline-none px-4 py-1 rounded-md text-[20px] font-medium">
+                    <button
+                      onClick={() => setShowPop(true)}
+                      className="bg-[#1F7068] text-white outline-none px-4 py-1 rounded-md text-[20px] font-medium"
+                    >
                       Save draft
                     </button>
                     <button
