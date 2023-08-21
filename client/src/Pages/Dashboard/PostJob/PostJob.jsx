@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createJobPost } from "../../../redux/jobSlice";
 import { toast } from "react-hot-toast";
+import Tips from "../../../Components/Dashboard/PostJob/Tips";
 
 export const PostJob = () => {
   const dispatch = useDispatch();
@@ -39,9 +40,9 @@ export const PostJob = () => {
     <div className="pt-20">
       <Heading></Heading>
       <div className="md:flex justify-between items-center my-10">
-        <div className=" w-full md:w-9/12 rounded-lg">
+        <div className=" w-full md:w-9/12 rounded-lg border-[1px]">
           <div className="bg-gray-50 p-2">
-            <h1 className="text-xl font-bold">
+            <h1 className="text-lg text-gray-500 font-bold">
               Job title and Department details
             </h1>
           </div>
@@ -49,7 +50,7 @@ export const PostJob = () => {
             <div className=" w-full mx-auto p-4 bg-white rounded-lg border-[1px]">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
-                  <h3 className="text-lg font-semibold mb-2">
+                  <h3 className="text-lg  text-gray-500 font-semibold mb-2">
                     Job Title <FiAlertCircle className="inline text-red-500" />
                   </h3>
                   <input
@@ -69,16 +70,16 @@ export const PostJob = () => {
                   )}
                 </div>
                 <div className="mb-4">
-                  <h3 className="text-lg font-semibold mb-2">
+                  <h3 className="text-lg font-semibold mb-2  text-gray-500">
                     Location <FiAlertCircle className="inline text-red-500" />
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-400">
                     Candidates are 140% more likely to apply when you include a
                     city. Location is also required for some job boards.
                   </p>
                   <label
                     htmlFor="jobLocation"
-                    className="block font-semibold mb-1"
+                    className="block  text-gray-500 font-semibold mb-1"
                   >
                     Job Location
                   </label>
@@ -93,7 +94,7 @@ export const PostJob = () => {
                       errors.jobLocation ? "border-red-500" : ""
                     }`}
                   />
-                  <p>
+                  <p className=" text-gray-400">
                     Include the city for office-based or hybrid jobs. Fully
                     remote jobs need at least a country.
                   </p>
@@ -106,12 +107,12 @@ export const PostJob = () => {
 
                 {/* description */}
                 <div className="mb-4">
-                  <h3 className="text-lg font-semibold mb-2 flex items-center">
+                  <h3 className="text-lg text-gray-500 font-semibold mb-2 flex items-center">
                     Description
                     <FiAlertCircle className="ml-2 text-red-500" />
                   </h3>
                   <div className="mb-2">
-                    <h4 className="text-md font-semibold mb-1">
+                    <h4 className="text-md text-gray-500 font-semibold mb-1">
                       Job Descriptions
                     </h4>
                     <textarea
@@ -131,7 +132,9 @@ export const PostJob = () => {
                     )}
                   </div>
                   <div className="mb-2">
-                    <h4 className="text-md font-semibold mb-1">Requirements</h4>
+                    <h4 className="text-md text-gray-500 font-semibold mb-1">
+                      Requirements
+                    </h4>
                     <textarea
                       name="requirements"
                       {...register("requirements", {
@@ -149,7 +152,9 @@ export const PostJob = () => {
                     )}
                   </div>
                   <div className="mb-2">
-                    <h4 className="text-md font-semibold mb-1">Benefits</h4>
+                    <h4 className="text-md text-gray-500 font-semibold mb-1">
+                      Benefits
+                    </h4>
                     <textarea
                       name="benefits"
                       {...register("benefits", {
@@ -169,7 +174,7 @@ export const PostJob = () => {
                 </div>
 
                 <div className="bg-gray-50 p-2 text-gray-900">
-                  <h3 className="text-xl font-bold">
+                  <h3 className="text-lg text-gray-500 font-bold">
                     Company industry and Job function
                   </h3>
                 </div>
@@ -178,7 +183,7 @@ export const PostJob = () => {
 
                 <div className="md:flex justify-between gap-3 my-2 text-gray-700">
                   <div className="mb-4 w-full">
-                    <h3 className="text-lg font-semibold mb-2 flex items-center">
+                    <h3 className="text-md text-gray-500 font-semibold mb-2 flex items-center">
                       Company type
                       <FiAlertCircle className="ml-2 text-red-500" />
                     </h3>
@@ -205,7 +210,7 @@ export const PostJob = () => {
                     )}
                   </div>
                   <div className="mb-4 w-full">
-                    <h3 className="text-lg font-semibold mb-2 flex items-center">
+                    <h3 className="text-md text-gray-500 font-semibold mb-2 flex items-center">
                       Job function
                       <FiAlertCircle className="ml-2 text-red-500" />
                     </h3>
@@ -234,7 +239,9 @@ export const PostJob = () => {
                 </div>
 
                 <div className="bg-gray-50 p-2 text-gray-900">
-                  <h3 className="text-xl font-bold">Employment Details</h3>
+                  <h3 className="text-lg text-gray-500 font-bold">
+                    Employment Details
+                  </h3>
                 </div>
 
                 {/* start here  */}
@@ -242,7 +249,7 @@ export const PostJob = () => {
                 <div className="p-6 text-gray-700">
                   <div className="md:flex justify-between gap-3 my-2">
                     <div className="mb-4 w-full">
-                      <h3 className="text-lg font-semibold mb-2 flex items-center ">
+                      <h3 className="text-lg text-gray-500 font-semibold mb-2 flex items-center ">
                         Employment Type
                         <FiAlertCircle className="ml-2 text-red-500" />
                       </h3>
@@ -269,7 +276,7 @@ export const PostJob = () => {
                       )}
                     </div>
                     <div className="mb-4 w-full">
-                      <h3 className="text-lg font-semibold mb-2 flex items-center">
+                      <h3 className="text-md text-gray-500 font-semibold mb-2 flex items-center">
                         Experience
                         <FiAlertCircle className="ml-2 text-red-500" />
                       </h3>
@@ -298,7 +305,7 @@ export const PostJob = () => {
                   </div>
                   <div className="md:flex justify-between gap-3 my-2">
                     <div className="mb-4 w-full">
-                      <h3 className="text-lg font-semibold mb-2 flex items-center">
+                      <h3 className="text-md text-gray-500 font-semibold mb-2 flex items-center">
                         Education
                         <FiAlertCircle className="ml-2 text-red-500" />
                       </h3>
@@ -325,7 +332,7 @@ export const PostJob = () => {
                       )}
                     </div>
                     <div className="mb-4 w-full">
-                      <h3 className="text-lg font-semibold mb-2 flex items-center">
+                      <h3 className="text-md text-gray-500 font-semibold mb-2 flex items-center">
                         keyword
                         <FiAlertCircle className="ml-2 text-red-500" />
                       </h3>
@@ -355,7 +362,9 @@ export const PostJob = () => {
                 </div>
                 {/* start here  */}
                 <div className="bg-gray-50 p-2 text-gray-700">
-                  <h3 className="text-xl font-semibold">Annual salary</h3>
+                  <h3 className="text-lg text-gray-500 font-semibold">
+                    Annual salary
+                  </h3>
                 </div>
 
                 {/* start currency  */}
@@ -364,7 +373,7 @@ export const PostJob = () => {
                   <div className="w-1/3 pr-2">
                     <label
                       htmlFor="salaryFrom"
-                      className="block font-semibold mb-1"
+                      className="block text-md text-gray-500 font-semibold mb-1"
                     >
                       From
                     </label>
@@ -378,7 +387,7 @@ export const PostJob = () => {
                   <div className="w-1/3 px-2">
                     <label
                       htmlFor="salaryTo"
-                      className="block font-semibold mb-1"
+                      className="block font-semibold mb-1 text-md text-gray-500"
                     >
                       To
                     </label>
@@ -392,7 +401,7 @@ export const PostJob = () => {
                   <div className="w-1/3 pl-2">
                     <label
                       htmlFor="salaryCurrency"
-                      className="block font-semibold mb-1"
+                      className="block font-semibold mb-1 text-md text-gray-500"
                     >
                       Currency
                     </label>
@@ -428,7 +437,7 @@ export const PostJob = () => {
                     </button>
                     <button
                       type="submit"
-                      className="border-[1px] border-[#1F7068] outline-none px-4 py-1 rounded-md text-[20px] font-semibold"
+                      className="border-[1px] text-gray-500 border-[#1F7068] outline-none px-4 py-1 rounded-md text-[20px] font-semibold"
                     >
                       Save & continue
                     </button>
@@ -439,36 +448,7 @@ export const PostJob = () => {
           </div>
         </div>
         <div className=" hidden md:block w-full md:w-1/5">
-          <h2>Tips</h2>
-          <div className="text-gray-400 leading-6">
-            <p className="leading-6 my-20">
-              Use common job titles for searchability Advertise for just one job
-              eg: 'Nurse', not 'nurses' No general opportunities or events
-            </p>
-            <div className="space-y-140">
-              <p className="my-36">
-                Use a location to attract the most appropriate candidates
-              </p>
-              <p className="my-36">
-                If you tick the "fully remote" box, still add at least a
-                country. Some job boards require a location
-              </p>
-            </div>
-            <div>
-              <p>
-                Include the industry and function to boost the job’s visibility
-                on some job boards
-              </p>
-              <p className="my-36">
-                Include as many details as possible to boost the job’s
-                performance on some job boards
-              </p>
-              <p>
-                Adding the salary here will improve performance on some job
-                boards. You can also include the salary in the job description
-              </p>
-            </div>
-          </div>
+          <Tips></Tips>
         </div>
       </div>
     </div>
