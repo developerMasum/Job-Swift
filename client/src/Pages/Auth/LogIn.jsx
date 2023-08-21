@@ -104,9 +104,10 @@ const LogIn = () => {
             )}
 
             <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
+              {/* <a href="#" className="label-text-alt link link-hover">
                 Forgot password?
-              </a>
+              </a> */}
+              <Link to={'forgotPassword'} className="label-text-alt link link-hover">Forgot password?</Link>
             </label>
           </div>
           <small className="text-left text-blue-800 my-3">

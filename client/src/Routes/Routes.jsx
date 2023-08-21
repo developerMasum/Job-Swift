@@ -16,6 +16,7 @@ import { PostJob } from "../Pages/Dashboard/PostJob/PostJob";
 import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
+import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 
 
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LogIn />,
+      },
+      {
+        path: "login/forgotPassword",
+        element: <ForgotPassword></ForgotPassword>,
       },
       {
         path: "/register",
