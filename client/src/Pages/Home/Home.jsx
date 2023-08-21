@@ -8,6 +8,8 @@ import Banner from "../../Components/Home/Banner/Banner";
 import Slider from "../../Components/Home/Slider/Slider";
 import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
 import {  Fade, JackInTheBox, Slide ,Zoom} from "react-awesome-reveal";
+import Overview from "../../Components/Overview/Overview";
+
 
 const Home = () => {
   return (
@@ -37,8 +39,8 @@ const Home = () => {
 
       <div className="mt-16 mb-5">
        <Slide direction="right" > <EmployeeExperience /></Slide>
-      </div>
-     </div>
+    
+     
       <div className="mt-12 mb-12">
       <Zoom >  <MarketPlaceIntegrate /></Zoom>
       </div>
@@ -49,7 +51,10 @@ const Home = () => {
         </h2>
         <Slider />
       </div>
-     
+{/* From ashik Faysal for Overview check */}
+      <div>
+        <Overview />
+      </div>
     </div>
   );
 };
