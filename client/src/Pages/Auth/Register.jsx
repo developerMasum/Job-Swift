@@ -1,21 +1,24 @@
-import { useForm, Controller } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../../redux/jobSlice";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { useContext, useEffect, useState } from "react";
-import { authContext } from "../../Auth/AuthProvider";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import React, { useContext, useEffect, useState } from "react";
 import icon from "../../assets/Register/Asset 1.svg";
-const SignIn = () => {
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { authContext } from "../../Auth/AuthProvider";
+import { Controller, useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+const Register = () => {
   const [countries, setCountries] = useState([]);
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard/jobs";
   const { createAuthUser, updateUserProfile } = useContext(authContext);
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -24,17 +27,13 @@ const SignIn = () => {
         setCountries(data);
       });
   }, []);
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     try {
       await dispatch(createUser(data));
-    
+      navigate("/dashboard");
+      alert("Form submitted successfully!");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -52,28 +51,24 @@ const SignIn = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate(from, { replace: true });
         })
         .catch((error) => {
           console.log(error);
         });
-      // navigate(from, { replace: true })
+      
     });
   };
 
   return (
     <div className="background md:flex flex-row-reverse items-center justify-between md:pr-5 md:h-screen md:p-10">
-      <h1 className="text-white text-center md:hidden px-6 pb-5 font-[900] text-3xl">
-            See Job Swift in Action
-          </h1>
       <img
-        className="md:w-5/12	 w-full style p-10 pb-7 md:pb-0"
+        className="md:w-1/3 w-full style p-10 pb-7 md:pb-0"
         src={icon}
         alt=""
       />
       <div className="md:w-3/5 w-full px-5">
         <form className="" onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="text-white px-6 pb-5 font-[900] hidden md:block text-3xl">
+          <h1 className="text-white pb-5 font-[900] text-2xl text-center">
             See Job Swift in Action
           </h1>
           <div
@@ -206,7 +201,6 @@ const SignIn = () => {
                 <input
                   {...field}
                   type="email"
-                  
                   className="w-full p-2 placeholder-gray-400 focus:outline-none rounded"
                   placeholder="Email Address"
                 />
@@ -269,9 +263,6 @@ const SignIn = () => {
             >
               Sign Up
             </button>
-            <div className="text-center">
-            <p className="text-white font-medium">Already have an account? <Link to='/login' className="hover:underline ">Login Here</Link></p>
-            </div>
           </div>
         </form>
       </div>
@@ -279,4 +270,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Register;
