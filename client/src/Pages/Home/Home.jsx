@@ -7,10 +7,12 @@ import Hiring from "../../Components/Home/Hiring/Hiring";
 import Banner from "../../Components/Home/Banner/Banner";
 import Slider from "../../Components/Home/Slider/Slider";
 import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
+import Register from "../Auth/Register";
 
 const Home = () => {
   return (
-    <div className="pt-5 lg:md:pt-16">
+    <div className="">
+      {/* pt-5 lg:md:pt-16 */}
       <HeadlineBar />
       <Banner />
       <HrPlatform />
@@ -39,9 +41,9 @@ const Home = () => {
           Why People LOVE JobSwift
         </h2>
         <Slider />
-        {/* slider addeed */}
+      {/* slider addeed */}
       </div>
-     
+      
     </div>
   );
 };
