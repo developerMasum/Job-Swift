@@ -7,6 +7,7 @@ import Hiring from "../../Components/Home/Hiring/Hiring";
 import Banner from "../../Components/Home/Banner/Banner";
 import Slider from "../../Components/Home/Slider/Slider";
 import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
+import Overview from "../../Components/Overview/Overview";
 
 const Home = () => {
   return (
@@ -14,22 +15,22 @@ const Home = () => {
       <HeadlineBar />
       <Banner />
       <HrPlatform />
-     <div className="md:px-12">
-     <div className="mt-12">
-        <HrData />
-      </div>
+      <div className="md:px-12">
+        <div className="mt-12">
+          <HrData />
+        </div>
 
-      <div className="mt-12">
-        <PaySection />
-      </div>
-      <div className="mt-12">
-        <Hiring />
-      </div>
+        <div className="mt-12">
+          <PaySection />
+        </div>
+        <div className="mt-12">
+          <Hiring />
+        </div>
 
-      <div className="mt-16 mb-5">
-        <EmployeeExperience />
+        <div className="mt-16 mb-5">
+          <EmployeeExperience />
+        </div>
       </div>
-     </div>
       <div className="mt-12 mb-12">
         <MarketPlaceIntegrate />
       </div>
@@ -41,7 +42,10 @@ const Home = () => {
         <Slider />
         {/* slider addeed */}
       </div>
-     
+{/* From ashik Faysal for Overview check */}
+      <div>
+        <Overview />
+      </div>
     </div>
   );
 };
