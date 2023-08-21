@@ -7,13 +7,14 @@ import Hiring from "../../Components/Home/Hiring/Hiring";
 import Banner from "../../Components/Home/Banner/Banner";
 import Slider from "../../Components/Home/Slider/Slider";
 import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
-import Register from "../Auth/Register";
+import {  Fade, JackInTheBox, Slide ,Zoom} from "react-awesome-reveal";
 
 const Home = () => {
   return (
-    <div className="">
-      {/* pt-5 lg:md:pt-16 */}
-      <HeadlineBar />
+    <div className="pt-5 lg:md:pt-16">
+    <Slide>
+    <HeadlineBar />
+    </Slide>
       <Banner />
   <Fade  >
   <HrPlatform />
@@ -47,11 +48,9 @@ const Home = () => {
           Why People LOVE JobSwift
         </h2>
         <Slider />
-      {/* slider addeed */}
       </div>
-      
+     
     </div>
   );
 };
-
 export default Home;
