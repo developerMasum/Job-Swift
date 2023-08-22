@@ -160,10 +160,10 @@ const Navbar = () => {
               </small>
 
 
-
+              {/* 
               <li onClick={handleLogOut} className='btn btn-outline btn-sm btn-error'>
                 Log-out
-              </li>
+              </li> */}
 
             </> : <>
               {/* <li><Link to='/login'>LogIn</Link></li> */}

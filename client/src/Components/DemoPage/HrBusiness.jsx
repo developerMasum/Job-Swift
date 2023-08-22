@@ -5,6 +5,7 @@ import image03 from "../../../src/assets/Image/jelly-belly.svg";
 import image04 from "../../../src/assets/Image/postmates.svg";
 import image05 from "../../../src/assets/Image/usertesting.svg";
 // import image06 from '../../../src/assets/Image/ziprecruiter.svg'
+import { Roll } from "react-awesome-reveal";
 
 const HrBusiness = () => {
   return (
@@ -13,11 +14,13 @@ const HrBusiness = () => {
         Join 30,000+ businesses that trust Job Swift{" "}
       </h1>
       <div className="flex flex-wrap md:justify-between items-center gap-4 ">
-        <img src={image01} alt="" />
-        <img src={image02} alt="" />
-        <img src={image03} alt="" />
-        <img src={image04} alt="" />
-        <img src={image05} alt="" />
+        <Roll>
+          <img src={image01} alt="" />
+          <img src={image02} alt="" />
+          <img src={image03} alt="" />
+          <img src={image04} alt="" />
+          <img src={image05} alt="" />
+        </Roll>
       </div>
     </div>
   );

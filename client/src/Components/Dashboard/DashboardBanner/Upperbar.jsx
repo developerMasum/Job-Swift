@@ -13,7 +13,7 @@ import { toast } from "react-hot-toast";
 
 const UpperBar = () => {
 
-  const { user,logout } = useContext(authContext);
+  const { user, logout } = useContext(authContext);
 
 
 
@@ -39,7 +39,7 @@ const UpperBar = () => {
 
   return (
     <>
-      <div className="flex md:justify-around justify-between navbar rounded-xl shadow-lg bg-[#333e49]  fixed  md:flex-row  max-w-7xl ">
+      <div className="flex md:justify-around justify-between navbar rounded-xl shadow-lg bg-[#333e49]  fixed  md:flex-row  max-w-7xl mx-auto">
         <div className="flex  lg:md:gap-10">
           {/* responsive Mobile view----------------------- */}
           <div className="dropdown text-white">
@@ -75,7 +75,7 @@ const UpperBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link to={'peopleSearch'}>
                     <RiUserSearchFill></RiUserSearchFill>People Search
                   </Link>
                 </li>
@@ -146,7 +146,7 @@ const UpperBar = () => {
               <Link>CANDIDATES</Link>
             </li>
             <li>
-              <Link>PEOPLE SEARCH</Link>
+              <Link to={'peopleSearch'}>PEOPLE SEARCH</Link>
             </li>
 
             {/* icons */}
@@ -255,27 +255,27 @@ const UpperBar = () => {
           <div>
             {/* hover/Click User image ..............................................*/}
             {/* dropdown */}
-            <div className="dropdown  text-white">
+            <div className="dropdown  pr-12">
               <label tabIndex={0} className="ease-in-out">
                 <div className="relative group">
-                  <div className="bg-gray-300 rounded-full transition duration-300 ease-in-out transform hover:scale-105 group-hover:opacity-100 opacity-80">
+                  <div className="rounded-full transition duration-300 ease-in-out transform hover:scale-105 group-hover:opacity-100 opacity-80">
                     <img className="rounded-full h-8" src={userImage} alt="" />
                   </div>
-                  <div className="opacity-0 rounded-md absolute top-14 right-0 bg-slate-600 text-white  pointer-events-none group-hover:opacity-100">
+                  <div className="opacity-0 rounded-md absolute top-14 right-0    pointer-events-none group-hover:opacity-100">
                     <h2 className="px-2 py-2 text-[10px] w-max ">{name}</h2>
                   </div>
                 </div>
               </label>
               <ul
                 tabIndex={0}
-                className=" -ms-32 menu menu-sm dropdown-content mt-7  p-1 shadow-xl bg-white rounded-box w-max"
+                className=" -ms-32 menu menu-sm dropdown-content mt-7  p-1 shadow-xl bg-slate-100 border font-semibold  border-black rounded-box w-max"
               >
-                <div className="text-black">
+                <div className="">
                   <li>
                     <div className="border-b-4">
                       <Link>
                         <img
-                          className="h-10 rounded-full"
+                          className="h-8 w-10  mask mask-hexagon"
                           src={userImage}
                           alt=""
                         />
@@ -288,7 +288,7 @@ const UpperBar = () => {
                     </div>
                   </li>
 
-                  <li>
+                  <li className="mt-4">
                     <Link>Setting</Link>
                   </li>
                   <li>
@@ -300,20 +300,15 @@ const UpperBar = () => {
                   {
                     user &&
                     <>
-                      <li onClick={handleLogOut} className='btn btn-outline btn-sm btn-error ml-3'>
-                        Log-out
-                      </li>
+                      <div className="text-center">
+                        <li onClick={handleLogOut} className='btn btn-outline btn-xs text-xs btn-error mx-auto my-3 '>
+                          Log-out
+                        </li>
+                      </div>
+
 
                     </>
 
-                    // <>
-                    //   {/* <li><Link to='/login'>LogIn</Link></li> */}
-                    //   <Link to={'/login'}>
-                    //     <button className="  btn btn-outline text-green-600 font-bold btn-sm hidden md:block">
-                    //       Log In
-                    //     </button>
-                    //   </Link>
-                    // </>
                   }
                 </div>
               </ul>
