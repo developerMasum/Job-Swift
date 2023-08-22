@@ -9,6 +9,7 @@ import { BsPieChart, BsGraphUp } from "react-icons/bs";
 import userBackupImage from "../../../assets/Image/userImage.jpeg";
 import { useContext } from "react";
 import { authContext } from "../../../Auth/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const UpperBar = () => {
 
@@ -28,10 +29,11 @@ const UpperBar = () => {
   const handleLogOut = () => {
     logout()
       .then(() => {
-        alert("Successfully LogOut")
+        toast.success('log out successful')
+     
       })
-      .catch(error => {
-        console.log(error);
+      .catch(error => { 
+        toast.error(error);
       })
   }
 
@@ -73,7 +75,7 @@ const UpperBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link to={'peopleSearch'}>
                     <RiUserSearchFill></RiUserSearchFill>People Search
                   </Link>
                 </li>
@@ -144,7 +146,7 @@ const UpperBar = () => {
               <Link>CANDIDATES</Link>
             </li>
             <li>
-              <Link>PEOPLE SEARCH</Link>
+              <Link to={'peopleSearch'}>PEOPLE SEARCH</Link>
             </li>
 
             {/* icons */}

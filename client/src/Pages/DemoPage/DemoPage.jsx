@@ -6,12 +6,13 @@ import HrBusiness from "../../Components/DemoPage/HrBusiness";
 import GreatWork from "../../Components/DemoPage/GreatWork";
 import Heart from "../../Components/DemoPage/Heart";
 import HeightLogo from "../../Components/DemoPage/HeightLogo";
+import { Slide } from "react-awesome-reveal";
 
 const DemoPage = () => {
   return (
     <div>
       <div className="bg-image -rounded-b-xl p-20 md:flex justify-between items-center">
-        <div className="space-y-5">
+       <Slide direction="left">  <div className="space-y-5">
           <h1 className="font-extrabold text-4xl text-[#00673b]">
             Get a demo of Job Swift .
           </h1>
@@ -50,10 +51,10 @@ const DemoPage = () => {
               See pricing options.
             </li>
           </ul>
-        </div>
-        <div>
+        </div></Slide>
+       <Slide direction="right"> <div>
           <DemoForm></DemoForm>
-        </div>
+        </div></Slide>
       </div>
       <HrBusiness></HrBusiness>
       <GreatWork></GreatWork>

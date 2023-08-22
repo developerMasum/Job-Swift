@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "firebase": "^10.1.0",
-    "lottie-react": "^2.4.0"
+    "lottie-react": "^2.4.0",
+    "react-awesome-reveal": "^4.2.5",
+    "react-tabs": "^6.0.2"
   }
 }
