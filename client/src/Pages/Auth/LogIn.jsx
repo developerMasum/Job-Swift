@@ -65,9 +65,9 @@ const LogIn = () => {
   }
 
   return (
-    <div className="bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-400 p-24">
+    <div className="bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-400 p-28  mt-5 p-auto lg:md:rounded-tl-[100px] lg:md:rounded-br-[100px]">
 
-      <div className="card flex lg:flex-row  md:w-2/3  mx-auto  border pb-0 rounded-2xl shadow-lg shadow-black h-[380px]">
+      <div className="card flex lg:flex-row  md:lg:w-2/3  mx-auto  border pb-0 rounded-2xl shadow-lg shadow-black h-[380px]">
         <div className='lg:md:w-2/3 '>
           <img className='h-[380px] rounded-l-2xl' src={login} alt="" />
         </div>
