@@ -19,6 +19,8 @@ import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 
 
+import Overview from "../Components/Overview/Overview";
+import Agenda from "../Pages/Dashboard/Agenda/Agenda";
 
 const router = createBrowserRouter([
   {
@@ -69,13 +71,21 @@ const router = createBrowserRouter([
       },
       
  
+      {
+        path: "/overview",
+        element: <Overview />,
+      },
     ],
   },
   {
     path: "dashboard",
-    element:<PrivateRoute> <DashboardLayout /> </PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        {" "}
+        <DashboardLayout />{" "}
+      </PrivateRoute>
+    ),
     children: [
-      
       {
         path:"jobs",
         element:<Jobs />,
@@ -92,6 +102,10 @@ const router = createBrowserRouter([
       {
         path:'peopleSearch',
         element:  <PeopleSearch></PeopleSearch>
+      },
+      {
+        path: "agenda",
+        element: <Agenda />,
       }
       
     ],
