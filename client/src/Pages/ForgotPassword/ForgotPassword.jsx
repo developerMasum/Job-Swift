@@ -20,7 +20,7 @@ const ForgotPassword = () => {
     return (
       <div className=''>
          <div className=' bg-fuchsia-950 my-2 lg:md:rounded-tl-[100px] lg:md:rounded-br-[100px]'>
-         <div className='lg:md:py-40 lg:md:px-40 p-10 px-5'>
+         <div className='lg:md:py-24 lg:md:px-40 p-10 px-5'>
             <div className=' py-20 forgotPasswordBG h-[100%] w-[100%] lg:md:rounded-tl-[100px] lg:md:rounded-br-[100px]'>
                <div>
                <form className='lg:md:ps-20 ps-3' onSubmit={handleSubmit((data) => console.log(data))}>
