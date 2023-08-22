@@ -13,7 +13,7 @@ import {
   experienceLevels,
 } from "../../../Components/Dashboard/UtilsJobPost/data";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createJobPost } from "../../../redux/jobSlice";
 import { toast } from "react-hot-toast";
 import Tips from "../../../Components/Dashboard/PostJob/Tips";
@@ -22,6 +22,7 @@ import { all } from "axios";
 import { getAllPost } from "../../../redux/postJob/api";
 import { useDispatch, useSelector } from "react-redux";
 import CustomModal from "./CustomModal";
+// import CustomModal from "./CustomModal";
 
 export const PostJob = () => {
   const [data, setData] = useState();
@@ -458,6 +459,7 @@ export const PostJob = () => {
                 <div>
                   <div className="space-x-4">
                     <button
+                      data={data}
                       type="submit"
                       onClick={() => setShowPop(true)}
                       className="bg-[#1F7068] text-white outline-none px-4 py-1 rounded-md text-[20px] font-medium"

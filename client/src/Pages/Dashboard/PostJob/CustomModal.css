@@ -1,4 +1,4 @@
-.modalBackground {
+/* .modalBackground {
       position: fixed;
       top: 0;
       left: 0;
@@ -23,6 +23,46 @@
     
     .modalContainer {
       position: relative;
-      width: 1000px;
+      width: 800px;
+      height: 500px;
+    }
+     */
+
+
+     .modalContainer {
+      position: relative;
+      width: 800px;
+      max-height: 80vh; /* Adjust the value as needed */
+      overflow-y: auto;
+    }
+
+    .modalBackground {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    
+    .visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .modalContainer {
+      position: relative;
+      width: 800px;
+      max-height: 80vh; /* Adjust the value as needed */
+      overflow-y: auto;
     }
     

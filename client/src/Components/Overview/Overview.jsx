@@ -2,7 +2,8 @@ import React from "react";
 import { BiShareAlt } from "react-icons/bi";
 import { TbRotateRectangle } from "react-icons/tb";
 
-const Overview = () => {
+const Overview = ({data}) => {
+ 
   return (
     <>
       <div className="text-center px-4 sm:px-8 md:px-16">
