@@ -7,7 +7,7 @@ const Agenda = () => {
   const [isOpenAttendees, setIsOpenAttendees] = useState(true);
   const [showText, setShowText] = useState(false);
   return (
-    <div className="bg-[#f2f4f5] max-h-max">
+    <div className="bg-[#f2f4f6] max-h-max">
       <div className="pt-20 md:flex gap-10  px-10 md:px-5 ">
         <div className="md:w-1/4 w-full">
           <h2 className="font-semibold py-3">FILTERS</h2>
