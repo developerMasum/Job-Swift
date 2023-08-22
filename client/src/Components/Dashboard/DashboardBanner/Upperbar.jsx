@@ -81,7 +81,7 @@ const UpperBar = () => {
                 </li>
 
                 <li>
-                  <Link>
+                  <Link to='agenda'>
                     <BiSolidCalendar className="text-[18px]"></BiSolidCalendar>
                     Agenda
                   </Link>
@@ -151,7 +151,7 @@ const UpperBar = () => {
 
             {/* icons */}
             <li className="relative group">
-              <Link>
+              <Link to='agenda'>
                 <BiSolidCalendar className="text-[18px]"></BiSolidCalendar>
               </Link>
               <div className="opacity-0 rounded-md absolute top-14 right-0 bg-slate-600 text-white  pointer-events-none group-hover:opacity-100">

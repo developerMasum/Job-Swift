@@ -16,8 +16,7 @@ import { PostJob } from "../Pages/Dashboard/PostJob/PostJob";
 import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import Overview from "../Components/Overview/Overview";
-
-
+import Agenda from "../Pages/Dashboard/Agenda/Agenda";
 
 const router = createBrowserRouter([
   {
@@ -63,30 +62,36 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: '/overview',
-        element: <Overview />
-      }
-      
- 
+        path: "/overview",
+        element: <Overview />,
+      },
     ],
   },
   {
     path: "dashboard",
-    element:<PrivateRoute> <DashboardLayout /> </PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        {" "}
+        <DashboardLayout />{" "}
+      </PrivateRoute>
+    ),
     children: [
-      
       {
-        path:"jobs",
-        element:<Jobs />,
-      },{
-        path:'jobs/post-job',
-        element:<PostJob />
+        path: "jobs",
+        element: <Jobs />,
       },
       {
-        path:'report-center',
-        element: <ReportCenter />
-        
-      }
+        path: "jobs/post-job",
+        element: <PostJob />,
+      },
+      {
+        path: "report-center",
+        element: <ReportCenter />,
+      },
+      {
+        path: "agenda",
+        element: <Agenda />,
+      },
     ],
   },
 ]);
