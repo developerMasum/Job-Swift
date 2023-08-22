@@ -22,7 +22,6 @@ import { all } from "axios";
 import { getAllPost } from "../../../redux/postJob/api";
 import { useDispatch, useSelector } from "react-redux";
 import CustomModal from "./CustomModal";
-// import CustomModal from "./CustomModal";
 
 export const PostJob = () => {
   const [data, setData] = useState();
@@ -57,10 +56,18 @@ export const PostJob = () => {
 
   return (
     <div className="pt-20">
-      {showPop && (
+      {/* {showPop && (
         <CustomModal
           showPop={showPop}
           data={data}
+          setShowPop={setShowPop}
+        ></CustomModal>
+      )} */}
+
+      {showPop && (
+        <CustomModal
+          data={data}
+          showPop={showPop}
           setShowPop={setShowPop}
         ></CustomModal>
       )}
@@ -272,7 +279,7 @@ export const PostJob = () => {
 
                 {/* start here  */}
 
-                <div className="p-6 text-gray-700">
+                <div className=" text-gray-700">
                   <div className="md:flex justify-between gap-3 my-2">
                     <div className="mb-4 w-full">
                       <h3 className="text-lg text-gray-500 font-semibold mb-2 flex items-center ">
