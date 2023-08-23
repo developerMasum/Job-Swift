@@ -20,15 +20,15 @@ const PostJobs = ({ jobs }) => {
     lastCandidateDate,
   } = jobs;
   return (
-    <div className="py-8 rounded-lg  px-8 bg-white mt-5" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
-      <div className="flex justify-between">
-        <div className="flex gap-2 items-center">
-          <h2 className="text-xl font-medium">{jobName}</h2>
+    <div className="py-8 rounded-lg  lg:md:px-8 px-6   bg-white mt-5" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
+      <div className="lg:md:flex justify-between ">
+        <div className="flex lg:md:gap-2  items-center">
+          <h2 className="lg:md:text-xl lg:md:font-medium  ">{jobName}</h2>
           <p className="flex gap-1 text-gray-500">
             <span>{cityName}</span>,<span>{addressName}</span>
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex lg:md:gap-2 gap-6 lg:md:mt-0 mt-5">
           <button className="text-secondary px-4 py-1 rounded-lg border-gray-600 border">
             Find Candidates
           </button>
@@ -41,7 +41,7 @@ const PostJobs = ({ jobs }) => {
             </button>
             <div className="-ml-56">
               {isVisible && (
-                <div className="absolute text-sm  text-secondary mt-2 mx-auto w-96 rounded-lg shadow-lg space-y-2 bg-white" style={{ boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px" }}>
+                <div className="lg:md:absolute text-sm  text-secondary mt-2 mx-auto lg:md:w-96 w-60 rounded-lg shadow-lg space-y-2 bg-white" style={{ boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px" }}>
                   <button className="space-y-2  text-start hover:bg-yellow-50 px-3 pt-5 py-3" >
                     <h6 className="font-semibold">Publish</h6>
                     <p>
@@ -74,7 +74,7 @@ const PostJobs = ({ jobs }) => {
         </div>
       </div>
 
-      <div className="flex pt-7 px-10 mx-auto pb-5 justify-between">
+      <div className="lg:md:flex pt-7 lg:md:px-10 pe-6 mx-auto pb-5 justify-between grid grid-cols-4 gap-4">
         <div className="font-medium  text-center text-gray-600">
           <p>{Sourced}</p> <p>Sourced</p>{" "}
         </div>
@@ -97,7 +97,7 @@ const PostJobs = ({ jobs }) => {
           <p>{Hired}</p> <p>Hired</p>{" "}
         </div>
       </div>
-      <div className="flex  pt-1 justify-between text-gray-600">
+      <div className="flex  pt-1 justify-between text-gray-600  ">
         <h2 className="flex  gap-2 items-center">
           {" "}
           <span>
@@ -106,7 +106,7 @@ const PostJobs = ({ jobs }) => {
           </span>{" "}
           This job is not published on your careers page or on any job boards
         </h2>
-        <div className="flex">
+        <div className="lg:md:flex">
           <p>Candidates:{totalCandidates}</p>
           <p>{totalActiveCandidates} active in pipeline</p>
           <p>last CandidateDate: {lastCandidateDate} </p>
