@@ -21,13 +21,14 @@ import Tips from "../../../Components/Dashboard/PostJob/Tips";
 import { all } from "axios";
 import { getAllPost } from "../../../redux/postJob/api";
 import { useDispatch, useSelector } from "react-redux";
-import CustomModal from "./CustomModal";
+// import CustomModal from "./CustomModal";
 
 export const PostJob = () => {
   const [data, setData] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPop, setShowPop] = useState(false);
+  
 
   const {
     register,
@@ -40,7 +41,8 @@ export const PostJob = () => {
     try {
       await dispatch(createJobPost(data));
       setData(data);
-
+      const serializedData = encodeURIComponent(JSON.stringify(data));
+        navigate(`/overview?data=${serializedData}`);
       toast.success("Successfully post your job !");
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -64,13 +66,13 @@ export const PostJob = () => {
         ></CustomModal>
       )} */}
 
-      {showPop && (
+      {/* {showPop && (
         <CustomModal
           data={data}
           showPop={showPop}
           setShowPop={setShowPop}
         ></CustomModal>
-      )}
+      )} */}
       <Heading></Heading>
       <div className="md:flex justify-between items-center my-10">
         <div className=" w-full md:w-9/12 rounded-lg border-[1px]">
@@ -181,6 +183,26 @@ export const PostJob = () => {
                     {errors.requirements && (
                       <p className="text-red-500" role="alert">
                         {errors.requirements.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className="mb-2">
+                    <h4 className="text-md text-gray-500 font-semibold mb-1">
+                    Responsibilities
+                    </h4>
+                    <textarea
+                      name=" responsibilities"
+                      {...register("responsibilities", {
+                        required: "Requirements are required",
+                      })}
+                      className={`w-full px-4 py-2 border rounded ${
+                        errors.responsibilities ? "border-red-500" : ""
+                      }`}
+                      rows={4}
+                    />
+                    {errors.responsibilities && (
+                      <p className="text-red-500" role="alert">
+                        {errors.responsibilities.message}
                       </p>
                     )}
                   </div>
