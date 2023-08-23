@@ -5,6 +5,7 @@ import { RiCloseLine, RiShareForwardLine } from "react-icons/ri";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { authContext } from "../../Auth/AuthProvider";
+import ApplicationForm from "../Application/ApplicationForm";
 
 const Overview = () => {
   const location = useLocation();
@@ -97,15 +98,14 @@ const Overview = () => {
                     </div>
                   )}
                 </div>
-
-                <button className="bg-[#00756a] px-8 py-1 rounded-md font-semibold text-white w-full mt-6">
-                  Apply for the post
-                </button>
               </div>
+              <button className="bg-green-500 px-8 py-1 rounded-md font-semibold text-white w-full mt-6">
+                Apply for the post
+              </button>
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="">hello</div>
+            <ApplicationForm></ApplicationForm>
           </TabPanel>
         </Tabs>
       </div>
