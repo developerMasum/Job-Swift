@@ -65,7 +65,7 @@ const LogIn = () => {
   }
 
   return (
-    <div className="bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-400 lg:md:p-24">
+    <div className="bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-400  lg:md:p-24">
 
       <div className="card flex lg:flex-row  lg:w-2/3  mx-auto  border pb-0 rounded-2xl shadow-lg shadow-black h-[380px]">
         <div className='lg:md:w-2/3 hidden md:block'>
