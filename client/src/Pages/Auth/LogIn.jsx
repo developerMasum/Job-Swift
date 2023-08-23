@@ -105,7 +105,7 @@ const LogIn = () => {
               <Link to={'forgotPassword'} className="label-text-alt link link-hover font-semibold">Forgot password?</Link>
             </label>
           </div>
-          <small className=''>Are you new to the website <span><Link className='ml-4  text-fuchsia-700  underline' to="/register">Register Now</Link></span></small>
+          <small className='font-semibold'>Are you new to Job Swift? <span><Link className='ml-1  text-fuchsia-700  underline' to="/register">Register Now</Link></span></small>
           <div className="form-control lg:md:px-16">
             <input type="submit" placeholder="" value="Login" className="input input-bordered btn btn-outline btn-sm " />
           </div>
