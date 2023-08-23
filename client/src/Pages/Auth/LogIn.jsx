@@ -65,10 +65,10 @@ const LogIn = () => {
   }
 
   return (
-    <div className="bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-400 p-28  mt-5 p-auto lg:md:rounded-tl-[100px] lg:md:rounded-br-[100px]">
+    <div className="bg-gradient-to-r from-indigo-900 via-indigo-800 to-indigo-400 lg:md:p-24">
 
-      <div className="card flex lg:flex-row  md:lg:w-2/3  mx-auto  border pb-0 rounded-2xl shadow-lg shadow-black h-[380px]">
-        <div className='lg:md:w-2/3 '>
+      <div className="card flex lg:flex-row  lg:w-2/3  mx-auto  border pb-0 rounded-2xl shadow-lg shadow-black h-[380px]">
+        <div className='lg:md:w-2/3 hidden md:block'>
           <img className='h-[380px] rounded-l-2xl' src={login} alt="" />
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="card-body h-[380px] lg:md:w-[420px] bg-white  rounded-r-2xl ">
@@ -106,7 +106,7 @@ const LogIn = () => {
             </label>
           </div>
           <small className=''>Are you new to the website <span><Link className='ml-4  text-fuchsia-700  underline' to="/register">Register Now</Link></span></small>
-          <div className="form-control px-16">
+          <div className="form-control lg:md:px-16">
             <input type="submit" placeholder="" value="Login" className="input input-bordered btn btn-outline btn-sm " />
           </div>
 
