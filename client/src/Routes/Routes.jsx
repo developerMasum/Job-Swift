@@ -16,6 +16,8 @@ import { PostJob } from "../Pages/Dashboard/PostJob/PostJob";
 import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import Overview from "../Components/Overview/Overview";
+// import PeoPleDirectory from "../Components/Company/PeoPleDirectory";
+import Company from "../Components/Company/Company";
 
 
 
@@ -65,9 +67,7 @@ const router = createBrowserRouter([
       {
         path: '/overview',
         element: <Overview />
-      }
-      
- 
+      },
     ],
   },
   {
@@ -86,6 +86,10 @@ const router = createBrowserRouter([
         path:'report-center',
         element: <ReportCenter />
         
+      },
+      {
+        path: "company",
+        element:<Company/>
       }
     ],
   },
