@@ -8,6 +8,7 @@ import Banner from "../../Components/Home/Banner/Banner";
 import Slider from "../../Components/Home/Slider/Slider";
 import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
 import { Fade, JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
+import Company from "../../Components/Company/Company";
 
 const Home = () => {
   return (
@@ -58,6 +59,9 @@ const Home = () => {
             </h2>
             <Slider />
           </div>
+
+          {/* Company */}
+          <Company/>
         </div>
       </div>
     </div>

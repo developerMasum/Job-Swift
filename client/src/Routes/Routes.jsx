@@ -16,10 +16,11 @@ import { PostJob } from "../Pages/Dashboard/PostJob/PostJob";
 import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import Overview from "../Components/Overview/Overview";
-// import PeoPleDirectory from "../Components/Company/PeoPleDirectory";
-import Company from "../Components/Company/Company";
-
-
+import PeoPleDirectory from "../Components/Company/PeoPleDirectory";
+import OrgChart from "../Components/Company/OrgChart";
+import Files from "../Components/Company/Files";
+import Onboarding from "../Components/Company/Onboarding";
+// import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
   {
@@ -65,32 +66,53 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: '/overview',
-        element: <Overview />
+        path: "/overview",
+        element: <Overview />,
+      },
+      // |For checking my work
+      {
+        path: "/people-directory",
+        element: <PeoPleDirectory />,
+      },
+      {
+        path: "/org-chart",
+        element: <OrgChart />,
+      },
+      {
+        path: "/files",
+        element: <Files />,
+      },
+      {
+        path: "/onboarding",
+        element: <Onboarding />,
       },
     ],
   },
   {
     path: "dashboard",
-    element:<PrivateRoute> <DashboardLayout /> </PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        {" "}
+        <DashboardLayout />{" "}
+      </PrivateRoute>
+    ),
     children: [
-      
       {
-        path:"jobs",
-        element:<Jobs />,
-      },{
-        path:'jobs/post-job',
-        element:<PostJob />
+        path: "jobs",
+        element: <Jobs />,
       },
       {
-        path:'report-center',
-        element: <ReportCenter />
-        
+        path: "jobs/post-job",
+        element: <PostJob />,
       },
       {
-        path: "company",
-        element:<Company/>
-      }
+        path: "report-center",
+        element: <ReportCenter />,
+      },
+      // {
+      //   path: "dashboard/company",
+      //   element:<Company/>
+      // }
     ],
   },
 ]);

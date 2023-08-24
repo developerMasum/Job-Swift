@@ -5,18 +5,18 @@ const Company = () => {
   return (
     <>
       <nav className="font-bold px-4 sm:px-8 md:px-16 py-2 sm:py-4">
-        <Link to="/people-directory" className="mr-4 hover:underline" href="#">
+        <Link to="/people-directory" className="mr-4 hover:underline">
           People Directory
         </Link>
-        <a className="mr-4 hover:underline" href="#">
+        <Link to="/org-chart" className="mr-4 hover:underline">
           ORG Chart
-        </a>
-        <a className="mr-4 hover:underline" href="#">
+        </Link>
+        <Link to="/files" className="mr-4 hover:underline">
           Files
-        </a>
-        <a className="hover:underline" href="#">
+        </Link>
+        <Link to="/onboarding" className="mr-4 hover:underline">
           Onboarding
-        </a>
+        </Link>
       </nav>
     </>
   );

@@ -79,11 +79,11 @@ const UpperBar = () => {
                     <RiUserSearchFill></RiUserSearchFill>People Search
                   </Link>
                 </li>
-                <li>
-                  <Link to="company">
+                {/* <li>
+                  <Link to="/company">
                     <RiUserSearchFill></RiUserSearchFill>COMPANY
                   </Link>
-                </li>
+                </li> */}
 
                 <li>
                   <Link>
@@ -153,9 +153,10 @@ const UpperBar = () => {
             <li>
               <Link>PEOPLE SEARCH</Link>
             </li>
-            <li>
-              <Link to="company">COMPANY</Link>
-            </li>
+            
+            {/* <li>
+              <Link>COMPANY</Link>
+            </li> */}
 
             {/* icons */}
             <li className="relative group">
