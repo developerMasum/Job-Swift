@@ -21,6 +21,11 @@ import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 
 import Overview from "../Components/Overview/Overview";
 import Agenda from "../Pages/Dashboard/Agenda/Agenda";
+import PeoPleDirectory from "../Components/Company/PeoPleDirectory";
+import OrgChart from "../Components/Company/OrgChart";
+import Files from "../Components/Company/Files";
+import Onboarding from "../Components/Company/Onboarding";
+// import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +80,23 @@ const router = createBrowserRouter([
         path: "/overview",
         element: <Overview />,
       },
+      // |For checking my work
+      {
+        path: "/people-directory",
+        element: <PeoPleDirectory />,
+      },
+      {
+        path: "/org-chart",
+        element: <OrgChart />,
+      },
+      {
+        path: "/files",
+        element: <Files />,
+      },
+      {
+        path: "/onboarding",
+        element: <Onboarding />,
+      },
     ],
   },
   {
@@ -107,7 +129,7 @@ const router = createBrowserRouter([
         path: "agenda",
         element: <Agenda />,
       }
-      
+    
     ],
   },
 ]);

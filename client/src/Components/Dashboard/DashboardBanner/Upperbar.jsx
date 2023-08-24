@@ -79,6 +79,11 @@ const UpperBar = () => {
                     <RiUserSearchFill></RiUserSearchFill>People Search
                   </Link>
                 </li>
+                {/* <li>
+                  <Link to="/company">
+                    <RiUserSearchFill></RiUserSearchFill>COMPANY
+                  </Link>
+                </li> */}
 
                 <li>
                   <Link to='agenda'>
@@ -140,7 +145,7 @@ const UpperBar = () => {
         <div className="font-bold hidden lg:md:flex ">
           <ul className="menu menu-horizontal px-1  text-white">
             <li>
-              <Link to={'jobs'}>JOBS</Link>
+              <Link to={"jobs"}>JOBS</Link>
             </li>
             <li>
               <Link>CANDIDATES</Link>
@@ -148,6 +153,10 @@ const UpperBar = () => {
             <li>
               <Link to={'peopleSearch'}>PEOPLE SEARCH</Link>
             </li>
+            
+            {/* <li>
+              <Link>COMPANY</Link>
+            </li> */}
 
             {/* icons */}
             <li className="relative group">
@@ -159,7 +168,7 @@ const UpperBar = () => {
               </div>
             </li>
             <li className="relative group">
-              <Link to={'report-center'}>
+              <Link to={"report-center"}>
                 <BsPieChart className="text-[17px]"></BsPieChart>
               </Link>
               <div className="opacity-0 rounded-md absolute top-14 right-0 bg-slate-600 text-white  pointer-events-none group-hover:opacity-100">

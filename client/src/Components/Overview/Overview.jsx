@@ -16,12 +16,12 @@ const Overview = () => {
         </p>
         <hr className="mb-2 sm:mb-4 w-full" />
         <div className="shadow-2xl bg-gray-200 py-2 sm:py-4">
-          <button className="btn btn-link btn-outline border-none mr-2 sm:mr-4">
+          <a className="mr-4 hover:underline" href="#">
             OverView
-          </button>
-          <button className="btn btn-link btn-outline border-none">
+          </a>
+          <a className="hover:underline" href="#">
             Application
-          </button>
+          </a>
         </div>
       </div>
 
@@ -29,9 +29,9 @@ const Overview = () => {
       <div className="px-4 sm:px-8 md:px-16 py-2 sm:py-4">
         <div className="flex justify-between font-semibold">
           <p className="text-xl sm:text-2xl">Description</p>
-          <button className="btn btn-link btn-outline border-none">
-            Share this job <BiShareAlt size={16} />
-          </button>
+          <a className="hover:underline flex items-center gap-2 mr-2" href="#">
+            <span>Share this job</span> <BiShareAlt size={16} />
+          </a>
         </div>
         <p className="text-sm sm:text-base mt-2 sm:mt-4">
           {/* Description content */}
@@ -136,25 +136,25 @@ const Overview = () => {
       </div>
 
       <div className="text-center text-blue-400 px-4 sm:px-8 md:px-16 py-2 sm:py-4">
-        <button className="btn btn-link btn-outline border-none mr-2 sm:mr-4">
+        <a className="hover:underline" href="#">
           View Website.
-        </button>
-        <button className="btn btn-link btn-outline border-none mr-2 sm:mr-4">
+        </a>
+        <a className="hover:underline mx-4" href="#">
           View All Jobs.
-        </button>
-        <button className="btn btn-link btn-outline border-none">
+        </a>
+        <a className="hover:underline" href="#">
           Helps. <TbRotateRectangle size={16} />
-        </button>
+        </a>
       </div>
       <hr className="mb-2 sm:mb-4 w-full" />
       <div className="text-center text-blue-400 px-4 sm:px-8 md:px-16 py-2 sm:py-4">
         <span>Powered by</span>
-        <button className="btn btn-link btn-outline border-none mr-2 sm:mr-4">
+        <a className="hover:underline mx-4" href="#">
           Workable.
-        </button>
-        <button className="btn btn-link btn-outline border-none mr-2 sm:mr-4">
+        </a>
+        <a href="#">
           Accessibility <TbRotateRectangle size={16} />
-        </button>
+        </a>
       </div>
     </>
   );
