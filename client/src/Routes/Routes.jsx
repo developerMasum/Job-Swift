@@ -21,10 +21,11 @@ import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 
 import Overview from "../Components/Overview/Overview";
 import Agenda from "../Pages/Dashboard/Agenda/Agenda";
-import PeoPleDirectory from "../Components/Company/PeoPleDirectory";
-import OrgChart from "../Components/Company/OrgChart";
-import Files from "../Components/Company/Files";
-import Onboarding from "../Components/Company/Onboarding";
+import PeoPleDirectory from "../Components/CompanyCompo/PeoPleDirectory";
+import OrgChart from "../Components/CompanyCompo/OrgChart";
+import Files from "../Components/CompanyCompo/Files";
+import Onboarding from "../Components/CompanyCompo/Onboarding";
+import Company from "../Pages/Dashboard/Company/Company";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -95,16 +96,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/onboarding",
-        element: <Onboarding />,
+        element: <Onboarding />
       },
+      {
+        path:'/company',
+        element:<Company />
+      }
     ],
   },
   {
     path: "dashboard",
     element: (
       <PrivateRoute>
-        {" "}
-        <DashboardLayout />{" "}
+       
+        <DashboardLayout />
       </PrivateRoute>
     ),
     children: [
@@ -129,7 +134,7 @@ const router = createBrowserRouter([
         path: "agenda",
         element: <Agenda />,
       }
-    
+      
     ],
   },
 ]);
