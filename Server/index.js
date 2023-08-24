@@ -33,6 +33,7 @@ async function run() {
   try {
     const UserCollection = client.db('JobSwiftDb').collection('users')
     const jobPostCollection = client.db('JobSwiftDb').collection('posts')
+    const applicationsPostCollection = client.db('JobSwiftDb').collection('applications')
 
 // app.put('/users',async(req,res)=>{
 //   const query = req.
@@ -64,6 +65,14 @@ app.post('/job_post',async(req,res)=>{
 
 app.get('/all-post',async(req, res)=>{
   const result = await jobPostCollection.find().toArray();
+  res.send(result)
+})
+
+// post application
+
+app.post('/application-post',async(req,res)=>{
+  const query = req.body;
+  const result = await applicationsPostCollection.insertOne(query)
   res.send(result)
 })
 
