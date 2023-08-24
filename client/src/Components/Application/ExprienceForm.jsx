@@ -1,9 +1,7 @@
-
-// export default Form;
-import React, { useState } from 'react';
-import { FaTrash, FaPlus, FaEdit, FaSave } from 'react-icons/fa';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState } from "react";
+import { FaTrash, FaPlus, FaEdit, FaSave } from "react-icons/fa";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Form = () => {
   const [educationFormVisible, setEducationFormVisible] = useState(false);
@@ -11,9 +9,9 @@ const Form = () => {
   const [editMode, setEditMode] = useState(false);
   const [selectedEducationIndex, setSelectedEducationIndex] = useState(null);
   const [formData, setFormData] = useState({
-    school: '',
-    fieldOfStudy: '',
-    degree: '',
+    school: "",
+    fieldOfStudy: "",
+    degree: "",
     startDate: null,
     endDate: null,
   });
@@ -43,9 +41,9 @@ const Form = () => {
   const handleAddEducation = () => {
     setEducationData((prevData) => [...prevData, formData]);
     setFormData({
-      school: '',
-      fieldOfStudy: '',
-      degree: '',
+      school: "",
+      fieldOfStudy: "",
+      degree: "",
       startDate: null,
       endDate: null,
     });
@@ -71,9 +69,9 @@ const Form = () => {
     setEditMode(false);
     setSelectedEducationIndex(null);
     setFormData({
-      school: '',
-      fieldOfStudy: '',
-      degree: '',
+      school: "",
+      fieldOfStudy: "",
+      degree: "",
       startDate: null,
       endDate: null,
     });
@@ -83,7 +81,6 @@ const Form = () => {
   return (
     <div className="container mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
-        {/* <h2 className="text-2xl font-semibold">Profile</h2> */}
         <div className="flex items-center space-x-2">
           {educationFormVisible ? (
             <button
@@ -92,9 +89,9 @@ const Form = () => {
                 setEditMode(false);
                 setEducationFormVisible(false);
                 setFormData({
-                  school: '',
-                  fieldOfStudy: '',
-                  degree: '',
+                  school: "",
+                  fieldOfStudy: "",
+                  degree: "",
                   startDate: null,
                   endDate: null,
                 });
@@ -113,13 +110,15 @@ const Form = () => {
               <FaPlus className="w-6 h-6" />
             </button>
           )}
-          <h3 className="text-lg font-semibold ml-2  text-gray-500">Exprience</h3>
+          <h3 className="text-lg font-semibold ml-2  text-gray-500">
+            Exprience
+          </h3>
         </div>
       </div>
       {educationFormVisible && (
         <div className="border-[1px] border-gray-300 p-4 mb-4">
           <h3 className="text-lg font-semibold mb-2">
-            Exprience {editMode && 'Update'} (optional)
+            Exprience {editMode && "Update"} (optional)
           </h3>
           <form>
             <input

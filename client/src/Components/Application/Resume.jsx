@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { AiOutlineCloudUpload, AiOutlineCloseCircle } from 'react-icons/ai';
+import React, { useState } from "react";
+import { AiOutlineCloudUpload, AiOutlineCloseCircle } from "react-icons/ai";
 
 const ResumeUploader = () => {
   const [selectedResume, setSelectedResume] = useState(null);
-  const [coverLetter, setCoverLetter] = useState('');
+  const [coverLetter, setCoverLetter] = useState("");
 
   const handleResumeChange = (event) => {
     const file = event.target.files[0];
@@ -29,7 +29,7 @@ const ResumeUploader = () => {
   };
 
   const handleClearCoverLetter = () => {
-    setCoverLetter('');
+    setCoverLetter("");
   };
 
   const handleFormSubmit = (event) => {
@@ -38,7 +38,6 @@ const ResumeUploader = () => {
     if (selectedResume) {
       console.log("Uploaded Resume:", selectedResume);
       console.log("Cover Letter:", coverLetter);
-      // You can also perform further actions with the data here
     } else {
       console.log("No resume selected.");
     }
@@ -46,7 +45,6 @@ const ResumeUploader = () => {
 
   return (
     <div className="container mx-auto  bg-white  rounded-lg">
-      
       <form onSubmit={handleFormSubmit}>
         <label
           htmlFor="resumeInput"
@@ -56,7 +54,7 @@ const ResumeUploader = () => {
         </label>
         <div
           className={`border-2 border-dashed rounded-lg p-4 mt-2 ${
-            selectedResume ? 'border-gray-300' : 'border-green-500'
+            selectedResume ? "border-gray-300" : "border-green-500"
           }`}
           onDragOver={handleDragOver}
           onDrop={handleDrop}
@@ -75,7 +73,9 @@ const ResumeUploader = () => {
           ) : (
             <>
               <AiOutlineCloudUpload className="text-gray-400 mx-auto w-12 h-12 cursor-pointer" />
-              <p className="text-gray-400 mt-2 cursor-pointer">Drag and drop or click to upload</p>
+              <p className="text-gray-400 mt-2 cursor-pointer">
+                Drag and drop or click to upload
+              </p>
             </>
           )}
           <input
@@ -86,7 +86,10 @@ const ResumeUploader = () => {
             onChange={handleResumeChange}
           />
         </div>
-        <label htmlFor="coverLetter" className="text-gray-500 font-semibold mt-4 block">
+        <label
+          htmlFor="coverLetter"
+          className="text-gray-500 font-semibold mt-4 block"
+        >
           Cover Letter
         </label>
         <textarea
@@ -104,7 +107,6 @@ const ResumeUploader = () => {
             Clear
           </button>
         )}
-       
       </form>
     </div>
   );

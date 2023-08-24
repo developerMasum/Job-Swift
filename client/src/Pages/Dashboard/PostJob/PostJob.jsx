@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { FiAlertCircle } from "react-icons/fi";
@@ -21,13 +21,14 @@ import Tips from "../../../Components/Dashboard/PostJob/Tips";
 import { all } from "axios";
 import { getAllPost } from "../../../redux/postJob/api";
 import { useDispatch, useSelector } from "react-redux";
+import { authContext } from "../../../Auth/AuthProvider";
 // import CustomModal from "./CustomModal";
 
 export const PostJob = () => {
   const [data, setData] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [showPop, setShowPop] = useState(false);
+  const {user} = useContext(authContext)
   
 
   const {
@@ -37,10 +38,12 @@ export const PostJob = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log(data.jobTitle);
     try {
       await dispatch(createJobPost(data));
+
       setData(data);
+      // console.log(...data,user?.email);
       const serializedData = encodeURIComponent(JSON.stringify(data));
         navigate(`/overview?data=${serializedData}`);
       toast.success("Successfully post your job !");
@@ -58,21 +61,7 @@ export const PostJob = () => {
 
   return (
     <div className="pt-20">
-      {/* {showPop && (
-        <CustomModal
-          showPop={showPop}
-          data={data}
-          setShowPop={setShowPop}
-        ></CustomModal>
-      )} */}
-
-      {/* {showPop && (
-        <CustomModal
-          data={data}
-          showPop={showPop}
-          setShowPop={setShowPop}
-        ></CustomModal>
-      )} */}
+     
       <Heading></Heading>
       <div className="md:flex justify-between items-center my-10">
         <div className=" w-full md:w-9/12 rounded-lg border-[1px]">
@@ -490,7 +479,7 @@ export const PostJob = () => {
                     <button
                       data={data}
                       type="submit"
-                      onClick={() => setShowPop(true)}
+                     
                       className="bg-[#1F7068] text-white outline-none px-4 py-1 rounded-md text-[20px] font-medium"
                     >
                       Save draft

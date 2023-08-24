@@ -1,4 +1,3 @@
-// export default Form;
 import React, { useState } from "react";
 import { FaTrash, FaPlus, FaEdit, FaSave, FaCalendarAlt } from "react-icons/fa";
 import DatePicker from "react-datepicker";
@@ -149,7 +148,6 @@ const Form = () => {
               value={formData.degree}
               onChange={handleInputChange}
             />
-           
 
             <div className=" md:flex justify-between md:space-x-2 mb-2">
               <div className="w-full md:w-1/2">
@@ -165,7 +163,7 @@ const Form = () => {
                   <FaCalendarAlt className="absolute top-2 left-2 text-gray-400" />
                 </div>
               </div>
-              <div  className="w-full md:w-1/2" >
+              <div className="w-full md:w-1/2">
                 <label className="block mb-1">End Date</label>
                 <div className="relative">
                   <DatePicker

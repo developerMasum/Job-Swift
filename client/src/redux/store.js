@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import jobReducer from "./jobSlice";
 import postReducer from "./postJob/postSlice";
+import applicationsReducer from "./application/applicationsSlice";
 
 
 
@@ -10,6 +11,7 @@ import postReducer from "./postJob/postSlice";
     reducer: {
         counter: jobReducer,
        posts: postReducer,
+       application:applicationsReducer
        
         
     }

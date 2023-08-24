@@ -18,7 +18,6 @@ import PrivateRoute from "./PrivateRoute";
 import Overview from "../Components/Overview/Overview";
 
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,30 +62,32 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: '/overview',
-        element: <Overview />
-      }
-      
- 
+        path: "/overview",
+        element: <Overview />,
+      },
     ],
   },
   {
     path: "dashboard",
-    element:<PrivateRoute> <DashboardLayout /> </PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        {" "}
+        <DashboardLayout />{" "}
+      </PrivateRoute>
+    ),
     children: [
-      
       {
-        path:"jobs",
-        element:<Jobs />,
-      },{
-        path:'jobs/post-job',
-        element:<PostJob />
+        path: "jobs",
+        element: <Jobs />,
       },
       {
-        path:'report-center',
-        element: <ReportCenter />
-        
-      }
+        path: "jobs/post-job",
+        element: <PostJob />,
+      },
+      {
+        path: "report-center",
+        element: <ReportCenter />,
+      },
     ],
   },
 ]);
