@@ -791,6 +791,7 @@ const ApplicationForm = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     formData.append("photo", selectedFile);
+    console.log(formData);
 
     // Iterate through the form data and log key-value pairs
     for (var pair of formData.entries()) {
@@ -825,16 +826,16 @@ const ApplicationForm = () => {
       document.removeEventListener("drop", handleDocumentDrop);
     };
   }, []);
-
+  
   return (
-    <div className="container mx-auto p-6 bg-white">
+    <div className="container mx-auto p-6 bg-gray-50 border-[1px] shadow-lg rounded-md">
       <div className="underline-offset-2">
         <h2 className="text-2xl font-semibold mb-6 text-gray-500 uppercase text-center">
           Personal Details
         </h2>
       </div>
       <form className="space-y-4" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="block">First Name</label>
             <input
@@ -952,16 +953,18 @@ const ApplicationForm = () => {
             )}
           </div>
         </div>
+        <Education />
+        <ExprienceForm></ExprienceForm>
+        <Resume></Resume>
+        <button
+          type="submit"
+          className="bg-green-500 px-8 py-1 rounded-md font-semibold text-white w-full mt-6"
+        >
+          Submit Application
+        </button>
       </form>
-      <Education />
-      <ExprienceForm></ExprienceForm>
-      <Resume></Resume>
-      <button className="bg-green-500 px-8 py-1 rounded-md font-semibold text-white w-full mt-6">
-        Submit Application
-      </button>
     </div>
   );
 };
 
 export default ApplicationForm;
-

@@ -48,7 +48,7 @@ const Overview = () => {
             <Tab>Application</Tab>
           </TabList>
           <TabPanel>
-            <div className="">
+            <div className="bg-gray-50 shadow-lg">
               <div className="overview-content p-4 divide-y-2 leading-7 space-y-5">
                 <div>
                   <h1 className="text-lg text-gray-600 font-bold ">
