@@ -339,7 +339,7 @@ const FormNew = () => {
           </p>
         </div>):(<div className="flex items-center justify-center bg-gray-100">
       <form
-        className="bg-white shadow-md rounded-lg w-full max-w-5xl"
+        className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
         onSubmit={handleSubmit}
       >
         {/* ... (Rest of the form components) */}

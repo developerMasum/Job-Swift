@@ -1,6 +1,6 @@
 import React from "react";
-import orgChart from "../../assets/Image/OrgChart.png";
-import { FaPaperPlane, FaPlaneDeparture } from "react-icons/fa";
+import orgChart from "../../assets/Image/orgChart.png";
+import { FaPaperPlane } from "react-icons/fa";
 
 const OrgChartTab = () => {
   return (
