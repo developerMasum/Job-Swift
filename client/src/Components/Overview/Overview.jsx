@@ -38,7 +38,7 @@ const Overview = () => {
           </div>
           <button className="flex items-center text-[#00756a] hover:text-[#004f46]">
             <RiShareForwardLine className="text-2xl mr-1" />
-            <span className="font-semibold">Share Job</span>
+            <span className="font-semibold">Share Jobs</span>
           </button>
         </div>
       </div>
@@ -46,7 +46,7 @@ const Overview = () => {
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <TabList>
             <Tab>Overview</Tab>
-            <Tab>Application</Tab>
+            <Tab>Application</Tab> 
           </TabList>
           <TabPanel>
             <div className="bg-gray-50 shadow-lg">
