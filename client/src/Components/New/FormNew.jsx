@@ -9,7 +9,10 @@ import {
 } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { AiOutlineCloudUpload, AiOutlineCloseCircle } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { FaCheckCircle } from "react-icons/fa";
+import { createApplicationPost } from "../../redux/application/api";
 
 const EducationForm = ({ onSave, onCancel, initialValues }) => {
   const [school, setSchool] = useState(
@@ -43,7 +46,7 @@ const EducationForm = ({ onSave, onCancel, initialValues }) => {
   };
 
   return (
-    <div className="border-[2px] border-green-400 border-dashed p-4 rounded-md">
+    <div className="border-[2px] bg-gray-50 shadow-2xl p-4 rounded-md">
       <h3 className="text-lg font-semibold text-green-500">
         {initialValues ? "Edit Education" : "Add Education"}
       </h3>
@@ -60,7 +63,7 @@ const EducationForm = ({ onSave, onCancel, initialValues }) => {
             required
           />
         </div>
-        {/* Include other education fields similarly */}
+
         {/* Field of Study */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -108,8 +111,9 @@ const EducationForm = ({ onSave, onCancel, initialValues }) => {
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500"
+            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500 cursor-pointer"
             dateFormat="MM/dd/yyyy"
+            placeholderText="DD/MM/YY"
           />
         </div>
         {/* End Date */}
@@ -120,8 +124,9 @@ const EducationForm = ({ onSave, onCancel, initialValues }) => {
           <DatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
-            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500"
+            className="border px-3 py-2 rounded-md w-full focus:outline-none  cursor-pointer focus:ring-green-500"
             dateFormat="MM/dd/yyyy"
+            placeholderText="DD/MM/YY"
           />
         </div>
       </div>
@@ -147,7 +152,7 @@ const EducationForm = ({ onSave, onCancel, initialValues }) => {
   );
 };
 
-const PersonalDetailsForm = () => {
+const FormNew = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -158,6 +163,50 @@ const PersonalDetailsForm = () => {
   const [educationList, setEducationList] = useState([]);
   const [editingEducationIndex, setEditingEducationIndex] = useState(null);
   const [summary, setSummary] = useState("");
+
+  const [selectedResume, setSelectedResume] = useState(null);
+  const [coverLetter, setCoverLetter] = useState("");
+
+  const dispatch = useDispatch();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleResumeChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedResume(file);
+    }
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    if (file) {
+      setSelectedResume(file);
+    }
+  };
+
+  const handleClearResume = () => {
+    setSelectedResume(null);
+  };
+
+  const handleClearCoverLetter = () => {
+    setCoverLetter("");
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    if (selectedResume) {
+      console.log("Uploaded Resume:", selectedResume);
+      console.log("Cover Letter:", coverLetter);
+    } else {
+      console.log("No resume selected.");
+    }
+  };
 
   // for personal
 
@@ -190,7 +239,6 @@ const PersonalDetailsForm = () => {
     setLocation("");
   };
 
-  // ... (Rest of the functions and states)
   const handleAddEducation = () => {
     setEditingEducationIndex(null);
     setShowEducationForm(true);
@@ -208,12 +256,10 @@ const PersonalDetailsForm = () => {
 
   const handleSaveEducation = (educationData) => {
     if (editingEducationIndex !== null) {
-      // Update existing education
       const updatedEducationList = [...educationList];
       updatedEducationList[editingEducationIndex] = educationData;
       setEducationList(updatedEducationList);
     } else {
-      // Add new education
       setEducationList([...educationList, educationData]);
     }
 
@@ -226,7 +272,7 @@ const PersonalDetailsForm = () => {
     setEducationList(updatedEducationList);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
     // Log user input data
@@ -246,15 +292,54 @@ const PersonalDetailsForm = () => {
       console.log("Institution:", education.institution);
       console.log("Start Date:", education.startDate);
       console.log("End Date:", education.endDate);
+
+      const applicationData = {
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        location,
+        school: education.school,
+        field: education.fieldOfStudy,
+        institution: education.institution,
+        startDate: education.startDate,
+        endDate: education.endDate,
+      };
+      console.log(applicationData);
+      try {
+         dispatch(createApplicationPost(applicationData));
+        setIsSubmitted(true); // Update the form submission state
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      }
+  
     });
+
+   
+   
+
+
   };
 
   // ... (Rest of the components)
 
   return (
-    <div className="my-20 flex items-center justify-center bg-gray-100">
+
+    <div>
+      {isSubmitted? ( <div className="text-center shadow-md border-[1px] bg-gray-50 space-y-2 p-32">
+          <FaCheckCircle className="text-green-500 mx-auto text-6xl" />
+          <p className="text-lg text-gray-500">
+            Thank you,{" "}
+            <span className="font-semibold text-gray-500">{firstName} {lastName}</span>
+            , for your application! We'll be in touch via <span className="font-semibold text-500">{email}</span> for further
+            information.
+          </p>
+          <p className="text-gray-600">
+            Our recruiter will contact you shortly.
+          </p>
+        </div>):(<div className="flex items-center justify-center bg-gray-100">
       <form
-        className="bg-white p-8 shadow-md rounded-lg w-full max-w-5xl"
+        className="bg-white shadow-md rounded-lg w-full max-w-5xl"
         onSubmit={handleSubmit}
       >
         {/* ... (Rest of the form components) */}
@@ -284,7 +369,7 @@ const PersonalDetailsForm = () => {
             <div>
               <label
                 htmlFor="firstName"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium  text-gray-500"
               >
                 First Name
               </label>
@@ -301,7 +386,7 @@ const PersonalDetailsForm = () => {
             <div>
               <label
                 htmlFor="lastName"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-500"
               >
                 Last Name
               </label>
@@ -319,7 +404,7 @@ const PersonalDetailsForm = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-500"
             >
               Email
             </label>
@@ -336,7 +421,7 @@ const PersonalDetailsForm = () => {
           <div>
             <label
               htmlFor="phoneNumber"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium  text-gray-500"
             >
               Phone Number
             </label>
@@ -353,7 +438,7 @@ const PersonalDetailsForm = () => {
           <div>
             <label
               htmlFor="location"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium  text-gray-500"
             >
               Location
             </label>
@@ -419,12 +504,6 @@ const PersonalDetailsForm = () => {
               />
             </div>
           </div>
-
-          {/* for image */}
-
-          {/* education field */}
-
-          {/* education field */}
         </div>
 
         {/* Education Section */}
@@ -477,30 +556,100 @@ const PersonalDetailsForm = () => {
         </div>
         {/* Experience */}
         <div className="mb-2">
-            <label
-              htmlFor="summary"
-              className="block text-md font-medium text-gray-500"
-            >
-              Summary(optional)
-            </label>
-            <textarea
-              id="summary"
-              rows="4"
-              className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
-              value={summary}
-              onChange={(e) => setSummary(e.target.value)}
-            ></textarea>
+          <label
+            htmlFor="summary"
+            className="block text-md font-medium text-gray-500"
+          >
+            Summary(optional)
+          </label>
+          <textarea
+            id="summary"
+            rows="4"
+            className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
+            value={summary}
+            onChange={(e) => setSummary(e.target.value)}
+          ></textarea>
+        </div>
+
+        <div className="my-4">
+          <label
+            htmlFor="resumeInput"
+            className="text-gray-500 font-semibold mb-1 block cursor-pointer "
+          >
+            Upload Resume (PDF, DOC, DOCX)
+          </label>
+          <div
+            className={`border-2 border-dashed rounded-lg p-4 mt-2 ${
+              selectedResume ? "border-gray-300" : "border-green-500"
+            }`}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
+            {selectedResume ? (
+              <div className="flex items-center">
+                <p className="text-gray-600">{selectedResume.name}</p>
+                <button
+                  type="button"
+                  onClick={handleClearResume}
+                  className="ml-2 text-red-500 hover:text-red-600 cursor-pointer"
+                >
+                  <AiOutlineCloseCircle />
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="flex-col ">
+                  <AiOutlineCloudUpload className="text-gray-400 mx-auto w-12 h-12 cursor-pointer" />
+                  <p className="text-gray-400 mt-2 text-center ">
+                    Drag and drop or click to upload
+                  </p>
+                </div>
+              </>
+            )}
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx"
+              id="resumeInput"
+              className="hidden"
+              onChange={handleResumeChange}
+            />
           </div>
-      
+          <label
+            htmlFor="coverLetter"
+            className="text-gray-500 font-semibold mt-4 block"
+          >
+            Cover Letter
+          </label>
+          <textarea
+            id="coverLetter"
+            rows="4"
+            className="w-full border border-gray-300 rounded p-2"
+            value={coverLetter}
+            onChange={(e) => setCoverLetter(e.target.value)}
+          />
+          {coverLetter && (
+            <button
+              type="button"
+              onClick={handleClearCoverLetter}
+              className="mt-2 text-red-500 hover:text-red-600 text-sm font-medium cursor-pointer"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+
         <button
           type="submit"
           className="w-full py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600"
         >
-          Submit
+          Submit Application
         </button>
       </form>
+    </div>)}
     </div>
+
+
   );
 };
 
-export default PersonalDetailsForm;
+export default FormNew;

@@ -6,6 +6,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { authContext } from "../../Auth/AuthProvider";
 import ApplicationForm from "../Application/ApplicationForm";
+import FormNew from "../New/FormNew";
 
 const Overview = () => {
   const location = useLocation();
@@ -16,7 +17,7 @@ const Overview = () => {
   console.log(formData);
   const [tabIndex, setTabIndex] = useState(0);
   return (
-    <div className="container mt-20">
+    <div className="container">
       <div className="border-[1px]">
         <div className="border-b-[1px]  bg-green-100">
           <h1 className="text-2xl font-semibold mb-4 text-center">
@@ -41,7 +42,7 @@ const Overview = () => {
           </button>
         </div>
       </div>
-      <div className="shadow-lg my-6 mx-auto max-w-4xl">
+      <div className=" my-6 mx-auto max-w-4xl">
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <TabList>
             <Tab>Overview</Tab>
@@ -105,7 +106,7 @@ const Overview = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <ApplicationForm></ApplicationForm>
+            <FormNew></FormNew>
           </TabPanel>
         </Tabs>
       </div>
