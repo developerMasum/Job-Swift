@@ -152,6 +152,142 @@ const EducationForm = ({ onSave, onCancel, initialValues }) => {
   );
 };
 
+const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
+  const [title, setTitle] = useState(initialValues ? initialValues.title : "");
+  const [company, setCompany] = useState(
+    initialValues ? initialValues.company : ""
+  );
+  const [industry, setIndustry] = useState(
+    initialValues ? initialValues.industry : ""
+  );
+  const [jobType, setJobType] = useState(
+    initialValues ? initialValues.jobType : ""
+  );
+  const [startDate, setStartDate] = useState(
+    initialValues ? new Date(initialValues.startDate) : null
+  );
+  const [endDate, setEndDate] = useState(
+    initialValues ? new Date(initialValues.endDate) : null
+  );
+
+  const handleSave = () => {
+    onSave({
+      title,
+      company,
+      industry,
+      jobType,
+      startDate,
+      endDate,
+    });
+  };
+
+  return (
+    <div className="border-[2px] bg-gray-50 shadow-2xl p-4 rounded-md">
+      <h3 className="text-lg font-semibold text-green-500">
+        {initialValues ? "Edit Experience" : "Add Experience"}
+      </h3>
+      <div className="grid gap-4 mt-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Title
+          </label>
+          <input
+            type="text"
+            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Field of Study */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Company
+          </label>
+          <input
+            type="text"
+            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            required
+          />
+        </div>
+        {/* Degree */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Industry
+          </label>
+          <input
+            type="text"
+            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500"
+            value={industry}
+            onChange={(e) => setIndustry(e.target.value)}
+            required
+          />
+        </div>
+        {/* Institution */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Job type
+          </label>
+          <input
+            type="text"
+            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500"
+            value={jobType}
+            onChange={(e) => setJobType(e.target.value)}
+            required
+          />
+        </div>
+        {/* Start Date */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Start Date
+          </label>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500 cursor-pointer"
+            dateFormat="MM/dd/yyyy"
+            placeholderText="DD/MM/YY"
+          />
+        </div>
+        {/* End Date */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            End Date
+          </label>
+          <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            className="border px-3 py-2 rounded-md w-full focus:outline-none  cursor-pointer focus:ring-green-500"
+            dateFormat="MM/dd/yyyy"
+            placeholderText="DD/MM/YY"
+          />
+        </div>
+      </div>
+      <div className="mt-4 flex justify-end">
+        <button
+          type="button"
+          className="flex items-center text-green-500 hover:text-green-700 mr-2"
+          onClick={handleSave}
+        >
+          <FaSave className="mr-1" />
+          Save
+        </button>
+        <button
+          type="button"
+          className="flex items-center text-red-500 hover:text-red-700"
+          onClick={onCancel}
+        >
+          <FaTimes className="mr-1" />
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const FormNew = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -160,8 +296,12 @@ const FormNew = () => {
   const [location, setLocation] = useState("");
   const [uploadedImage, setUploadedImage] = useState(null);
   const [showEducationForm, setShowEducationForm] = useState(false);
+  const [showExperienceForm, setShowExperienceForm] = useState(false);
   const [educationList, setEducationList] = useState([]);
+
   const [editingEducationIndex, setEditingEducationIndex] = useState(null);
+  const [experienceList, setExperienceList] = useState([]);
+  const [editingExperienceIndex, setEditingExperienceIndex] = useState(null);
   const [summary, setSummary] = useState("");
 
   const [selectedResume, setSelectedResume] = useState(null);
@@ -253,6 +393,25 @@ const FormNew = () => {
     setEditingEducationIndex(null);
     setShowEducationForm(false);
   };
+  // experience
+  const handleAddExperience = () => {
+    setEditingExperienceIndex(null);
+
+    setShowExperienceForm(true);
+  };
+
+  const handleEditExperience = (index) => {
+    // setEditingEducationIndex(index);
+    // setShowEducationForm(true);
+
+    setEditingExperienceIndex(index);
+    setShowExperienceForm(true);
+  };
+
+  const handleCancelExperience = () => {
+    setEditingExperienceIndex(null);
+    setShowExperienceForm(false);
+  };
 
   const handleSaveEducation = (educationData) => {
     if (editingEducationIndex !== null) {
@@ -266,13 +425,29 @@ const FormNew = () => {
     setEditingEducationIndex(null);
     setShowEducationForm(false);
   };
+  const handleSaveExperience = (experienceData) => {
+    if (editingExperienceIndex !== null) {
+      const updatedExperienceList = [...experienceList];
+      updatedExperienceList[editingExperienceIndex] = experienceData;
+      setExperienceList(updatedExperienceList);
+    } else {
+      setExperienceList([...experienceList, experienceData]);
+    }
+    // todo
+    setEditingExperienceIndex(null);
+    setShowExperienceForm(false);
+  };
 
+  const handleDeleteExperience = (index) => {
+    const updatedExperienceList = experienceList.filter((_, i) => i !== index);
+    setExperienceList(updatedExperienceList);
+  };
   const handleDeleteEducation = (index) => {
     const updatedEducationList = educationList.filter((_, i) => i !== index);
     setEducationList(updatedEducationList);
   };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Log user input data
@@ -307,348 +482,401 @@ const FormNew = () => {
       };
       console.log(applicationData);
       try {
-         dispatch(createApplicationPost(applicationData));
+        dispatch(createApplicationPost(applicationData));
         setIsSubmitted(true); // Update the form submission state
       } catch (error) {
         console.error("Error submitting form:", error);
       }
-  
     });
-
-   
-   
-
-
   };
 
   // ... (Rest of the components)
 
   return (
-
     <div>
-      {isSubmitted? ( <div className="text-center shadow-md border-[1px] bg-gray-50 space-y-2 p-32">
+      {isSubmitted ? (
+        <div className="text-center shadow-md border-[1px]  bg-gray-50 space-y-2 p-32">
           <FaCheckCircle className="text-green-500 mx-auto text-6xl" />
           <p className="text-lg text-gray-500">
             Thank you,{" "}
-            <span className="font-semibold text-gray-500">{firstName} {lastName}</span>
-            , for your application! We'll be in touch via <span className="font-semibold text-500">{email}</span> for further
+            <span className="font-semibold text-gray-500">
+              {firstName} {lastName}
+            </span>
+            , for your application! We'll be in touch via{" "}
+            <span className="font-semibold text-500">{email}</span> for further
             information.
           </p>
           <p className="text-gray-600">
             Our recruiter will contact you shortly.
           </p>
-        </div>):(<div className="flex items-center justify-center bg-gray-100">
-      <form
-        className="bg-white shadow-md rounded-lg w-full max-w-5xl"
-        onSubmit={handleSubmit}
-      >
-        {/* ... (Rest of the form components) */}
-
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-semibold text-green-500">
-            Personal Details
-          </h2>
-          <button
-            type="button"
-            className={`text-red-500 ${
-              !(firstName || lastName || email || phoneNumber || location)
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:text-red-700"
-            }`}
-            onClick={handleClear}
-            disabled={
-              !(firstName || lastName || email || phoneNumber || location)
-            }
-          >
-            <FaTrash className="mr-1 inline-block" />
-            Clear
-          </button>
         </div>
-        <div className="grid gap-4 mb-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-medium  text-gray-500"
-              >
-                First Name
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                placeholder="Enter your first name"
-                className="border px-3 py-2 rounded-md focus:outline-none focus:ring-green-500 w-full"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="lastName"
-                className="block text-sm font-medium text-gray-500"
-              >
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                placeholder="Enter your last name"
-                className="border px-3 py-2 rounded-md focus:outline-none focus:ring-green-500 w-full"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                required
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-500"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="phoneNumber"
-              className="block text-sm font-medium  text-gray-500"
-            >
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              id="phoneNumber"
-              placeholder="Enter your phone number"
-              className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="location"
-              className="block text-sm font-medium  text-gray-500"
-            >
-              Location
-            </label>
-            <input
-              type="text"
-              id="location"
-              placeholder="Enter your location"
-              className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              required
-            />
-          </div>
+      ) : (
+        <div className="flex items-center justify-center bg-gray-100 ">
+          <form
+            className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
+            onSubmit={handleSubmit}
+          >
+            {/* ... (Rest of the form components) */}
 
-          {/* for image */}
-
-          <div className="relative">
-            <label
-              htmlFor="image"
-              className="text-sm font-medium text-gray-500"
-            >
-              Upload Photo(optional)
-            </label>
-            <div className="border-[2px] border-green-400 border-dashed  p-4 rounded-md flex items-center justify-center">
-              <div
-                className={`w-60 h-32  border-2 pr-5 border-gray-300 rounded-md bg-gray-50 flex items-center justify-center overflow-hidden ${
-                  uploadedImage ? "mb-2" : ""
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-semibold text-green-500">
+                Personal Details
+              </h2>
+              <button
+                type="button"
+                className={`text-red-500 ${
+                  !(firstName || lastName || email || phoneNumber || location)
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:text-red-700"
                 }`}
-                onDrop={handleImageDrop}
-                onDragOver={(event) => event.preventDefault()}
+                onClick={handleClear}
+                disabled={
+                  !(firstName || lastName || email || phoneNumber || location)
+                }
               >
-                {uploadedImage ? (
-                  <div className="relative">
-                    <img
-                      src={uploadedImage}
-                      alt="Uploaded"
-                      className="w-full h-full object-cover"
-                    />
+                <FaTrash className="mr-1 inline-block" />
+                Clear
+              </button>
+            </div>
+            <div className="grid gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label
+                    htmlFor="firstName"
+                    className="block text-sm font-medium  text-gray-500"
+                  >
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    placeholder="Enter your first name"
+                    className="border px-3 py-2 rounded-md focus:outline-none focus:ring-green-500 w-full"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="lastName"
+                    className="block text-sm font-medium text-gray-500"
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    placeholder="Enter your last name"
+                    className="border px-3 py-2 rounded-md focus:outline-none focus:ring-green-500 w-full"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-500"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="phoneNumber"
+                  className="block text-sm font-medium  text-gray-500"
+                >
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  placeholder="Enter your phone number"
+                  className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="location"
+                  className="block text-sm font-medium  text-gray-500"
+                >
+                  Location
+                </label>
+                <input
+                  type="text"
+                  id="location"
+                  placeholder="Enter your location"
+                  className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* for image */}
+
+              <div className="relative">
+                <label
+                  htmlFor="image"
+                  className="text-sm font-medium text-gray-500"
+                >
+                  Upload Photo(optional)
+                </label>
+                <div className="border-[2px] border-green-400 border-dashed  p-4 rounded-md flex items-center justify-center">
+                  <div
+                    className={`w-60 h-32  border-2 pr-5 border-gray-300 rounded-md bg-gray-50 flex items-center justify-center overflow-hidden ${
+                      uploadedImage ? "mb-2" : ""
+                    }`}
+                    onDrop={handleImageDrop}
+                    onDragOver={(event) => event.preventDefault()}
+                  >
+                    {uploadedImage ? (
+                      <div className="relative">
+                        <img
+                          src={uploadedImage}
+                          alt="Uploaded"
+                          className="w-full h-full object-cover"
+                        />
+                        <button
+                          className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full"
+                          onClick={handleDeleteImage}
+                        >
+                          <FaTrash />
+                        </button>
+                      </div>
+                    ) : (
+                      <label
+                        htmlFor="image"
+                        className="cursor-pointer flex-col"
+                      >
+                        <div className="flex justify-center items-center">
+                          <FaUpload className="text-gray-400 text-4xl" />
+                        </div>
+                        <span className="text-gray-400 block mt-2">
+                          Drag or click to upload
+                        </span>
+                      </label>
+                    )}
+                  </div>
+                  <input
+                    type="file"
+                    id="image"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageUpload}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Education Section */}
+            <div className="mb-6">
+              <h2 className="text-2xl font-semibold text-green-500">Profile</h2>
+              {educationList.map((education, index) => (
+                <div key={index} className="mt-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold">
+                        {education.school}
+                      </h3>
+                      <p className="text-gray-600">
+                        {education.fieldOfStudy}, {education.degree}
+                      </p>
+                    </div>
+                    <div>
+                      <button
+                        className="text-green-500 hover:text-green-700 mr-2"
+                        onClick={() => handleEditEducation(index)}
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        className="text-red-500 hover:text-red-700"
+                        onClick={() => handleDeleteEducation(index)}
+                      >
+                        <FaTrash />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {showEducationForm && (
+                <EducationForm
+                  onSave={handleSaveEducation}
+                  onCancel={handleCancelEducation}
+                  initialValues={
+                    editingEducationIndex !== null
+                      ? educationList[editingEducationIndex]
+                      : null
+                  }
+                />
+              )}
+              <button
+                className="flex items-center text-gray-500 font-medium hover:text-green-700 mt-4"
+                onClick={handleAddEducation}
+              >
+                <FaPlus className="mr-1" />
+                Add Education(optional)
+              </button>
+            </div>
+            {/* experience */}
+            <div className="mb-6">
+              {/* <h2 className="text-2xl font-semibold text-green-500">Profile</h2> */}
+              {experienceList.map((education, index) => (
+                <div key={index} className="mt-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold">
+                        {education.title}
+                      </h3>
+                      <p className="text-gray-600">
+                        {education.company}, {education.industry}
+                      </p>
+                    </div>
+                    <div>
+                      <button
+                        className="text-green-500 hover:text-green-700 mr-2"
+                        onClick={() => handleEditExperience(index)}
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        className="text-red-500 hover:text-red-700"
+                        onClick={() => handleDeleteExperience(index)}
+                      >
+                        <FaTrash />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {showExperienceForm && (
+                <ExperienceForm
+                  onSave={handleSaveExperience}
+                  onCancel={handleCancelExperience}
+                  initialValues={
+                    editingExperienceIndex !== null
+                      ? experienceList[editingExperienceIndex]
+                      : null
+                  }
+                />
+              )}
+              <button
+                className="flex items-center text-gray-500 font-medium hover:text-green-700 mt-4"
+                onClick={handleAddExperience}
+              >
+                <FaPlus className="mr-1" />
+                Add Experience(optional)
+              </button>
+            </div>
+            {/* Experience */}
+            <div className="mb-2">
+              <label
+                htmlFor="summary"
+                className="block text-md font-medium text-gray-500"
+              >
+                Summary(optional)
+              </label>
+              <textarea
+                id="summary"
+                rows="4"
+                className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
+                value={summary}
+                onChange={(e) => setSummary(e.target.value)}
+              ></textarea>
+            </div>
+
+            <div className="my-4">
+              <label
+                htmlFor="resumeInput"
+                className="text-gray-500 font-semibold mb-1 block cursor-pointer "
+              >
+                Upload Resume (PDF, DOC, DOCX)
+              </label>
+              <div
+                className={`border-2 border-dashed rounded-lg p-4 mt-2 ${
+                  selectedResume ? "border-gray-300" : "border-green-500"
+                }`}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+              >
+                {selectedResume ? (
+                  <div className="flex items-center">
+                    <p className="text-gray-600">{selectedResume.name}</p>
                     <button
-                      className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full"
-                      onClick={handleDeleteImage}
+                      type="button"
+                      onClick={handleClearResume}
+                      className="ml-2 text-red-500 hover:text-red-600 cursor-pointer"
                     >
-                      <FaTrash />
+                      <AiOutlineCloseCircle />
                     </button>
                   </div>
                 ) : (
-                  <label htmlFor="image" className="cursor-pointer flex-col">
-                    <div className="flex justify-center items-center">
-                      <FaUpload className="text-gray-400 text-4xl" />
+                  <>
+                    <div className="flex-col ">
+                      <AiOutlineCloudUpload className="text-gray-400 mx-auto w-12 h-12 cursor-pointer" />
+                      <p className="text-gray-400 mt-2 text-center ">
+                        Drag and drop or click to upload
+                      </p>
                     </div>
-                    <span className="text-gray-400 block mt-2">
-                      Drag or click to upload
-                    </span>
-                  </label>
+                  </>
                 )}
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  id="resumeInput"
+                  className="hidden"
+                  onChange={handleResumeChange}
+                />
               </div>
-              <input
-                type="file"
-                id="image"
-                accept="image/*"
-                className="hidden"
-                onChange={handleImageUpload}
+              <label
+                htmlFor="coverLetter"
+                className="text-gray-500 font-semibold mt-4 block"
+              >
+                Cover Letter
+              </label>
+              <textarea
+                id="coverLetter"
+                rows="4"
+                className="w-full border border-gray-300 rounded p-2"
+                value={coverLetter}
+                onChange={(e) => setCoverLetter(e.target.value)}
               />
-            </div>
-          </div>
-        </div>
-
-        {/* Education Section */}
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-green-500">Profile</h2>
-          {educationList.map((education, index) => (
-            <div key={index} className="mt-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold">{education.school}</h3>
-                  <p className="text-gray-600">
-                    {education.fieldOfStudy}, {education.degree}
-                  </p>
-                </div>
-                <div>
-                  <button
-                    className="text-green-500 hover:text-green-700 mr-2"
-                    onClick={() => handleEditEducation(index)}
-                  >
-                    <FaEdit />
-                  </button>
-                  <button
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => handleDeleteEducation(index)}
-                  >
-                    <FaTrash />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-          {showEducationForm && (
-            <EducationForm
-              onSave={handleSaveEducation}
-              onCancel={handleCancelEducation}
-              initialValues={
-                editingEducationIndex !== null
-                  ? educationList[editingEducationIndex]
-                  : null
-              }
-            />
-          )}
-          <button
-            className="flex items-center text-gray-500 font-medium hover:text-green-700 mt-4"
-            onClick={handleAddEducation}
-          >
-            <FaPlus className="mr-1" />
-            Add Education(optional)
-          </button>
-        </div>
-        {/* Experience */}
-        <div className="mb-2">
-          <label
-            htmlFor="summary"
-            className="block text-md font-medium text-gray-500"
-          >
-            Summary(optional)
-          </label>
-          <textarea
-            id="summary"
-            rows="4"
-            className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
-            value={summary}
-            onChange={(e) => setSummary(e.target.value)}
-          ></textarea>
-        </div>
-
-        <div className="my-4">
-          <label
-            htmlFor="resumeInput"
-            className="text-gray-500 font-semibold mb-1 block cursor-pointer "
-          >
-            Upload Resume (PDF, DOC, DOCX)
-          </label>
-          <div
-            className={`border-2 border-dashed rounded-lg p-4 mt-2 ${
-              selectedResume ? "border-gray-300" : "border-green-500"
-            }`}
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          >
-            {selectedResume ? (
-              <div className="flex items-center">
-                <p className="text-gray-600">{selectedResume.name}</p>
+              {coverLetter && (
                 <button
                   type="button"
-                  onClick={handleClearResume}
-                  className="ml-2 text-red-500 hover:text-red-600 cursor-pointer"
+                  onClick={handleClearCoverLetter}
+                  className="mt-2 text-red-500 hover:text-red-600 text-sm font-medium cursor-pointer"
                 >
-                  <AiOutlineCloseCircle />
+                  Clear
                 </button>
-              </div>
-            ) : (
-              <>
-                <div className="flex-col ">
-                  <AiOutlineCloudUpload className="text-gray-400 mx-auto w-12 h-12 cursor-pointer" />
-                  <p className="text-gray-400 mt-2 text-center ">
-                    Drag and drop or click to upload
-                  </p>
-                </div>
-              </>
-            )}
-            <input
-              type="file"
-              accept=".pdf,.doc,.docx"
-              id="resumeInput"
-              className="hidden"
-              onChange={handleResumeChange}
-            />
-          </div>
-          <label
-            htmlFor="coverLetter"
-            className="text-gray-500 font-semibold mt-4 block"
-          >
-            Cover Letter
-          </label>
-          <textarea
-            id="coverLetter"
-            rows="4"
-            className="w-full border border-gray-300 rounded p-2"
-            value={coverLetter}
-            onChange={(e) => setCoverLetter(e.target.value)}
-          />
-          {coverLetter && (
+              )}
+            </div>
+
             <button
-              type="button"
-              onClick={handleClearCoverLetter}
-              className="mt-2 text-red-500 hover:text-red-600 text-sm font-medium cursor-pointer"
+              type="submit"
+              className="w-full py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600"
             >
-              Clear
+              Submit Application
             </button>
-          )}
+          </form>
         </div>
-
-        <button
-          type="submit"
-          className="w-full py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600"
-        >
-          Submit Application
-        </button>
-      </form>
-    </div>)}
+      )}
     </div>
-
-
   );
 };
 
