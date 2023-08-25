@@ -636,9 +636,9 @@ const FormNew = () => {
                 >
                   Upload Photo(optional)
                 </label>
-                <div className="border-[2px] border-green-400 border-dashed  p-4 rounded-md flex items-center justify-center">
+                <div className="border-[1px] border-green-400 border-dashed  p-4 rounded-md flex items-center justify-center">
                   <div
-                    className={`w-60 h-32  border-2 pr-5 border-gray-300 rounded-md bg-gray-50 flex items-center justify-center overflow-hidden ${
+                    className={`w-60 h-32  border-[1px]  pr-5 border-gray-300 rounded-md flex items-center justify-center overflow-hidden ${
                       uploadedImage ? "mb-2" : ""
                     }`}
                     onDrop={handleImageDrop}
@@ -808,7 +808,7 @@ const FormNew = () => {
                 Upload Resume (PDF, DOC, DOCX)
               </label>
               <div
-                className={`border-2 border-dashed rounded-lg p-4 mt-2 ${
+                className={`border-[1px] border-dashed rounded-lg p-4 mt-2 ${
                   selectedResume ? "border-gray-300" : "border-green-500"
                 }`}
                 onDragOver={handleDragOver}
