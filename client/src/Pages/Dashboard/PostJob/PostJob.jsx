@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { FiAlertCircle } from "react-icons/fi";
@@ -12,15 +12,25 @@ import {
   employmentTypes,
   experienceLevels,
 } from "../../../Components/Dashboard/UtilsJobPost/data";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { createJobPost } from "../../../redux/jobSlice";
 import { toast } from "react-hot-toast";
 import Tips from "../../../Components/Dashboard/PostJob/Tips";
 
+import { all } from "axios";
+import { getAllPost } from "../../../redux/postJob/api";
+import { useDispatch, useSelector } from "react-redux";
+import { authContext } from "../../../Auth/AuthProvider";
+// import CustomModal from "./CustomModal";
+
 export const PostJob = () => {
+  const [data, setData] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {user} = useContext(authContext)
+  
+
   const {
     register,
     handleSubmit,
@@ -28,16 +38,30 @@ export const PostJob = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log(data.jobTitle);
     try {
       await dispatch(createJobPost(data));
+
+      setData(data);
+      // console.log(...data,user?.email);
+      const serializedData = encodeURIComponent(JSON.stringify(data));
+        navigate(`/overview?data=${serializedData}`);
       toast.success("Successfully post your job !");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
+
+  const users = useSelector((state) => state);
+  useEffect(() => {
+    dispatch(getAllPost());
+  }, [dispatch]);
+
+  console.log(users.posts);
+
   return (
     <div className="pt-20">
+     
       <Heading></Heading>
       <div className="md:flex justify-between items-center my-10">
         <div className=" w-full md:w-9/12 rounded-lg border-[1px]">
@@ -153,6 +177,26 @@ export const PostJob = () => {
                   </div>
                   <div className="mb-2">
                     <h4 className="text-md text-gray-500 font-semibold mb-1">
+                    Responsibilities
+                    </h4>
+                    <textarea
+                      name=" responsibilities"
+                      {...register("responsibilities", {
+                        required: "Requirements are required",
+                      })}
+                      className={`w-full px-4 py-2 border rounded ${
+                        errors.responsibilities ? "border-red-500" : ""
+                      }`}
+                      rows={4}
+                    />
+                    {errors.responsibilities && (
+                      <p className="text-red-500" role="alert">
+                        {errors.responsibilities.message}
+                      </p>
+                    )}
+                  </div>
+                  <div className="mb-2">
+                    <h4 className="text-md text-gray-500 font-semibold mb-1">
                       Benefits
                     </h4>
                     <textarea
@@ -246,7 +290,7 @@ export const PostJob = () => {
 
                 {/* start here  */}
 
-                <div className="p-6 text-gray-700">
+                <div className=" text-gray-700">
                   <div className="md:flex justify-between gap-3 my-2">
                     <div className="mb-4 w-full">
                       <h3 className="text-lg text-gray-500 font-semibold mb-2 flex items-center ">
@@ -432,7 +476,12 @@ export const PostJob = () => {
 
                 <div>
                   <div className="space-x-4">
-                    <button className="bg-[#1F7068] text-white outline-none px-4 py-1 rounded-md text-[20px] font-medium">
+                    <button
+                      data={data}
+                      type="submit"
+                     
+                      className="bg-[#1F7068] text-white outline-none px-4 py-1 rounded-md text-[20px] font-medium"
+                    >
                       Save draft
                     </button>
                     <button

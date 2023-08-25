@@ -75,39 +75,18 @@ const router = createBrowserRouter([
         path: "/register",
         element: <SignIn />,
       },
-      
- 
       {
         path: "/overview",
         element: <Overview />,
       },
-      // |For checking my work
-      {
-        path: "/people-directory",
-        element: <PeoPleDirectory />,
-      },
-      {
-        path: "/org-chart",
-        element: <OrgChart />,
-      },
-      {
-        path: "/files",
-        element: <Files />,
-      },
-      {
-        path: "/onboarding",
-        element: <Onboarding />
-      },
-      {
-        path:'/company',
-        element:<Company />
-      }
     ],
   },
   {
     path: "dashboard",
     element: (
       <PrivateRoute>
+       
+        <DashboardLayout />
        
         <DashboardLayout />
       </PrivateRoute>
