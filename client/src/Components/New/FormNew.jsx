@@ -325,8 +325,8 @@ const FormNew = () => {
 
   return (
 
-    <div>
-      {isSubmitted? ( <div className="text-center shadow-md border-[1px] bg-gray-50 space-y-2 p-32">
+    <div >
+      {isSubmitted? ( <div className="text-center  shadow-md border-[1px] bg-gray-50 space-y-2 p-32">
           <FaCheckCircle className="text-green-500 mx-auto text-6xl" />
           <p className="text-lg text-gray-500">
             Thank you,{" "}
