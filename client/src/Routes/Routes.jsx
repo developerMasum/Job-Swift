@@ -16,6 +16,9 @@ import { PostJob } from "../Pages/Dashboard/PostJob/PostJob";
 import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import Overview from "../Components/Overview/Overview";
+import NewForm from "../Components/NewForm/NewForm";
+import PersonalDetailsForm from "../Components/NewForm/NewForm";
+import FormNew from "../Components/New/FormNew";
 
 
 const router = createBrowserRouter([
@@ -65,6 +68,14 @@ const router = createBrowserRouter([
         path: "/overview",
         element: <Overview />,
       },
+      {
+        path:'new-form',
+        element:<NewForm></NewForm>
+      },
+      {
+        path:'test',
+        element:<FormNew></FormNew>
+      }
     ],
   },
   {
