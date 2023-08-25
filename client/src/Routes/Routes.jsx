@@ -17,15 +17,19 @@ import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
-
-
 import Overview from "../Components/Overview/Overview";
 import Agenda from "../Pages/Dashboard/Agenda/Agenda";
-import PeoPleDirectory from "../Components/CompanyCompo/PeoPleDirectory";
-import OrgChart from "../Components/CompanyCompo/OrgChart";
-import Files from "../Components/CompanyCompo/Files";
-import Onboarding from "../Components/CompanyCompo/Onboarding";
-import Company from "../Pages/Dashboard/Company/Company";
+// import NewForm from "../Components/NewForm/NewForm";
+// import PersonalDetailsForm from "../Components/NewForm/NewForm";
+import FormNew from "../Components/New/FormNew";
+
+
+// import Overview from "../Components/Overview/Overview";
+// import PeoPleDirectory from "../Components/CompanyCompo/PeoPleDirectory";
+// import OrgChart from "../Components/CompanyCompo/OrgChart";
+// import Files from "../Components/CompanyCompo/Files";
+// import Onboarding from "../Components/CompanyCompo/Onboarding";
+// import Company from "../Pages/Dashboard/Company/Company";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -79,6 +83,14 @@ const router = createBrowserRouter([
         path: "/overview",
         element: <Overview />,
       },
+      // {
+      //   path:'new-form',
+      //   element:<NewForm></NewForm>
+      // },
+      {
+        path:'test',
+        element:<FormNew></FormNew>
+      }
     ],
   },
   {
