@@ -1,24 +1,19 @@
 import React from "react";
-import { FaPlaneDeparture } from "react-icons/fa";
+import { FaPaperPlane, FaPlaneDeparture } from "react-icons/fa";
 import files from "../../assets/Image/files.png";
 
-const Files = () => {
+const FilesTab = () => {
   return (
-    <div className="my-8 sm:my-48">
-      {" "}
-      {/* Adjust margin for small devices */}
+    <div className="pt-8">
       <div>
-        <div className="flex flex-col sm:flex-row items-center sm:justify-between">
-          <h3 className="text-xl sm:text-4xl font-semibold mb-2 sm:mb-0">
-            Files
-          </h3>{" "}
-          {/* Adjust font size */}
-          <button className="btn btn-success">
-            <FaPlaneDeparture size={16} />
-            <span>BETA</span>
+      <div className="flex items-center gap-2">
+          <h3 className="md:text-3xl text-xl ">Files</h3>
+          <button className="flex bg-[#c7f0f1] px-2 py-1 rounded-full gap-2 items-center">
+            <FaPaperPlane color="107191" size={12} />
+            <span className="text-[#107191] text-xs font-bold">BETA</span>
           </button>
         </div>
-        <p className="font-semibold text-gray-400">Manage company files</p>
+        <p className="text-start text-secondary">Manage company files</p>
       </div>
       {/* Body */}
       <div className="flex flex-col items-center mt-4 sm:flex-row sm:justify-center sm:items-center sm:mt-8">
@@ -35,4 +30,4 @@ const Files = () => {
   );
 };
 
-export default Files;
+export default FilesTab;

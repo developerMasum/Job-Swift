@@ -18,14 +18,10 @@ import PrivateRoute from "./PrivateRoute";
 import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 
-
 import Overview from "../Components/Overview/Overview";
 import Agenda from "../Pages/Dashboard/Agenda/Agenda";
-import PeoPleDirectory from "../Components/CompanyCompo/PeoPleDirectory";
-import OrgChart from "../Components/CompanyCompo/OrgChart";
-import Files from "../Components/CompanyCompo/Files";
-import Onboarding from "../Components/CompanyCompo/Onboarding";
 import Company from "../Pages/Dashboard/Company/Company";
+import OrgChartTab from "../Components/CompanyComponents/OrgChartTab";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -69,72 +65,55 @@ const router = createBrowserRouter([
       },
       {
         path: "login/forgotPassword",
-        element: <ForgotPassword></ForgotPassword>
+        element: <ForgotPassword></ForgotPassword>,
       },
       {
         path: "/register",
         element: <SignIn />,
       },
-      
- 
+
       {
         path: "/overview",
         element: <Overview />,
       },
-      // |For checking my work
-      {
-        path: "/people-directory",
-        element: <PeoPleDirectory />,
-      },
-      {
-        path: "/org-chart",
-        element: <OrgChart />,
-      },
-      {
-        path: "/files",
-        element: <Files />,
-      },
-      {
-        path: "/onboarding",
-        element: <Onboarding />
-      },
-      {
-        path:'/company',
-        element:<Company />
-      }
     ],
   },
   {
     path: "dashboard",
     element: (
       <PrivateRoute>
-       
         <DashboardLayout />
       </PrivateRoute>
     ),
     children: [
       {
-        path:"jobs",
-        element:<Jobs />,
+        path: "jobs",
+        element: <Jobs />,
       },
       {
-        path:'jobs/post-job',
-        element:<PostJob />
+        path: "jobs/post-job",
+        element: <PostJob />,
       },
       {
-        path:'report-center',
-        element: <ReportCenter />
-        
+        path: "report-center",
+        element: <ReportCenter />,
       },
       {
-        path:'peopleSearch',
-        element:  <PeopleSearch></PeopleSearch>
+        path: "peopleSearch",
+        element: <PeopleSearch></PeopleSearch>,
       },
       {
         path: "agenda",
         element: <Agenda />,
-      }
-      
+      },
+      {
+        path: "company",
+        element: <Company />,
+      },
+      {
+        path: "OrgChartTab",
+        element: <OrgChartTab />,
+      },
     ],
   },
 ]);

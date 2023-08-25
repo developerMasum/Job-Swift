@@ -12,30 +12,24 @@ import { authContext } from "../../../Auth/AuthProvider";
 import { toast } from "react-hot-toast";
 
 const UpperBar = () => {
-
   const { user, logout } = useContext(authContext);
-
-
 
   const name = user?.displayName || "Mr X man";
   const userName = user?.email || "mm123";
   const userImage = user?.photoURL || userBackupImage;
   const navigate = useNavigate();
 
-
-
   // console.log(user);
   // console.log(cart);
   const handleLogOut = () => {
     logout()
       .then(() => {
-        toast.success('log out successful')
-     
+        toast.success("log out successful");
       })
-      .catch(error => { 
+      .catch((error) => {
         toast.error(error);
-      })
-  }
+      });
+  };
 
   return (
     <>
@@ -75,7 +69,7 @@ const UpperBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to={'peopleSearch'}>
+                  <Link to={"peopleSearch"}>
                     <RiUserSearchFill></RiUserSearchFill>People Search
                   </Link>
                 </li>
@@ -86,7 +80,7 @@ const UpperBar = () => {
                 </li> */}
 
                 <li>
-                  <Link to='agenda'>
+                  <Link to="agenda">
                     <BiSolidCalendar className="text-[18px]"></BiSolidCalendar>
                     Agenda
                   </Link>
@@ -147,20 +141,20 @@ const UpperBar = () => {
             <li>
               <Link to={"jobs"}>JOBS</Link>
             </li>
-            <li>
-              <Link>CANDIDATES</Link>
-            </li>
-            <li>
-              <Link to={'peopleSearch'}>PEOPLE SEARCH</Link>
-            </li>
-            
             {/* <li>
-              <Link>COMPANY</Link>
+              <Link>CANDIDATES</Link>
             </li> */}
+            <li>
+              <Link to={"peopleSearch"}>PEOPLE SEARCH</Link>
+            </li>
+
+            <li >
+              <Link to='company'>COMPANY</Link>
+            </li>
 
             {/* icons */}
             <li className="relative group">
-              <Link to='agenda'>
+              <Link to="agenda">
                 <BiSolidCalendar className="text-[18px]"></BiSolidCalendar>
               </Link>
               <div className="opacity-0 rounded-md absolute top-14 right-0 bg-slate-600 text-white  pointer-events-none group-hover:opacity-100">
@@ -175,14 +169,14 @@ const UpperBar = () => {
                 <h2 className=" text-[10px] w-max ">Reports</h2>
               </div>
             </li>
-            <li className="relative group">
+            {/* <li className="relative group">
               <Link>
                 <BiSolidCalendar className="text-[18px]"></BiSolidCalendar>
               </Link>
               <div className="opacity-0 rounded-md absolute top-14 right-0 bg-slate-600 text-white  pointer-events-none group-hover:opacity-100">
                 <h2 className=" text-[10px] w-max ">Activity</h2>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -306,19 +300,18 @@ const UpperBar = () => {
                   <li>
                     <Link>Add Company</Link>
                   </li>
-                  {
-                    user &&
+                  {user && (
                     <>
                       <div className="text-center">
-                        <li onClick={handleLogOut} className='btn btn-outline btn-xs text-xs btn-error mx-auto my-3 '>
+                        <li
+                          onClick={handleLogOut}
+                          className="btn btn-outline btn-xs text-xs btn-error mx-auto my-3 "
+                        >
                           Log-out
                         </li>
                       </div>
-
-
                     </>
-
-                  }
+                  )}
                 </div>
               </ul>
             </div>
