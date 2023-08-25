@@ -10,6 +10,7 @@ import { authContext } from "../../Auth/AuthProvider";
 
 import SocialLogIn from "./SocialLogIn";
 import { toast } from "react-hot-toast";
+import Loader from '../../Components/Loader/Loader';
 
 const LogIn = () => {
 
@@ -18,7 +19,7 @@ const LogIn = () => {
   const emailRef = useRef();
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const { logIn, resetPassword, userUpdatePassword } = useContext(authContext);
+  const { logIn, resetPassword, loading, userUpdatePassword } = useContext(authContext);
   const location = useLocation()
   const navigate = useNavigate()
   const from = location.state?.from?.pathname || "/dashboard/jobs";
@@ -62,6 +63,9 @@ const LogIn = () => {
         toast.error(errorMessage);
       });
 
+  }
+  if (loading) {
+    return <Loader />
   }
 
   return (
