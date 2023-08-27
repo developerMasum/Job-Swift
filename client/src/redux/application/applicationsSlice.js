@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createApplicationPost } from "./api";
+import { createApplicationPost, getAllApplications } from "./api";
 
 
 
 const applicationSlice = createSlice({
-      name: "application",
+      name: "applications",
       initialState: {
-            application: [],
+            applications: [],
             isLoading: false,
             error: null,
           },
@@ -19,16 +19,27 @@ const applicationSlice = createSlice({
                 })
                 .addCase(createApplicationPost.fulfilled, (state, action) => {
                   state.isLoading = false;
-                  state.jobs.push(action.payload);
+                  state.applications.push(action.payload);
                 })
                 .addCase(createApplicationPost.rejected, (state, action) => {
                   state.isLoading = false;
                   state.error = action.error.message;
+                })
+                .addCase(getAllApplications.pending, (state) => {
+                  state.isLoading = true;
+                })
+                .addCase(getAllApplications.fulfilled, (state, action) => {
+                  state.isLoading = false;
+                  state.applications = action.payload;
+                })
+                .addCase(getAllApplications.rejected, (state, action) => {
+                  state.isLoading = false;
+                  state.error =  action.error.message;
                 })
                 
 
           }
 })
 
-export  { createApplicationPost } 
+export  { createApplicationPost,getAllApplications } 
 export default applicationSlice.reducer;

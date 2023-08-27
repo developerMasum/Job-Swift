@@ -6,7 +6,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { authContext } from "../../Auth/AuthProvider";
 
-import FormNew from "../New/FormNew";
+
+import UpdateForm from "../New/UpdateForm";
 
 const Overview = () => {
   const location = useLocation();
@@ -106,7 +107,8 @@ const Overview = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <FormNew></FormNew>
+            {/* <FormNew></FormNew> */}
+            <UpdateForm></UpdateForm>
           </TabPanel>
         </Tabs>
       </div>

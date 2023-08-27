@@ -10,9 +10,10 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AiOutlineCloudUpload, AiOutlineCloseCircle } from "react-icons/ai";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaCheckCircle } from "react-icons/fa";
 import { createApplicationPost } from "../../redux/application/api";
+import { useForm } from "react-hook-form";
 
 const EducationForm = ({ onSave, onCancel, initialValues }) => {
   const [school, setSchool] = useState(
@@ -446,51 +447,94 @@ const FormNew = () => {
     const updatedEducationList = educationList.filter((_, i) => i !== index);
     setEducationList(updatedEducationList);
   };
+  // const data = useSelector(state)
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
 
-    // Log user input data
-    console.log("Personal Details:");
-    console.log("First Name:", firstName);
-    console.log("Last Name:", lastName);
-    console.log("Email:", email);
-    console.log("Phone Number:", phoneNumber);
-    console.log("Location:", location);
+  //   console.log("Education Details:");
+  //   educationList.forEach((education, index) => {
+  //     console.log(`Education ${index + 1}:`);
+  //     console.log("School:", education.school);
+  //     console.log("Field of Study:", education.fieldOfStudy);
+  //     console.log("Degree:", education.degree);
+  //     console.log("Institution:", education.institution);
+  //     console.log("Start Date:", education.startDate);
+  //     console.log("End Date:", education.endDate);})
 
-    console.log("Education Details:");
-    educationList.forEach((education, index) => {
-      console.log(`Education ${index + 1}:`);
-      console.log("School:", education.school);
-      console.log("Field of Study:", education.fieldOfStudy);
-      console.log("Degree:", education.degree);
-      console.log("Institution:", education.institution);
-      console.log("Start Date:", education.startDate);
-      console.log("End Date:", education.endDate);
+  //     try {
+  //      await dispatch(createApplicationPost({firstName,lastName,email,phoneNumber,location}));
+  //       setIsSubmitted(true); // Update the form submission state
+  //     } catch (error) {
+  //       console.error("Error submitting form:", error);
+  //     }
+  //   };
 
-      const applicationData = {
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        location,
-        school: education.school,
-        field: education.fieldOfStudy,
-        institution: education.institution,
-        startDate: education.startDate,
-        endDate: education.endDate,
-      };
-      console.log(applicationData);
-      try {
-        dispatch(createApplicationPost(applicationData));
-        setIsSubmitted(true); // Update the form submission state
-      } catch (error) {
-        console.error("Error submitting form:", error);
-      }
-    });
-  };
+  const data = useSelector((state) => console.log(state));
+  const img_key = "5efe9a284094d859ae9cafe3952f92f7";
+
+  const url = `https://api.imgbb.com/1/upload?key=${img_key}`;
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   console.log("Education Details:");
+  //   educationList.forEach((education, index) => {
+  //     console.log(`Education ${index + 1}:`);
+  //     console.log("School:", education.school);
+  //     console.log("Field of Study:", education.fieldOfStudy);
+  //     console.log("Degree:", education.degree);
+  //     console.log("Institution:", education.institution);
+  //     console.log("Start Date:", education.startDate);
+  //     console.log("End Date:", education.endDate);
+  //   });
+
+  //   const FormData = {
+  //     firstName,
+  //     lastName,
+  //     email,
+  //     phoneNumber,
+  //     location,
+  //     ...educationList,
+  //   };
+
+  //   const formData = new formData();
+  //   formData.append("image", data.image[0]);
+  //   fetch(url, {
+  //     method: "POST",
+  //     body: formData,
+  //   })
+  //     .then((res) => res.json())
+  //     .then((imgResponse) => {
+  //       console.log(imgResponse);
+  //     });
+
+  //   try {
+  //     await dispatch(
+  //       createApplicationPost({
+  //         firstName,
+  //         lastName,
+  //         email,
+  //         phoneNumber,
+  //         location,
+  //         educationList, // Pass the educationList array to the action
+  //       })
+  //     );
+  //     setIsSubmitted(true); // Update the form submission state
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // ... (Rest of the components)
+
+  // for react-hook-form
+
+  const { register, handleSubmit, formState:{errors} } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <div>
@@ -514,7 +558,7 @@ const FormNew = () => {
         <div className="flex items-center justify-center bg-gray-100 ">
           <form
             className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
           >
             {/* ... (Rest of the form components) */}
 
@@ -552,9 +596,8 @@ const FormNew = () => {
                     id="firstName"
                     placeholder="Enter your first name"
                     className="border px-3 py-2 rounded-md focus:outline-none focus:ring-green-500 w-full"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    required
+                    {...register("firstName", { required: true })}
+                    name="jobTitle"
                   />
                 </div>
                 <div>
@@ -569,9 +612,8 @@ const FormNew = () => {
                     id="lastName"
                     placeholder="Enter your last name"
                     className="border px-3 py-2 rounded-md focus:outline-none focus:ring-green-500 w-full"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    required
+                    {...register("lastName", { required: true })}
+                    name="lastName"
                   />
                 </div>
               </div>
@@ -587,9 +629,7 @@ const FormNew = () => {
                   id="email"
                   placeholder="Enter your email"
                   className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
+                  {...register("email", { required: true })}
                 />
               </div>
               <div>
@@ -600,13 +640,11 @@ const FormNew = () => {
                   Phone Number
                 </label>
                 <input
-                  type="tel"
+                  type="number"
                   id="phoneNumber"
                   placeholder="Enter your phone number"
                   className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  required
+                  {...register("phoneNumber", { required: true })}
                 />
               </div>
               <div>
@@ -621,15 +659,13 @@ const FormNew = () => {
                   id="location"
                   placeholder="Enter your location"
                   className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  required
+                  {...register("location", { required: true })}
                 />
               </div>
 
               {/* for image */}
 
-              <div className="relative">
+              {/* <div className="relative">
                 <label
                   htmlFor="image"
                   className="text-sm font-medium text-gray-500"
@@ -678,13 +714,71 @@ const FormNew = () => {
                     accept="image/*"
                     className="hidden"
                     onChange={handleImageUpload}
+                    {...register("image", { required: true })}
                   />
                 </div>
-              </div>
+              </div> */}
+
+              {/* <div className="relative">
+                <label
+                  htmlFor="image"
+                  className="text-sm font-medium text-gray-500"
+                >
+                  Upload Photo (optional)
+                </label>
+                <div className="border-[1px] border-green-400 border-dashed p-4 rounded-md flex items-center justify-center">
+                  <div
+                    className={`w-60 h-32  border-[1px]  pr-5 border-gray-300 rounded-md flex items-center justify-center overflow-hidden ${
+                      errors.image ? "mb-2" : ""
+                    }`}
+                  >
+                    {uploadedImage ? (
+                      <div className="relative">
+                        <img
+                          src={uploadedImage}
+                          alt="Uploaded"
+                          className="w-full h-full object-cover"
+                        />
+                        <button
+                          className="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full"
+                          onClick={() => setUploadedImage(null)}
+                        >
+                          <FaTrash />
+                        </button>
+                      </div>
+                    ) : (
+                      <label
+                        htmlFor="image"
+                        className="cursor-pointer flex-col"
+                      >
+                        <div className="flex justify-center items-center">
+                          <FaUpload className="text-gray-400 text-4xl" />
+                        </div>
+                        <span className="text-gray-400 block mt-2">
+                          Drag or click to upload
+                        </span>
+                      </label>
+                    )}
+                  </div>
+                  <input
+                    type="file"
+                    id="image"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageUpload}
+                    {...register("image")}
+                  />
+                </div>
+                {errors.image && (
+                  <p className="text-red-500 text-sm mt-1">
+                    Please upload an image.
+                  </p>
+                )}
+              </div> */}
             </div>
 
             {/* Education Section */}
-            <div className="mb-6">
+            {/* <div className="mb-6">
               <h2 className="text-2xl font-semibold text-green-500">Profile</h2>
               {educationList.map((education, index) => (
                 <div key={index} className="mt-4">
@@ -732,10 +826,11 @@ const FormNew = () => {
                 <FaPlus className="mr-1" />
                 Add Education(optional)
               </button>
-            </div>
+            </div> */}
             {/* experience */}
-            <div className="mb-6">
-              {/* <h2 className="text-2xl font-semibold text-green-500">Profile</h2> */}
+
+            {/* <div className="mb-6">
+             
               {experienceList.map((education, index) => (
                 <div key={index} className="mt-4">
                   <div className="flex items-center justify-between">
@@ -782,8 +877,8 @@ const FormNew = () => {
                 <FaPlus className="mr-1" />
                 Add Experience(optional)
               </button>
-            </div>
-            {/* Experience */}
+            </div> */}
+
             <div className="mb-2">
               <label
                 htmlFor="summary"
@@ -795,12 +890,12 @@ const FormNew = () => {
                 id="summary"
                 rows="4"
                 className="border w-full px-3 py-2 rounded-md focus:outline-none focus:ring-green-500"
-                value={summary}
-                onChange={(e) => setSummary(e.target.value)}
+               
+                {...register("summary")}
               ></textarea>
             </div>
 
-            <div className="my-4">
+            {/* <div className="my-4">
               <label
                 htmlFor="resumeInput"
                 className="text-gray-500 font-semibold mb-1 block cursor-pointer "
@@ -855,6 +950,79 @@ const FormNew = () => {
                 className="w-full border border-gray-300 rounded p-2"
                 value={coverLetter}
                 onChange={(e) => setCoverLetter(e.target.value)}
+              />
+              {coverLetter && (
+                <button
+                  type="button"
+                  onClick={handleClearCoverLetter}
+                  className="mt-2 text-red-500 hover:text-red-600 text-sm font-medium cursor-pointer"
+                >
+                  Clear
+                </button>
+              )}
+            </div> */}
+
+            <div className="my-4">
+              <label
+                htmlFor="resumeInput"
+                className="text-gray-500 font-semibold mb-1 block cursor-pointer"
+              >
+                Upload Resume (PDF, DOC, DOCX)
+              </label>
+              {/* <div
+                className={`border-[1px] border-dashed rounded-lg p-4 mt-2 ${
+                  errors.resumeInput ? "border-red-500" : "border-green-500"
+                }`}
+              >
+                {selectedResume ? (
+                  <div className="flex items-center">
+                    <p className="text-gray-600">{selectedResume.name}</p>
+                    <button
+                      type="button"
+                      onClick={handleClearResume}
+                      className="ml-2 text-red-500 hover:text-red-600 cursor-pointer"
+                    >
+                      <AiOutlineCloseCircle />
+                    </button>
+                  </div>
+                ) : (
+                  <label
+                    htmlFor="resumeInput"
+                    className="cursor-pointer flex-col"
+                  >
+                    <div className="flex justify-center items-center">
+                      <AiOutlineCloudUpload className="text-gray-400 text-4xl" />
+                    </div>
+                    <span className="text-gray-400 mt-2 text-center">
+                      Drag and drop or click to upload
+                    </span>
+                  </label>
+                )}
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  id="resumeInput"
+                  className="hidden"
+                  {...register("resumeInput", { required: true })}
+                  onChange={handleResumeChange}
+                />
+                {errors.resumeInput && (
+                  <p className="text-red-500 text-sm mt-1">
+                    Please upload a valid resume file.
+                  </p>
+                )}
+              </div> */}
+              <label
+                htmlFor="coverLetter"
+                className="text-gray-500 font-semibold mt-4 block"
+              >
+                Cover Letter
+              </label>
+              <textarea
+                id="coverLetter"
+                rows="4"
+                className="w-full border border-gray-300 rounded p-2"
+                {...register("coverLetter")}
               />
               {coverLetter && (
                 <button
