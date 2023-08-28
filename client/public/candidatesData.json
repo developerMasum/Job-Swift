@@ -1,0 +1,74 @@
+[
+  {
+    "name": "SS Mashum",
+    "education": "BSc from Dhaka College",
+    "location": "Dhaka, Bangladesh",
+    "jobTitle": "Web Developer",
+    "jobStatus": "At Assessment stage",
+    "jobDetails": "via careers page · 1 day ago",
+    "image": "image-8.jpg"
+  },
+  {
+    "name": "John Doe",
+    "education": "MSc from Example University",
+    "location": "New York, USA",
+    "jobTitle": "Software Engineer",
+    "jobStatus": "Interview Scheduled",
+    "jobDetails": "via internal referral · 3 hours ago",
+    "image": "john-doe.jpg"
+  },
+  {
+    "name": "Jane Smith",
+    "education": "BS in Computer Science",
+    "location": "San Francisco, USA",
+    "jobTitle": "Frontend Developer",
+    "jobStatus": "Application Submitted",
+    "jobDetails": "via company website · 2 days ago",
+    "image": "jane-smith.jpg"
+  },
+  {
+    "name": "Alex Brown",
+    "education": "MS in Data Science",
+    "location": "London, UK",
+    "jobTitle": "Data Analyst",
+    "jobStatus": "Under Review",
+    "jobDetails": "via company website · 4 days ago",
+    "image": "alex-brown.jpg"
+  },
+  {
+    "name": "Emily Green",
+    "education": "BEng in Mechanical Engineering",
+    "location": "Toronto, Canada",
+    "jobTitle": "Mechanical Engineer",
+    "jobStatus": "Application Submitted",
+    "jobDetails": "via company website · 1 week ago",
+    "image": "emily-green.jpg"
+  },
+  {
+    "name": "David Johnson",
+    "education": "PhD in Physics",
+    "location": "Berlin, Germany",
+    "jobTitle": "Research Scientist",
+    "jobStatus": "Interview Scheduled",
+    "jobDetails": "via internal referral · 2 weeks ago",
+    "image": "david-johnson.jpg"
+  },
+  {
+    "name": "Maria Rodriguez",
+    "education": "BA in Marketing",
+    "location": "Madrid, Spain",
+    "jobTitle": "Marketing Manager",
+    "jobStatus": "Offer Extended",
+    "jobDetails": "via company website · 3 weeks ago",
+    "image": "maria-rodriguez.jpg"
+  },
+  {
+    "name": "William Lee",
+    "education": "BSc in Economics",
+    "location": "Sydney, Australia",
+    "jobTitle": "Economist",
+    "jobStatus": "Under Review",
+    "jobDetails": "via careers page · 4 weeks ago",
+    "image": "william-lee.jpg"
+  }
+]

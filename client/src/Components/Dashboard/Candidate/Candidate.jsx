@@ -1,4 +1,5 @@
 import React from "react";
+import CandidateTable from "./CandidateTable";
 
 const Candidate = () => {
   return (
@@ -13,6 +14,15 @@ const Candidate = () => {
           </select>
         </div>
       </div>
+      <div className="p-6 flex justify-around items-center">
+        <span className="flex gap-2">
+          <input type="checkbox" />
+          <p className="font-semibold">Candidate Information</p>
+        </span>
+        <p className="font-semibold">Job status</p>
+      </div>
+      <hr className="border-t-2 my-4" />
+      <CandidateTable />
     </div>
   );
 };
