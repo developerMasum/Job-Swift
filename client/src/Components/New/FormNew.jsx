@@ -351,34 +351,34 @@ const FormNew = () => {
 
   // for personal
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setUploadedImage(URL.createObjectURL(file));
-      console.log("Uploaded image:", file);
-    }
-  };
+  // const handleImageUpload = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     setUploadedImage(URL.createObjectURL(file));
+  //     console.log("Uploaded image:", file);
+  //   }
+  // };
 
-  const handleImageDrop = (event) => {
-    event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    if (file) {
-      setUploadedImage(URL.createObjectURL(file));
-      console.log("Dropped image:", file);
-    }
-  };
+  // const handleImageDrop = (event) => {
+  //   event.preventDefault();
+  //   const file = event.dataTransfer.files[0];
+  //   if (file) {
+  //     setUploadedImage(URL.createObjectURL(file));
+  //     console.log("Dropped image:", file);
+  //   }
+  // };
 
-  const handleDeleteImage = () => {
-    setUploadedImage(null);
-  };
+  // const handleDeleteImage = () => {
+  //   setUploadedImage(null);
+  // };
 
-  const handleClear = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPhoneNumber("");
-    setLocation("");
-  };
+  // const handleClear = () => {
+  //   setFirstName("");
+  //   setLastName("");
+  //   setEmail("");
+  //   setPhoneNumber("");
+  //   setLocation("");
+  // };
 
   const handleAddEducation = () => {
     setEditingEducationIndex(null);
@@ -778,7 +778,7 @@ const FormNew = () => {
             </div>
 
             {/* Education Section */}
-            {/* <div className="mb-6">
+            <div className="mb-6">
               <h2 className="text-2xl font-semibold text-green-500">Profile</h2>
               {educationList.map((education, index) => (
                 <div key={index} className="mt-4">
@@ -826,7 +826,7 @@ const FormNew = () => {
                 <FaPlus className="mr-1" />
                 Add Education(optional)
               </button>
-            </div> */}
+            </div>
             {/* experience */}
 
             {/* <div className="mb-6">
@@ -895,7 +895,7 @@ const FormNew = () => {
               ></textarea>
             </div>
 
-            {/* <div className="my-4">
+            <div className="my-4">
               <label
                 htmlFor="resumeInput"
                 className="text-gray-500 font-semibold mb-1 block cursor-pointer "
@@ -960,7 +960,7 @@ const FormNew = () => {
                   Clear
                 </button>
               )}
-            </div> */}
+            </div>
 
             <div className="my-4">
               <label

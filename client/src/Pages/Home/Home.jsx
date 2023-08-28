@@ -8,6 +8,9 @@ import Banner from "../../Components/Home/Banner/Banner";
 import Slider from "../../Components/Home/Slider/Slider";
 import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
 import { Fade, JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
+import NewBanner from "../../Components/Test/NewBanner";
+import HRPlatform from "../../Components/Test/HRPlatform";
+import EmployeeExperienceSection from "../../Components/Test/EmployeeExperienceSection";
 
 const Home = () => {
   return (
@@ -19,6 +22,9 @@ const Home = () => {
       <Fade>
         <HrPlatform />
       </Fade>
+      <NewBanner></NewBanner>
+      <HRPlatform></HRPlatform>
+      <EmployeeExperienceSection></EmployeeExperienceSection>
 
       <div className="md:px-12">
         <div className="mt-12">
