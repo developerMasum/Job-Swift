@@ -20,6 +20,7 @@ import PeoPleDirectory from "../Components/Company/PeoPleDirectory";
 import OrgChart from "../Components/Company/OrgChart";
 import Files from "../Components/Company/Files";
 import Onboarding from "../Components/Company/Onboarding";
+import Candidate from "../Components/Dashboard/Candidate/Candidate";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -109,10 +110,10 @@ const router = createBrowserRouter([
         path: "report-center",
         element: <ReportCenter />,
       },
-      // {
-      //   path: "dashboard/company",
-      //   element:<Company/>
-      // }
+      {
+        path: "candidate",
+        element: <Candidate />,
+      },
     ],
   },
 ]);

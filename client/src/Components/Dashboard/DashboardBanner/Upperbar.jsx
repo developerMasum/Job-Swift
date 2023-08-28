@@ -70,7 +70,7 @@ const UpperBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link to="./candidate">
                     <FaUserPlus></FaUserPlus>Candidates
                   </Link>
                 </li>
@@ -148,7 +148,7 @@ const UpperBar = () => {
               <Link to={"jobs"}>JOBS</Link>
             </li>
             <li>
-              <Link>CANDIDATES</Link>
+              <Link to="./candidate">CANDIDATES</Link>
             </li>
             <li>
               <Link>PEOPLE SEARCH</Link>
