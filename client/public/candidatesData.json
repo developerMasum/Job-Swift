@@ -6,7 +6,7 @@
     "jobTitle": "Web Developer",
     "jobStatus": "At Assessment stage",
     "jobDetails": "via careers page · 1 day ago",
-    "image": "image-8.jpg"
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
   },
   {
     "name": "John Doe",
@@ -15,7 +15,7 @@
     "jobTitle": "Software Engineer",
     "jobStatus": "Interview Scheduled",
     "jobDetails": "via internal referral · 3 hours ago",
-    "image": "john-doe.jpg"
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
   },
   {
     "name": "Jane Smith",
@@ -24,7 +24,7 @@
     "jobTitle": "Frontend Developer",
     "jobStatus": "Application Submitted",
     "jobDetails": "via company website · 2 days ago",
-    "image": "jane-smith.jpg"
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
   },
   {
     "name": "Alex Brown",
@@ -33,7 +33,7 @@
     "jobTitle": "Data Analyst",
     "jobStatus": "Under Review",
     "jobDetails": "via company website · 4 days ago",
-    "image": "alex-brown.jpg"
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
   },
   {
     "name": "Emily Green",
@@ -42,7 +42,7 @@
     "jobTitle": "Mechanical Engineer",
     "jobStatus": "Application Submitted",
     "jobDetails": "via company website · 1 week ago",
-    "image": "emily-green.jpg"
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
   },
   {
     "name": "David Johnson",
@@ -51,7 +51,7 @@
     "jobTitle": "Research Scientist",
     "jobStatus": "Interview Scheduled",
     "jobDetails": "via internal referral · 2 weeks ago",
-    "image": "david-johnson.jpg"
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
   },
   {
     "name": "Maria Rodriguez",
@@ -60,7 +60,7 @@
     "jobTitle": "Marketing Manager",
     "jobStatus": "Offer Extended",
     "jobDetails": "via company website · 3 weeks ago",
-    "image": "maria-rodriguez.jpg"
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
   },
   {
     "name": "William Lee",
@@ -69,6 +69,6 @@
     "jobTitle": "Economist",
     "jobStatus": "Under Review",
     "jobDetails": "via careers page · 4 weeks ago",
-    "image": "william-lee.jpg"
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
   }
 ]

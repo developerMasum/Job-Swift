@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
-import CandidateCard from "./CandidateCard"; // Assuming you have the CandidateCard component imported
+import React, { useEffect, useState } from "react";
+import CandidateCard from "./CandidateCard";
 
-const CandidateTable = () => {
+const CandidateTable = ({
+  individualCheckboxes,
+  onIndividualCheckboxChange,
+}) => {
   const [candidates, setCandidates] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("/candidatesData.json"); // Adjust the path to match your actual file location
+        const response = await fetch("/candidatesData.json");
         const data = await response.json();
         setCandidates(data);
       } catch (error) {
@@ -30,6 +33,8 @@ const CandidateTable = () => {
           jobStatus={candidate.jobStatus}
           jobDetails={candidate.jobDetails}
           img={candidate.image}
+          isChecked={individualCheckboxes[index]}
+          onCheckboxChange={() => onIndividualCheckboxChange(index)}
         />
       ))}
     </div>
