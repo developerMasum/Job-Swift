@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { MdClear, MdKeyboardArrowDown } from "react-icons/md";
 
 const PostJobs = ({ jobs }) => {
+  // console.log('from prob',jobs);
   const [isVisible, setIsVisible] = useState(false);
-  console.log(jobs);
+  // console.log(jobs);
   const {
-    jobName,
+    jobTitle,
     cityName,
-    addressName,
+    jobLocation,
     Sourced,
     Applied,
     PhoneScreen,
@@ -23,9 +24,9 @@ const PostJobs = ({ jobs }) => {
     <div className="py-8 rounded-lg  lg:md:px-8 px-6   bg-white mt-5" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
       <div className="lg:md:flex justify-between ">
         <div className="flex lg:md:gap-2  items-center">
-          <h2 className="lg:md:text-xl lg:md:font-medium  ">{jobName}</h2>
+          <h2 className="lg:md:text-xl lg:md:font-medium ">{jobTitle}</h2>
           <p className="flex gap-1 text-gray-500">
-            <span>{cityName}</span>,<span>{addressName}</span>
+            <span>{cityName}</span>,<span>{jobLocation}</span>
           </p>
         </div>
         <div className="flex lg:md:gap-2 gap-6 lg:md:mt-0 mt-5">
@@ -76,34 +77,34 @@ const PostJobs = ({ jobs }) => {
 
       <div className="lg:md:flex pt-7 lg:md:px-10 pe-6 mx-auto pb-5 justify-between grid grid-cols-4 gap-4">
         <div className="font-medium  text-center text-gray-600">
-          <p>{Sourced}</p> <p>Sourced</p>{" "}
+          <p> - </p> <p>Sourced</p>
         </div>
         <div className="font-medium  text-center text-gray-600">
-          <p>{Applied}</p> <p>Applied</p>{" "}
+          <p> - </p> <p>Applied</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{PhoneScreen}</p> <p>Phone Screen</p>{" "}
+          <p> - </p> <p>Phone Screen</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{Assessment}</p> <p>Assessment</p>{" "}
+          <p> - </p> <p>Assessment</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{Interview}</p> <p>Interview</p>{" "}
+          <p> - </p> <p>Interview</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{Offer}</p> <p>Offer</p>{" "}
+          <p> - </p> <p>Offer</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{Hired}</p> <p>Hired</p>{" "}
+          <p> - </p> <p>Hired</p>
         </div>
       </div>
       <div className="flex  pt-1 justify-between text-gray-600  ">
         <h2 className="flex  gap-2 items-center">
-          {" "}
+          
           <span>
-            {" "}
+            
             <MdClear className="w-7 h-7" color="red" />
-          </span>{" "}
+          </span>
           This job is not published on your careers page or on any job boards
         </h2>
         <div className="lg:md:flex">

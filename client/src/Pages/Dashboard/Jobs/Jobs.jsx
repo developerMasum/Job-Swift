@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdKeyboardArrowDown, MdClear } from "react-icons/md";
 import { LuEdit } from "react-icons/lu";
 import triangle from "../../../assets/Image/triangles4-1.svg";
@@ -10,21 +10,39 @@ const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
 
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPost } from "../../../redux/postJob/postSlice";
+import { authContext } from "../../../Auth/AuthProvider";
+// import { getAllPost } from "../../../redux/postJob/api";
 const Jobs = () => {
+  const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
   const [isSecondOpen, setSecondOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isJobs, setJobs] = useState([]);
+
+  const { user } = useContext(authContext);
+
+  const jobs = useSelector((state) => state.posts.jobs);
+  const isJobs = jobs.filter((d) => d.userEmail === user?.email);
+  // console.log("from filter", filter);
+
+  // setJobs(jobs)
+  // console.log("all jobs", isJobs);
+
   useEffect(() => {
-    fetch("/Jobs.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setJobs(data);
-      })
-      .catch((error) =>
-        console.error("Error fetching testimonial data:", error)
-      );
+    dispatch(getAllPost());
   }, []);
+
+  // useEffect(() => {
+  //   fetch("/Jobs.json")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setJobs(data);
+  //     })
+  //     .catch((error) =>
+  //       console.error("Error fetching testimonial data:", error)
+  //     );
+  // }, []);
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       {/* Down nav */}
@@ -154,7 +172,7 @@ const Jobs = () => {
         </div>
         <div className="">
           {isJobs.map((jobs) => (
-            <PostJobs jobs={jobs} />
+            <PostJobs jobs={jobs.data} />
           ))}
         </div>
         <div className="pt-8 pb-6">
