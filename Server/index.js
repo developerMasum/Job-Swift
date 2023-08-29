@@ -16,7 +16,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const { log } = require("console");
@@ -56,50 +56,45 @@ async function run() {
       .db("JobSwiftDb")
       .collection("applications");
 
-   
+    //  for multer image and resume
 
-//  for multer image and resume
+    app.post(
+      "/upload",
+      upload.fields([{ name: "resume" }, { name: "image" }]),
+      async (req, res) => {
+        const formData = req.body;
+        const resumeFilePath = req.files.resume[0].filename; // Accessing resume filename
+        const imageFilePath = req.files.image[0].filename; // Accessing image filename
+        const educationList = JSON.parse(formData.educationList); // Parse educationList JSON
+        const experienceList = JSON.parse(formData.experienceList); // Parse experienceList JSON
 
+        try {
+          // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
+          await applicationsPostCollection.insertOne({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            phoneNumber: formData.phone,
+            location: formData.address,
+            summary: formData.summary,
+            resume: resumeFilePath,
+            coverLetter: formData.coverLetter,
+            image: imageFilePath,
+            educationList: educationList, // Save parsed educationList
+            experienceList: experienceList, // Save parsed experienceList
+          });
 
-
-app.post(
-  "/upload",
-  upload.fields([
-    { name: "resume" },
-    { name: "image" },
-  ]),
-  async (req, res) => {
-    const formData = req.body;
-    const resumeFilePath = req.files.resume[0].filename; // Accessing resume filename
-    const imageFilePath = req.files.image[0].filename;   // Accessing image filename
-
-    try {
-      // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
-      await applicationsPostCollection.insertOne({
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phoneNumber: formData.phone,
-        location: formData.address,
-        summary: formData.summary,
-        resume: resumeFilePath,
-        coverLetter: formData.coverLetter,
-        image: imageFilePath, // Storing image filename
-      });
-
-      res.status(201).json({ message: "Application submitted successfully" });
-    } catch (error) {
-      console.error("Error submitting application:", error);
-      res.status(500).json({
-        message: "An error occurred while submitting the application",
-      });
-    }
-  }
-);
-
-
-
-
+          res
+            .status(201)
+            .json({ message: "Application submitted successfully" });
+        } catch (error) {
+          console.error("Error submitting application:", error);
+          res.status(500).json({
+            message: "An error occurred while submitting the application",
+          });
+        }
+      }
+    );
 
     // post data of a new user
     app.post("/user", async (req, res) => {
