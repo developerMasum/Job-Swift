@@ -293,6 +293,8 @@ const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
 };
 import { AiOutlineFilePdf } from "react-icons/ai";
 import axios from "axios";
+import { RiImageAddLine } from "react-icons/ri";
+import { FiUpload } from "react-icons/fi";
 
 const UpdateForm = () => {
   // image
@@ -317,6 +319,7 @@ const UpdateForm = () => {
   const [summary, setSummary] = useState("");
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isResumeUploaded, setIsResumeUploaded] = useState(false);
 
   const handleAddEducation = () => {
     setEditingEducationIndex(null);
@@ -416,6 +419,7 @@ const UpdateForm = () => {
     } catch (error) {
       console.error(error);
     }
+    setIsSubmitted(true);
   };
 
   // for get data
@@ -449,6 +453,11 @@ const UpdateForm = () => {
   const handleDeleteImage = () => {
     setImagePreview(null);
   };
+  const handleResumeUpload = (e) => {
+    // Your resume upload logic here
+    // Once the upload is successful, set isResumeUploaded to true
+    setIsResumeUploaded(true);
+  };
 
   return (
     <div>
@@ -476,12 +485,12 @@ const UpdateForm = () => {
               className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
               encType="multipart/form-data"
             >
-              <div>
+              {/* <div>
                 <img
                   src={`http://localhost:5000/images/image_1693330074312.jpg`}
                   alt=""
                 />
-              </div>
+              </div> */}
               <div className="bg-neutral-100 p-2">
                 <h1 className="text-lg font-semibold text-gray-500">
                   Personal Details
@@ -568,13 +577,61 @@ const UpdateForm = () => {
               </div>
 
               {/* image upload */}
+              {/* <div className="mb-1">
+                <label htmlFor="resume" className="text-lg font-medium mb-4">
+                  Upload Your Image
+                </label>
+                <div className="flex items-center">
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept=".jpg, .png"
+                    {...register("image")}
+                  />
+                  <label
+                    htmlFor="resume"
+                    className="cursor-pointer flex items-center space-x-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                  >
+                    <AiOutlineFilePdf className="text-2xl" />
+                    <span>Choose JPG,PNG</span>
+                  </label>
+                </div>
+              </div> */}
+
+              <div className="mb-4">
+                <label htmlFor="image" className="block mb-1">
+                  Photo(optional)
+                </label>
+                <div className="flex flex-col items-center border-dashed p-8 border-[1px] border-gray-500 rounded-lg shadow-md">
+                  <div className="flex items-center">
+                    <input
+                      type="file"
+                      id="image"
+                      name="image"
+                      accept=".jpg, .png"
+                      {...register("image")}
+                    />
+                    <label
+                      htmlFor="image"
+                      className="cursor-pointer flex items-center space-x-2 p-2 bg-green-500 text-white rounded-md hover:bg-purple-600"
+                    >
+                      <RiImageAddLine className="text-2xl" />{" "}
+                      {/* Using RiImageAddLine from react-icons */}
+                      <span>Choose JPG, PNG</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
 
               {/* Education */}
 
               <div className="mb-6">
-                <h2 className="text-2xl font-semibold text-green-500">
-                  Profile
-                </h2>
+                <div className="bg-neutral-100 p-2">
+                  <h2 className="text-lg font-semibold text-gray-500">
+                    Profile
+                  </h2>
+                </div>
                 {educationList.map((education, index) => (
                   <div key={index} className="mt-4">
                     <div className="flex items-center justify-between">
@@ -622,53 +679,8 @@ const UpdateForm = () => {
                   Add Education(optional)
                 </button>
               </div>
-              {/* Resume */}
 
-              <div className="mb-1">
-                <label htmlFor="resume" className="text-lg font-medium mb-4">
-                  Upload Your Resume (PDF)
-                </label>
-                <div className="flex items-center">
-                  <input
-                    type="file"
-                    id="resume"
-                    name="resume"
-                    accept=".pdf"
-                    className="sr-only"
-                    {...register("resume")}
-                  />
-                  <label
-                    htmlFor="resume"
-                    className="cursor-pointer flex items-center space-x-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                  >
-                    <AiOutlineFilePdf className="text-2xl" />
-                    <span>Choose a PDF file</span>
-                  </label>
-                </div>
-              </div>
-              <div className="mb-1">
-                <label htmlFor="resume" className="text-lg font-medium mb-4">
-                  Upload Your Image
-                </label>
-                <div className="flex items-center">
-                  <input
-                    type="file"
-                    id="image"
-                    name="image"
-                    accept=".jpg, .png"
-                    {...register("image")}
-                  />
-                  <label
-                    htmlFor="resume"
-                    className="cursor-pointer flex items-center space-x-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                  >
-                    <AiOutlineFilePdf className="text-2xl" />
-                    <span>Choose a PDF file</span>
-                  </label>
-                </div>
-              </div>
-
-              {/* Resume */}
+              {/* Education */}
               <div className="mb-6">
                 {experienceList.map((education, index) => (
                   <div key={index} className="mt-4">
@@ -716,6 +728,30 @@ const UpdateForm = () => {
                   <FaPlus className="mr-1" />
                   Add Experience(optional)
                 </button>
+              </div>
+              {/* Resume */}
+
+              <div className="mb-1">
+                <label htmlFor="resume" className="block mb-1">
+                  Upload Your Resume (PDF)
+                </label>
+                <div className="flex flex-col items-center border-dashed p-8 border-[1px] border-gray-500 rounded-lg shadow-md">
+                  <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf"
+                    className="sr-only"
+                    {...register("resume")}
+                  />
+                  <label
+                    htmlFor="resume"
+                    className="cursor-pointer flex items-center space-x-2 p-2 bg-green-500 text-white rounded-md hover:bg-blue-600"
+                  >
+                    <AiOutlineFilePdf className="text-2xl" />
+                    <span>Choose a PDF file</span>
+                  </label>
+                </div>
               </div>
 
               <div className="mb-4">
