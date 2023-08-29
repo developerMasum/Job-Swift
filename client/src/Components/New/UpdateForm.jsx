@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiFillCheckCircle } from "react-icons/ai";
 import { RiDeleteBin2Line } from "react-icons/ri";
@@ -15,11 +15,8 @@ import {
 } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { AiOutlineCloudUpload, AiOutlineCloseCircle } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
+
 import { FaCheckCircle } from "react-icons/fa";
-import { createApplicationPost } from "../../redux/application/api";
-// import { useForm } from "react-hook-form";
 
 const EducationForm = ({ onSave, onCancel, initialValues }) => {
   const [school, setSchool] = useState(
@@ -294,6 +291,8 @@ const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
     </div>
   );
 };
+import { AiOutlineFilePdf } from "react-icons/ai";
+import axios from "axios";
 
 const UpdateForm = () => {
   // image
@@ -341,9 +340,6 @@ const UpdateForm = () => {
   };
 
   const handleEditExperience = (index) => {
-    // setEditingEducationIndex(index);
-    // setShowEducationForm(true);
-
     setEditingExperienceIndex(index);
     setShowExperienceForm(true);
   };
@@ -393,100 +389,48 @@ const UpdateForm = () => {
     formState: { errors },
   } = useForm();
 
-  // // ... other state and handler definitions ...
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    formData.append("firstName", data.firstName);
+    formData.append("lastName", data.lastName);
+    formData.append("email", data.email);
+    formData.append("phone", data.phone);
+    formData.append("address", data.address);
+    formData.append("image", data.image[0]);
+    formData.append("resume", data.resume[0]);
+    formData.append("coverLetter", data.coverLetter);
 
-  // const token = "bf38e9214689948b26cac41912e7e528"
-  // const hosting_url = `https://api.imgbb.com/1/upload?key=${token}`
-
-  const img_key = "5efe9a284094d859ae9cafe3952f92f7";
-
-  const url = `https://api.imgbb.com/1/upload?key=${img_key}`;
-  // const onSubmit = (data) => {
-  //   // for education
-
-  //   console.log("Education Details:");
-  //   educationList.forEach((education, index) => {
-  //     console.log(`Education ${index + 1}:`);
-  //     console.log("School:", education.school);
-  //     console.log("Field of Study:", education.fieldOfStudy);
-  //     console.log("Degree:", education.degree);
-  //     console.log("Institution:", education.institution);
-  //     console.log("Start Date:", education.startDate);
-  //     console.log("End Date:", education.endDate);
-  //   });
-
-  //   console.log(applicationData);
-
-  //   // for resume
-
-  //   const formData = new FormData();
-  //   formData.append("image", data.image[0]);
-  //   fetch(url, {
-  //     method: "POST",
-  //     body: formData,
-  //   })
-  //     .then((res) => res.json())
-  //     .then((imgResponse) => {
-  //       console.log(imgResponse);
-  //       if (imgResponse.success) {
-  //         const imgURL = imgResponse.data.display_url;
-  //         const { firstName, lastName, email, phone, address } = data;
-  //         const applicationData = {
-  //           firstName,
-  //           lastName,
-  //           email,
-  //           phone,
-  //           image: imgURL,
-  //           address,
-  //           ...educationList,
-  //           educationList
-  //         };
-  //         console.log(applicationData);
-  //       }
-  //     });
-  // };
-  const dispatch = useDispatch();
-  const onSubmit = (data) => {
-    // ... handle educationList and other data ...
-
-    //   const formData = new FormData();
-    //   formData.append("image", data.image[0]);
-
-    //  fetch(url,{
-    //   method:"POST",body:formData
-    //  })
-    //  .then(res=>res.json())
-    //  .then(imgResponse=>{
-    //   console.log(imgResponse);
-    //  })
-
-    const { firstName, lastName, email, phone, address, coverLetter } = data;
-    const applicationData = {
-      firstName,
-      lastName,
-      email,
-      phone,
-      coverLetter,
-      address,
-      ...educationList,
-      ...experienceList,
-    };
-    console.log(applicationData);
-
-    dispatch(
-      createApplicationPost({
-        firstName,
-        lastName,
-        email,
-        phone,
-        address,
-        coverLetter,
-        educationList,
-        experienceList,
-      })
-    );
-    setIsSubmitted(true);
+    console.log(data);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data); // Handle the response from the server
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+
+  // for get data 
+
+ const[allData, setAllData] = useState([])
+  useEffect(()=>{
+    axios.get('http://localhost:5000/all-applications')
+    .then(res=>{
+      console.log(res);
+      setAllData(res.data[47].image)
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  },[])
 
   // for image
 
@@ -529,7 +473,11 @@ const UpdateForm = () => {
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
+              encType="multipart/form-data"
             >
+              <div>
+                <img src={`http://localhost:5000/images/image_1693330074312.jpg`} alt="" />
+              </div>
               <div className="bg-neutral-100 p-2">
                 <h1 className="text-lg font-semibold text-gray-500">
                   Personal Details
@@ -616,55 +564,6 @@ const UpdateForm = () => {
               </div>
 
               {/* image upload */}
-              <div className="mb-4">
-                <label className="block mb-1 cursor-pointer" htmlFor="image">
-                  Image(optional)
-                  <div className="flex items-center justify-center bg-neutral-100 p-6 rounded-lg border-dashed border-2 border-gray-400">
-                    {!imagePreview ? (
-                      <>
-                        <AiOutlineCloudUpload className="text-gray-400 w-12 h-12 cursor-pointer" />
-                        <p className="text-gray-400 mt-2 text-center">
-                          click to upload
-                        </p>
-                      </>
-                    ) : (
-                      <div className="relative inline-block rounded-full overflow-hidden">
-                        <img
-                          src={imagePreview}
-                          width={100}
-                          alt="Uploaded"
-                          className="max-w-full h-auto"
-                        />
-                        {!uploading ? (
-                          <button
-                            type="button"
-                            onClick={handleDeleteImage}
-                            className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full transition hover:bg-red-600 focus:outline-none"
-                          >
-                            <RiDeleteBin2Line />
-                          </button>
-                        ) : (
-                          <div className="absolute top-0 right-0 flex items-center h-full">
-                            <p className="text-pink-700 font-bold">
-                              Uploading...
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  <input
-                    type="file"
-                    id="image"
-                    name="image"
-                    className="w-full hidden"
-                    {...register("image")}
-                    onChange={handleImageChange}
-                  />
-                </label>
-              </div>
-
-              {/* image upload */}
 
               {/* Education */}
 
@@ -719,7 +618,53 @@ const UpdateForm = () => {
                   Add Education(optional)
                 </button>
               </div>
+              {/* Resume */}
 
+              <div className="mb-1">
+                <label htmlFor="resume" className="text-lg font-medium mb-4">
+                  Upload Your Resume (PDF)
+                </label>
+                <div className="flex items-center">
+                  <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf"
+                    className="sr-only"
+                    {...register("resume")}
+                  />
+                  <label
+                    htmlFor="resume"
+                    className="cursor-pointer flex items-center space-x-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                  >
+                    <AiOutlineFilePdf className="text-2xl" />
+                    <span>Choose a PDF file</span>
+                  </label>
+                </div>
+              </div>
+              <div className="mb-1">
+                <label htmlFor="resume" className="text-lg font-medium mb-4">
+                  Upload Your Image
+                </label>
+                <div className="flex items-center">
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept=".jpg, .png"
+                    {...register("image")}
+                  />
+                  <label
+                    htmlFor="resume"
+                    className="cursor-pointer flex items-center space-x-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                  >
+                    <AiOutlineFilePdf className="text-2xl" />
+                    <span>Choose a PDF file</span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Resume */}
               <div className="mb-6">
                 {experienceList.map((education, index) => (
                   <div key={index} className="mt-4">
