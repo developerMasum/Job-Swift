@@ -15,7 +15,7 @@ const ProgramManager = () => {
       </h1>
       <div className="grid md:grid-cols-2 gap-8 md:gap-16 my-8">
         {/* card 01 */}
-        <div>
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105">
           <img className="mx-auto max-w-full h-[500px]" src={img1} alt="" />
           <div className="text-center mt-12">
             <h4 className="text-4xl text-red-400 font-bold mb-2">
@@ -33,7 +33,7 @@ const ProgramManager = () => {
           </div>
         </div>
         {/* card 02 */}
-        <div>
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105">
           <img className="mx-auto max-w-full h-[500px]" src={img2} alt="" />
           <div className="text-center mt-12">
             <h4 className="text-4xl text-blue-400 font-bold mb-2">
@@ -51,7 +51,7 @@ const ProgramManager = () => {
           </div>
         </div>
         {/* card 03 */}
-        <div>
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105">
           <img className="mx-auto max-w-full h-[500px]" src={img3} alt="" />
           <div className="text-center mt-12">
             <h4 className="text-4xl text-indigo-500 font-bold mb-2">
@@ -69,7 +69,7 @@ const ProgramManager = () => {
           </div>
         </div>
         {/* card 04 */}
-        <div>
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105">
           <img className="mx-auto max-w-full md:h-[500px]" src={img4} alt="" />
           <div className="text-center mt-12">
             <h4 className="text-4xl text-teal-400 font-bold mb-2">
