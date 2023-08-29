@@ -10,6 +10,7 @@ import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
 import { Fade, JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
+import ContactUs from "../../Components/ContactUs/ContactUs";
 
 const Home = () => {
   return (
@@ -66,6 +67,9 @@ const Home = () => {
           {/* Program Manager from Ashik faysal */}
           <div className="mt-12">
             <ProgramManager />
+          </div>
+          <div className="mt-12">
+            <ContactUs />
           </div>
         </div>
       </div>
