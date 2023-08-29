@@ -15,8 +15,8 @@ const ProgramManager = () => {
       </h1>
       <div className="grid md:grid-cols-2 gap-8 md:gap-16 my-8">
         {/* card 01 */}
-        <div className="transition duration-1000 ease-in-out transform hover:scale-105">
-          <img className="mx-auto max-w-full h-[500px]" src={img1} alt="" />
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
+          <img className="mx-auto px-4 md:max-w-full md:h-[500px]" src={img1} alt="" />
           <div className="text-center mt-12">
             <h4 className="text-4xl text-red-400 font-bold mb-2">
               SOURCE & ATTRACT
@@ -33,8 +33,8 @@ const ProgramManager = () => {
           </div>
         </div>
         {/* card 02 */}
-        <div className="transition duration-1000 ease-in-out transform hover:scale-105">
-          <img className="mx-auto max-w-full h-[500px]" src={img2} alt="" />
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
+          <img className="mx-auto px-4 md:max-w-full md:h-[500px]" src={img2} alt="" />
           <div className="text-center mt-12">
             <h4 className="text-4xl text-blue-400 font-bold mb-2">
               EVALUATE & COLLABORATE
@@ -51,8 +51,8 @@ const ProgramManager = () => {
           </div>
         </div>
         {/* card 03 */}
-        <div className="transition duration-1000 ease-in-out transform hover:scale-105">
-          <img className="mx-auto max-w-full h-[500px]" src={img3} alt="" />
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
+          <img className="mx-auto px-4 md:max-w-full md:h-[500px]" src={img3} alt="" />
           <div className="text-center mt-12">
             <h4 className="text-4xl text-indigo-500 font-bold mb-2">
               AUTOMATE & HIRE
@@ -69,8 +69,8 @@ const ProgramManager = () => {
           </div>
         </div>
         {/* card 04 */}
-        <div className="transition duration-1000 ease-in-out transform hover:scale-105">
-          <img className="mx-auto max-w-full md:h-[500px]" src={img4} alt="" />
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
+          <img className="mx-auto px-4 md:max-w-full md:h-[500px]" src={img4} alt="" />
           <div className="text-center mt-12">
             <h4 className="text-4xl text-teal-400 font-bold mb-2">
               ONBOARD & MANAGE
@@ -83,7 +83,7 @@ const ProgramManager = () => {
               documents, and store all employee info in one place.
             </p>
             <a href="#" className="flex items-center gap-1 justify-center ">
-              <span className="text-green-700 hover:underline">LEARN MORE</span>{" "}
+              <span className="text-green-700 hover:underline">LEARN MORE</span>
               <AiOutlineRight className="text-teal-400" />
             </a>
           </div>
