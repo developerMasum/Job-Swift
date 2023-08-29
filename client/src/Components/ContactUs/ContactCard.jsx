@@ -10,7 +10,7 @@ import {
 
 const ContactCard = () => {
     return (
-    <div className="grid md:grid-cols-4 gap-2">
+    <div className="grid md:grid-cols-4 gap-2 px-4">
       {/* Card 01 */}
             <div className="shadow-xl rounded-2xl p-4 transform transition-transform hover:scale-105 duration-300">
 
