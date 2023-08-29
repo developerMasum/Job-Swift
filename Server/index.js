@@ -16,21 +16,26 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'))
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const { log } = require("console");
 
 // ATSWebsite atswebsite2023
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mq0mae1.mongodb.net/?retryWrites=true&w=majority`
 const storage = multer.diskStorage({
-  destination: function (req, file, cb){
-    cb(null, "uploads/")
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
   },
-  filename:function(req, file, cb){
-    const name = Date.now() + "-" + file.originalname;
-    cb(null, name)
-  }
-})
-const upload = multer({ storage: storage });
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({ storage });
 
 const uri =
   "mongodb+srv://ATSWebsite:atswebsite2023@cluster0.3besjfn.mongodb.net/?retryWrites=true&w=majority";
@@ -51,147 +56,50 @@ async function run() {
       .db("JobSwiftDb")
       .collection("applications");
 
-    // app.put('/users',async(req,res)=>{
-    //   const query = req.
-    // })
-
-    // file upload
-    // const storage = multer.diskStorage({
-    //   destination: function (req, file, cb) {
-    //     cb(null, "uploads/");
-    //   },
-    //   filename: function (req, file, cb) {
-    //     const name = Date.now() + "-" + file.originalname;
-    //     cb(null, name);
-    //   },
-    // });
-
-    // const upload = multer({ storage: storage });
-
-    // app.post(
-    //   "/submit",
-    //   upload.fields([
-    //     { name: "resume", maxCount: 1 },
-    //     { name: "image", maxCount: 1 },
-    //   ]),
-    //   async (req, res) => {
-    //     const formData = req.body;
-
-    //     try {
-    //       // await client.connect();
-
-    //       await applicationsPostCollection.insertOne({
-    //         firstName: formData.firstName,
-    //         lastName: formData.lastName,
-    //         email: formData.email,
-    //         phoneNumber: formData.phoneNumber,
-    //         location: formData.location,
-    //         image: req.file?.filename,
-    //         resume: req.file?.filename,
-    //         summary: formData.summary,
-
-    //         coverLetter: formData.coverLetter,
-    //       });
-
-    //       res
-    //         .status(201)
-    //         .json({ message: "Application submitted successfully" });
-    //     } catch (error) {
-    //       console.error("Error submitting application:", error);
-    //       res.status(500).json({
-    //         message: "An error occurred while submitting the application",
-    //       });
-    //     }
-    //   }
-    // );
-
-    // app.post(
-    //   "/submit",
-    //   upload.fields([
-    //     { name: "resume", maxCount: 1 },
-    //     { name: "image", maxCount: 1 },
-    //   ]),
-    //   async (req, res) => {
-    //     const formData = req.body;
-    //     const resumeFilePath = req.files["resume"][0].path.replace(/\\/g, "/");
-    //     const imageFilePath = req.files["image"][0].path.replace(/\\/g, "/");
-
-    //     try {
-    //       // await client.connect();
-    //       const db = client.db("application-form");
-    //       const applications = db.collection("applications");
-
-    //       await applications.insertOne({
-    //         firstName: formData.firstName,
-    //         lastName: formData.lastName,
-    //         email: formData.email,
-    //         phoneNumber: formData.phoneNumber,
-    //         location: formData.location,
-    //         image: imageFilePath,
-    //         summary: formData.summary,
-    //         resume: resumeFilePath,
-    //         coverLetter: formData.coverLetter,
-    //       });
-
-    //       res
-    //         .status(201)
-    //         .json({ message: "Application submitted successfully" });
-    //     } catch (error) {
-    //       console.error("Error submitting application:", error);
-    //       res
-    //         .status(500)
-    //         .json({
-    //           message: "An error occurred while submitting the application",
-    //         });
-    //     }
-    //   }
-    // );
-
-    // app.post("/submit", upload.fields([{ name: "image", maxCount: 1 }, {name:'resume', maxCount:1}]),(req,res)=>{
-
-    // });
-
    
 
-    app.post(
-      "/submit",
-      upload.fields([
-        { name: "resume", maxCount: 1 },
-        { name: "image", maxCount: 1 },
-      ]),
-      async (req, res) => {
-        const formData = req.body;
-        const resumeFilePath =req.file?.filename
-        const imageFilePath = req.file?.filename
+//  for multer image and resume
 
-        try {
-         
 
-          await applicationsPostCollection.insertOne({
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            phoneNumber: formData.phoneNumber,
-            location: formData.location,
-            image: imageFilePath,
-            summary: formData.summary,
-            resume: resumeFilePath,
-            coverLetter: formData.coverLetter,
-          });
 
-          res
-            .status(201)
-            .json({ message: "Application submitted successfully" });
-        } catch (error) {
-          console.error("Error submitting application:", error);
-          res
-            .status(500)
-            .json({
-              message: "An error occurred while submitting the application",
-            });
-        }
-      }
-    );
+app.post(
+  "/upload",
+  upload.fields([
+    { name: "resume" },
+    { name: "image" },
+  ]),
+  async (req, res) => {
+    const formData = req.body;
+    const resumeFilePath = req.files.resume[0].filename; // Accessing resume filename
+    const imageFilePath = req.files.image[0].filename;   // Accessing image filename
+
+    try {
+      // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
+      await applicationsPostCollection.insertOne({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phoneNumber: formData.phone,
+        location: formData.address,
+        summary: formData.summary,
+        resume: resumeFilePath,
+        coverLetter: formData.coverLetter,
+        image: imageFilePath, // Storing image filename
+      });
+
+      res.status(201).json({ message: "Application submitted successfully" });
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      res.status(500).json({
+        message: "An error occurred while submitting the application",
+      });
+    }
+  }
+);
+
+
+
+
 
     // post data of a new user
     app.post("/user", async (req, res) => {
@@ -235,7 +143,7 @@ async function run() {
     });
 
     // resume app.use('/uploads', upload.array("image", "resume"));
-    app.use('/uploads', upload.fields("image", "resume"));
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
