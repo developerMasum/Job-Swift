@@ -399,7 +399,8 @@ const UpdateForm = () => {
     formData.append("image", data.image[0]);
     formData.append("resume", data.resume[0]);
     formData.append("coverLetter", data.coverLetter);
-
+    formData.append("educationList", JSON.stringify(educationList));
+    formData.append("experienceList", JSON.stringify(experienceList));
     console.log(data);
     try {
       const response = await axios.post(
@@ -411,26 +412,26 @@ const UpdateForm = () => {
           },
         }
       );
-      console.log(response.data); // Handle the response from the server
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
+  // for get data
 
-  // for get data 
-
- const[allData, setAllData] = useState([])
-  useEffect(()=>{
-    axios.get('http://localhost:5000/all-applications')
-    .then(res=>{
-      console.log(res);
-      setAllData(res.data[47].image)
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  },[])
+  const [allData, setAllData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/all-applications")
+      .then((res) => {
+        console.log(res);
+        setAllData(res.data[47].image);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   // for image
 
@@ -476,7 +477,10 @@ const UpdateForm = () => {
               encType="multipart/form-data"
             >
               <div>
-                <img src={`http://localhost:5000/images/image_1693330074312.jpg`} alt="" />
+                <img
+                  src={`http://localhost:5000/images/image_1693330074312.jpg`}
+                  alt=""
+                />
               </div>
               <div className="bg-neutral-100 p-2">
                 <h1 className="text-lg font-semibold text-gray-500">
