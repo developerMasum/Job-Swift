@@ -17,6 +17,12 @@ import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
+import FindCandidates from "../Pages/Dashboard/Jobs/FindCandidates/FindCandidates/FindCandidates";
+import FindCandidatesLayout from "../Pages/Dashboard/Jobs/FindCandidates/FindCandidatesLayout/FindCandidatesLayout";
+import Teammembers from "../Pages/Dashboard/Jobs/Teammembers/Teammembers";
+import ApplicationForm from "../Pages/Dashboard/Jobs/ApplicationForm/ApplicationForm";
+import WorkFlow from "../Pages/Dashboard/Jobs/WorkFlow/WorkFlow";
+import JobsDetails from "../Pages/Dashboard/Jobs/JobsDetails/JobsDetails";
 
 
 
@@ -67,35 +73,66 @@ const router = createBrowserRouter([
         path: "/register",
         element: <SignIn />,
       },
-      
- 
+
+
     ],
   },
   {
     path: "dashboard",
-    element:<PrivateRoute> <DashboardLayout /> </PrivateRoute>,
+    element: <PrivateRoute> <DashboardLayout /> </PrivateRoute>,
     children: [
-      
+
       {
-        path:"jobs",
-        element:<Jobs />,
+        path: "jobs",
+        element: <Jobs />,
+
       },
       {
-        path:'jobs/post-job',
-        element:<PostJob />
+        path: 'jobs/post-job',
+        element: <PostJob />
       },
       {
-        path:'report-center',
+        path: 'report-center',
         element: <ReportCenter />
-        
+
       },
       {
-        path:'peopleSearch',
-        element:  <PeopleSearch></PeopleSearch>
-      }
-      
+        path: 'peopleSearch',
+        element: <PeopleSearch></PeopleSearch>
+      },
+
+      {
+        path: 'jobs/findCandidates',
+        element: <FindCandidatesLayout></FindCandidatesLayout>,
+        children: [
+          {
+            path: 'teamMembers',
+            element: <Teammembers></Teammembers>
+          },
+          {
+            path: 'candidates',
+            element: <FindCandidates></FindCandidates>
+          },
+          {
+            path: 'applicationForm',
+            element: <ApplicationForm></ApplicationForm>
+          },
+          
+          {
+            path: 'workFlow',
+            element: <WorkFlow></WorkFlow>
+          },
+          {
+            path: 'jobDetails',
+            element: <JobsDetails></JobsDetails>
+          },
+          
+
+        ]
+      },
     ],
   },
+  
 ]);
 
 export default router;
