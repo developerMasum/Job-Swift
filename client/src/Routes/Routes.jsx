@@ -23,6 +23,12 @@ import Agenda from "../Pages/Dashboard/Agenda/Agenda";
 import Company from "../Pages/Dashboard/Company/Company";
 import OrgChartTab from "../Components/CompanyComponents/OrgChartTab";
 
+// import PeoPleDirectory from "../Components/Company/PeoPleDirectory";
+// import OrgChart from "../Components/Company/OrgChart";
+// import Files from "../Components/Company/Files";
+// import Onboarding from "../Components/Company/Onboarding";
+import Candidate from "../Components/Dashboard/Candidate/Candidate";
+// import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
   {
@@ -113,6 +119,9 @@ const router = createBrowserRouter([
       {
         path: "OrgChartTab",
         element: <OrgChartTab />,
+      },{
+        path: "candidate",
+        element: <Candidate />,
       },
     ],
   },

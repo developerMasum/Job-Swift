@@ -64,7 +64,7 @@ const UpperBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link to="./candidate">
                     <FaUserPlus></FaUserPlus>Candidates
                   </Link>
                 </li>
@@ -136,14 +136,14 @@ const UpperBar = () => {
 
         {/* large screen view start------------------------------------- */}
 
-        <div className="font-bold hidden lg:md:flex ">
+        <div className="font-bold hidden lg:md:flex  w-2/3 ">
           <ul className="menu menu-horizontal px-1  text-white">
             <li>
               <Link to={"jobs"}>JOBS</Link>
             </li>
-            {/* <li>
-              <Link>CANDIDATES</Link>
-            </li> */}
+            <li>
+              <Link to={'candidate'}>CANDIDATES</Link>
+            </li>
             <li>
               <Link to={"peopleSearch"}>PEOPLE SEARCH</Link>
             </li>
