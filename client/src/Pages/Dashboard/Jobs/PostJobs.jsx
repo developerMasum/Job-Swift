@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { MdClear, MdKeyboardArrowDown } from "react-icons/md";
+import { MdClear, MdKeyboardArrowDown, MdStar } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const PostJobs = ({ jobs }) => {
   const [isVisible, setIsVisible] = useState(false);
-  console.log(jobs);
+  // console.log(jobs);
   const {
     jobName,
     cityName,
@@ -23,7 +24,8 @@ const PostJobs = ({ jobs }) => {
     <div className="py-8 rounded-lg  lg:md:px-8 px-6   bg-white mt-5" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
       <div className="lg:md:flex justify-between ">
         <div className="flex lg:md:gap-2  items-center">
-          <h2 className="lg:md:text-xl lg:md:font-medium  ">{jobName}</h2>
+          <MdStar size={25} color="#ffca00"/>
+          <Link to='applied-job'><h2 className="lg:md:text-xl lg:md:font-medium  hover:underline">{jobName}</h2></Link>
           <p className="flex gap-1 text-gray-500">
             <span>{cityName}</span>,<span>{addressName}</span>
           </p>

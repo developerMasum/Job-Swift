@@ -22,6 +22,7 @@ import Overview from "../Components/Overview/Overview";
 import Agenda from "../Pages/Dashboard/Agenda/Agenda";
 import Company from "../Pages/Dashboard/Company/Company";
 import OrgChartTab from "../Components/CompanyComponents/OrgChartTab";
+import AppliedJobs from "../Pages/Dashboard/AppliedJobs/AppliedJobs";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "jobs/post-job",
         element: <PostJob />,
+      },
+      {
+        path: "jobs/applied-job",
+        element: <AppliedJobs />,
       },
       {
         path: "report-center",
