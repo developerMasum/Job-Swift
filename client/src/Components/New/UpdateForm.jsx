@@ -296,7 +296,7 @@ import axios from "axios";
 import { RiImageAddLine } from "react-icons/ri";
 import { FiUpload } from "react-icons/fi";
 
-const UpdateForm = () => {
+const UpdateForm = ({ jobTitle }) => {
   // image
 
   const [imagePreview, setImagePreview] = useState(null);
@@ -393,7 +393,9 @@ const UpdateForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const isoDateString = new Date().toISOString();
     const formData = new FormData();
+    formData.append("jobTitle", jobTitle);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
     formData.append("email", data.email);
@@ -402,6 +404,8 @@ const UpdateForm = () => {
     formData.append("image", data.image[0]);
     formData.append("resume", data.resume[0]);
     formData.append("coverLetter", data.coverLetter);
+
+    formData.append("date", isoDateString);
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
     console.log(data);
@@ -419,7 +423,7 @@ const UpdateForm = () => {
     } catch (error) {
       console.error(error);
     }
-    setIsSubmitted(true);
+    // setIsSubmitted(true);
   };
 
   // for get data
@@ -430,7 +434,7 @@ const UpdateForm = () => {
       .get("http://localhost:5000/all-applications")
       .then((res) => {
         console.log(res);
-        setAllData(res.data[47].image);
+        setAllData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -438,26 +442,6 @@ const UpdateForm = () => {
   }, []);
 
   // for image
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImagePreview(URL.createObjectURL(file));
-      setUploading(true);
-      setTimeout(() => {
-        setUploading(false);
-      }, 3000);
-    }
-  };
-
-  const handleDeleteImage = () => {
-    setImagePreview(null);
-  };
-  const handleResumeUpload = (e) => {
-    // Your resume upload logic here
-    // Once the upload is successful, set isResumeUploaded to true
-    setIsResumeUploaded(true);
-  };
 
   return (
     <div>
