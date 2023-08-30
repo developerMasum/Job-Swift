@@ -17,6 +17,10 @@ import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
+// import Overview from "../Components/Overview/Overview";
+// import NewForm from "../Components/NewForm/NewForm";
+
+
 
 import Overview from "../Components/Overview/Overview";
 import Agenda from "../Pages/Dashboard/Agenda/Agenda";
@@ -27,7 +31,7 @@ import OrgChartTab from "../Components/CompanyComponents/OrgChartTab";
 // import OrgChart from "../Components/Company/OrgChart";
 // import Files from "../Components/Company/Files";
 // import Onboarding from "../Components/Company/Onboarding";
-import Candidate from "../Components/Dashboard/Candidate/Candidate";
+// import Candidate from "../Components/Dashboard/Candidate/Candidate";
 import Candidates from "../Pages/Dashboard/Candidates/Candidates";
 // import Company from "../Components/Company/Company";
 
@@ -82,8 +86,7 @@ const router = createBrowserRouter([
         path: "/overview",
         element: <Overview />,
       },
-    
-     
+   
     ],
   },
   {
