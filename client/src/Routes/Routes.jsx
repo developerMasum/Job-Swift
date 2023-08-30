@@ -28,6 +28,7 @@ import OrgChartTab from "../Components/CompanyComponents/OrgChartTab";
 // import Files from "../Components/Company/Files";
 // import Onboarding from "../Components/Company/Onboarding";
 import Candidate from "../Components/Dashboard/Candidate/Candidate";
+import Candidates from "../Pages/Dashboard/Candidates/Candidates";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -121,7 +122,7 @@ const router = createBrowserRouter([
         element: <OrgChartTab />,
       },{
         path: "candidate",
-        element: <Candidate />,
+        element: <Candidates />,
       },
     ],
   },
