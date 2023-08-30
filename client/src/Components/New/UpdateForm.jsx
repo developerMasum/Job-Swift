@@ -318,8 +318,9 @@ const UpdateForm = ({ jobTitle }) => {
   const [editingExperienceIndex, setEditingExperienceIndex] = useState(null);
   const [summary, setSummary] = useState("");
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isResumeUploaded, setIsResumeUploaded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleAddEducation = () => {
     setEditingEducationIndex(null);
@@ -393,6 +394,7 @@ const UpdateForm = ({ jobTitle }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    setIsSubmitting(true);
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
     formData.append("jobTitle", jobTitle);
@@ -409,6 +411,9 @@ const UpdateForm = ({ jobTitle }) => {
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
     console.log(data);
+    setFirstName(data.firstName);
+    setLastName(data.lastName);
+    setEmail(data.email);
     try {
       const response = await axios.post(
         "http://localhost:5000/upload",
@@ -423,6 +428,11 @@ const UpdateForm = ({ jobTitle }) => {
     } catch (error) {
       console.error(error);
     }
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }, 4000);
     // setIsSubmitted(true);
   };
 
@@ -446,19 +456,36 @@ const UpdateForm = ({ jobTitle }) => {
   return (
     <div>
       {isSubmitted ? (
-        <div className="text-center shadow-md border-[1px]  bg-gray-50 space-y-2 p-32">
-          <FaCheckCircle className="text-green-500 mx-auto text-6xl" />
-          <p className="text-lg text-gray-500">
-            Thank you,{" "}
-            <span className="font-semibold text-gray-500">
+        <div className="flex flex-col items-center justify-center shadow-lg border border-gray-300 bg-white rounded-lg p-12 space-y-4">
+          <div className="text-green-500">
+            <FaCheckCircle className="h-24 w-24 mx-auto" />
+          </div>
+          <p className="text-lg text-gray-600">
+            Dear{" "}
+            <span className="font-semibold text-gray-700">
               {firstName} {lastName}
             </span>
-            , for your application! We'll be in touch via{" "}
-            <span className="font-semibold text-500">{email}</span> for further
-            information.
+            ,
+          </p>
+          <p className="text-gray-700">
+            Thank you for choosing to apply for a position at our company. Your
+            application has been received and is now being carefully reviewed by
+            our expert recruitment team.
+          </p>
+          <p className="text-gray-700">
+            Should your qualifications and experience meet our requirements, we
+            will contact you promptly via{" "}
+            <span className="font-semibold text-gray-700">{email}</span> to
+            proceed with the next steps in the application process.
+          </p>
+          <p className="text-gray-700">
+            Meanwhile, we encourage you to explore our company's website to
+            learn more about our innovative projects, our mission, and the
+            values that drive us.
           </p>
           <p className="text-gray-600">
-            Our recruiter will contact you shortly.
+            We are excited about the potential opportunity to welcome you to our
+            team and look forward to connecting with you soon!
           </p>
         </div>
       ) : (
@@ -601,7 +628,6 @@ const UpdateForm = ({ jobTitle }) => {
                       className="cursor-pointer flex items-center space-x-2 p-2 bg-green-500 text-white rounded-md hover:bg-purple-600"
                     >
                       <RiImageAddLine className="text-2xl" />{" "}
-                      {/* Using RiImageAddLine from react-icons */}
                       <span>Choose JPG, PNG</span>
                     </label>
                   </div>
@@ -754,8 +780,16 @@ const UpdateForm = ({ jobTitle }) => {
                 )}
               </div>
 
-              <button className="bg-green-500 px-8 py-1 rounded-md font-semibold text-white w-full mt-6 mb-0">
-                Apply for the post
+              <button
+                type="submit"
+                className={`bg-green-500 px-8 py-1 rounded-md font-semibold text-white w-full mt-6 mb-0 ${
+                  isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting
+                  ? "Application Submitting......"
+                  : "Apply for the post"}
               </button>
             </form>
           </div>
