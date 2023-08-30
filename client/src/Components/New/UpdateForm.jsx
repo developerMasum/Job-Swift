@@ -50,7 +50,7 @@ const EducationForm = ({ onSave, onCancel, initialValues }) => {
   };
 
   return (
-    <div className="border-[2px] bg-gray-50 shadow-2xl p-4 rounded-md">
+    <div className="border-[2px] bg-gray-100 shadow-2xl p-4 rounded-md">
       <h3 className="text-lg font-semibold text-green-500">
         {initialValues ? "Edit Education" : "Add Education"}
       </h3>
@@ -108,30 +108,32 @@ const EducationForm = ({ onSave, onCancel, initialValues }) => {
           />
         </div>
         {/* Start Date */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Start Date
-          </label>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500 cursor-pointer"
-            dateFormat="MM/dd/yyyy"
-            placeholderText="DD/MM/YY"
-          />
-        </div>
-        {/* End Date */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            End Date
-          </label>
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            className="border px-3 py-2 rounded-md w-full focus:outline-none  cursor-pointer focus:ring-green-500"
-            dateFormat="MM/dd/yyyy"
-            placeholderText="DD/MM/YY"
-          />
+        <div className="md:flex">
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700">
+              Start Date
+            </label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500 cursor-pointer"
+              dateFormat="MM/dd/yyyy"
+              placeholderText="DD/MM/YY"
+            />
+          </div>
+          {/* End Date */}
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700">
+              End Date
+            </label>
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              className="border px-3 py-2 rounded-md w-full focus:outline-none  cursor-pointer focus:ring-green-500"
+              dateFormat="MM/dd/yyyy"
+              placeholderText="DD/MM/YY"
+            />
+          </div>
         </div>
       </div>
       <div className="mt-4 flex justify-end">
@@ -186,7 +188,7 @@ const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
   };
 
   return (
-    <div className="border-[2px] bg-gray-50 shadow-2xl p-4 rounded-md">
+    <div className="border-[2px] bg-gray-100 shadow-2xl p-4 rounded-md">
       <h3 className="text-lg font-semibold text-green-500">
         {initialValues ? "Edit Experience" : "Add Experience"}
       </h3>
@@ -244,30 +246,32 @@ const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
           />
         </div>
         {/* Start Date */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Start Date
-          </label>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500 cursor-pointer"
-            dateFormat="MM/dd/yyyy"
-            placeholderText="DD/MM/YY"
-          />
-        </div>
-        {/* End Date */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            End Date
-          </label>
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            className="border px-3 py-2 rounded-md w-full focus:outline-none  cursor-pointer focus:ring-green-500"
-            dateFormat="MM/dd/yyyy"
-            placeholderText="DD/MM/YY"
-          />
+        <div className="md:flex justify-between items-center">
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700">
+              Start Date
+            </label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              className="border px-3 py-2 rounded-md w-full focus:outline-none focus:ring-green-500 cursor-pointer"
+              dateFormat="MM/dd/yyyy"
+              placeholderText="DD/MM/YY"
+            />
+          </div>
+          {/* End Date */}
+          <div className="w-full">
+            <label className="block text-sm font-medium text-gray-700">
+              End Date
+            </label>
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              className="border px-3 py-2 rounded-md w-full focus:outline-none  cursor-pointer focus:ring-green-500"
+              dateFormat="MM/dd/yyyy"
+              placeholderText="DD/MM/YY"
+            />
+          </div>
         </div>
       </div>
       <div className="mt-4 flex justify-end">
@@ -294,15 +298,8 @@ const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
 import { AiOutlineFilePdf } from "react-icons/ai";
 import axios from "axios";
 import { RiImageAddLine } from "react-icons/ri";
-import { FiUpload } from "react-icons/fi";
 
 const UpdateForm = ({ jobTitle }) => {
-  // image
-
-  const [imagePreview, setImagePreview] = useState(null);
-  const [uploading, setUploading] = useState(false);
-  // for edu cation
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -318,9 +315,9 @@ const UpdateForm = ({ jobTitle }) => {
   const [editingExperienceIndex, setEditingExperienceIndex] = useState(null);
   const [summary, setSummary] = useState("");
 
-  const [isResumeUploaded, setIsResumeUploaded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [uploadedResume, setUploadedResume] = useState("");
 
   const handleAddEducation = () => {
     setEditingEducationIndex(null);
@@ -406,7 +403,7 @@ const UpdateForm = ({ jobTitle }) => {
     formData.append("image", data.image[0]);
     formData.append("resume", data.resume[0]);
     formData.append("coverLetter", data.coverLetter);
-
+    formData.append("summary", data.summary);
     formData.append("date", isoDateString);
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
@@ -433,7 +430,6 @@ const UpdateForm = ({ jobTitle }) => {
       setIsSubmitting(false);
       setIsSubmitted(true);
     }, 4000);
-    // setIsSubmitted(true);
   };
 
   // for get data
@@ -453,39 +449,47 @@ const UpdateForm = ({ jobTitle }) => {
 
   // for image
 
+  const handleResumeUpload = (e) => {
+    if (e.target.files.length > 0) {
+      const fileName = e.target.files[0].name;
+      setUploadedResume(fileName);
+    } else {
+      setUploadedResume("");
+    }
+  };
+
   return (
     <div>
       {isSubmitted ? (
-        <div className="flex flex-col items-center justify-center shadow-lg border border-gray-300 bg-white rounded-lg p-12 space-y-4">
+        <div className="bg-gradient-to-br from-pink-200 to-blue-200 flex flex-col items-center justify-center rounded-lg p-12 space-y-6 shadow-md">
           <div className="text-green-500">
-            <FaCheckCircle className="h-24 w-24 mx-auto" />
+            <FaCheckCircle className="h-20 w-20 text-green-600" />
           </div>
-          <p className="text-lg text-gray-600">
+          <p className="text-3xl text-gray-800 font-semibold">
             Dear{" "}
-            <span className="font-semibold text-gray-700">
+            <span className="text-green-600">
               {firstName} {lastName}
             </span>
             ,
           </p>
-          <p className="text-gray-700">
-            Thank you for choosing to apply for a position at our company. Your
-            application has been received and is now being carefully reviewed by
-            our expert recruitment team.
+          <p className="text-lg text-gray-700">
+            Your aspiration to join our team has been received with delight. Our
+            discerning recruitment team is currently engrossed in evaluating
+            your application.
           </p>
-          <p className="text-gray-700">
-            Should your qualifications and experience meet our requirements, we
-            will contact you promptly via{" "}
-            <span className="font-semibold text-gray-700">{email}</span> to
-            proceed with the next steps in the application process.
+          <p className="text-lg text-gray-700">
+            If your skills resonate with our needs, we will expediently reach
+            out to you through <span className="text-green-600">{email}</span>{" "}
+            to discuss the forthcoming stages of the application process.
           </p>
-          <p className="text-gray-700">
-            Meanwhile, we encourage you to explore our company's website to
-            learn more about our innovative projects, our mission, and the
-            values that drive us.
+          <p className="text-lg text-gray-700">
+            Meanwhile, we extend an invitation to explore our company's website.
+            Dive into the realm of our innovative projects, imbibe our ethos,
+            and fathom the impact we create.
           </p>
-          <p className="text-gray-600">
-            We are excited about the potential opportunity to welcome you to our
-            team and look forward to connecting with you soon!
+          <p className="text-xl text-gray-800 font-semibold">
+            Anticipation builds as we envision the prospect of your addition to
+            our team. Our eagerness to connect with you soon knows no bounds!
           </p>
         </div>
       ) : (
@@ -516,7 +520,7 @@ const UpdateForm = ({ jobTitle }) => {
                     type="text"
                     id="firstName"
                     name="firstName"
-                    className="w-full px-2 py-1 border rounded-lg"
+                    className="w-full px-2 py-1 border-[1px] rounded "
                     {...register("firstName", { required: true })}
                   />
                   {errors.firstName && (
@@ -583,7 +587,23 @@ const UpdateForm = ({ jobTitle }) => {
                   {...register("address", { required: true })}
                 />
                 {errors.address && (
-                  <span className="text-red-500">Phone number is required</span>
+                  <span className="text-red-500">Address is required</span>
+                )}
+              </div>
+
+              <div className="mb-4">
+                <label className="block mb-1" htmlFor="coverLetter">
+                  summary
+                </label>
+                <textarea
+                  id="summary"
+                  name="summary"
+                  rows="4"
+                  className="w-full px-2 py-1 border rounded"
+                  {...register("summary", { required: true })}
+                />
+                {errors.coverLetter && (
+                  <span className="text-red-500">Summary is required</span>
                 )}
               </div>
 
@@ -615,7 +635,7 @@ const UpdateForm = ({ jobTitle }) => {
                   Photo(optional)
                 </label>
                 <div className="flex flex-col items-center border-dashed p-8 border-[1px] border-gray-500 rounded-lg shadow-md">
-                  <div className="flex items-center">
+                  <div className="flex items-center border-[2px] border-dashed hover:shadow-xl rounded-md border-gray-400 h-20 px-2">
                     <input
                       type="file"
                       id="image"
@@ -623,9 +643,10 @@ const UpdateForm = ({ jobTitle }) => {
                       accept=".jpg, .png"
                       {...register("image")}
                     />
+
                     <label
                       htmlFor="image"
-                      className="cursor-pointer flex items-center space-x-2 p-2 bg-green-500 text-white rounded-md hover:bg-purple-600"
+                      className="cursor-pointer flex items-center space-x-2 p-2 text-gray-500 rounded-md border-[1px]"
                     >
                       <RiImageAddLine className="text-2xl" />{" "}
                       <span>Choose JPG, PNG</span>
@@ -741,7 +762,7 @@ const UpdateForm = ({ jobTitle }) => {
               </div>
               {/* Resume */}
 
-              <div className="mb-1">
+              {/* <div className="mb-1">
                 <label htmlFor="resume" className="block mb-1">
                   Upload Your Resume (PDF)
                 </label>
@@ -760,6 +781,34 @@ const UpdateForm = ({ jobTitle }) => {
                   >
                     <AiOutlineFilePdf className="text-2xl" />
                     <span>Choose a PDF file</span>
+                  </label>
+                </div>
+              </div> */}
+
+              <div className="mb-1">
+                <label htmlFor="resume" className="block mb-1">
+                  Upload Your Resume (PDF)
+                </label>
+                <div className="flex flex-col items-center border-dashed p-8 border-[1px] border-gray-500 rounded-lg shadow-md">
+                  <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf"
+                    className="sr-only"
+                    {...register("resume")}
+                    onChange={handleResumeUpload}
+                  />
+                  <label
+                    htmlFor="resume"
+                    className="cursor-pointer border-[2px] border-dashed border-gray-400 flex items-center h-20 space-x-2 p-2  text-gray-500 rounded-md hover:shadow-xl"
+                  >
+                    <AiOutlineFilePdf className="text-2xl" />
+                    <span>
+                      {uploadedResume
+                        ? `Resume Uploaded: ${uploadedResume}`
+                        : "Choose a PDF file"}
+                    </span>
                   </label>
                 </div>
               </div>
