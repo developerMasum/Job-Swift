@@ -3,9 +3,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import jobSlice from "./jobSlice";
 
 
- const store = configureStore({
+
+const store = configureStore({
     reducer: {
         counter: jobSlice,
+
     }
- })
- export default store;
+})
+export default store;

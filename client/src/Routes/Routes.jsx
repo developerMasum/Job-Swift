@@ -17,6 +17,9 @@ import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
+import CurrentPipelineReport from "../Pages/Dashboard/Report/CurrentPipelineReport";
+import CandidiateBreakdownReport from "../Pages/Dashboard/Report/CandidiateBreakdownReport";
+import ActivityReport from "../Pages/Dashboard/Report/ActivityReport";
 
 
 
@@ -67,33 +70,48 @@ const router = createBrowserRouter([
         path: "/register",
         element: <SignIn />,
       },
-      
- 
+
+
     ],
   },
   {
     path: "dashboard",
-    element:<PrivateRoute> <DashboardLayout /> </PrivateRoute>,
+    element: <PrivateRoute> <DashboardLayout /> </PrivateRoute>,
     children: [
-      
+
       {
-        path:"jobs",
-        element:<Jobs />,
+        path: "jobs",
+        element: <Jobs />,
       },
       {
-        path:'jobs/post-job',
-        element:<PostJob />
+        path: 'jobs/post-job',
+        element: <PostJob />
       },
       {
-        path:'report-center',
+        path: 'report-center',
         element: <ReportCenter />
-        
+
       },
       {
-        path:'peopleSearch',
-        element:  <PeopleSearch></PeopleSearch>
-      }
-      
+        path: 'peopleSearch',
+        element: <PeopleSearch></PeopleSearch>
+      },
+
+      {
+        path: 'report-center/current-pipeline',
+        element: <CurrentPipelineReport></CurrentPipelineReport>
+
+      },
+      {
+        path: 'report-center/candidiate-breakdown',
+        element: <CandidiateBreakdownReport></CandidiateBreakdownReport>
+
+      },
+      {
+        path: 'report-center/activity-report',
+        element: <ActivityReport></ActivityReport>
+
+      },
     ],
   },
 ]);

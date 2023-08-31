@@ -1,4 +1,4 @@
-import logo2 from "../../../assets/logo/newlogo1.png";
+import logo2 from "../../../assets/login/swift__1_-removebg-preview (1).png";
 import { Link, useNavigate } from "react-router-dom";
 import { GrMail } from "react-icons/gr";
 import { CgMenuGridR } from "react-icons/cg";
@@ -30,19 +30,19 @@ const UpperBar = () => {
     logout()
       .then(() => {
         toast.success('log out successful')
-     
+
       })
-      .catch(error => { 
+      .catch(error => {
         toast.error(error);
       })
   }
 
   return (
     <>
-      <div className="flex md:justify-around justify-between navbar rounded-xl shadow-lg bg-[#333e49]  fixed  md:flex-row  max-w-7xl mx-auto">
-        <div className="flex  lg:md:gap-10">
+      <div className="flex justify-between navbar rounded-xl shadow-xl bg-slate-100 fixed z-10  md:flex-row  max-w-7xl mx-auto ">
+        <div className="flex  lg:md:gap-10  ">
           {/* responsive Mobile view----------------------- */}
-          <div className="dropdown text-white">
+          <div className="dropdown ">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ const UpperBar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#333e49] rounded-box w-72"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-300 rounded-box w-72"
             >
               <div className="">
                 <li>
@@ -125,9 +125,9 @@ const UpperBar = () => {
             </ul>
           </div>
 
-          <Link>
+          <Link to={`/`}>
             <img
-              className="h-8 w-20  border border-green-700"
+              className="h-10 w-24  "
               src={logo2}
               alt=""
             />
@@ -138,7 +138,7 @@ const UpperBar = () => {
         {/* large screen view start------------------------------------- */}
 
         <div className="font-bold hidden lg:md:flex ">
-          <ul className="menu menu-horizontal px-1  text-white">
+          <ul className="menu menu-horizontal  ">
             <li>
               <Link to={'jobs'}>JOBS</Link>
             </li>
@@ -178,7 +178,7 @@ const UpperBar = () => {
         </div>
 
         {/* large screen right side-------------- */}
-        <div className=" flex lg:md:pe-6 pe-4 gap-2 lg:md:navbar-end lg:md:gap-3">
+        <div className=" flex justify-between gap-4  lg:md:gap-2">
           <div className="form-control">
             <div className="flex gap-12">
               {/* input */}
@@ -186,12 +186,12 @@ const UpperBar = () => {
                 <input
                   type="text"
                   placeholder="Search for candidates..."
-                  className="input  input-sm px-[-30px] hidden lg:block bg-[#333e49] text-white border-slate-600"
+                  className="input  input-sm px-[-30px] hidden lg:block text-white border-2 border-cyan-800"
                 />
-                <button className="btn btn-outline btn-sm hidden lg:block bg-[#333e49] border-slate-600">
+                <button className="btn btn-outline btn-sm hidden lg:block border-2 border-cyan-800">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-6 text-white "
+                    className="h-5 w-6  "
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -214,7 +214,7 @@ const UpperBar = () => {
             <div className="rounded-full transition duration-300 ease-in-out transform hover:scale-105 group-hover:opacity-100 opacity-80">
               <Link>
                 <button className="">
-                  <GrMail className="text-white text-2xl"></GrMail>
+                  <GrMail className=" text-3xl"></GrMail>
                 </button>
               </Link>
             </div>
@@ -234,7 +234,7 @@ const UpperBar = () => {
               tabIndex={0}
               className="rounded-full transition duration-300 ease-in-out transform hover:scale-125 group-hover:opacity-100 opacity-70"
             >
-              <CgMenuGridR className="text-white text-2xl"></CgMenuGridR>
+              <CgMenuGridR className="text-3xl"></CgMenuGridR>
             </label>
             <ul
               tabIndex={0}
@@ -257,11 +257,11 @@ const UpperBar = () => {
             {/* dropdown */}
             <div className="dropdown  pr-12">
               <label tabIndex={0} className="ease-in-out">
-                <div className="relative group">
+                <div className="relative group ">
                   <div className="rounded-full transition duration-300 ease-in-out transform hover:scale-105 group-hover:opacity-100 opacity-80">
-                    <img className="rounded-full h-8" src={userImage} alt="" />
+                    <img className=" border border-cyan-700 h-10 w-12 rounded-xl" src={userImage} alt="" />
                   </div>
-                  <div className="opacity-0 rounded-md absolute top-14 right-0    pointer-events-none group-hover:opacity-100">
+                  <div className=" opacity-0 rounded-md absolute top-14 right-0    pointer-events-none group-hover:opacity-100">
                     <h2 className="px-2 py-2 text-[10px] w-max ">{name}</h2>
                   </div>
                 </div>
@@ -296,6 +296,15 @@ const UpperBar = () => {
                   </li>
                   <li>
                     <Link>Add Company</Link>
+                  </li>
+                  <li>
+                    <Link to={`/dashboard/jobs/post-job`}>Post-Job Dashboard</Link>
+                  </li>
+                  <li>
+                    <Link to={`/dashboard/report-center`}>Report Dashboard</Link>
+                  </li>
+                  <li>
+                    <Link to={`/`}>Home Page</Link>
                   </li>
                   {
                     user &&
