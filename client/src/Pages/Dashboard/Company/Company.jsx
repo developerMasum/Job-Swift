@@ -5,6 +5,7 @@ import { renderTabContent } from "../../../Components/CompanyComponents/renderTa
 
 const Company = () => {
   const [activeTab, setActiveTab] = useState("tabs1");
+  
   return (
 
     <div className="pt-20 bg-[#f2f4f6]">

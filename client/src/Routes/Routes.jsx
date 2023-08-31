@@ -33,6 +33,7 @@ import OrgChartTab from "../Components/CompanyComponents/OrgChartTab";
 // import Onboarding from "../Components/Company/Onboarding";
 // import Candidate from "../Components/Dashboard/Candidate/Candidate";
 import Candidates from "../Pages/Dashboard/Candidates/Candidates";
+import AppliedJobs from "../Pages/Dashboard/AppliedJobs/AppliedJobs";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
       {
         path: "jobs/post-job",
         element: <PostJob />,
+      },
+      {
+        path: "jobs/applied-job",
+        element: <AppliedJobs />,
       },
       {
         path: "report-center",

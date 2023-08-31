@@ -172,7 +172,7 @@ const Jobs = () => {
         </div>
         <div className="">
           {isJobs.map((jobs) => (
-            <PostJobs jobs={jobs.data} />
+            <PostJobs jobs={jobs.data} key={jobs.id}/>
           ))}
         </div>
         <div className="pt-8 pb-6">

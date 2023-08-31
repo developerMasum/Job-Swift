@@ -1,10 +1,11 @@
 [
   {
+    "id": 1,
     "jobName": "Software Developer",
     "cityName": "San Francisco",
     "addressName": "123 Tech Street, Suite 456",
     "Sourced": 120,
-    "Applied":"18",
+    "Applied": "18",
     "PhoneScreen": 80,
     "Assessment": 60,
     "Interview": 40,
@@ -15,11 +16,12 @@
     "lastCandidateDate": "2023-08-15"
   },
   {
+    "id": 2,
     "jobName": "Data Scientist",
     "cityName": "New York",
     "addressName": "789 Data Drive, Floor 10",
     "Sourced": 100,
-    "Applied":"18",
+    "Applied": "18",
     "PhoneScreen": 70,
     "Assessment": 50,
     "Interview": 30,
@@ -30,4 +32,3 @@
     "lastCandidateDate": "2023-07-25"
   }
 ]
-
