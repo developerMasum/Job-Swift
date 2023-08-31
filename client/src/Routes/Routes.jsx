@@ -20,8 +20,6 @@ import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 // import Overview from "../Components/Overview/Overview";
 // import NewForm from "../Components/NewForm/NewForm";
 
-
-
 import Overview from "../Components/Overview/Overview";
 import Agenda from "../Pages/Dashboard/Agenda/Agenda";
 import Company from "../Pages/Dashboard/Company/Company";
@@ -34,6 +32,7 @@ import OrgChartTab from "../Components/CompanyComponents/OrgChartTab";
 // import Candidate from "../Components/Dashboard/Candidate/Candidate";
 import Candidates from "../Pages/Dashboard/Candidates/Candidates";
 import AppliedJobs from "../Pages/Dashboard/AppliedJobs/AppliedJobs";
+import ContactUs from "../Components/ContactUs/ContactUs";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -84,16 +83,20 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
+        path: "/contact-us",
+        element: <ContactUs />,
+      },
+      {
         path: "/overview",
         element: <Overview />,
       },
-   
     ],
   },
   {
     path: "dashboard",
     element: (
-      <PrivateRoute>  <DashboardLayout />
+      <PrivateRoute>
+        <DashboardLayout />
       </PrivateRoute>
     ),
     children: [
@@ -128,7 +131,8 @@ const router = createBrowserRouter([
       {
         path: "OrgChartTab",
         element: <OrgChartTab />,
-      },{
+      },
+      {
         path: "candidate",
         element: <Candidates />,
       },

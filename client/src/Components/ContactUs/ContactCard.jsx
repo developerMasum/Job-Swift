@@ -14,7 +14,7 @@ const ContactCard = () => {
       {/* Card 01 */}
             <div className="shadow-xl rounded-2xl p-4 transform transition-transform hover:scale-105 duration-300">
 
-        <CiLocationOn size={36} className="text-green-500 mb-2" />
+        <CiLocationOn  size={50} className="text-green-500 mb-2" />
         <h3 className="text-3xl font-semibold">Address</h3>
         <p>335 South 560 West</p>
         <p>Lindon, UT 84042-1911</p>
@@ -23,7 +23,7 @@ const ContactCard = () => {
       {/* card 02 */}
             <div className="shadow-xl rounded-2xl p-4 transform transition-transform hover:scale-105 duration-300">
 
-        <AiOutlinePhone size={36} className="text-green-500 mb-2" />
+        <AiOutlinePhone  size={50} className="text-green-500 mb-2" />
         <h3 className="text-3xl font-semibold">Office Numbers</h3>
         <p>Toll Free: 1-866-387-9595</p>
         <p>Phone: 801-724-6600</p>
@@ -31,16 +31,16 @@ const ContactCard = () => {
       {/* card 03 */}
             <div className="shadow-xl rounded-2xl p-4 transform transition-transform hover:scale-105 duration-300">
 
-        <AiOutlineClockCircle size={36} className="text-green-500 mb-2" />
+        <AiOutlineClockCircle  size={50} className="text-green-500 mb-2" />
         <h3 className="text-3xl font-semibold">Office Hours</h3>
         <p>Mon-Fri, 8am-5pm (MT)</p>
       </div>
       {/* card 04 */}
             <div className="shadow-xl rounded-2xl p-4 transform transition-transform hover:scale-105 duration-300">
 
-        <BiMessageDetail size={36} className="text-green-500 mb-2" />
+        <BiMessageDetail size={50} className="text-green-500 mb-2 text-center" />
         <h3 className="text-3xl font-semibold mb-4">Social</h3>
-        <div className="flex gap-2"> 
+        <div className="flex gap-2  items-center"> 
           <FiFacebook size={24} />
           <BiLogoTwitter size={24} />
           <AiOutlineInstagram size={24} />

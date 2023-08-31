@@ -50,7 +50,7 @@ const Candidates = () => {
       </div> : ''
       }
 
-<div>
+<div className='pt-20'>
     <CandidateTables candidates={candidates} />
 </div>
       </div>

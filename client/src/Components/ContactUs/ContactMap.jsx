@@ -9,7 +9,7 @@ const ContactMap = () => {
     // Initialize map
     if (!mapRef.current) {
       mapRef.current = L.map("map", {
-        center: [24.3636, 88.6245], // Coordinates for Rajshahi, Bangladesh
+        center: [24.3636, 88.6245],
         zoom: 12,
         layers: [
           L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -27,8 +27,8 @@ const ContactMap = () => {
   return (
     <div
       id="map"
-      className="map-container md:h-400px lg:h-500px p-4"
-      style={{ width: "100%" }}
+      className="map-container md:h-300 lg:h-500 p-4 border border-green-700"
+      style={{ width: "100%", height: "100%" }}
     ></div>
   );
 };

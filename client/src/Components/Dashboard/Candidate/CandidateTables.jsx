@@ -105,6 +105,9 @@ const CandidateTables = ({ candidates }) => {
               <p className="text-lg mb-1 font-semibold text-secondary">
                 {candidate.firstName} {candidate.lastName}
               </p>
+              {
+                candidate.educationList  ? <> <p> {candidate.educationList?.map(edu=> <span > {edu?.degree ?edu?.degree :'' } from {edu?.institution ? edu?.institution: ' ' } </span> )} <span> </span></p> </> :'no'
+              }
               <p className="text-sm">{candidate.location}</p>
             </div>
           </div>

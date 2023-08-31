@@ -9,7 +9,7 @@ const ProgramManager = () => {
   return (
     <div>
       {/* Heading */}
-      <h1 className="text-5xl font-bold text-center line leading-tight">
+      <h1 className="text-4xl font-bold text-center text-secondary line leading-tight">
         Manage your entire process, <br />
         from sourcing to employee onboarding <br />
         and management
@@ -19,15 +19,15 @@ const ProgramManager = () => {
         {/* card 01 */}
         <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
           <img
-            className="mx-auto px-4 md:max-w-full md:h-[500px]"
+            className="mx-auto px-4 md:max-w-3/4 md:h-[500px]"
             src={img1}
             alt=""
           />
           <div className="text-center mt-12">
-            <h4 className="text-4xl text-red-400 font-bold mb-2">
+            <h4 className="text-2xl text-red-400 font-bold mb-2">
               SOURCE & ATTRACT
             </h4>
-            <h4 className="text-4xl font-semibold">
+            <h4 className="text-xl font-semibold">
               Find and attract candidates
             </h4>
             <p className="text-gray-500 font-semibold my-6">
@@ -43,15 +43,15 @@ const ProgramManager = () => {
         {/* card 02 */}
         <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
           <img
-            className="mx-auto px-4 md:max-w-full md:h-[500px]"
+            className="mx-auto px-4 md:max-w-3/4 md:h-[500px]"
             src={img2}
             alt=""
           />
           <div className="text-center mt-12">
-            <h4 className="text-4xl text-blue-400 font-bold mb-2">
+            <h4 className="text-2xl text-blue-400 font-bold mb-2">
               EVALUATE & COLLABORATE
             </h4>
-            <h4 className="text-4xl font-semibold">
+            <h4 className="text-xl font-semibold">
               Move the right applicants forward
             </h4>
             <p className="text-gray-500 font-semibold my-6">
@@ -72,10 +72,10 @@ const ProgramManager = () => {
             alt=""
           />
           <div className="text-center mt-12">
-            <h4 className="text-4xl text-indigo-500 font-bold mb-2">
+            <h4 className="text-2xl text-indigo-500 font-bold mb-2">
               AUTOMATE & HIRE
             </h4>
-            <h4 className="text-4xl font-semibold">
+            <h4 className="text-xl font-semibold">
               Make the best hire, in half the time
             </h4>
             <p className="text-gray-500 font-semibold my-6">
@@ -96,10 +96,10 @@ const ProgramManager = () => {
             alt=""
           />
           <div className="text-center mt-12">
-            <h4 className="text-4xl text-teal-400 font-bold mb-2">
+            <h4 className="text-2xl text-teal-400 font-bold mb-2">
               ONBOARD & MANAGE
             </h4>
-            <h4 className="text-4xl font-semibold">
+            <h4 className="text-xl font-semibold">
               Help great hires become great employees
             </h4>
             <p className="text-gray-500 font-semibold my-6">
