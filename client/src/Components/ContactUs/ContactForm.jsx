@@ -157,9 +157,14 @@ const ContactForm = () => {
           }`}
         >
           <option value="">Select</option>
-          <option value="inquiry">Inquiry</option>
-          <option value="feedback">Feedback</option>
-          <option value="support">Support</option>
+          <option value="billing">Billing Question</option>
+          <option value="sales">Sales Question</option>
+          <option value="support">Support Question</option>
+          <option value="feature-request">Feature Request</option>
+          <option value="partnership-information">
+            Partnership Information
+          </option>
+          <option value="Careers">Careers</option>
           <option value="other">Other</option>
         </select>
         {errors.subject && (
