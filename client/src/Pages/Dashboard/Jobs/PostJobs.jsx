@@ -33,7 +33,7 @@ const PostJobs = ({ jobs }) => {
         </div>
         <div className="flex lg:md:gap-2 gap-6 lg:md:mt-0 mt-5">
           <button className="text-secondary px-4 py-1 rounded-lg border-gray-600 border">
-            Find Candidates
+            <Link to="findCandidates">Find Candidates</Link>
           </button>
           <div className="">
             <button

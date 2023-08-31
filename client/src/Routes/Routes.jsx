@@ -22,6 +22,12 @@ import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 import CurrentPipelineReport from "../Pages/Dashboard/Report/CurrentPipelineReport";
 import CandidiateBreakdownReport from "../Pages/Dashboard/Report/CandidiateBreakdownReport";
 import ActivityReport from "../Pages/Dashboard/Report/ActivityReport";
+import FindCandidates from "../Pages/Dashboard/Jobs/FindCandidates/FindCandidates/FindCandidates";
+import FindCandidatesLayout from "../Pages/Dashboard/Jobs/FindCandidates/FindCandidatesLayout/FindCandidatesLayout";
+import Teammembers from "../Pages/Dashboard/Jobs/Teammembers/Teammembers";
+import ApplicationForm from "../Pages/Dashboard/Jobs/ApplicationForm/ApplicationForm";
+import WorkFlow from "../Pages/Dashboard/Jobs/WorkFlow/WorkFlow";
+import JobsDetails from "../Pages/Dashboard/Jobs/JobsDetails/JobsDetails";
 
 import Overview from "../Components/Overview/Overview";
 import Agenda from "../Pages/Dashboard/Agenda/Agenda";
@@ -115,6 +121,35 @@ const router = createBrowserRouter([
         path: "jobs/applied-job",
         element: <AppliedJobs />,
       },
+      
+      {
+        path: 'jobs/findCandidates',
+        element: <FindCandidatesLayout></FindCandidatesLayout>,
+        children: [
+          {
+            path: 'teamMembers',
+            element: <Teammembers></Teammembers>
+          },
+          {
+            path: 'candidates',
+            element: <FindCandidates></FindCandidates>
+          },
+          {
+            path: 'applicationForm',
+            element: <ApplicationForm></ApplicationForm>
+          },
+          
+          {
+            path: 'workFlow',
+            element: <WorkFlow></WorkFlow>
+          },
+          {
+            path: 'jobDetails',
+            element: <JobsDetails></JobsDetails>
+          },
+          
+
+        ]},
       {
         path: "report-center",
         element: <ReportCenter />,
@@ -154,6 +189,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  
 ]);
 
 export default router;

@@ -15,7 +15,7 @@ const UpperBar = () => {
   const { user, logout } = useContext(authContext);
 
   const name = user?.displayName || "Mr X man";
-  const userName = user?.email || "mm123";
+  const userEmail = user?.email || "mm123";
   const userImage = user?.photoURL || userBackupImage;
   const navigate = useNavigate();
 
@@ -258,7 +258,7 @@ const UpperBar = () => {
           <div>
             {/* hover/Click User image ..............................................*/}
             {/* dropdown */}
-            <div className="dropdown  pr-12">
+            <div className="dropdown  lg:md:pr-10 pe-5">
               <label tabIndex={0} className="ease-in-out">
                 <div className="relative group ">
                   <div className="rounded-full transition duration-300 ease-in-out transform hover:scale-105 group-hover:opacity-100 opacity-80">
@@ -273,22 +273,31 @@ const UpperBar = () => {
                 tabIndex={0}
                 className=" -ms-32 menu menu-sm dropdown-content mt-7  p-1 shadow-xl bg-slate-100 border font-semibold  border-black rounded-box w-max"
               >
-                <div className="">
-                  <li>
-                    <div className="border-b-4">
-                      <Link>
-                        <img
-                          className="h-8 w-10  mask mask-hexagon"
-                          src={userImage}
-                          alt=""
-                        />
-                      </Link>
-                      <h2>
-                        <span className="font-bold">{name}</span>
-                        <br />
-                        <span>{userName}</span>
-                      </h2>
+
+                <div className="lg:md:px-1">
+                  <li className="border-b-2">
+                    <div className="">
+                      <div className="flex gap-1 items-center">
+                        <Link>
+                          <img
+                            className="h-8 w-10  mask mask-hexagon"
+                            src={userImage}
+                            alt=""
+                          />
+                        </Link>
+                        <h2>
+                          <span className="font-bold">{name}</span>
+                          <br />
+                          {/* <span className="text-[10px]">{userEmail}</span> */}
+                        </h2>
+                      </div>
+
+
                     </div>
+                    <div>
+                      <span className="lg:md:text-[10px] text-[9px] -mt-2 ms-2">{userEmail}</span>
+                    </div>
+
                   </li>
 
                   <li className="mt-4">
