@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'; // Import useState
 import SearchBar from '../../../Components/Dashboard/Candidate/SearchBar';
 import SearchResult from '../../../Components/Dashboard/Candidate/SearchResult';
 import CandidateTables from '../../../Components/Dashboard/Candidate/CandidateTables';
+import ScanNewCandidate from '../../../Components/Dashboard/Candidate/ScanNewCandidate';
+// import CandidateActionFootNav from '../../../Components/Dashboard/Candidate/CandidateActionFootNav';
 
 const Candidates = () => {
 
@@ -21,7 +23,7 @@ const Candidates = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("/candidatesData.json");
+        const response = await fetch("http://localhost:5000/all-applications");
         const data = await response.json();
         setCandidates(data);
       } catch (error) {
@@ -35,17 +37,34 @@ const Candidates = () => {
 
 
   return (
-    <div className="pt-24">
+    <div className="pt-[68px] flex justify-between items-start gap-6 w-full">
+      <div className='w-8/12'>
+      <div>
       <SearchBar onSearch={handleSearch} />
+      </div>
 
-      <div className="mt-4">
+      {
+        searchResult? <div className="mt-20">
         <SearchResult searchResult={searchResult} />
        
-      </div>
+      </div> : ''
+      }
 
 <div>
     <CandidateTables candidates={candidates} />
 </div>
+      </div>
+
+
+{/* flex */}
+<div className="pt-24 ml-6 w-4/12">
+<ScanNewCandidate />
+</div>
+
+
+{/* <div className=''>
+  <CandidateActionFootNav />
+</div> */}
 
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 
 const SearchResult = ({searchResult}) => {
     return (
-        <div>
+        <div className='pt-8'>
             <p> search result:{searchResult} </p>
         </div>
     );

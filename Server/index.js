@@ -137,6 +137,18 @@ async function run() {
       res.send(result);
     });
 
+    // app.delete('/delete-candidates', async (req, res) => {
+    //   const candidatesToDelete = req.body; // An array of candidate IDs
+    
+    //   try {
+    //     await Candidate.deleteMany({ _id: { $in: candidatesToDelete } });
+    //     res.status(204).send();
+    //   } catch (error) {
+    //     res.status(500).json({ error: 'Error deleting candidates' });
+    //   }
+    // });
+    
+
     // resume app.use('/uploads', upload.array("image", "resume"));
 
     // Send a ping to confirm a successful connection
