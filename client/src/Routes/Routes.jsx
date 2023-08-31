@@ -19,6 +19,9 @@ import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
 import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 // import Overview from "../Components/Overview/Overview";
 // import NewForm from "../Components/NewForm/NewForm";
+import CurrentPipelineReport from "../Pages/Dashboard/Report/CurrentPipelineReport";
+import CandidiateBreakdownReport from "../Pages/Dashboard/Report/CandidiateBreakdownReport";
+import ActivityReport from "../Pages/Dashboard/Report/ActivityReport";
 
 import Overview from "../Components/Overview/Overview";
 import Agenda from "../Pages/Dashboard/Agenda/Agenda";
@@ -115,6 +118,19 @@ const router = createBrowserRouter([
       {
         path: "report-center",
         element: <ReportCenter />,
+      },
+
+      {
+        path: "report-center/current-pipeline",
+        element: <CurrentPipelineReport></CurrentPipelineReport>,
+      },
+      {
+        path: "report-center/candidiate-breakdown",
+        element: <CandidiateBreakdownReport></CandidiateBreakdownReport>,
+      },
+      {
+        path: "report-center/activity-report",
+        element: <ActivityReport></ActivityReport>,
       },
       {
         path: "peopleSearch",

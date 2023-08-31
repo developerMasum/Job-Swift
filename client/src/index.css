@@ -8,13 +8,17 @@
 
 @layer utilities {
   .text-primary {
-    color: #00673b;
+    color: #0e7490;
   }
 
   .text-secondary {
     @apply text-gray-700;
   }
+
+
+
 }
+
 .background {
   background-image: url("./assets/Register/light_submit_2-[Converted].png");
   width: 100%;
@@ -23,22 +27,32 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
 @keyframes upDownLeftRightAnimation {
   0% {
     transform: translateY(0) translateX(0);
   }
+
   25% {
     transform: translateY(-10px) translateX(0);
-  } /* Moves Up */
+  }
+
+  /* Moves Up */
   50% {
     transform: translateY(10px) translateX(0);
-  } /* Moves Down */
+  }
+
+  /* Moves Down */
   75% {
     transform: translateY(0) translateX(-10px);
-  } /* Moves Left */
+  }
+
+  /* Moves Left */
   100% {
     transform: translateY(0) translateX(10px);
-  } /* Moves Right */
+  }
+
+  /* Moves Right */
 }
 
 .style {

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { authContext } from "../../Auth/AuthProvider";
-import logo2 from "../../assets/logo/logo3.png";
+import logo2 from "../../assets/login/swift__1_-removebg-preview (1).png";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -45,7 +45,7 @@ const Navbar = () => {
   // lg:md:flex justify-center
   return (
     <>
-      <div className="navbar fixed z-10 bg-opacity-100 max-w-screen-xl bg-slate-200 text-black">
+      <div className="navbar fixed z-10 bg-opacity-100 max-w-screen-xl bg-slate-200 text-black shadow-lg">
         <div className="flex justify-around gap-40 lg:md:navbar-start lg:md:gap-10">
           <div className="dropdown bg-green-400">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -95,7 +95,7 @@ const Navbar = () => {
               </div>
 
               <div className="flex gap-6 justify-center items-center mr-8">
-                <Link to={`/login`} className="btn btn-outline text-green-600 font-bold btn-sm my-3 w-1/3">
+                <Link to={`/login`} className="flex btn btn-outline text-green-600 font-bold btn-sm my-3 w-1/3">
                   Log In
                 </Link>
                 <Link to={'/demo-page'} className="btn btn-outline  bg-green-500 btn-sm mt-4 lg:md:mt-0 my-3 w-1/2">
@@ -106,7 +106,7 @@ const Navbar = () => {
           </div>
           <a className=" ">
             <img
-              className="h-12 w-32 rounded-lg border border-green-400"
+              className="h-16 w-32 rounded-lg "
               src={logo2}
               alt=""
             />
@@ -166,32 +166,28 @@ const Navbar = () => {
               </li> */}
 
             </> : <>
-              {/* <li><Link to='/login'>LogIn</Link></li> */}
+
               <Link to={'/login'}>
-                <button className="  btn btn-outline text-green-600 font-bold btn-sm hidden md:block">
-                  Log In
+                <button className="btn btn-primary px-8 hover:bg-white bg-cyan-500 font-semibold hidden md:block ">
+                  Login
                 </button>
               </Link>
             </>
           }
-          {/* <Link to={'/login'}>
-            <button className="  btn btn-outline text-green-600 font-bold btn-sm hidden md:block">
-              Log In
-            </button>
-          </Link> */}
+
           {
-            user ? <>
+            user ?
               <Link to={'/dashboard/jobs'}>
-                <button className="btn btn-outline  bg-green-500 btn-sm mt-4 lg:md:mt-0 hidden md:block">
+                <button className="btn btn-primary px-8 hover:bg-white bg-cyan-500   hidden md:block">
                   Dashboard
                 </button>
-              </Link> </> : <>
+              </Link> :
               <Link to={'/demo-page'}>
-                <button className="btn btn-outline  bg-green-500 btn-sm mt-4 lg:md:mt-0 hidden md:block">
-                  Get a Demo
-                </button>
-              </Link></>
+                <button className=" btn btn-primary px-8 hover:bg-white  bg-cyan-500   hidden md:block">Demo</button>
+              </Link>
+
           }
+
         </div>
       </div>
     </>

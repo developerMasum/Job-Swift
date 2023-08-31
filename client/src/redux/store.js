@@ -7,7 +7,8 @@ import applicationsReducer from "./application/applicationsSlice";
 
 
 
- const store = configureStore({
+
+const store = configureStore({
     reducer: {
         counter: jobReducer,
        posts: postReducer,
@@ -16,4 +17,4 @@ import applicationsReducer from "./application/applicationsSlice";
         
     }
  })
- export default store; 
+export default store; 

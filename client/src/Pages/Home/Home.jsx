@@ -45,15 +45,15 @@ const Home = () => {
 
       <div className="md:px-12">
         <div className="mt-12">
-         
-            <HrData />
-        
+
+          <HrData />
+
         </div>
 
         <div className="mt-12">
-         
-            <PaySection />
-        
+
+          <PaySection />
+
         </div>
         <div className="mt-12">
           <Slide>
@@ -78,8 +78,8 @@ const Home = () => {
 
           {/* slider */}
           <div className="mt-12">
-            <h2 className="text-5xl font-bold text-center text-primary font-sans italic ">
-              Why People LOVE JobSwift
+            <h2 className="text-3xl font-bold text-center text-primary font-sans ">
+              Why People Love JobSwift
             </h2>
             <Slider />
           </div>
