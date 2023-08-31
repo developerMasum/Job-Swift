@@ -7,8 +7,6 @@ import "react-tabs/style/react-tabs.css";
 import { authContext } from "../../Auth/AuthProvider";
 import UpdateForm from "../New/UpdateForm";
 
-
-
 // import UpdateForm from "../New/UpdateForm";
 
 const Overview = () => {
@@ -18,6 +16,7 @@ const Overview = () => {
   const serializedData = queryParams.get("data");
   const formData = JSON.parse(decodeURIComponent(serializedData));
   console.log(formData);
+  const jobTitle = formData.jobTitle;
   const [tabIndex, setTabIndex] = useState(0);
   return (
     <div className="container">
@@ -49,7 +48,7 @@ const Overview = () => {
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <TabList>
             <Tab>Overview</Tab>
-            <Tab>Application</Tab> 
+            <Tab>Application</Tab>
           </TabList>
           <TabPanel>
             <div className="bg-gray-50 shadow-lg">
@@ -109,8 +108,8 @@ const Overview = () => {
             </div>
           </TabPanel>
           <TabPanel>
-           {/* <FormNew></FormNew> */}
-            <UpdateForm></UpdateForm>
+            {/* <FormNew></FormNew> */}
+            <UpdateForm jobTitle={jobTitle}></UpdateForm>
           </TabPanel>
         </Tabs>
       </div>

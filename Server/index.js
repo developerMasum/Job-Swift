@@ -67,10 +67,11 @@ async function run() {
         const imageFilePath = req.files.image[0].filename; // Accessing image filename
         const educationList = JSON.parse(formData.educationList); // Parse educationList JSON
         const experienceList = JSON.parse(formData.experienceList); // Parse experienceList JSON
-
+        const currentDate = new Date().toISOString();
         try {
           // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
           await applicationsPostCollection.insertOne({
+            jobTitle:formData.jobTitle,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
@@ -80,6 +81,7 @@ async function run() {
             resume: resumeFilePath,
             coverLetter: formData.coverLetter,
             image: imageFilePath,
+            date: currentDate,
             educationList: educationList, // Save parsed educationList
             experienceList: experienceList, // Save parsed experienceList
           });
