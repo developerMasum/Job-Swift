@@ -9,30 +9,26 @@ const ProgramManager = () => {
   return (
     <div>
       {/* Heading */}
-      <h1 className="text-5xl font-bold text-center line leading-tight">
+      <h1 className="text-4xl font-bold text-center text-secondary line leading-tight">
         Manage your entire process, <br />
         from sourcing to employee onboarding <br />
         and management
       </h1>
       {/* Grid layout for cards */}
-      <div className="grid md:grid-cols-2 gap-8 md:gap-16 my-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 my-5">
         {/* card 01 */}
-        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
-          <img
-            className="mx-auto px-4 md:max-w-full md:h-[500px]"
-            src={img1}
-            alt=""
-          />
+        <div className=" transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
+          <img className="mx-auto px-4 md:h-[300px]" src={img1} alt="" />
           <div className="text-center mt-12">
-            <h4 className="text-4xl text-red-400 font-bold mb-2">
+            <h4 className="text-xl text-red-400 font-bold mb-2">
               SOURCE & ATTRACT
             </h4>
-            <h4 className="text-4xl font-semibold">
+            <h4 className="text-lg font-semibold">
               Find and attract candidates
             </h4>
             <p className="text-gray-500 font-semibold my-6">
               Fill your pipeline quickly with one-click job posting to 200+
-              sites, AI-powered sourcing, employee referrals and more.
+              sites, <br /> AI-powered sourcing, employee referrals and more.
             </p>
             <a href="#" className="flex items-center gap-1 justify-center ">
               <span className="text-green-700 hover:underline">LEARN MORE</span>{" "}
@@ -41,17 +37,13 @@ const ProgramManager = () => {
           </div>
         </div>
         {/* card 02 */}
-        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
-          <img
-            className="mx-auto px-4 md:max-w-full md:h-[500px]"
-            src={img2}
-            alt=""
-          />
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
+          <img className="mx-auto px-4 md:h-[300px]" src={img2} alt="" />
           <div className="text-center mt-12">
-            <h4 className="text-4xl text-blue-400 font-bold mb-2">
+            <h4 className="text-2xl text-blue-400 font-bold mb-2">
               EVALUATE & COLLABORATE
             </h4>
-            <h4 className="text-4xl font-semibold">
+            <h4 className="text-xl font-semibold">
               Move the right applicants forward
             </h4>
             <p className="text-gray-500 font-semibold my-6">
@@ -65,17 +57,13 @@ const ProgramManager = () => {
           </div>
         </div>
         {/* card 03 */}
-        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
-          <img
-            className="mx-auto px-4 md:max-w-full md:h-[500px]"
-            src={img3}
-            alt=""
-          />
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
+          <img className="mx-auto px-4 md:h-[300px]" src={img3} alt="" />
           <div className="text-center mt-12">
-            <h4 className="text-4xl text-indigo-500 font-bold mb-2">
+            <h4 className="text-2xl text-indigo-500 font-bold mb-2">
               AUTOMATE & HIRE
             </h4>
-            <h4 className="text-4xl font-semibold">
+            <h4 className="text-xl font-semibold">
               Make the best hire, in half the time
             </h4>
             <p className="text-gray-500 font-semibold my-6">
@@ -89,17 +77,13 @@ const ProgramManager = () => {
           </div>
         </div>
         {/* card 04 */}
-        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4">
-          <img
-            className="mx-auto px-4 md:max-w-full md:h-[500px]"
-            src={img4}
-            alt=""
-          />
+        <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
+          <img className="mx-auto px-4 md:h-[300px]" src={img4} alt="" />
           <div className="text-center mt-12">
-            <h4 className="text-4xl text-teal-400 font-bold mb-2">
+            <h4 className="text-2xl text-teal-400 font-bold mb-2">
               ONBOARD & MANAGE
             </h4>
-            <h4 className="text-4xl font-semibold">
+            <h4 className="text-xl font-semibold">
               Help great hires become great employees
             </h4>
             <p className="text-gray-500 font-semibold my-6">
