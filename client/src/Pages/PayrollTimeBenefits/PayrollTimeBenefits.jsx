@@ -14,7 +14,7 @@ import payroll4 from "../../assets/Image/paryroll4.png";
 
 const PayrollTimeBenefits = () => {
   return (
-    <div className="px-12">
+    <div className="px-12 pt-16 pb-8">
       <div className="text-center pt-16">
         <Title
           mainTitle="payroll-time-benefits"

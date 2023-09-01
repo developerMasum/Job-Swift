@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdKeyboardArrowDown, MdClear } from "react-icons/md";
 import { LuEdit } from "react-icons/lu";
 import triangle from "../../../assets/Image/triangles4-1.svg";
@@ -10,28 +10,46 @@ const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
 
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPost } from "../../../redux/postJob/postSlice";
+import { authContext } from "../../../Auth/AuthProvider";
+// import { getAllPost } from "../../../redux/postJob/api";
 const Jobs = () => {
+  const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
   const [isSecondOpen, setSecondOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isJobs, setJobs] = useState([]);
+
+  const { user } = useContext(authContext);
+
+  const jobs = useSelector((state) => state.posts.jobs);
+  const isJobs = jobs.filter((d) => d.userEmail === user?.email);
+  // console.log("from filter", filter);
+
+  // setJobs(jobs)
+  // console.log("all jobs", isJobs);
+
   useEffect(() => {
-    fetch("/Jobs.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setJobs(data);
-      })
-      .catch((error) =>
-        console.error("Error fetching testimonial data:", error)
-      );
+    dispatch(getAllPost());
   }, []);
+
+  // useEffect(() => {
+  //   fetch("/Jobs.json")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setJobs(data);
+  //     })
+  //     .catch((error) =>
+  //       console.error("Error fetching testimonial data:", error)
+  //     );
+  // }, []);
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       {/* Down nav */}
       <div className="md:px-8 w-full px-4 bg-white shadow-md py-4 mb-5">
         <div className="flex justify-between">
           <div className="flex items-center gap-1">
-            <h2 className="text-3xl">MD MASUM</h2>
+            <h2 className="lg:md:text-3xl">MD MASUM</h2>
             <button className="pt-1">
               {" "}
               <LuEdit className="h-5 w-5  text-gray-500" />
@@ -39,7 +57,7 @@ const Jobs = () => {
           </div>
           <div>
             <Link to="post-job">
-              <button className="bg-[#00756a] border-2 border-[#00756a] px-5 py-2 rounded-lg text-white font-medium hover:bg-[#005f56] hover:border-[#005f56] transition-colors 3s ease-in-out">
+              <button className="bg-[#00756a] border-2 border-[#00756a] px-5 py-2 rounded-lg text-white lg:md:font-medium hover:bg-[#005f56] hover:border-[#005f56] transition-colors 3s ease-in-out">
                 Create a new job
               </button>
             </Link>
@@ -123,7 +141,7 @@ const Jobs = () => {
         </div>
       </div>
       {/* Content */}
-      <div className="flex gap-14 border rounded-md border-gray-400 py-4  items-center bg-white justify-between px-10">
+      <div className=" mx-2 lg:md:mx-0 flex gap-14 border rounded-md border-gray-400 py-4  items-center bg-white justify-between px-10">
         <div className="space-y-3">
           <h2 className="font-semibold text-base text-gray-800">Post a job</h2>
           <p className="text-secondary">
@@ -145,7 +163,7 @@ const Jobs = () => {
 
       {/* Previous post */}
 
-      <div className="pt-10">
+      <div className="pt-10 px-2 lg:md:px-0">
         <div className="flex items-center justify-between">
           <p className="text-xs font-bold text-secondary ">SAMPLE JOBS</p>
           <p className="text-xs font-bold text-secondary ">
@@ -154,7 +172,7 @@ const Jobs = () => {
         </div>
         <div className="">
           {isJobs.map((jobs) => (
-            <PostJobs jobs={jobs} />
+            <PostJobs jobs={jobs.data} key={jobs.id}/>
           ))}
         </div>
         <div className="pt-8 pb-6">
@@ -190,7 +208,7 @@ const Jobs = () => {
           </div>
         </div>
         <div>
-          <div className="flex justify-between pb-8">
+          <div className="flex justify-between pb-8 mx-5">
             <h2 className=" text-xs font-bold text-secondary">
               SUGGESTED ACTIONS
             </h2>
@@ -198,7 +216,7 @@ const Jobs = () => {
               Don't show again
             </h2>
           </div>
-          <div className="px-5 mx-auto pb-20 grid grid-cols-3 gap-7">
+          <div className="px-5 mx-auto pb-20 grid lg:md:grid-cols-3 gap-7">
             <div
               className="flex px-4 py-3 rounded-lg"
               style={{
