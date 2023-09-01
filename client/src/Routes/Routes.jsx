@@ -20,6 +20,12 @@ import ForgotPassword from "../Pages/ForgotPassword/ForgotPassword";
 import CurrentPipelineReport from "../Pages/Dashboard/Report/CurrentPipelineReport";
 import CandidiateBreakdownReport from "../Pages/Dashboard/Report/CandidiateBreakdownReport";
 import ActivityReport from "../Pages/Dashboard/Report/ActivityReport";
+import CandidateSource from "../Pages/Dashboard/Report/CandidateSource";
+import HiringVelocity from "../Pages/Dashboard/Report/HiringVelocity";
+import ProductivityReport from "../Pages/Dashboard/Report/ProductivityReport";
+import HistoricPipeline from "../Pages/Dashboard/Report/HistoricPipeline";
+import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
+import TimeToHire from "../Pages/Dashboard/Report/TimeToHire";
 
 
 
@@ -110,6 +116,37 @@ const router = createBrowserRouter([
       {
         path: 'report-center/activity-report',
         element: <ActivityReport></ActivityReport>
+
+      },
+      {
+        path: 'report-center/candidiate-flow',
+        element: <CandidiateFlow></CandidiateFlow>
+
+      },
+
+      {
+        path: 'report-center/candidiate-source',
+        element: <CandidateSource></CandidateSource>
+
+      },
+      {
+        path: 'report-center/hiring-velocity',
+        element: <HiringVelocity></HiringVelocity>
+
+      },
+      {
+        path: 'report-center/time-to-hire',
+        element: <TimeToHire></TimeToHire>
+
+      },
+      {
+        path: 'report-center/productivity-report',
+        element: <ProductivityReport></ProductivityReport>
+
+      },
+      {
+        path: 'report-center/historic-pipeline',
+        element: <HistoricPipeline></HistoricPipeline>
 
       },
     ],
