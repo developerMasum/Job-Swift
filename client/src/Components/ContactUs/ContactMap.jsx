@@ -27,7 +27,7 @@ const ContactMap = () => {
   return (
     <div
       id="map"
-      className="map-container md:h-300 lg:h-500 p-4 border border-green-700"
+      className="map-container md:h-300 lg:h-500 p-4 border border-cyan-600"
       style={{ width: "100%", height: "100%" }}
     ></div>
   );

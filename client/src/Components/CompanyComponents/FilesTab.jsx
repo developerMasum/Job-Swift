@@ -10,7 +10,7 @@ const FilesTab = () => {
           <h3 className="md:text-3xl text-xl ">Files</h3>
           <button className="flex bg-[#c7f0f1] px-2 py-1 rounded-full gap-2 items-center">
             <FaPaperPlane color="107191" size={12} />
-            <span className="text-[#107191] text-xs font-bold">BETA</span>
+            <span className="text-primary text-xs font-bold">BETA</span>
           </button>
         </div>
         <p className="text-start text-secondary">Manage company files</p>

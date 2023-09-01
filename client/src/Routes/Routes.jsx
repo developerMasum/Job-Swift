@@ -42,6 +42,8 @@ import OrgChartTab from "../Components/CompanyComponents/OrgChartTab";
 import Candidates from "../Pages/Dashboard/Candidates/Candidates";
 import AppliedJobs from "../Pages/Dashboard/AppliedJobs/AppliedJobs";
 import ContactUs from "../Components/ContactUs/ContactUs";
+import HomeAdmin from "../Components/AdminDashBoard/HomeAdmin";
+import UsersAdmin from "../Components/AdminDashBoard/UsersAdmin";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -114,6 +116,14 @@ const router = createBrowserRouter([
         element: <Jobs />,
       },
       {
+        path: "admin/dashboard",
+        element: <HomeAdmin />,
+      },
+      {
+        path: "admin/users",
+        element: <UsersAdmin />,
+      },
+      {
         path: "jobs/post-job",
         element: <PostJob />,
       },
@@ -121,35 +131,34 @@ const router = createBrowserRouter([
         path: "jobs/applied-job",
         element: <AppliedJobs />,
       },
-      
+
       {
-        path: 'jobs/findCandidates',
+        path: "jobs/findCandidates",
         element: <FindCandidatesLayout></FindCandidatesLayout>,
         children: [
           {
-            path: 'teamMembers',
-            element: <Teammembers></Teammembers>
+            path: "teamMembers",
+            element: <Teammembers></Teammembers>,
           },
           {
-            path: 'candidates',
-            element: <FindCandidates></FindCandidates>
+            path: "candidates",
+            element: <FindCandidates></FindCandidates>,
           },
           {
-            path: 'applicationForm',
-            element: <ApplicationForm></ApplicationForm>
+            path: "applicationForm",
+            element: <ApplicationForm></ApplicationForm>,
           },
-          
-          {
-            path: 'workFlow',
-            element: <WorkFlow></WorkFlow>
-          },
-          {
-            path: 'jobDetails',
-            element: <JobsDetails></JobsDetails>
-          },
-          
 
-        ]},
+          {
+            path: "workFlow",
+            element: <WorkFlow></WorkFlow>,
+          },
+          {
+            path: "jobDetails",
+            element: <JobsDetails></JobsDetails>,
+          },
+        ],
+      },
       {
         path: "report-center",
         element: <ReportCenter />,
@@ -189,7 +198,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  
 ]);
 
 export default router;

@@ -5,7 +5,7 @@ const BannerCompany = () => {
     return (
         <div>
              <div>
-          <h2 className="md:mt-16 px-3 md:px-0 text-[30px] font-black text-center text-[#00673b]">
+          <h2 className="md:mt-16 px-3 md:px-0 text-[30px] font-black text-center text-primary">
             30,000+ Companies Big & Small Trust Job Swift
           </h2>
         </div>

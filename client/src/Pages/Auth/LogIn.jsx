@@ -11,18 +11,19 @@ import { authContext } from "../../Auth/AuthProvider";
 import SocialLogIn from "./SocialLogIn";
 import { toast } from "react-hot-toast";
 import Loader from '../../Components/Loader/Loader';
+import useAdmin from '../../Hooks/AdminHook/useAdmin';
 
 const LogIn = () => {
 
-
-  // console.log(from);
+const isAdmin = useAdmin();
+  console.log(isAdmin);
   const emailRef = useRef();
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const { logIn, resetPassword, loading, userUpdatePassword } = useContext(authContext);
   const location = useLocation()
   const navigate = useNavigate()
-  const from = location.state?.from?.pathname || "/dashboard/jobs";
+  const from = location.state?.from?.pathname || (isAdmin && "/dashboard/admin/dashboard" ) || "/dashboard/jobs";
 
 
   // const [error, setError] = useState(null)

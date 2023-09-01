@@ -18,7 +18,7 @@ const ContactForm = () => {
       className="max-w-md mx-auto p-4 border rounded-md shadow-md"
     >
       <div className="text-center">
-        <h2 className="text-2xl text-green-600 font-semibold mb-2">Email Us</h2>
+        <h2 className="text-2xl text-primary font-semibold mb-2">Email Us</h2>
         <p className="mb-4">Just complete the form below</p>
       </div>
       <div className="md:flex gap-4">
@@ -183,7 +183,7 @@ const ContactForm = () => {
       </div>
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+        className="w-full bg-cyan-600 text-white px-4 py-2 rounded-md hover:bg-cyan-400"
       >
         Submit
       </button>
