@@ -54,8 +54,8 @@ const FindCandidates = () => {
 
                             {/* card */}
                             <Link>
-                                <div className="card w-72 rounded-md bg-base-100 shadow-xl hover:border-2 hover:border-green-700">
-                                    <figure className="px-10 pt-10">
+                                <div className=" w-72 rounded-md bg-base-100 shadow-xl hover:border-2 hover:border-green-700">
+                                    <figure className="px-10 pt-10 flex justify-center">
                                         <SlBadge className='text-6xl'></SlBadge>
                                     </figure>
                                     <div className="card-body items-center text-center">
@@ -71,8 +71,8 @@ const FindCandidates = () => {
                             </Link>
                             {/* card */}
                             <Link>
-                                <div className="card w-72 rounded-md bg-base-100 shadow-xl  hover:border-green-700">
-                                    <figure className="px-10 pt-10">
+                                <div className=" w-72 rounded-md bg-base-100 shadow-xl  hover:border-green-700">
+                                    <figure className="px-10 pt-10 flex justify-center">
                                     <LiaUserPlusSolid className='text-6xl'></LiaUserPlusSolid>
                                     </figure>
                                     <div className="card-body items-center text-center">
@@ -89,8 +89,8 @@ const FindCandidates = () => {
                             </Link>
                             {/* card */}
                             <Link>
-                                <div className="card w-72 rounded-md bg-base-100 shadow-xl  hover:border-green-700">
-                                    <figure className="px-10 pt-10">
+                                <div className=" w-72 rounded-md bg-base-100 shadow-xl  hover:border-green-700">
+                                    <figure className="px-10 pt-10 flex justify-center">
                                     <AiOutlineUserSwitch className='text-6xl'></AiOutlineUserSwitch>
                                     </figure>
                                     <div className="card-body items-center text-center">
@@ -143,8 +143,8 @@ const FindCandidates = () => {
 
                             {/* card */}
                             <Link>
-                                <div className="card w-72 h-60 rounded-md bg-base-100 shadow-xl hover:border-2 hover:border-green-700 text-[#333e49]">
-                                    <figure className="px-10 pt-4">
+                                <div className=" w-72 h-60 rounded-md bg-base-100 shadow-xl hover:border-2 hover:border-green-700 text-[#333e49]">
+                                    <figure className="px-10 pt-4 flex justify-center">
                                         <PiUserCircleGearThin className='text-5xl '></PiUserCircleGearThin>
                                     </figure>
                                     <div className=" items-center text-center mx-5">
@@ -160,8 +160,8 @@ const FindCandidates = () => {
                             </Link>
 
                             {/* card */}
-                            <div className="card w-72 h-60 rounded-md bg-base-100 shadow-xl  text-[#333e49]">
-                                <figure className="px-10 pt-4">
+                            <div className=" w-72 h-60 rounded-md bg-base-100 shadow-xl  text-[#333e49]">
+                                <figure className="px-10 pt-4 flex justify-center">
                                     <CiShare2 className='text-5xl'></CiShare2>
 
                                 </figure>
@@ -208,8 +208,8 @@ const FindCandidates = () => {
 
                             {/* card */}
                             <Link>
-                                <div className="card w-72 h-80 rounded-md bg-base-100 shadow-xl hover:border-2 hover:border-green-700 text-[#333e49]">
-                                    <figure className="px-10 pt-5">
+                                <div className=" w-72 h-80 rounded-md bg-base-100 shadow-xl hover:border-2 hover:border-green-700 text-[#333e49]">
+                                    <figure className="px-10 pt-5 flex justify-center">
                                         <TfiWorld className='text-5xl '></TfiWorld>
                                     </figure>
                                     <div className=" items-center text-center mx-5">
@@ -224,8 +224,8 @@ const FindCandidates = () => {
                             </Link>
 
                             {/* card */}
-                            <div className="card w-72 h-80 rounded-md bg-base-100 shadow-xl  text-[#333e49]">
-                                <figure className="px-10 pt-5">
+                            <div className=" w-72 h-80 rounded-md bg-base-100 shadow-xl  text-[#333e49]">
+                                <figure className="px-10 pt-5 flex justify-center">
                                     <GoLink className='text-5xl '></GoLink>
                                 </figure>
                                 <div className=" items-center text-center mx-5">
@@ -244,8 +244,8 @@ const FindCandidates = () => {
                                 </div>
                             </div>
                             {/* card */}
-                            <div className="card w-72 h-80 rounded-md bg-base-100 shadow-xl  text-[#333e49]">
-                                <figure className="px-10 pt-5">
+                            <div className=" w-72 h-80 rounded-md bg-base-100 shadow-xl  text-[#333e49]">
+                                <figure className="px-10 pt-5 flex justify-center">
                                     <SlEnvolopeLetter className='text-5xl '></SlEnvolopeLetter>
                                 </figure>
                                 <div className=" items-center text-center mx-5">
