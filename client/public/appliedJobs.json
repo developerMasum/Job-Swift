@@ -7,10 +7,17 @@
         "companyName": "ABC Company",
         "location":"Dhaka, Dhaka Division, Bangladesh",
         "jobPosition": "Manager", 
-        "stage":"assessment",
+        "stage":"applied",
         "cover-letter":"no upload",
         "resume":"upload",
         "summary":"ASF",
-        "education":"ho "
+        "contact":"017555555745",
+        "education":{
+            "educationName":"Bsc",
+            "collegeName":"Dhaka, College", 
+            "year":"2019 - n/a",
+            "subject":"Geography and Environmen",
+            "collegeLocation":"Dhaka, Bangladesh"
+        }
     }
 ]
