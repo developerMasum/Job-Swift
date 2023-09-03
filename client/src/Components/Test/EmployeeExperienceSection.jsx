@@ -70,13 +70,9 @@ const EmployeeExperienceSection = () => {
   };
 
   return (
-    <section className="bg-gray-100 py-12">
+    <section className="bg-gray-100 py-5">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-semibold mb-6 text-gray-500">Employee Experience</h2>
-        <p className="text-gray-400 max-w-lg mx-auto mb-8">
-          Elevate your hiring process with our ATS features that enhance team
-          collaboration, candidate engagement, and data-driven decision-making.
-        </p>
+       
         <div className="flex my-10 overflow-hidden">
           <Marquee speed={60} gradient={false} pauseOnHover={true}>
             {cards.map((card, index) => {
@@ -104,7 +100,7 @@ const EmployeeExperienceSection = () => {
             })}
           </Marquee>
         </div>
-        <Link className=" border-[2px] border-gray-500 rounded-md px-4 py-1 text-gray-500">Learn More <FaGreaterThan className="inline-block"></FaGreaterThan></Link>
+        {/* <Link className=" border-[2px] border-gray-500 rounded-md px-4 py-1 text-gray-500">Learn More <FaGreaterThan className="inline-block"></FaGreaterThan></Link> */}
       </div>
     </section>
   );

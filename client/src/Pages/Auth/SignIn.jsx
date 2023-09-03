@@ -15,7 +15,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/dashboard/jobs";
-  const { createAuthUser, updateUserProfile } = useContext(authContext);
+  const { createAuthUser, updateUserProfile,logout } = useContext(authContext);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -34,12 +34,12 @@ const SignIn = () => {
     console.log(data);
     try {
       await dispatch(createUser(data));
-    
     } catch (error) {
       console.error("Error submitting form:", error);
     }
     const email = data.email;
     const password = data.password;
+  
     createAuthUser(email, password).then((result) => {
       const loggedUser = result.user;
       console.log(data);
@@ -52,14 +52,18 @@ const SignIn = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+  
+          // Logout the user after successful registration and profile creation
+          logout(); // Call the logout function here
+  
           navigate(from, { replace: true });
         })
         .catch((error) => {
           console.log(error);
         });
-      // navigate(from, { replace: true })
     });
   };
+  
 
   return (
     <div className="background md:flex flex-row-reverse items-center justify-between md:pr-5 md:h-screen md:p-10">
@@ -255,7 +259,7 @@ const SignIn = () => {
                 onChange={(e) => setIsCheckboxChecked(e.target.checked)}
               />
               <span className="text-white font-medium">
-                I agreement your Register
+                I agree with <span className="underline text-blue-400">terms and condition</span>
               </span>
             </div>
             <button

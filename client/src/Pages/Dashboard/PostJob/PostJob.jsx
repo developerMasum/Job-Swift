@@ -18,18 +18,16 @@ import { createJobPost } from "../../../redux/jobSlice";
 import { toast } from "react-hot-toast";
 import Tips from "../../../Components/Dashboard/PostJob/Tips";
 
-import { all } from "axios";
 import { getAllPost } from "../../../redux/postJob/api";
 import { useDispatch, useSelector } from "react-redux";
 import { authContext } from "../../../Auth/AuthProvider";
 // import CustomModal from "./CustomModal";
 
 export const PostJob = () => {
-  const [data, setData] = useState();
+  // const [data, setData] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {user} = useContext(authContext)
-  
+  const { user } = useContext(authContext);
 
   const {
     register,
@@ -38,30 +36,43 @@ export const PostJob = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data.jobTitle);
+    // console.log("data lagbe" ,data);
+    const postData = {
+      benefits:data.benefits,
+      experience: data.experience,
+      employmentType:data.employmentType,
+      requirements:data.requirements,
+      jobTitle:data.jobTitle,
+      jobLocation:data.jobLocation,
+      jobDescriptions:data.jobDescriptions,
+      salaryTo:data.salaryTo,
+      salaryFrom:data.salaryFrom,
+      salaryCurrency:data.salaryCurrency,
+      responsibilities:data.responsibilities,
+      userEmail: user?.email,
+      
+    };
+    // console.log('new',postData);
     try {
-      await dispatch(createJobPost(data));
+      await dispatch(createJobPost(postData));
 
-      setData(data);
-      // console.log(...data,user?.email);
       const serializedData = encodeURIComponent(JSON.stringify(data));
-        navigate(`/overview?data=${serializedData}`);
+      navigate(`/overview?data=${serializedData}`);
       toast.success("Successfully post your job !");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
 
-  const users = useSelector((state) => state);
-  useEffect(() => {
-    dispatch(getAllPost());
-  }, [dispatch]);
+  // const users = useSelector((state) => state);
+  // useEffect(() => {
+  //   dispatch(getAllPost());
+  // }, [dispatch]);
 
-  console.log(users.posts);
+  // console.log(users.posts);
 
   return (
     <div className="pt-20">
-     
       <Heading></Heading>
       <div className="md:flex justify-between items-center my-10">
         <div className=" w-full md:w-9/12 rounded-lg border-[1px]">
@@ -177,7 +188,7 @@ export const PostJob = () => {
                   </div>
                   <div className="mb-2">
                     <h4 className="text-md text-gray-500 font-semibold mb-1">
-                    Responsibilities
+                      Responsibilities
                     </h4>
                     <textarea
                       name=" responsibilities"
@@ -477,9 +488,7 @@ export const PostJob = () => {
                 <div>
                   <div className="space-x-4">
                     <button
-                      data={data}
                       type="submit"
-                     
                       className="bg-[#1F7068] text-white outline-none px-4 py-1 rounded-md text-[20px] font-medium"
                     >
                       Save draft

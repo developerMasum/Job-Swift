@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import { useContext, useState } from "react";
 import { RiCloseLine, RiShareForwardLine } from "react-icons/ri";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -8,14 +8,17 @@ import { authContext } from "../../Auth/AuthProvider";
 import UpdateForm from "../New/UpdateForm";
 
 // import UpdateForm from "../New/UpdateForm";
+// application a hr mail ashbe . 
 
 const Overview = () => {
+  const formData = useLoaderData()
+  // console.log(data);
   const location = useLocation();
   const { user } = useContext(authContext);
   const queryParams = new URLSearchParams(location.search);
   const serializedData = queryParams.get("data");
-  const formData = JSON.parse(decodeURIComponent(serializedData));
-  console.log(formData);
+  // const formData = JSON.parse(decodeURIComponent(serializedData));
+  // console.log(formData);
   const jobTitle = formData.jobTitle;
   const [tabIndex, setTabIndex] = useState(0);
   return (

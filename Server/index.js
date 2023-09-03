@@ -116,11 +116,17 @@ async function run() {
       const result = await jobPostCollection.insertOne(query);
       res.send(result);
     });
+    app.get("/job_post/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await jobPostCollection.findOne(query);
+      res.send(result);
+    });
 
     // get all job post
 
     app.get("/all-post", async (req, res) => {
-      const result = await jobPostCollection.find().toArray();
+      const result = await jobPostCollection.find().sort({ _id: -1 }).toArray();
       res.send(result);
     });
 
@@ -139,7 +145,19 @@ async function run() {
       res.send(result);
     });
 
-    //  for openai
+    // app.delete('/delete-candidates', async (req, res) => {
+    //   const candidatesToDelete = req.body; // An array of candidate IDs
+    
+    //   try {
+    //     await Candidate.deleteMany({ _id: { $in: candidatesToDelete } });
+    //     res.status(204).send();
+    //   } catch (error) {
+    //     res.status(500).json({ error: 'Error deleting candidates' });
+    //   }
+    // });
+    
+
+    // resume app.use('/uploads', upload.array("image", "resume"));
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

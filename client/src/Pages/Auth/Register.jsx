@@ -72,8 +72,8 @@ const Register = () => {
             See Job Swift in Action
           </h1>
           <div
-            className="space-y-3 p-6 w-full md:ml-5 rounded-2xl"
-            style={{ backgroundColor: "rgba(10,10,43,0.75)" }}
+            className="space-y-3 p-6 w-full md:ml-5 rounded-2xl "
+            style={{ backgroundColor: "rgba(10,10,43,0.1)" }}
           >
             <div className="md:flex space-y-4 md:space-y-0 md:space-x-2">
               <Controller
