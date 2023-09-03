@@ -24,6 +24,7 @@ const Jobs = () => {
 
   const jobs = useSelector((state) => state.posts.jobs);
   const isJobs = jobs.filter((d) => d.userEmail === user?.email);
+  const postId = useSelector((state) => state.posts.jobs).map(post=>post._id);
   // console.log("from filter", filter);
 
   // setJobs(jobs)
@@ -172,7 +173,7 @@ const Jobs = () => {
         </div>
         <div className="">
           {isJobs.map((jobs) => (
-            <PostJobs jobs={jobs.data} key={jobs.id}/>
+            <PostJobs  jobs={jobs} key={jobs._id}/>
           ))}
         </div>
         <div className="pt-8 pb-6">
