@@ -19,12 +19,10 @@ const Jobs = () => {
   const [isFirstOpen, setFirstOpen] = useState(false);
   const [isSecondOpen, setSecondOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
   const { user } = useContext(authContext);
 
   const jobs = useSelector((state) => state.posts.jobs);
   const isJobs = jobs.filter((d) => d.userEmail === user?.email);
-  // console.log("from filter", filter);
 
   // setJobs(jobs)
   // console.log("all jobs", isJobs);
@@ -33,16 +31,6 @@ const Jobs = () => {
     dispatch(getAllPost());
   }, []);
 
-  // useEffect(() => {
-  //   fetch("/Jobs.json")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setJobs(data);
-  //     })
-  //     .catch((error) =>
-  //       console.error("Error fetching testimonial data:", error)
-  //     );
-  // }, []);
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       {/* Down nav */}
@@ -172,7 +160,7 @@ const Jobs = () => {
         </div>
         <div className="">
           {isJobs.map((jobs) => (
-            <PostJobs jobs={jobs.data} key={jobs.id}/>
+            <PostJobs jobs={jobs.data} key={jobs.id} />
           ))}
         </div>
         <div className="pt-8 pb-6">

@@ -32,7 +32,6 @@ import CandidateSource from "../Pages/Dashboard/Report/CandidateSource";
 import HiringVelocity from "../Pages/Dashboard/Report/HiringVelocity";
 import ProductivityReport from "../Pages/Dashboard/Report/ProductivityReport";
 import HistoricPipeline from "../Pages/Dashboard/Report/HistoricPipeline";
-import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
 import TimeToHire from "../Pages/Dashboard/Report/TimeToHire";
 
 import Overview from "../Components/Overview/Overview";
@@ -50,6 +49,7 @@ import AppliedJobs from "../Pages/Dashboard/AppliedJobs/AppliedJobs";
 import ContactUs from "../Components/ContactUs/ContactUs";
 import HomeAdmin from "../Components/AdminDashBoard/HomeAdmin";
 import UsersAdmin from "../Components/AdminDashBoard/UsersAdmin";
+import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
