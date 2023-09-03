@@ -71,7 +71,7 @@ async function run() {
         try {
           // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
           await applicationsPostCollection.insertOne({
-            jobTitle:formData.jobTitle,
+            jobTitle: formData.jobTitle,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
@@ -139,7 +139,7 @@ async function run() {
       res.send(result);
     });
 
-    // resume app.use('/uploads', upload.array("image", "resume"));
+    //  for openai
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
