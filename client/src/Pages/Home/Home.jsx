@@ -11,6 +11,9 @@ import { Fade, JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 import NewBanner from "../../Components/Test/NewBanner";
 import HRPlatform from "../../Components/Test/HRPlatform";
 import EmployeeExperienceSection from "../../Components/Test/EmployeeExperienceSection";
+import ResumeForm from "../../Components/New/ResumeForm";
+import Counter from "../../Components/New/Counter";
+
 
 const Home = () => {
   return (
@@ -25,6 +28,8 @@ const Home = () => {
       <NewBanner></NewBanner>
       <HRPlatform></HRPlatform>
       <EmployeeExperienceSection></EmployeeExperienceSection>
+      <ResumeForm></ResumeForm>
+      <Counter></Counter>
 
       <div className="md:px-12">
         <div className="mt-12">
