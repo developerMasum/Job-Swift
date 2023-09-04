@@ -38,10 +38,21 @@ export const PostJob = () => {
   const onSubmit = async (data) => {
     // console.log("data lagbe" ,data);
     const postData = {
-      data: data,
+      benefits:data.benefits,
+      experience: data.experience,
+      employmentType:data.employmentType,
+      requirements:data.requirements,
+      jobTitle:data.jobTitle,
+      jobLocation:data.jobLocation,
+      jobDescriptions:data.jobDescriptions,
+      salaryTo:data.salaryTo,
+      salaryFrom:data.salaryFrom,
+      salaryCurrency:data.salaryCurrency,
+      responsibilities:data.responsibilities,
       userEmail: user?.email,
+      
     };
-    console.log(postData);
+    // console.log('new',postData);
     try {
       await dispatch(createJobPost(postData));
 

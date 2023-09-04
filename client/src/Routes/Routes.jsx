@@ -104,8 +104,10 @@ const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
-        path: "/overview",
+        path: "/overview/:id",
         element: <Overview />,
+        loader: ({ params }) =>
+        fetch(`http://localhost:5000/job_post/${params.id}`),
       },
     ],
   },

@@ -7,15 +7,19 @@ import {
   HiMail,
   HiOutlineDotsHorizontal,
 } from "react-icons/hi";
+import SendMailModal from "./SendMailModal";
 
 const CandidateTables = ({ candidates }) => {
-  console.log(candidates);
+  // console.log(candidates);
   const [isChecked, setIsChecked] = useState([]);
   const [sortOrder, setSortOrder] = useState('newest');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const[emailId,setEmailId]  = useState('')
 
   const handleCheckbox = (e) => {
     const { value, checked } = e.target;
-    console.log(value);
+    setEmailId(value)
+    // console.log(value);
 
     if (checked) {
       setIsChecked((prevChecked) => [...prevChecked, value]);
@@ -34,22 +38,27 @@ const CandidateTables = ({ candidates }) => {
   };
   
   // console.log('ok',isChecked);
-  // const handleDelete = async () => {
-    
-  //   try {
-  //     if (isChecked.length > 0) {
-  //       // Make a DELETE request to the server API
-  //       await axios.delete('http://localhost:5000/delete-candidates', {
-  //         data: isChecked, 
-  //         // Pass the array of selected candidate IDs
-          
-  //       });
-  //       // After successful deletion, you might want to refresh your candidate data
-  //     }
-  //   } catch (error) {
-  //     console.error('Error deleting candidates', error);
-  //   }
-  // };
+const handleDelete=(id)=>{
+  console.log(id);
+}
+
+
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const onSubmit = (data) => {
+    console.log('Submitted data:', data);
+    closeModal();
+  };
+
+
+
 
   return (
     <div className="mt-5 text-secondary">
@@ -164,8 +173,8 @@ const CandidateTables = ({ candidates }) => {
                   </p>
                 </div>
                 <div className="flex gap-3">
-                  <AiFillDelete onClick={()=>handleDelete(isChecked)} size={25} color="red" />
-                  <HiMail size={25} className="text-sky-800" />
+                  <AiFillDelete  onClick={()=>handleDelete(isChecked)} size={25} color="red" className="cursor-pointer" />
+                  <HiMail  onClick={openModal} size={25} className="text-sky-800 hover:text-lime-800 cursor-pointer" />
                   <HiChat size={25} className="text-sky-800" />
                   <HiHand size={25} color="red" />
                   <button className="bg-[#00756a] px-2 py-2 rounded-xl  text-white btn-sm">
@@ -174,9 +183,12 @@ const CandidateTables = ({ candidates }) => {
                 </div>
               </div>
             </div>
-          </div>{" "}
+          </div>
+          <SendMailModal value={emailId} isOpen={isModalOpen} onClose={closeModal} onSubmit={onSubmit} />
         </>
+        
       )}
+         
     </div>
   );
 };

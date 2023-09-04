@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BiChevronDown } from 'react-icons/bi';
+import { HiMenu } from 'react-icons/hi';
 
 const FindCandidatesNav = () => {
     return (
         <div className=''>
             <div className='bg-white fixed top-[68px]'>
-                <div className='flex justify-between px-1 pt-4'>
+                <div className='md:lg:flex justify-between px-1 pt-4'>
                     <div>
-                        <h2 className='text-3xl ms-5'>Web Developer</h2>
+                        <h2 className='text-3xl md:lg:ms-5 ms-2 lg:md:mb-0 mb-3 '>Web Developer</h2>
                     </div>
-                    <div className='flex gap-2 items-center'>
+                    <div className='md:lg:flex gap-2 items-center grid grid-cols-2 p-2 md:lg:p-0'>
                         {/* <button className='flex items-center'>View Candidates
                         <button className=''><BiChevronDown></BiChevronDown></button>
                     </button> */}
@@ -108,7 +109,7 @@ const FindCandidatesNav = () => {
 
                 </div>
 
-                <div className='flex gap-1  lg:md:pt-6 lg:md:pb-5'>
+                <div className='md:lg:flex gap-1  lg:md:pt-6 lg:md:pb-5'>
                     <Link to='jobDetails'>
                         <p className=' hover:bg-[#f2f4f5] ms-4 ps-4 lg:md:pe-32 py-2 rounded-lg'>
                             Job details

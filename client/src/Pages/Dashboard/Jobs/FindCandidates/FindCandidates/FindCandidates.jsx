@@ -14,7 +14,7 @@ import linkedin from '../../../../../assets/icones/linkedin.png'
 import twitter from '../../../../../assets/icones/twitter.png'
 const FindCandidates = () => {
     return (
-        <div className='bg-[#f2f4f5] pt-60'>
+        <div className='bg-[#f2f4f5] lg:md:pt-60 pt-96'>
             {/* <div>
                 <FindCandidatesNav></FindCandidatesNav>
             </div> */}

@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { MdClear, MdKeyboardArrowDown, MdStar } from "react-icons/md";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const PostJobs = ({ jobs }) => {
+  
   // console.log('from prob',jobs);
   const [isVisible, setIsVisible] = useState(false);
   // console.log(jobs);
+// get job id for data show
+
+// console.log(postId);
+// const handlePublish =(id)=>{
+//   console.log('from click',id);
+
+// }
+
+
   const {
     jobTitle,
     cityName,
@@ -20,6 +31,7 @@ const PostJobs = ({ jobs }) => {
     totalCandidates,
     totalActiveCandidates,
     lastCandidateDate,
+    _id,
   } = jobs;
   return (
     <div className="py-8 rounded-lg  lg:md:px-8 px-6   bg-white mt-5" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
@@ -44,16 +56,16 @@ const PostJobs = ({ jobs }) => {
             </button>
             <div className="-ml-56">
               {isVisible && (
-                <div className="lg:md:absolute text-sm  text-secondary mt-2 mx-auto lg:md:w-96 w-60 rounded-lg shadow-lg space-y-2 bg-white" style={{ boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px" }}>
-                  <button className="space-y-2  text-start hover:bg-yellow-50 px-3 pt-5 py-3" >
-                    <h6 className="font-semibold">Publish</h6>
+                <div className="lg:md:absolute text-sm  text-secondary mt-2 mx-auto lg:md:w-96 w-60 rounded-lg shadow-lg space-y-2  bg-white" style={{ boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px" }}>
+                  <button className="space-y-2  text-start hover:bg-teal-700 hover:text-white  px-3 pt-5 py-3" >
+                    <Link to={`/overview/${_id}`}><h6 className="font-semibold">Publish</h6>
                     <p>
                       Visible on your careers page and selected free and premium
                       job boards.
-                    </p>
+                    </p></Link>
                   </button>
 
-                  <button className="py-3 border hover:border hover:border-yellow-100 hover:bg-yellow-50 px-3  space-y-2 text-start " >
+                  <button disabled className="py-3 border hover:border hover:border-yellow-100 hover:bg-yellow-50 px-3  space-y-2 text-start " >
                     <h6 className="font-semibold">Use Confidentially</h6>
                     <p>
                       Only visible to account admins and members of the hiring
@@ -62,7 +74,7 @@ const PostJobs = ({ jobs }) => {
                     </p>
                   </button>
 
-                  <button className="py-3 px-3 hover:bg-yellow-50 space-y-2 text-start " >
+                  <button disabled className="py-3 px-3 hover:bg-yellow-50 space-y-2 text-start " >
                     <h6 className="font-semibold">Used Confidentially</h6>
                     <p>
                       Only visible to account admins and members of the hiring
