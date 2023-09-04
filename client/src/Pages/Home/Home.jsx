@@ -11,6 +11,7 @@ import { Fade, JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
 import ContactUs from "../../Components/ContactUs/ContactUs";
+import Profile from "../../Components/Profile/Profile";
 
 const Home = () => {
   return (
@@ -70,6 +71,9 @@ const Home = () => {
           </div>
           <div className="mt-12">
             <ContactUs />
+          </div>
+          <div className="mt-12">
+            <Profile />
           </div>
         </div>
       </div>
