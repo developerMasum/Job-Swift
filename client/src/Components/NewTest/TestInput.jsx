@@ -18,8 +18,8 @@ const TestInput = ({ setInputValue }) => {
   const [value, setValue] = useState("");
 
   const handleClick = () => {
-      setInputValue(value)
-      setValue('')
+    setInputValue(value);
+    setValue("");
   };
 
   return (
@@ -39,6 +39,11 @@ const TestInput = ({ setInputValue }) => {
         >
           Shorten
         </button>
+      </div>
+      <div>
+        <h2 className="my-2 overflow-scroll border-dashed border-2 border-[#c4cfde] rounded-lg p-2">
+          CC64E678EA@jobs.workablemail.com
+        </h2>
       </div>
     </div>
   );

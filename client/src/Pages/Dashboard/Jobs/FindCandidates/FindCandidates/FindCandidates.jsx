@@ -19,6 +19,7 @@ const FindCandidates = () => {
 
   const[inputValue, setInputValue] = useState('')
  
+ 
   return (
     <div className="bg-[#f2f4f5] pt-60">
       {/* <div>
@@ -278,7 +279,7 @@ const FindCandidates = () => {
                     {/* <h2 className="my-2 overflow-scroll border-dashed border-2 border-[#c4cfde] rounded-lg p-2">
                       https://apply.workable.com/j/CC64E678EA
                     </h2> */}
-                    <TestInput setInputValue={setInputValue}></TestInput>
+                    {/* <TestInput setInputValue={setInputValue}></TestInput> */}
                     <LinkResult inputValue={inputValue}></LinkResult>
                   </div>
                   <div className="">
