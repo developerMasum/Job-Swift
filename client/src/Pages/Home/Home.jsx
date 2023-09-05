@@ -12,6 +12,7 @@ import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
 import ContactUs from "../../Components/ContactUs/ContactUs";
 import Profile from "../../Components/Profile/Profile";
+import GeographyChart from "../../Components/GeographyChart/GeographyChart";
 
 const Home = () => {
   return (
@@ -74,6 +75,9 @@ const Home = () => {
           </div>
           <div className="mt-12">
             <Profile />
+          </div>
+          <div className="mt-12 App">
+            <GeographyChart />
           </div>
         </div>
       </div>
