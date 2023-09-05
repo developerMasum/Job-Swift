@@ -50,6 +50,7 @@ import AppliedJobs from "../Pages/Dashboard/AppliedJobs/AppliedJobs";
 import ContactUs from "../Components/ContactUs/ContactUs";
 import HomeAdmin from "../Components/AdminDashBoard/HomeAdmin";
 import UsersAdmin from "../Components/AdminDashBoard/UsersAdmin";
+import CandidateProfile from "../Components/Dashboard/Candidate/CandidateProfile";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "demo-page",
+        path: "/demo-page",
         element: <DemoPage></DemoPage>,
       },
 
@@ -72,7 +73,7 @@ const router = createBrowserRouter([
         element: <DetailsMarketPlaceIntegrate />,
       },
       {
-        path: "employee-experience",
+        path: "/employee-experience",
         element: <EmployeePerformance></EmployeePerformance>,
       },
       {
@@ -92,7 +93,7 @@ const router = createBrowserRouter([
         element: <LogIn />,
       },
       {
-        path: "login/forgotPassword",
+        path: "/login/forgotPassword",
         element: <ForgotPassword></ForgotPassword>,
       },
       {
@@ -203,6 +204,11 @@ const router = createBrowserRouter([
       {
         path: "candidate",
         element: <Candidates />,
+      },
+      {
+        path: "candidate/profile/:id",
+        element: <CandidateProfile />,
+        // loader: (params)=> fetch(`http://localhost:5000/all-applications/${params.id}`)
       },
       {
         path: 'report-center/candidiate-flow',

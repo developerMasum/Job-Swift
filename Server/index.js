@@ -4,6 +4,8 @@ const cors = require("cors");
 const multer = require("multer");
 require("dotenv").config();
 const path = require("path");
+const sendMail = require("./sendMail");
+const jwt = require("jsonwebtoken");
 
 const port = process.env.PORT || 5000;
 
@@ -21,6 +23,35 @@ app.use(express.static("public"));
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const { log } = require("console");
 
+// // Verify JWT TOken ----
+
+const verifyJWT = (req, res, next) => {
+  const authorization = req.headers.authorization;
+  if (!authorization) {
+    return res
+      .status(401)
+      .send({ error: true, message: "unauthorized access" });
+  }
+  // bearer token
+  const token = authorization.split(" ")[1];
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if (err) {
+      return res
+        .status(401)
+        .send({ error: true, message: "unauthorized access" });
+    }
+    req.decoded = decoded;
+    next();
+  });
+};
+
+
+
+
+
+
+
 // ATSWebsite atswebsite2023
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mq0mae1.mongodb.net/?retryWrites=true&w=majority`
 const storage = multer.diskStorage({
@@ -36,6 +67,13 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
+// node mailer --mailing section --
+app.post("/mail", sendMail);
+// app.get('/show-mail', async(req,res)=>{
+//   const result = await UserCollection.find().toArray();
+//   res.send(result);
+// })
 
 const uri =
   "mongodb+srv://ATSWebsite:atswebsite2023@cluster0.3besjfn.mongodb.net/?retryWrites=true&w=majority";
@@ -71,7 +109,7 @@ async function run() {
         try {
           // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
           await applicationsPostCollection.insertOne({
-            jobTitle:formData.jobTitle,
+            jobTitle: formData.jobTitle,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
@@ -140,22 +178,57 @@ async function run() {
 
     // get all application
 
-    app.get("/all-applications", async (req, res) => {
-      const result = await applicationsPostCollection.find().toArray();
+    app.get("/all-applications/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await applicationsPostCollection.findOne(query);
       res.send(result);
+   
     });
 
-    // app.delete('/delete-candidates', async (req, res) => {
-    //   const candidatesToDelete = req.body; // An array of candidate IDs
-    
-    //   try {
-    //     await Candidate.deleteMany({ _id: { $in: candidatesToDelete } });
-    //     res.status(204).send();
-    //   } catch (error) {
-    //     res.status(500).json({ error: 'Error deleting candidates' });
-    //   }
-    // });
-    
+    // sorting get data -and get data all candidates 
+    app.get("/all-applications", async (req, res) => {
+      const sortOrder = req.query.sortOrder || "newest";
+
+      const sortOptions = {};
+
+      if (sortOrder === "newest") {
+        sortOptions.date = -1; // Sort by date in descending order (newest first)
+      } else if (sortOrder === "oldest") {
+        sortOptions.date = 1; // Sort by date in ascending order (oldest first)
+      }
+
+      try {
+        const result = await applicationsPostCollection
+          .find()
+          .sort(sortOptions) // Apply the sorting options
+          .toArray();
+
+        res.send(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        res.status(500).json({ error: "Internal server error" });
+      }
+    });
+
+    app.delete("/delete-candidates", async (req, res) => {
+      const candidatesToDelete = req.body; // An array of candidate IDs
+      console.log(candidatesToDelete);
+      try {
+        // Use the `deleteMany` method to delete candidates by their IDs
+        const result = await candidatesCollection.deleteMany({
+          _id: { $in: candidatesToDelete.map((id) => new ObjectId(id)) },
+        });
+
+        if (result.deletedCount > 0) {
+          res.status(204).send(); // Successfully deleted candidates
+        } else {
+          res.status(404).json({ error: "No candidates found for deletion" });
+        }
+      } catch (error) {
+        res.status(500).json({ error: "Error deleting candidates" });
+      }
+    });
 
     // resume app.use('/uploads', upload.array("image", "resume"));
 
