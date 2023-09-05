@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GoDotFill } from "react-icons/go";
 import { SlBadge } from "react-icons/sl";
 import { CiShare2 } from "react-icons/ci";
@@ -11,7 +11,14 @@ import { AiOutlineUserSwitch } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 import SocialMediaLink from "./SocialMediaLink";
+import TestInput from "../../../../../Components/NewTest/TestInput";
+import LinkResult from "../../../../../Components/NewTest/LinkResult";
+
+
 const FindCandidates = () => {
+
+  const[inputValue, setInputValue] = useState('')
+ 
   return (
     <div className="bg-[#f2f4f5] pt-60">
       {/* <div>
@@ -259,7 +266,7 @@ const FindCandidates = () => {
               </Link>
 
               {/* card */}
-              <div className=" w-72 h-80 rounded-md bg-base-100 shadow-xl  text-[#333e49]">
+              <div className=" w-72 h-auto rounded-md bg-base-100 shadow-xl  text-[#333e49]">
                 <figure className="px-10 pt-5 flex justify-center">
                   <GoLink className="text-5xl "></GoLink>
                 </figure>
@@ -268,23 +275,28 @@ const FindCandidates = () => {
                     Job Shortlink
                   </h2>
                   <div>
-                    <h2 className="my-2 overflow-scroll border-dashed border-2 border-[#c4cfde] rounded-lg p-2">
+                    {/* <h2 className="my-2 overflow-scroll border-dashed border-2 border-[#c4cfde] rounded-lg p-2">
                       https://apply.workable.com/j/CC64E678EA
-                    </h2>
+                    </h2> */}
+                    <TestInput setInputValue={setInputValue}></TestInput>
+                    <LinkResult inputValue={inputValue}></LinkResult>
                   </div>
                   <div className="">
                     <small>
                       Want to share the job elsewhere? Post wherever you’d like
                       using the job shortlink. We report on it, too.
                     </small>
-                    <div className="mt-10">
-                      <Link
-                        className="text-green-900  hover:underline font-bold"
-                        to={""}
-                      >
-                        Copy to clipboard
-                      </Link>
-                    </div>
+                    {/* <div className="mt-10">
+                      <h1>{shortenLink}</h1>
+                      <CopyToClipboard text={shortenLink} onCopy={()=>setCopied(true)}>
+                        <button
+                          className="text-green-900  hover:underline font-bold"
+                          to={""}
+                        >
+                          Copy to clipboard
+                        </button>
+                      </CopyToClipboard>
+                    </div> */}
                   </div>
                 </div>
               </div>
