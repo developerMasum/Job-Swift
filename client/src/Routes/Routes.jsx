@@ -51,6 +51,7 @@ import ContactUs from "../Components/ContactUs/ContactUs";
 import HomeAdmin from "../Components/AdminDashBoard/HomeAdmin";
 import UsersAdmin from "../Components/AdminDashBoard/UsersAdmin";
 import CandidateProfile from "../Components/Dashboard/Candidate/CandidateProfile";
+import AdminRoute from "./AdminRoute";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -126,11 +127,11 @@ const router = createBrowserRouter([
       },
       {
         path: "admin/dashboard",
-        element: <HomeAdmin />,
+        element: <AdminRoute><HomeAdmin /></AdminRoute>,
       },
       {
         path: "admin/users",
-        element: <UsersAdmin />,
+        element: <AdminRoute><UsersAdmin /></AdminRoute>,
       },
       {
         path: "jobs/post-job",

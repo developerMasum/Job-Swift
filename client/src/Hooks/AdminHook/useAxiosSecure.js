@@ -5,7 +5,7 @@ import { authContext } from "../../Auth/AuthProvider";
 // import { AuthContext } from "../providers/AuthProvider";
 
 const useAxiosSecure = () => {
-  const { logOut } = useContext(authContext);
+  const { logout,logIn } = useContext(authContext);
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
@@ -28,13 +28,13 @@ const useAxiosSecure = () => {
           error.response &&
           (error.response.status === 401 || error.response.status === 403)
         ) {
-          await logOut();
-          navigate("/login");
+          await logout();
+          navigate("/logIn");
         }
         return Promise.reject(error);
       }
     );
-  }, [logOut, navigate, axiosSecure]);
+  }, [logout, navigate, axiosSecure]);
 
   return [axiosSecure];
 };

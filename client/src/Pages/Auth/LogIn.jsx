@@ -14,26 +14,28 @@ import Loader from '../../Components/Loader/Loader';
 import useAdmin from '../../Hooks/AdminHook/useAdmin';
 
 const LogIn = () => {
+  const [isAdmin] = useAdmin();
+  // console.log(isAdmin);
 
-const isAdmin = useAdmin();
-  console.log(isAdmin);
+// const isAdmin = useAdmin();
+//   console.log(isAdmin);
   const emailRef = useRef();
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const { logIn, resetPassword, loading, userUpdatePassword } = useContext(authContext);
   const location = useLocation()
   const navigate = useNavigate()
-  const from = location.state?.from?.pathname || (isAdmin && "/dashboard/admin/dashboard" ) || "/dashboard/jobs";
+  const from = location.state?.from?.pathname || (isAdmin && "/dashboard/admin/dashboard" ) || (!isAdmin && "/dashboard/jobs" ) ;
 
 
   // const [error, setError] = useState(null)
 
   const onSubmit = (data) => {
-    console.log(data)
-    console.log(data.password)
+    // console.log(data)
+    // console.log(data.password)
     const email = data.email;
     const password = data.password;
-    console.log(email, password);
+    // console.log(email, password);
     //forget password reset
     resetPassword(email)
       .then(() => {
@@ -51,7 +53,7 @@ const isAdmin = useAdmin();
         // Signed in 
         const user = userCredential.user;
         // ...
-        console.log(user);
+        // console.log(user);
 
         toast.success("Successfully LogIn")
         navigate(from, { replace: true });
@@ -65,9 +67,9 @@ const isAdmin = useAdmin();
       });
 
   }
-  if (loading) {
-    return <Loader />
-  }
+  // if (loading) {
+  //   return <Loader />
+  // }
 
   return (
     <div className="lg:md:bg-gradient-to-r lg:md:from-indigo-900 lg:md:via-indigo-800 lg:md:to-indigo-500 lg:md:p-32 lg:md:rounded-tl-[100px] lg:md:rounded-br-[100px] mt-2">

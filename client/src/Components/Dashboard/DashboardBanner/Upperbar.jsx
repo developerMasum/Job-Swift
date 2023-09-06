@@ -13,10 +13,13 @@ import { toast } from "react-hot-toast";
 // import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars, AiOutlineHome } from "react-icons/ai";
+import useAdmin from "../../../Hooks/AdminHook/useAdmin";
 
 const UpperBar = () => {
   const { user, logout } = useContext(authContext);
-  const [isAdmin,setIsAdmin] = useState(false)
+  const [isAdmin] = useAdmin();
+  console.log('isadmin',isAdmin);
+  // const [isAdmin,setIsAdmin] = useState(false)
 
   const name = user?.displayName || "Mr X man";
   const userEmail = user?.email || "mm123";
@@ -29,23 +32,24 @@ const UpperBar = () => {
     logout()
       .then(() => {
         toast.success("log out successful");
+        navigate('/')
       })
       .catch((error) => {
         toast.error(error);
       });
   };
 // set Admin 
-useEffect(() => {
-  // Set isAdmin within the useEffect to ensure it's updated when user changes.
-  const adminEmail = "admin@gmail.com";
-  const originEmail = user?.email;
+// useEffect(() => {
+//   // Set isAdmin within the useEffect to ensure it's updated when user changes.
+//   const adminEmail = "admin@gmail.com";
+//   const originEmail = user?.email;
 
-  if (adminEmail === originEmail) {
-    setIsAdmin(true);
-  } else {
-    setIsAdmin(false);
-  }
-}, [user]);
+//   if (adminEmail === originEmail) {
+//     setIsAdmin(true);
+//   } else {
+//     setIsAdmin(false);
+//   }
+// }, [user]);
 // console.log(origin);
   // const isAdmin = true;
   const [toggle, setToggle] = useState(false);

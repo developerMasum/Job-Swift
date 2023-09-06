@@ -94,6 +94,16 @@ async function run() {
       .db("JobSwiftDb")
       .collection("applications");
 
+      //  jwt token 
+    app.post("/jwt", (req, res) => {
+      const user = req.body;
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: "1h",
+      });
+
+      res.send({ token });
+    });
+
     //  for multer image and resume
 
     app.post(
@@ -137,17 +147,95 @@ async function run() {
     );
 
     // post data of a new user
-    app.post("/user", async (req, res) => {
-      const query = req.body;
-      const result = await UserCollection.insertOne(query);
+    // app.post("/user", async (req, res) => {
+    //   const query = req.body;
+    //   const result = await UserCollection.insertOne(query);
+    //   res.send(result);
+    // });
+
+    // put data as a new user 
+    app.put("/user/:email", async (req, res) => {
+      const email = req.params.email;
+      // console.log(email);
+      const user = req.body;
+      const query = { email: email };
+      console.log(query);
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: user,
+      };
+      const result = await UserCollection.updateOne(query, updateDoc, options);
+      // console.log(result);
       res.send(result);
     });
 
-    // get users data  info
-    app.get("/users", async (req, res) => {
-      const result = await UserCollection.find().toArray();
-      res.send(result);
-    });
+   
+// --------------------admin---------------
+ // make admin
+ app.patch("/users/admin/:id", async (req, res) => {
+  const id = req.params.id;
+  // console.log(id);
+  const filter = { _id: new ObjectId(id) };
+  const updateDoc = {
+    $set: {
+      role: "admin",
+    },
+  };
+
+  const result = await UserCollection.updateOne(filter, updateDoc);
+  res.send(result);
+});
+
+// get admin data,is it admin or not
+app.get('/users/admin/:email',verifyJWT, async (req, res) => {
+  const email = req.params.email;
+
+  if (req.decoded.email !== email) {
+    res.send({ admin: false })
+  }
+  // console.log(req.decoded.email);
+  const query = { email: email }
+  console.log(query);
+  const user = await UserCollection.findOne(query);
+  const result = { admin: user?.role === 'admin' }
+  res.send(result);
+})
+
+// verify admin 
+const verifyAdmin = async (req, res, next) => {
+  const email = req.decoded.email;
+  const query = { email: email };
+  const user = await UserCollection.findOne(query);
+  if (user?.role !== "admin") {
+    return res
+      .status(403)
+      .send({ error: true, message: "forbidden message" });
+  }
+  next();
+};
+
+
+ // get users data  info
+ app.get("/users",verifyJWT, verifyAdmin, async (req, res) => {
+  const result = await UserCollection.find().toArray();
+  res.send(result);
+});
+
+// delete user
+app.delete("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: new ObjectId(id) };
+  const result = await UserCollection.deleteOne(query);
+  res.send(result);
+});
+
+
+
+
+
+
+
+    // -----------------post job ---------------
     // post a new job
     app.post("/job_post", async (req, res) => {
       const query = req.body;
