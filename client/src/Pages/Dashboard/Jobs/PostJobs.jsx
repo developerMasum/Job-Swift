@@ -1,13 +1,26 @@
 import React, { useState } from "react";
-import { MdClear, MdKeyboardArrowDown } from "react-icons/md";
+import { MdClear, MdKeyboardArrowDown, MdStar } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const PostJobs = ({ jobs }) => {
+  
+  // console.log('from prob',jobs);
   const [isVisible, setIsVisible] = useState(false);
-  console.log(jobs);
+  // console.log(jobs);
+// get job id for data show
+
+// console.log(postId);
+// const handlePublish =(id)=>{
+//   console.log('from click',id);
+
+// }
+
+
   const {
-    jobName,
+    jobTitle,
     cityName,
-    addressName,
+    jobLocation,
     Sourced,
     Applied,
     PhoneScreen,
@@ -18,19 +31,21 @@ const PostJobs = ({ jobs }) => {
     totalCandidates,
     totalActiveCandidates,
     lastCandidateDate,
+    _id,
   } = jobs;
   return (
-    <div className="pt-8 px-8">
-      <div className="flex justify-between">
-        <div className="flex gap-2 items-center">
-          <h2 className="text-xl font-medium">{jobName}</h2>
+    <div className="py-8 rounded-lg  lg:md:px-8 px-6   bg-white mt-5" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
+      <div className="lg:md:flex justify-between ">
+        <div className="flex lg:md:gap-2  items-center">
+          <MdStar size={25} color="#ffca00"/>
+          <Link to='applied-job'><h2 className="lg:md:text-xl lg:md:font-medium  hover:underline">{jobTitle}</h2></Link>
           <p className="flex gap-1 text-gray-500">
-            <span>{cityName}</span>,<span>{addressName}</span>
+            <span>{cityName}</span>,<span>{jobLocation}</span>
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex lg:md:gap-2 gap-6 lg:md:mt-0 mt-5">
           <button className="text-secondary px-4 py-1 rounded-lg border-gray-600 border">
-            Find Candidates
+            <Link to="findCandidates">Find Candidates</Link>
           </button>
           <div className="">
             <button
@@ -41,32 +56,32 @@ const PostJobs = ({ jobs }) => {
             </button>
             <div className="-ml-56">
               {isVisible && (
-                <div className="absolute text-sm  text-secondary px-3 py-5 mx-auto mt-2 w-96 rounded-md shadow-lg bg-white">
-                  <div className="space-y-2">
-                    <h6 className="font-semibold">Publish</h6>
+                <div className="lg:md:absolute text-sm  text-secondary mt-2 mx-auto lg:md:w-96 w-60 rounded-lg shadow-lg space-y-2  bg-white" style={{ boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px" }}>
+                  <button className="space-y-2  text-start hover:bg-teal-700 hover:text-white  px-3 pt-5 py-3" >
+                    <Link to={`/overview/${_id}`}><h6 className="font-semibold">Publish</h6>
                     <p>
                       Visible on your careers page and selected free and premium
                       job boards.
-                    </p>
-                  </div>
+                    </p></Link>
+                  </button>
 
-                  <div className="pt-7 space-y-2">
+                  <button disabled className="py-3 border hover:border hover:border-yellow-100 hover:bg-yellow-50 px-3  space-y-2 text-start " >
                     <h6 className="font-semibold">Use Confidentially</h6>
                     <p>
                       Only visible to account admins and members of the hiring
                       team. Other account members cannot refer candidates or ask
                       to join the hiring team.
                     </p>
-                  </div>
+                  </button>
 
-                  <div className="pt-7 space-y-2">
+                  <button disabled className="py-3 px-3 hover:bg-yellow-50 space-y-2 text-start " >
                     <h6 className="font-semibold">Used Confidentially</h6>
                     <p>
                       Only visible to account admins and members of the hiring
                       team. Other account members cannot refer candidates or ask
                       to join the hiring team.
                     </p>
-                  </div>
+                  </button>
                 </div>
               )}
             </div>
@@ -74,39 +89,39 @@ const PostJobs = ({ jobs }) => {
         </div>
       </div>
 
-      <div className="flex pt-7 px-10 mx-auto pb-5 justify-between">
+      <div className="lg:md:flex pt-7 lg:md:px-10 pe-6 mx-auto pb-5 justify-between grid grid-cols-4 gap-4">
         <div className="font-medium  text-center text-gray-600">
-          <p>{Sourced}</p> <p>Sourced</p>{" "}
+          <p> - </p> <p>Sourced</p>
         </div>
         <div className="font-medium  text-center text-gray-600">
-          <p>{Applied}</p> <p>Applied</p>{" "}
+          <p> - </p> <p>Applied</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{PhoneScreen}</p> <p>Phone Screen</p>{" "}
+          <p> - </p> <p>Phone Screen</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{Assessment}</p> <p>Assessment</p>{" "}
+          <p> - </p> <p>Assessment</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{Interview}</p> <p>Interview</p>{" "}
+          <p> - </p> <p>Interview</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{Offer}</p> <p>Offer</p>{" "}
+          <p> - </p> <p>Offer</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p>{Hired}</p> <p>Hired</p>{" "}
+          <p> - </p> <p>Hired</p>
         </div>
       </div>
-      <div className="flex  pt-1 justify-between text-gray-600">
+      <div className="flex  pt-1 justify-between text-gray-600  ">
         <h2 className="flex  gap-2 items-center">
-          {" "}
+          
           <span>
-            {" "}
+            
             <MdClear className="w-7 h-7" color="red" />
-          </span>{" "}
+          </span>
           This job is not published on your careers page or on any job boards
         </h2>
-        <div className="flex">
+        <div className="lg:md:flex">
           <p>Candidates:{totalCandidates}</p>
           <p>{totalActiveCandidates} active in pipeline</p>
           <p>last CandidateDate: {lastCandidateDate} </p>

@@ -1,11 +1,12 @@
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
+import { Slide } from "react-awesome-reveal";
 const PaySection = () => {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 px-10 md:px-0   md:ml-96   items-center justify-items-end">
-      <div className=" ">
+     <Slide direction="left">
+     <div className=" ">
         <h2 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
           Payroll, Time & Benefits
         </h2>
@@ -25,13 +26,16 @@ const PaySection = () => {
           </h3>
         </Link>
       </div>
-      <div className="mt-6 md:mt-0   ">
+     </Slide>
+    <Slide direction="right">
+    <div className="mt-6 md:mt-0   ">
         <img
           src="https://www.bamboohr.com/media_1a3f05063d0c65ac5f1e19b54dca44ef785738332.png?width=2000&format=webply&optimize=medium"
           className="w-96 h-auto rounded-2xl "
           alt=""
         />
       </div>
+    </Slide>
     </div>
   );
 };

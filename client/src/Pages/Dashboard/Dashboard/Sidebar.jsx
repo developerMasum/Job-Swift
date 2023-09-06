@@ -3,7 +3,7 @@ import UpperBar from '../../../Components/Dashboard/DashboardBanner/Upperbar';
 
 const Sidebar = () => {
     return (
-        <div>
+        <div className=''>
             <UpperBar></UpperBar>
         </div>
     );
