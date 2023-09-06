@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiSend } from 'react-icons/fi';
+import { toast } from "react-hot-toast";
 
 const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();

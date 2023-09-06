@@ -4,8 +4,9 @@ import axios from "axios";
 export const createUser = createAsyncThunk(
   "createUser",
   async (data, { rejectWithValue }) => {
+    const email = data.email;
     try {
-      const response = await axios.post("http://localhost:5000/user", data);
+      const response = await axios.put(`http://localhost:5000/user/${email}`, data);
       return response.data; // Return the data received from the server if needed
     } catch (error) {
       // Return the error payload using rejectWithValue
