@@ -6,9 +6,7 @@ import router from "./Routes/Routes.jsx";
 
 import AuthProvider from "./Auth/AuthProvider";
 import { Toaster } from 'react-hot-toast'
-{
-  /* <Provider store={store}> */
-}
+
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
