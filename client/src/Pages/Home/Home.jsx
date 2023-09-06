@@ -14,6 +14,7 @@ import { Fade, Slide, Zoom } from "react-awesome-reveal";
 // import NewBanner from "../../Components/Test/NewBanner";
 // import HRPlatform from "../../Components/Test/HRPlatform";
 import EmployeeExperienceSection from "../../Components/Test/EmployeeExperienceSection";
+
 import BannerCompany from "../../Components/Home/Banner/BannerCompany";
 
 
