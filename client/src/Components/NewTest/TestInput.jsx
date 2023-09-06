@@ -1,17 +1,3 @@
-// import React from 'react';
-
-// const TestInput = () => {
-//       return (
-//             <div>
-//                  <h1>URL: </h1>
-//                  <input type="text" placeholder='paste a link' />
-//                  <button>Shorten</button>
-//             </div>
-//       );
-// };
-
-// export default TestInput;
-
 import React, { useState } from "react";
 
 const TestInput = ({ setInputValue }) => {
