@@ -21,6 +21,30 @@ import {
 
 const CandidiateUserDetails = () => {
 
+      // const { id } = useParams();
+      // console.log("error", id);
+      // const [userDetails, setUserDetails] = useState(null);
+    
+      // useEffect(() => {
+      //   // Fetch candidate profile data from the server based on the 'id' parameter
+      //   const URL = `http://localhost:5000/all-applications/${id}`;
+      //   console.log(URL);
+      //   fetch(URL)
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       // Set the profile data in the state
+      //       setUserDetails(data);
+      //     })
+      //     .catch((error) => {
+      //       console.error("Error fetching profile data:", error);
+      //     });
+      // }, [id]); // Include 'id' as a dependency in the useEffect dependency array
+    
+      // // Check if profileData is still null or loading, and render accordingly
+      // if (userDetails === null) {
+      //   return <Loader />;
+      // }
+
 
       const userDetails = [
             {
