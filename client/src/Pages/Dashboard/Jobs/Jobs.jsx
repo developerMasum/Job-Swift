@@ -24,26 +24,14 @@ const Jobs = () => {
 
   const jobs = useSelector((state) => state.posts.jobs);
   const isJobs = jobs.filter((d) => d.userEmail === user?.email);
-  const postId = useSelector((state) => state.posts.jobs).map(post=>post._id);
-  // console.log("from filter", filter);
-
-  // setJobs(jobs)
-  // console.log("all jobs", isJobs);
+  const postId = useSelector((state) => state.posts.jobs).map(
+    (post) => post._id
+  );
 
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
 
-  // useEffect(() => {
-  //   fetch("/Jobs.json")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setJobs(data);
-  //     })
-  //     .catch((error) =>
-  //       console.error("Error fetching testimonial data:", error)
-  //     );
-  // }, []);
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       {/* Down nav */}
@@ -173,7 +161,7 @@ const Jobs = () => {
         </div>
         <div className="">
           {isJobs.map((jobs) => (
-            <PostJobs  jobs={jobs} key={jobs._id}/>
+            <PostJobs jobs={jobs} key={jobs._id} />
           ))}
         </div>
         <div className="pt-8 pb-6">
