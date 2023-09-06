@@ -53,6 +53,8 @@ import UsersAdmin from "../Components/AdminDashBoard/UsersAdmin";
 import CandidateProfile from "../Components/Dashboard/Candidate/CandidateProfile";
 import AdminRoute from "./AdminRoute";
 import ProfileSettings from "../Components/Dashboard/UserSettings/ProfileSettings";
+import CandidiateUserDetails from "../Pages/Dashboard/Candidates/CandidiateUserDetails";
+
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -110,7 +112,7 @@ const router = createBrowserRouter([
         path: "/overview/:id",
         element: <Overview />,
         loader: ({ params }) =>
-        fetch(`http://localhost:5000/job_post/${params.id}`),
+          fetch(`http://localhost:5000/job_post/${params.id}`),
       },
     ],
   },
@@ -128,11 +130,19 @@ const router = createBrowserRouter([
       },
       {
         path: "admin/dashboard",
-        element: <AdminRoute><HomeAdmin /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <HomeAdmin />
+          </AdminRoute>
+        ),
       },
       {
         path: "admin/users",
-        element: <AdminRoute><UsersAdmin /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <UsersAdmin />
+          </AdminRoute>
+        ),
       },
       {
         path: "jobs/post-job",
@@ -155,6 +165,7 @@ const router = createBrowserRouter([
             path: "candidates",
             element: <FindCandidates></FindCandidates>,
           },
+
           {
             path: "applicationForm",
             element: <ApplicationForm></ApplicationForm>,
@@ -205,47 +216,43 @@ const router = createBrowserRouter([
       },
       {
         path: "candidate",
-        element: <Candidates />,
+        element: <Candidates />
       },
+     
       {
         path: "candidate/profile/:id",
-        element: <CandidateProfile />,
-        // loader: (params)=> fetch(`http://localhost:5000/all-applications/${params.id}`)
+        element: <CandidiateUserDetails />,
+       
       },
       {
-        path:"settings/profile",
-        element: <ProfileSettings />
+        path: "settings/profile",
+        element: <ProfileSettings />,
+      },
+    
+      {
+        path: "report-center/candidiate-flow",
+        element: <CandidiateFlow></CandidiateFlow>,
+      },
+
+      {
+        path: "report-center/candidiate-source",
+        element: <CandidateSource></CandidateSource>,
       },
       {
-        path: 'report-center/candidiate-flow',
-        element: <CandidiateFlow></CandidiateFlow>
-
-      },
-
-      {
-        path: 'report-center/candidiate-source',
-        element: <CandidateSource></CandidateSource>
-
+        path: "report-center/hiring-velocity",
+        element: <HiringVelocity></HiringVelocity>,
       },
       {
-        path: 'report-center/hiring-velocity',
-        element: <HiringVelocity></HiringVelocity>
-
+        path: "report-center/time-to-hire",
+        element: <TimeToHire></TimeToHire>,
       },
       {
-        path: 'report-center/time-to-hire',
-        element: <TimeToHire></TimeToHire>
-
+        path: "report-center/productivity-report",
+        element: <ProductivityReport></ProductivityReport>,
       },
       {
-        path: 'report-center/productivity-report',
-        element: <ProductivityReport></ProductivityReport>
-
-      },
-      {
-        path: 'report-center/historic-pipeline',
-        element: <HistoricPipeline></HistoricPipeline>
-
+        path: "report-center/historic-pipeline",
+        element: <HistoricPipeline></HistoricPipeline>,
       },
     ],
   },
