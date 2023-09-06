@@ -22,7 +22,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
   const handleCheckbox = (e) => {
     const { value, checked } = e.target;
     setEmailId(value);
-    setDeleteId(value)
+    setDeleteId(value);
     // console.log(value);
 
     if (checked) {
@@ -33,7 +33,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
       setIsChecked("");
     }
   };
-// console.log('deleteId',deleteId);
+  // console.log('deleteId',deleteId);
 
   // console.log(isChecked);
   const handleUnSelectAll = () => {
@@ -104,8 +104,8 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
           </select>
         </div>
       </div>
-      <table className="w-full ">
-        {/* head */}
+      {/* <table className="w-full ">
+       
         <thead className="">
           <tr>
             <th className="p-2">Select</th>
@@ -114,7 +114,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
           </tr>
         </thead>
         <tbody className="py-12">
-          {/* rows */}
+       
           {candidates.map((candidate) => (
             <tr
               key={candidate._id}
@@ -191,9 +191,81 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
+      <table className="w-full shadow-lg rounded-lg overflow-hidden">
+        {/* Head */}
+        <thead className="bg-gray-200 text-gray-500">
+          <tr>
+            <th className="px-6 py-3 text-left">Select</th>
+            <th className="px-6 py-3">Candidate Information</th>
+            <th className="px-6 py-3">Job Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* Rows */}
+          {candidates.map((candidate) => (
+            <tr
+              key={candidate._id}
+              className="hover:bg-gray-100 transition-colors divide-y-[1px] divide-gray-400 duration-300"
+            >
+              <td className="px-6 py-4">
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    className="form-checkbox text-blue-500 rounded-full focus:ring-2 focus:ring-blue-200"
+                    value={candidate._id}
+                    checked={candidate.isChecked}
+                    onChange={(e) => handleCheckbox(e)}
+                  />
+                </label>
+              </td>
+              <td className="px-6 py-4">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 flex-shrink-0">
+                    <img
+                      src={`http://localhost:5000/images/${candidate.image}`}
+                      alt=""
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-800">
+                      {candidate.firstName} {candidate.lastName}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      {candidate.location}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td className="px-6 py-4">
+                <div>
+                  <p className="font-semibold text-gray-800">
+                    {candidate.jobTitle}
+                  </p>
+                  <p className="text-sm text-gray-500">{candidate.location}</p>
+                  <p className="text-sm text-gray-500">at ---- Stage</p>
+                  <p className="text-sm text-gray-500">
+                    {(() => {
+                      const timestamp = candidate.date;
+                      const dateTime = new Date(timestamp);
 
-      {/* footer part  */}
+                      const options = {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      };
+                      return dateTime.toLocaleDateString(undefined, options);
+                    })()}
+                  </p>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       {!isChecked ? (
         " "
@@ -204,7 +276,12 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
             <div className="space-y-2 pt-4 text-start">
               <div className="flex gap-5 justify-around items-center">
                 <div className="flex gap-3 ">
-                <Link to={ `profile/${deleteId}`}>  <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">Details</button></Link>
+                  <Link to={`profile/${deleteId}`}>
+                    {" "}
+                    <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">
+                      Details
+                    </button>
+                  </Link>
                   <p>
                     Select:{" "}
                     <span
