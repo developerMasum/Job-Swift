@@ -7,7 +7,7 @@ export const getAllPost = createAsyncThunk(
       async (_, { rejectWithValue }) => {
         try {
           const response = await axios.get("http://localhost:5000/all-post");
-          console.log(response.data);
+          // console.log(response.data);
           return response.data; 
         } catch (error) {
        

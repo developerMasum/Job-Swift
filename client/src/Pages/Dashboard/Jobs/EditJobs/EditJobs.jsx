@@ -1,34 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import Tips from "../../../../Components/Dashboard/PostJob/Tips";
 import { useForm } from "react-hook-form";
 import { FiAlertCircle } from "react-icons/fi";
-import Heading from "../../../Components/Dashboard/PostJob/Heading";
+import Swal from 'sweetalert2'
 import {
   companyTypes,
-  currencies,
-  educationOptions,
   functions,
-  keywordOptions,
   employmentTypes,
   experienceLevels,
-} from "../../../Components/Dashboard/UtilsJobPost/data";
+  educationOptions,
+  keywordOptions,
+  currencies,
+} from "../../../../Components/Dashboard/UtilsJobPost/data";
 
-import { Link, useNavigate } from "react-router-dom";
-import { createJobPost } from "../../../redux/jobSlice";
-import { toast } from "react-hot-toast";
-import Tips from "../../../Components/Dashboard/PostJob/Tips";
-
-import { getAllPost } from "../../../redux/postJob/api";
-import { useDispatch, useSelector } from "react-redux";
-import { authContext } from "../../../Auth/AuthProvider";
-// import CustomModal from "./CustomModal";
-
-export const PostJob = () => {
-  // const [data, setData] = useState();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { user } = useContext(authContext);
-
+const EditJobs = () => {
+  const {id} = useParams()
+  
+  const data = useLoaderData();
+  const navigate = useNavigate()
+// console.log(data);
   const {
     register,
     handleSubmit,
@@ -36,44 +27,46 @@ export const PostJob = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // console.log("data lagbe" ,data);
+    
     const postData = {
-      benefits:data.benefits,
+      id:data._id,
+      benefits: data.benefits,
       experience: data.experience,
-      employmentType:data.employmentType,
-      requirements:data.requirements,
-      jobTitle:data.jobTitle,
-      jobLocation:data.jobLocation,
-      jobDescriptions:data.jobDescriptions,
-      salaryTo:data.salaryTo,
-      salaryFrom:data.salaryFrom,
-      salaryCurrency:data.salaryCurrency,
-      responsibilities:data.responsibilities,
-      userEmail: user?.email,
-      
+      employmentType: data.employmentType,
+      requirements: data.requirements,
+      jobTitle: data.jobTitle,
+      jobLocation: data.jobLocation,
+      jobDescriptions: data.jobDescriptions,
+      salaryTo: data.salaryTo,
+      salaryFrom: data.salaryFrom,
+      salaryCurrency: data.salaryCurrency,
+      responsibilities: data.responsibilities,
     };
-    // console.log('new',postData);
-    try {
-      await dispatch(createJobPost(postData));
+    // console.log(postData);
+    // const id = data._id;
 
-      const serializedData = encodeURIComponent(JSON.stringify(data));
-      navigate(`/overview?data=${serializedData}`);
-      toast.success("Successfully post your job !");
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
-  };
+        const response = await fetch(`http://localhost:5000/all-post/${id}`,{
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+        });
 
-  // const users = useSelector((state) => state);
-  // useEffect(() => {
-  //   dispatch(getAllPost());
-  // }, [dispatch]);
-
-  // console.log(users.posts);
-
+        if(response.ok){
+          navigate('/dashboard/jobs')
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Your Jobs has been update',
+            showConfirmButton: false,
+            timer: 500
+          })
+        }
+        
+}
   return (
     <div className="pt-20">
-      <Heading></Heading>
       <div className="md:flex justify-between items-center my-10">
         <div className=" w-full md:w-9/12 rounded-lg border-[1px]">
           <div className="bg-gray-50 p-2">
@@ -91,6 +84,7 @@ export const PostJob = () => {
                   <input
                     type="text"
                     name="jobTitle"
+                    defaultValue={data?.jobTitle}
                     {...register("jobTitle", {
                       required: "Job title is required",
                     })}
@@ -121,6 +115,7 @@ export const PostJob = () => {
                   <input
                     type="text"
                     name="jobLocation"
+                    defaultValue={data?.jobLocation}
                     placeholder="Example: Baddha uttor, Dhaka-1200"
                     {...register("jobLocation", {
                       required: "Job location is required",
@@ -152,6 +147,7 @@ export const PostJob = () => {
                     </h4>
                     <textarea
                       name="jobDescriptions"
+                      defaultValue={data?.jobDescriptions}
                       {...register("jobDescriptions", {
                         required: "Job descriptions are required",
                       })}
@@ -172,6 +168,7 @@ export const PostJob = () => {
                     </h4>
                     <textarea
                       name="requirements"
+                      defaultValue={data?.requirements}
                       {...register("requirements", {
                         required: "Requirements are required",
                       })}
@@ -192,6 +189,7 @@ export const PostJob = () => {
                     </h4>
                     <textarea
                       name=" responsibilities"
+                      defaultValue={data?.responsibilities}
                       {...register("responsibilities", {
                         required: "Requirements are required",
                       })}
@@ -212,6 +210,7 @@ export const PostJob = () => {
                     </h4>
                     <textarea
                       name="benefits"
+                      defaultValue={data?.benefits}
                       {...register("benefits", {
                         required: "Benefits are required",
                       })}
@@ -435,6 +434,7 @@ export const PostJob = () => {
                     <input
                       type="number"
                       name="salaryFrom"
+                      defaultValue={data?.salaryFrom}
                       {...register("salaryFrom")}
                       className="w-full px-4 py-2 border rounded"
                     />
@@ -449,6 +449,7 @@ export const PostJob = () => {
                     <input
                       type="number"
                       name="salaryTo"
+                      defaultValue={data?.salaryTo}
                       {...register("salaryTo")}
                       className="w-full px-4 py-2 border rounded"
                     />
@@ -512,3 +513,5 @@ export const PostJob = () => {
     </div>
   );
 };
+
+export default EditJobs;

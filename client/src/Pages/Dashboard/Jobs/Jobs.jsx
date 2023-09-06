@@ -6,6 +6,7 @@ import PostJobs from "./PostJobs";
 import icons1 from "../../../assets/Image/jobsicon1.png";
 import icons2 from "../../../assets/Image/jobsicons.png";
 import icons3 from "../../../assets/Image/josbicns3.png";
+
 const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
 
 import { AiFillStar } from "react-icons/ai";
@@ -13,7 +14,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "../../../redux/postJob/postSlice";
 import { authContext } from "../../../Auth/AuthProvider";
-// import { getAllPost } from "../../../redux/postJob/api";
 const Jobs = () => {
   const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
@@ -23,14 +23,12 @@ const Jobs = () => {
 
   const jobs = useSelector((state) => state.posts.jobs);
   const isJobs = jobs.filter((d) => d.userEmail === user?.email);
-
-  // setJobs(jobs)
-  // console.log("all jobs", isJobs);
+  const postId = useSelector((state) => state.posts.jobs).map(post=>post._id);
 
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
-
+ 
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       {/* Down nav */}
@@ -160,7 +158,7 @@ const Jobs = () => {
         </div>
         <div className="">
           {isJobs.map((jobs) => (
-            <PostJobs jobs={jobs.data} key={jobs.id} />
+            <PostJobs  jobs={jobs} key={jobs._id} />
           ))}
         </div>
         <div className="pt-8 pb-6">

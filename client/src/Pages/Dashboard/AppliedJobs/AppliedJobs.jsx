@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { FaPaperPlane } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import {
   MdKeyboardArrowDown,
   MdOutlineEdit,
@@ -11,7 +11,12 @@ import { toast } from "react-hot-toast";
 import { renderAppliedTabs } from "../../../Components/Dashboard/AppliedJobs/renderAppliedTabs";
 import useAppliedJobs from "../../../Components/Dashboard/AppliedJobs/AppliedComponents/useAppliedJobs";
 const AppliedJobs = () => {
-  const [appliedJobs] = useAppliedJobs()
+  const { id } = useParams();
+
+  const [appliedJobs] = useAppliedJobs();
+
+  const jobs = appliedJobs.find((job) => job._id === id);
+
   const [isToggled, setIsToggled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("tabs1");
@@ -51,14 +56,12 @@ const AppliedJobs = () => {
         </div>
       </div>
       <div className="pt-8">
-        {appliedJobs.map((job) => (
-          <div key={job.id} className="">
             <div className="flex justify-between items-center">
               <div>
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center ">
                     <p className="text-3xl font-[400] text-secondary">
-                      {job.jobName}
+                      {jobs?.jobTitle}
                     </p>
                     <button onClick={handleButtonClick}>
                       {isToggled ? (
@@ -70,7 +73,7 @@ const AppliedJobs = () => {
                   </div>
                   <MdOutlineEdit color="#00756a" size={19} fontWeight={700} />
                 </div>
-                <p className="text-base pt-2 text-gray-500">{job.location}</p>
+                <p className="text-base pt-2 text-gray-500">{jobs?.jobLocation}</p>
               </div>
               <div
                 onClick={() => setIsOpen(!isOpen)}
@@ -104,8 +107,7 @@ const AppliedJobs = () => {
                 </div>
               )}
             </div>
-          </div>
-        ))}
+       
       </div>
       <div className="pt-10 ]">
         <div
@@ -118,7 +120,6 @@ const AppliedJobs = () => {
           <div className="flex justify-between">
             {tabsData.map((tab) => (
               <button
-              
                 key={tab.id}
                 style={{
                   borderBottom:
