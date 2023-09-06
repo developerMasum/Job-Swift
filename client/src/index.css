@@ -58,3 +58,13 @@
 .style {
   animation: upDownLeftRightAnimation 5s infinite;
 }
+
+.bg-image {
+  background-image: url('https://i.ibb.co/6Yh2jHb/user-2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  /* background-size: contain; */
+  /* background-attachment: fixed; */
+
+}

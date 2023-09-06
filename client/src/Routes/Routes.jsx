@@ -50,6 +50,8 @@ import AppliedJobs from "../Pages/Dashboard/AppliedJobs/AppliedJobs";
 import ContactUs from "../Components/ContactUs/ContactUs";
 import HomeAdmin from "../Components/AdminDashBoard/HomeAdmin";
 import UsersAdmin from "../Components/AdminDashBoard/UsersAdmin";
+import CandidiateUserDetails from "../Pages/Dashboard/Candidates/CandidiateUserDetails";
+
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -150,6 +152,7 @@ const router = createBrowserRouter([
             path: "candidates",
             element: <FindCandidates></FindCandidates>,
           },
+
           {
             path: "applicationForm",
             element: <ApplicationForm></ApplicationForm>,
@@ -201,6 +204,10 @@ const router = createBrowserRouter([
       {
         path: "candidate",
         element: <Candidates />,
+      },
+      {
+        path: "userDetails",
+        element: <CandidiateUserDetails></CandidiateUserDetails>,
       },
       {
         path: 'report-center/candidiate-flow',
