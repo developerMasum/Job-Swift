@@ -1,66 +1,35 @@
-import React from "react";
-import { IgrGeographicMapModule } from "igniteui-react-maps";
-import { IgrDataChartInteractivityModule } from "igniteui-react-charts";
-import { IgrGeographicMap } from "igniteui-react-maps";
-import * as d3 from "d3";
-
-IgrGeographicMapModule.register();
-IgrDataChartInteractivityModule.register();
-
-const populationData = [
-  { name: "United States", population: 10000000 },
-  { name: "Canada", population: 7500000 },
-  { name: "Brazil", population: 12000000 },
-  { name: "Mexico", population: 5000000 },
-  { name: "United Kingdom", population: 9000000 },
-  { name: "Germany", population: 6000000 },
-  { name: "France", population: 11000000 },
-  { name: "Australia", population: 8500000 },
-  { name: "India", population: 750000 },
-  { name: "China", population: 3000000 },
-];
-
-function getColorScale(populationData) {
-  const populationValues = populationData.map((entry) => entry.population);
-  return d3
-    .scaleLinear()
-    .domain([0, d3.max(populationValues)])
-    .range(["#f0f0f0", "#ff5733"]); // You can adjust the color range as needed
-}
-
-const colorScale = getColorScale(populationData);
+import React, { useEffect, useState } from "react"; // Import React and necessary hooks
+import { Chart } from "react-google-charts"; // Import the Chart component from react-google-charts
+import axios from "axios"; // Import Axios for making HTTP requests
 
 const GeographyChart = () => {
+  const [countryData, setCountryData] = useState([]); // Define state variable for country data
+
+  useEffect(() => {
+    // Use the useEffect hook to perform actions when the component mounts
+
+    // Fetch country population data from an API
+    axios.get("https://restcountries.com/v3.1/all").then((response) => {
+      // Handle the response from the API
+
+      // Map the API response data to a format suitable for the chart
+      const populationData = response.data.map((country) => [
+        country.name.common, // Country name
+        country.population || 0, // Population (default to 0 if not available)
+      ]);
+
+      // Set the countryData state with the formatted data
+      setCountryData([["Country", "Population"], ...populationData]);
+    });
+  }, []); // The empty dependency array [] means this effect runs once, when the component mounts
+
   return (
-    <div className="w-1/2 mx-auto mt-8">
-      <IgrGeographicMap
-        width="600px"
-        height="600px"
-        zoomable="true"
-        getBrush={(_, item) => {
-          const countryName = item.name; // Assuming the map data has a "name" property for countries
-          const populationEntry = populationData.find(
-            (entry) => entry.name === countryName
-          );
-          if (populationEntry) {
-            const population = populationEntry.population;
-            const color = colorScale(population);
-
-            // Apply conditional Tailwind CSS classes based on population
-            const tailwindClass =
-              population >= 10000000
-                ? "bg-red-500"
-                : population >= 5000000
-                ? "bg-yellow-500"
-                : "bg-green-500";
-
-            return {
-              fill: color,
-              className: tailwindClass,
-            };
-          }
-          return { fill: "#f0f0f0" }; // Default color and no class for countries not in the population data
-        }}
+    <div className="w-full h-96">
+      <Chart
+        chartType="GeoChart" // Set the chart type to GeoChart
+        width="100%"
+        height="400px"
+        data={countryData} // Provide the data to be displayed on the chart
       />
     </div>
   );
