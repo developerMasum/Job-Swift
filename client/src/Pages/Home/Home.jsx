@@ -76,7 +76,7 @@ const Home = () => {
           <div className="mt-12">
             <Profile />
           </div>
-          <div className="mt-12 App">
+          <div className="my-12">
             <GeographyChart />
           </div>
         </div>

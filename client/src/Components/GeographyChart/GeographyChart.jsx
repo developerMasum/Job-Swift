@@ -24,7 +24,7 @@ const GeographyChart = () => {
   }, []); // The empty dependency array [] means this effect runs once, when the component mounts
 
   return (
-    <div className="w-full h-96">
+    <div className="w-full h-96 my-8">
       <Chart
         chartType="GeoChart" // Set the chart type to GeoChart
         width="100%"
