@@ -29,7 +29,7 @@ const GeographyChart = () => {
         chartType="GeoChart" // Set the chart type to GeoChart
         width="100%"
         height="400px"
-        data={countryData} // Provide the data to be displayed on the chart
+        data={countryData} 
       />
     </div>
   );
