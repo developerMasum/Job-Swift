@@ -71,7 +71,7 @@ async function run() {
         try {
           // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
           await applicationsPostCollection.insertOne({
-            jobTitle:formData.jobTitle,
+            jobTitle: formData.jobTitle,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
@@ -125,6 +125,37 @@ async function run() {
 
     // get all job post
 
+    app.get("/all-post/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await jobPostCollection.findOne(query);
+      res.send(result);
+    });
+
+    app.patch("/all-post/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const update = { $set: req.body };
+      const result = await jobPostCollection.updateOne(query, update)
+      res.send(result);
+    });
+    app.delete("/all-post/:id", async (req, res) => {
+      try {
+          const id = req.params.id;
+          const query = { _id: new ObjectId(id) };
+  
+          const result = await jobPostCollection.deleteOne(query);
+  
+          
+  
+  
+      } catch (error) {
+          console.error('Error deleting the post:', error);
+          res.status(500).send({ message: 'Internal Server Error' });
+      }
+  });
+  
+
     app.get("/all-post", async (req, res) => {
       const result = await jobPostCollection.find().sort({ _id: -1 }).toArray();
       res.send(result);
@@ -144,10 +175,15 @@ async function run() {
       const result = await applicationsPostCollection.find().toArray();
       res.send(result);
     });
+    app.get("/all-applications/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await applicationsPostCollection.findOne(query);
+      res.send(result);
+    });
 
     // app.delete('/delete-candidates', async (req, res) => {
     //   const candidatesToDelete = req.body; // An array of candidate IDs
-    
     //   try {
     //     await Candidate.deleteMany({ _id: { $in: candidatesToDelete } });
     //     res.status(204).send();
@@ -155,7 +191,6 @@ async function run() {
     //     res.status(500).json({ error: 'Error deleting candidates' });
     //   }
     // });
-    
 
     // resume app.use('/uploads', upload.array("image", "resume"));
 
