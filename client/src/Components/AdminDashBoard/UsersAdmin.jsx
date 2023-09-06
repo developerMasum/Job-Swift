@@ -92,6 +92,9 @@ const UsersAdmin = () => {
               <th className="bg-gray-200 text-left px-4 py-2 font-bold">
                 Role
               </th>
+              <th className="bg-gray-200 text-left px-4 py-2 font-bold">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>

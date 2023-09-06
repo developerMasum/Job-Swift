@@ -80,7 +80,7 @@ const AdminLineChart = () => {
     return (
      
          <div>
-          <div> <p className='uppercase text-sm font-bold text-primary pb-3'> Application wise hired candidate </p></div>
+          <div> <p className='uppercase text-sm font-bold text-primary pb-6'> Application wise hired candidate </p></div>
              <ResponsiveContainer width={600} height={400}>
         <LineChart
           width={300}
