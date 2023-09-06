@@ -131,6 +131,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaClipboard, FaLink } from "react-icons/fa";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { toast } from "react-hot-toast";
 
 const LinkResult = ({ inputValue }) => {
   const [shortenLink, setShortenLink] = useState("");
@@ -155,6 +156,19 @@ const LinkResult = ({ inputValue }) => {
     }
   };
 
+const handleCopy=()=>{
+  toast.success('Copied to clipboard!',  {
+    duration: 5000,
+    icon: '✅',
+    position:"bottom-center",
+    style: {
+      background: '#14b3f24d',
+      color: 'black',
+    },
+  });
+}
+
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -173,14 +187,14 @@ const LinkResult = ({ inputValue }) => {
         {shortenLink}
       </h2>
       <CopyToClipboard text={shortenLink} onCopy={() => setCopied(true)}>
-        <button className="text-green-900 hover:underline font-bold flex items-center">
+        <button onClick={handleCopy} className="text-green-900 hover:underline font-bold flex justify-center items-center">
           {copied ? (
             <>
-              Copied! <FaClipboard className="ml-1" />
+            <p className="text-center ml-16">  Copied! <FaClipboard className="ml-1 inline-block" /></p>
             </>
           ) : (
             <>
-              Copy to clipboard <FaClipboard className="ml-1 inline-block" />
+             <p className="text-center ml-10"> Copy to clipboard <FaClipboard className="ml-1 inline-block" /></p>
             </>
           )}
         </button>

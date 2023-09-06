@@ -11,7 +11,7 @@ const UsersAdmin = () => {
     // console.log(a);
     return res.data;
   });
-  console.log(users);
+  // console.log(users);
 
   const makeAdmin = (user) => {
     console.log("make admin", user);
