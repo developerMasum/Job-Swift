@@ -13,13 +13,24 @@ import { Link } from "react-router-dom";
 import SocialMediaLink from "./SocialMediaLink";
 import TestInput from "../../../../../Components/NewTest/TestInput";
 import LinkResult from "../../../../../Components/NewTest/LinkResult";
-
+import { FaClipboard } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 const FindCandidates = () => {
+  const [inputValue, setInputValue] = useState("");
 
-  const[inputValue, setInputValue] = useState('')
- 
- 
+  const handleCopy = () => {
+    toast.success("Copied to clipboard!", {
+      duration: 5000,
+      icon: "✅",
+      position: "bottom-center",
+      style: {
+        background: "#14b3f24d",
+        color: "black",
+      },
+    });
+  };
+
   return (
     <div className="bg-[#f2f4f5] pt-60">
       {/* <div>
@@ -311,21 +322,20 @@ const FindCandidates = () => {
                     Job Mailbox
                   </h2>
                   <div>
-                    <h2 className="my-2 overflow-scroll border-dashed border-2 border-[#c4cfde] rounded-lg p-2">
-                      CC64E678EA@jobs.workablemail.com
+                    <h2 className="my-2 overflow-scroll lowercase border-dashed border-2 border-[#c4cfde] rounded-lg p-2">
+                      CC64E678EA@jobSwift.com
                     </h2>
                   </div>
                   <small>
                     Send resumes directly into your job using the job mailbox
                     email address.
                   </small>
-                  <div className="mt-14">
-                    <Link
-                      className="text-green-900  hover:underline font-bold"
-                      to={""}
-                    >
-                      Copy to clipboard
-                    </Link>
+                  <div className="mt-14 cursor-pointer text-green-900 hover:underline font-bold">
+                    <p onClick={handleCopy} className="text-center ml-10 ">
+                      {" "}
+                      Copy to clipboard{" "}
+                      <FaClipboard className="ml-1 inline-block" />
+                    </p>
                   </div>
                 </div>
               </div>
