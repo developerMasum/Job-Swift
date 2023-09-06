@@ -452,7 +452,7 @@ const UpperBar = () => {
                     </li>
 
                     <li className="mt-4">
-                      <Link>Setting</Link>
+                      <Link to='settings/profile'>Setting</Link>
                     </li>
                     <li>
                       <Link>Help</Link>

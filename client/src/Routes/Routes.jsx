@@ -52,6 +52,7 @@ import HomeAdmin from "../Components/AdminDashBoard/HomeAdmin";
 import UsersAdmin from "../Components/AdminDashBoard/UsersAdmin";
 import CandidateProfile from "../Components/Dashboard/Candidate/CandidateProfile";
 import AdminRoute from "./AdminRoute";
+import ProfileSettings from "../Components/Dashboard/UserSettings/ProfileSettings";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -210,6 +211,10 @@ const router = createBrowserRouter([
         path: "candidate/profile/:id",
         element: <CandidateProfile />,
         // loader: (params)=> fetch(`http://localhost:5000/all-applications/${params.id}`)
+      },
+      {
+        path:"settings/profile",
+        element: <ProfileSettings />
       },
       {
         path: 'report-center/candidiate-flow',
