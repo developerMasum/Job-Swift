@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 export const ContactForm = () => {
   const form = useRef();
+  console.log(form.current);
     const hiddenSubmitButton = useRef();
 
     useEffect(() => {
@@ -26,10 +27,10 @@ export const ContactForm = () => {
 
     emailjs
       .sendForm(
-        "service_redx5eh", 
-        "template_kp5om1f", 
+        "service_pyxfski", 
+        "template_pk3511d", 
         form.current,
-        "gpkZCEPYfcM9yn15X"
+        "KFpl2_TKCnfpdz-y_"
       )
       .then(
         (result) => {
