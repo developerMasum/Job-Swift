@@ -1,193 +1,183 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
+import { MdMessage } from "react-icons/md";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 
-const ContactForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+export const ContactForm = () => {
+  const form = useRef();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_objfz99",
+        "template_18wea4j",
+        form.current,
+        "LBDB16rmEvAiJew8t"
+      )
+      .then(
+        (result) => {
+          if (result.text === "OK") {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your mail has been sent successfully. Thanks ❤",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            form.current.reset();
+          }
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="max-w-md mx-auto p-4 border rounded-md shadow-md"
-    >
+    <div className="max-w-md mx-auto p-4 border rounded-md shadow-md">
       <div className="text-center">
         <h2 className="text-2xl text-primary font-semibold mb-2">Email Us</h2>
         <p className="mb-4">Just complete the form below</p>
       </div>
-      <div className="md:flex gap-4">
+      <form ref={form} onSubmit={sendEmail}>
+        <div className="md:flex gap-4">
+          <div className="mb-4">
+            <label htmlFor="firstName" className="block mb-2">
+              First Name:
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              className="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="lastName" className="block mb-2">
+              Last Name:
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              className="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+        </div>
         <div className="mb-4">
-          <label htmlFor="firstName" className="block font-medium">
-            First Name
+          <label htmlFor="email" className="block mb-2">
+            Email Address:
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className="w-full p-2 border rounded-md"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="companyName" className="block mb-2">
+            Company Name:
           </label>
           <input
             type="text"
-            id="firstName"
-            {...register("firstName", { required: true })}
-            className={`w-full border rounded-md p-2 ${
-              errors.firstName ? "border-red-500" : "border-gray-300"
-            }`}
+            id="companyName"
+            name="companyName"
+            className="w-full p-2 border rounded-md"
+            required
           />
-          {errors.firstName && (
-            <span className="text-red-500">First Name is required</span>
-          )}
+        </div>
+        <div className="md:flex gap-4">
+          <div className="mb-4">
+            <label htmlFor="phoneNumber" className="block mb-2">
+              Phone Number:
+            </label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              className="w-full p-2 border rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="employeeCount" className="block mb-2">
+              Employee Count:
+            </label>
+            <select
+              id="employeeCount"
+              name="employeeCount"
+              className="w-full p-2 border rounded-md"
+              required
+            >
+              <option value="">Select</option>
+              <option value="1-10">1-10</option>
+              <option value="11-50">11-50</option>
+              <option value="51-100">51-100</option>
+              <option value="101+">101+</option>
+            </select>
+          </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="lastName" className="block font-medium">
-            Last Name
-          </label>
-          <input
-            type="text"
-            id="lastName"
-            {...register("lastName", { required: true })}
-            className={`w-full border rounded-md p-2 ${
-              errors.lastName ? "border-red-500" : "border-gray-300"
-            }`}
-          />
-          {errors.lastName && (
-            <span className="text-red-500">Last Name is required</span>
-          )}
-        </div>
-      </div>
-      <div className="mb-4">
-        <label htmlFor="email" className="block font-medium">
-          Email Address
-        </label>
-        <input
-          type="email"
-          id="email"
-          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-          className={`w-full border rounded-md p-2 ${
-            errors.email ? "border-red-500" : "border-gray-300"
-          }`}
-        />
-        {errors.email && (
-          <span className="text-red-500">Invalid email address</span>
-        )}
-      </div>
-      <div className="mb-4">
-        <label htmlFor="company" className="block font-medium">
-          Company Name
-        </label>
-        <input
-          type="text"
-          id="company"
-          {...register("company", { required: true })}
-          className={`w-full border rounded-md p-2 ${
-            errors.company ? "border-red-500" : "border-gray-300"
-          }`}
-        />
-        {errors.company && (
-          <span className="text-red-500">Company Name is required</span>
-        )}
-      </div>
-      <div className="md:flex gap-4">
-        <div className="mb-4">
-          <label htmlFor="phone" className="block font-medium">
-            Phone Number
-          </label>
-          <input
-            type="number"
-            id="phone"
-            {...register("phone", { required: true })}
-            className={`w-full border rounded-md p-2 ${
-              errors.phone ? "border-red-500" : "border-gray-300"
-            }`}
-          />
-          {errors.phone && (
-            <span className="text-red-500">Phone Number is required</span>
-          )}
-        </div>
-        <div className="mb-4">
-          <label htmlFor="employeeCount" className="block font-medium">
-            Employee Count
+          <label htmlFor="jobSwiftCustomer" className="block mb-2">
+            Are you a Job Swift customer?
           </label>
           <select
-            id="employeeCount"
-            {...register("employeeCount", { required: true })}
-            className={`w-full border rounded-md p-2 ${
-              errors.employeeCount ? "border-red-500" : "border-gray-300"
-            }`}
+            id="jobSwiftCustomer"
+            name="jobSwiftCustomer"
+            className="w-full p-2 border rounded-md"
+            required
           >
             <option value="">Select</option>
-            <option value="1-10">1-10</option>
-            <option value="11-50">11-50</option>
-            <option value="51-100">51-100</option>
-            <option value="101+">101+</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
-          {errors.employeeCount && (
-            <span className="text-red-500">Employee Count is required</span>
-          )}
         </div>
-      </div>
-      <div className="mb-4">
-        <label htmlFor="isBambooHrCustomer" className="block font-medium">
-          Are you a JobSwift Customer?
-        </label>
-        <select
-          id="isBambooHrCustomer"
-          {...register("isBambooHrCustomer", { required: true })}
-          className={`w-full border rounded-md p-2 ${
-            errors.isBambooHrCustomer ? "border-red-500" : "border-gray-300"
-          }`}
-        >
-          <option value="">Select</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        {errors.isBambooHrCustomer && (
-          <span className="text-red-500">Please select an option</span>
-        )}
-      </div>
-      <div className="mb-4">
-        <label htmlFor="subject" className="block font-medium">
-          Subject
-        </label>
-        <select
-          id="subject"
-          {...register("subject", { required: true })}
-          className={`w-full border rounded-md p-2 ${
-            errors.subject ? "border-red-500" : "border-gray-300"
-          }`}
-        >
-          <option value="">Select</option>
-          <option value="inquiry">Inquiry</option>
-          <option value="feedback">Feedback</option>
-          <option value="support">Support</option>
-          <option value="other">Other</option>
-        </select>
-        {errors.subject && (
-          <span className="text-red-500">Please select a subject</span>
-        )}
-      </div>
-      <div className="mb-4">
-        <label htmlFor="message" className="block font-medium">
-          Message
-        </label>
-        <textarea
-          id="message"
-          {...register("message", { required: true })}
-          className={`w-full border rounded-md p-2 ${
-            errors.message ? "border-red-500" : "border-gray-300"
-          }`}
-        />
-        {errors.message && (
-          <span className="text-red-500">Message is required</span>
-        )}
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-cyan-600 text-white px-4 py-2 rounded-md hover:bg-cyan-400"
-      >
-        Submit
-      </button>
-    </form>
+        <div className="mb-4">
+          <label htmlFor="subject" className="block mb-2">
+            Subject:
+          </label>
+          <select
+            id="subject"
+            name="subject"
+            className="w-full p-2 border rounded-md"
+            required
+          >
+            <option value="">Select</option>
+            <option value="inquiry">Inquiry</option>
+            <option value="feedback">Feedback</option>
+            <option value="support">Support</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="message" className="block mb-2">
+            Message:
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="2"
+            className="w-full p-2 border rounded-md"
+            required
+          ></textarea>
+        </div>
+        <div className="text-center">
+          <button
+            className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark"
+            type="submit"
+          >
+            Send
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
