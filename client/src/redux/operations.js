@@ -34,7 +34,7 @@ export const createJobPost = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.post("http://localhost:5000/job_post", data);
-      console.log(response.data);
+      // console.log(response.data);
       return response.data; // Return the data received from the server if needed
     } catch (error) {
       // Return the error payload using rejectWithValue
