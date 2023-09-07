@@ -26,10 +26,10 @@ export const ContactForm = () => {
 
     emailjs
       .sendForm(
-        "service_objfz99",
-        "template_18wea4j",
+        "service_redx5eh", 
+        "template_kp5om1f", 
         form.current,
-        "LBDB16rmEvAiJew8t"
+        "gpkZCEPYfcM9yn15X"
       )
       .then(
         (result) => {
@@ -186,7 +186,6 @@ export const ContactForm = () => {
           <button
             className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark"
             type="submit"
-            style={{ display: "none" }}
             ref={hiddenSubmitButton} // Hidden submit button
           >
             Send
