@@ -19,6 +19,7 @@ import BannerCompany from "../../Components/Home/Banner/BannerCompany";
 
 // import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
+import SendTextMessage from "../../Components/Dashboard/Candidate/SendTextMessage";
 
 
 
@@ -29,23 +30,22 @@ const Home = () => {
         <HeadlineBar />
       </Slide>
       <Banner />
-      
-<div>
-<BannerCompany />
-</div>
-    <div className="md:px-12">
-    <EmployeeExperienceSection></EmployeeExperienceSection>
-    </div>
 
-    <div className="mt-12">
-            <ProgramManager />
-          </div>
+      <div>
+        <BannerCompany />
+      </div>
+      <div className="md:px-12">
+        <EmployeeExperienceSection></EmployeeExperienceSection>
+      </div>
+
+      <div className="mt-12">
+        <ProgramManager />
+      </div>
       <Fade>
         <HrPlatform />
       </Fade>
       {/* <NewBanner></NewBanner> */}
       {/* <HRPlatform></HRPlatform> */}
-    
 
       <div className="md:px-12">
         {/* <div className="mt-12">
@@ -61,7 +61,6 @@ const Home = () => {
         </div> */}
         <div className="mt-12">
           <Slide>
-      
             <Hiring />{" "}
           </Slide>
         </div>
@@ -79,7 +78,6 @@ const Home = () => {
             </Zoom>
           </div>
 
-
           {/* slider */}
           <div className="mt-12">
             <h2 className="text-3xl font-bold text-center text-primary font-sans ">
@@ -90,11 +88,12 @@ const Home = () => {
 
           {/* Company */}
           {/* <Company /> */}
-          {/* Program Manager from Ashik faysal */}
-          
-       
+
+          <div className="mt-12">
+            
+            <SendTextMessage />
+          </div>
         </div>
-       
       </div>
     </div>
   );
