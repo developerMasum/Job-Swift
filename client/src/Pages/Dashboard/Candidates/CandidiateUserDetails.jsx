@@ -1,322 +1,399 @@
-
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 import { useParams } from "react-router-dom";
 import {
-      BiDotsHorizontal,
-      BiEnvelope,
-      BiMessageCheck,
-      BiSolidCalendar,
-      BiSolidChat,
-      BiSolidHandLeft,
-      BiSolidHandRight,
-      BiSolidHand,
-      BiLocationPlus,
-      BiPhone,
-      BiLogoLinkedinSquare,
-      BiLogoFacebookSquare,
-      BiUser,
-      BiCategoryAlt,
+  BiDotsHorizontal,
+  BiEnvelope,
+  BiMessageCheck,
+  BiSolidCalendar,
+  BiSolidChat,
+  BiSolidHandLeft,
+  BiSolidHandRight,
+  BiSolidHand,
+  BiLocationPlus,
+  BiPhone,
+  BiLogoLinkedinSquare,
+  BiLogoFacebookSquare,
+  BiUser,
+  BiCategoryAlt,
 } from "react-icons/bi";
-import { useLoaderData } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Loader from '../../../Components/Loader/Loader';
+
+import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
+import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Loader from "../../../Components/Loader/Loader";
 
 const CandidiateUserDetails = () => {
+  const { id } = useParams();
+  console.log("error", id);
+  const [userDetails2, setUserDetails2] = useState(null);
 
-      const { id } = useParams();
-      console.log("error", id);
-      const [userDetails2, setUserDetails2] = useState(null);
+  // time and date fixer
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      undefined,
+      options
+    );
+    return formattedDate;
+  };
 
-      useEffect(() => {
-            // Fetch candidate profile data from the server based on the 'id' parameter
-            const URL = `http://localhost:5000/all-applications/${id}`;
-            console.log(URL);
-            fetch(URL)
-                  .then((response) => response.json())
-                  .then((data) => {
-                        // Set the profile data in the state
-                        setUserDetails2(data);
-                  })
-                  .catch((error) => {
-                        console.error("Error fetching profile data:", error);
-                  });
-      }, [id]); // Include 'id' as a dependency in the useEffect dependency array
+  useEffect(() => {
+    // Fetch candidate profile data from the server based on the 'id' parameter
+    const URL = `http://localhost:5000/all-applications/${id}`;
+    console.log(URL);
+    fetch(URL)
+      .then((response) => response.json())
+      .then((data) => {
+        // Set the profile data in the state
+        setUserDetails2(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching profile data:", error);
+      });
+  }, [id]); // Include 'id' as a dependency in the useEffect dependency array
 
-      // Check if profileData is still null or loading, and render accordingly
-      if (userDetails2 === null) {
-            return <Loader />;
-      }
+  // Check if profileData is still null or loading, and render accordingly
+  if (userDetails2 === null) {
+    return <Loader />;
+  }
 
-      console.log(userDetails2);
+  console.log(userDetails2);
 
-      const { email, jobTitle, firstName, lastName, phoneNumber, location, image, resume, educationList, date } = userDetails2 || {}
+  const {
+    email,
+    jobTitle,
+    firstName,
+    lastName,
+    phoneNumber,
+    location,
+    image,
+    resume,
+    coverLetter,
+    summary,
 
+    educationList,
+    date,
+  } = userDetails2 || {};
 
+  return (
+    <div className="pt-20">
+      <div className="bg-image  bg-opacity-40 border border-slate-300 shadow-lg   ">
+        <div className="flex lg:md:justify-end  p-4">
+          <div className="flex justify-around gap-8 bg-white px-4 items-center border border-slate-400 rounded-lg p-2">
+            <BiDotsHorizontal className="border-r-2 border-slate-400 pr-2 text-3xl"></BiDotsHorizontal>
+            <BiEnvelope></BiEnvelope>
+            <BiMessageCheck></BiMessageCheck>
+            <BiSolidCalendar className="border-r-2 border-slate-400 pr-3 text-3xl"></BiSolidCalendar>
+            <BiSolidChat></BiSolidChat>
+            <div className="flex border-r-2 border-slate-400 pr-8 text-2xl">
+              <BiSolidHandRight></BiSolidHandRight>
+              <BiSolidHandLeft></BiSolidHandLeft>
+            </div>
+            <BiSolidHand className="text-red-700"></BiSolidHand>
+            <details className="dropdown btn-sm btn-primary rounded-md">
+              <summary className="m-1 ">Move to Offer</summary>
+              <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
+                <li>
+                  <a>Sourced</a>
+                </li>
+                <li>
+                  <a>Applied</a>
+                </li>
+                <li>
+                  <a>Interview</a>
+                </li>
+                <li>
+                  <a>Offer</a>
+                </li>
+                <li>
+                  <a>Hired</a>
+                </li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="shadow-2xl flex justify-between">
+          <div className="p-8 flex ">
+            <div>
+              <img
+                className="h-24 w-24 rounded-xl border border-sky-600"
+                src={`http://localhost:5000/images/${image}`}
+                alt=""
+              />
+            </div>
+            <div className="px-4">
+              <h1 className="flex gap-2 items-center mb-2 font-bold">
+                <FaUserTie size={20} className="text-primary" />
+                {firstName} {lastName}
+              </h1>
+              {educationList?.map((education, index) => {
+                return <h2 key={index}>{education?.institution}</h2>;
+              })}
 
+              <h3 className="flex gap-2 items-center mb-2 font-semibold">
+                <BiLocationPlus size={20} className="text-primary" />
+                {location}
+              </h3>
+              <h3 className="flex gap-2 items-center font-semibold">
+                <BiPhone size={20} className="text-primary" />
+                {phoneNumber}
+              </h3>
+            </div>
+          </div>
+          <div className="p-8">
+            <p className="font-bold text-primary hover:underline cursor-pointer">
+              {jobTitle} <small className="ml-2 "> · interview</small>
+            </p>
+            <div>
+              <p>
+                via <small className="font-bold">career page</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      return (
-            <div className='pt-20'>
-                  <div className='bg-image  bg-opacity-40 border border-slate-300 shadow-lg   '>
-                        <div className='flex lg:md:justify-end  p-4'>
-                              <div className='flex justify-around gap-8 bg-white px-4 items-center border border-slate-400 rounded-lg p-2'>
-                                    <BiDotsHorizontal className='border-r-2 border-slate-400 pr-2 text-3xl'></BiDotsHorizontal>
-                                    <BiEnvelope></BiEnvelope>
-                                    <BiMessageCheck></BiMessageCheck>
-                                    <BiSolidCalendar className='border-r-2 border-slate-400 pr-3 text-3xl'></BiSolidCalendar>
-                                    <BiSolidChat></BiSolidChat>
-                                    <div className='flex border-r-2 border-slate-400 pr-8 text-2xl'>
-                                          <BiSolidHandRight></BiSolidHandRight>
-                                          <BiSolidHandLeft></BiSolidHandLeft>
-                                    </div>
-                                    <BiSolidHand className='text-red-700'></BiSolidHand>
-                                    <details className="dropdown btn-sm btn-primary rounded-md">
-                                          <summary className="m-1 ">Move to Offer</summary>
-                                          <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
-                                                <li><a>Sourced</a></li>
-                                                <li><a>Applied</a></li>
-                                                <li><a>Interview</a></li>
-                                                <li><a>Offer</a></li>
-                                                <li><a>Hired</a></li>
-
-                                          </ul>
-                                    </details>
-                              </div>
+      <div className="mt-12 shadow-lg border border-slate-200 p-5 rounded-lg">
+        <Tabs>
+          <TabList className="flex gap-12 mb-8 flex-col">
+            <div>
+              <div>
+                <article className="font-bold text-base uppercase text-primary">
+                  Education
+                </article>
+                <div>
+                  {educationList?.map((education, index) => {
+                    return (
+                      <div key={index}>
+                        <h2 className="mt-4 font-semibold">
+                          {formatDate(education?.startDate)}
+                        </h2>
+                        <div className="flex gap-4">
+                          <p className=" font-semibold">
+                            {education?.degree} in {education.institution}
+                          </p>
                         </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-12">
+              <Tab className="btn-outline border border-slate-700 rounded-lg  px-8 py-2">
+                Profile
+              </Tab>
+              <Tab className="btn-outline border border-slate-700 rounded-lg  px-8 py-2">
+                Timeline
+              </Tab>
+            </div>
+          </TabList>
+
+          <TabPanel>
+            {/* cover letter */}
+            <div className="mb-2 border border-slate-100 py-5 pr-5 shadow-sm">
+              <p className="text-primary font-bold text-base mb-3">
+                {" "}
+                COVER LETTER{" "}
+              </p>
+              {coverLetter ? (
+                <>
+                  {" "}
+                  <p className="w-5/6"> {coverLetter}</p>{" "}
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <p className="text-red-800 font-semibold">
+                    The candidate did not provide a cover letter{" "}
+                  </p>{" "}
+                </>
+              )}
+                 <div className="divider w-5/6"></div>
+              
+            </div>
+            {/* summery */}
+            <div className="mb-5 border border-slate-100 py-5 pr-5 shadow-sm">
+              <p className="text-primary font-bold text-base mb-3"> SUMMARY </p>
+              {summary ? (
+                <>
+                  {" "}
+                  <p className="w-5/6"> {coverLetter}</p>{" "}
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <p className="text-red-800 font-semibold">
+                    The candidate did not provide a cover letter{" "}
+                  </p>{" "}
+                  
+                </>
+              )}
+               <div className="divider w-5/6"></div>
+            </div>
+
+            <div className="border border-slate-200 p-64 text-center">
+              Here will be PDF viewer Section
+            </div>
+
+            <div className="mt-10">
+              <div>
+                <h1 className="text-primary font-bold text-base mb-3">
+                  CONTACT DETAILS
+                </h1>
+                <div className="mt-6">
+                  <p className="flex items-center gap-2 my-2">
+                    <span className="text-primary">
+                      <FaMapMarkerAlt size={18} />
+                    </span>
+                    <span className="font-semibold">{location}</span>
+                  </p>
+                  <p className="flex items-center gap-2 my-2">
+                    <span className="text-primary">
+                      <FaPhone size={18} />
+                    </span>
+                    <span className="font-semibold">{phoneNumber}</span>
+                  </p>
+                  <p className="flex items-center gap-2 my-2">
+                    <span className="text-primary">
+                      <FaEnvelope size={18} />
+                    </span>
+                    <span className="font-semibold">{email}</span>
+                  </p>
+                </div>
+              </div>
+              <div className="divider mt-10 font-bold"></div>
+
+              <div>
+                <h1 className="text-primary font-bold text-base mb-3 ">CONTACT PREFERENCES</h1>
+                <div className="mt-6 text-secondary">
+                  <p className="flex gap-6">
+                    <span className="font-semibold ">Texting:</span>
+                    <span>Enabled - consent confirmed</span>
+                  </p>
+                </div>
+              </div>
+              <div className="divider mt-10 font-bold"></div>
+
+              {/* <div>
+                <h1 className="font-bold">SOCIAL PROFILES</h1>
+
+                <div className="mt-6">
+                  <p>
+                    {" "}
+                    These profiles were automatically retrieved, not provided by
+                    the candidate.
+                  </p>
+                  <p className="flex gap-6 mt-4 text-xl">
+                    <BiLogoLinkedinSquare></BiLogoLinkedinSquare>
+                    <BiLogoFacebookSquare></BiLogoFacebookSquare>
+                  </p>
+                </div>
+              </div> */}
+            </div>
+          </TabPanel>
+          <TabPanel className="border  rounded-lg p-8">
+            <div className="flex justify-end gap-3 items-center mb-6">
+              <input type="checkbox" className="toggle" disabled checked />
+              <small>Hide All Details</small>
+            </div>
+            <div>
+              <div className="divider mt-6 font-bold"></div>
+              <div className="flex items-center gap-8 pl-12">
+                <BiSolidHand className="text-2xl"></BiSolidHand>
+                <div className="avatar">
+                  <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
+                    {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
+                    AR
                   </div>
-                  <div>
-                        <div className='shadow-2xl flex justify-between'>
-                              <div className='p-8 flex '>
+                </div>
+                <p>Md Arifur Rahman</p>
+                <p>disqualified candidate</p>
+                <br />
+                <br />
+                <p className="flex justify-end"> ..... about 19 Hours ago</p>
+              </div>
 
-                                    <div>
-                                          <img className='h-24 w-24 rounded-xl border border-slate-500' src={image} alt="" />
-                                    </div>
-                                    <div className='px-4'>
-                                          <h1>{firstName} {lastName}</h1>
-                                          {
-                                                educationList?.map((education, index) => {
-                                                      return <h2 key={index}>{education?.institution}</h2>
-                                                })
-                                          }
-
-                                          <h3 className='flex gap-2 items-center'>
-                                                <BiLocationPlus></BiLocationPlus>
-                                                {location}
-                                          </h3>
-                                          <h3 className='flex gap-2 items-center'>
-                                                <BiPhone></BiPhone>
-                                                {phoneNumber}
-                                          </h3>
-                                    </div>
-                              </div>
-                              <div className='p-8'>
-                                    <div>
-                                          {jobTitle} <small className='ml-4 font-bold'>.interview</small>
-                                    </div>
-                                    <div>
-                                          <p>via <small className='font-bold'>career page</small></p>
-                                    </div>
-                              </div>
-                        </div>
-
+              <div className="divider mt-6 font-bold"></div>
+              <div className="divider mt-6 font-bold"></div>
+              <div className="flex items-center gap-8 pl-12">
+                <BiCategoryAlt className="text-2xl"></BiCategoryAlt>
+                <div className="avatar">
+                  <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
+                    {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
+                    BK
                   </div>
+                </div>
+                <p>Md Farhan Massum</p>
+                <p>qualified candidate</p>
+                <br />
+                <br />
+                <p className="flex justify-end"> ..... about 9 Hours ago</p>
+              </div>
 
-                  <div className='mt-12 shadow-lg border border-slate-400 p-8 rounded-lg'>
+              <div className="divider mt-6 font-bold"></div>
+              <div className="divider mt-6 font-bold"></div>
 
-
-                        <Tabs>
-                              <TabList className="flex gap-12 mb-8 flex-col">
-                                    <div>
-                                          <div>
-                                                <article className='font-bold'>Education</article>
-                                                <div>
-                                                      {
-                                                            educationList?.map((education, index) => {
-                                                                  return <div key={index}>
-                                                                        <h2 className='mt-4'>{education?.startDate}</h2>
-                                                                        <div className='flex gap-4'>
-                                                                              <p>BSC in </p>
-                                                                              <p>{education?.degree} in {education.institution}</p>
-                                                                        </div>
-
-                                                                  </div>
-                                                            })
-                                                      }
-
-                                                </div>
-                                          </div>
-                                    </div>
-                                    <div className='flex gap-12'>
-                                          <Tab className="btn-outline border border-slate-700 rounded-lg  px-8 py-2">Profile</Tab>
-                                          <Tab className="btn-outline border border-slate-700 rounded-lg  px-8 py-2">Timeline</Tab>
-                                    </div>
-                              </TabList>
-
-                              <TabPanel>
-                                    <div className='border border-slate-700 p-64 text-center'>Here will be PDF viewer Section</div>
-
-                                    <div className='mt-10'>
-                                          <div>
-                                                <h1 className='font-bold'>CONTACT DETAILS</h1>
-                                                <div className='mt-6'>
-                                                      <p className='flex gap-6'>
-                                                            <span>Adress</span>
-                                                            <span>{location}</span>
-                                                      </p>
-                                                      <p className='flex gap-4'>
-                                                            <span>Phone: </span>
-                                                            <span>  {phoneNumber}</span>
-                                                      </p>
-                                                      <p className='flex gap-6'>
-                                                            <span>Gmail: </span>
-                                                            <span>{email}</span>
-                                                      </p>
-
-                                                </div>
-
-
-                                          </div>
-                                          <div className="divider mt-10 font-bold"></div>
-
-                                          <div>
-                                                <h1 className='font-bold'>CONTACT PREFERENCES</h1>
-                                                <div className='mt-6'>
-                                                      <p className='flex gap-6'>
-                                                            <span>Texting:</span>
-                                                            <span>Enabled - consent confirmed</span>
-                                                      </p>
-
-                                                </div>
-
-                                          </div>
-                                          <div className="divider mt-10 font-bold"></div>
-
-                                          <div>
-                                                <h1 className='font-bold'>SOCIAL PROFILES</h1>
-
-                                                <div className='mt-6'>
-                                                      <p>  These profiles were automatically retrieved, not provided by the candidate.</p>
-                                                      <p className='flex gap-6 mt-4 text-xl'>
-                                                            <BiLogoLinkedinSquare></BiLogoLinkedinSquare>
-                                                            <BiLogoFacebookSquare></BiLogoFacebookSquare>
-                                                      </p>
-
-                                                </div>
-
-
-                                          </div>
-                                    </div>
-                              </TabPanel>
-                              <TabPanel className="border border-slate-600 rounded-lg p-8">
-                                    <div className='flex justify-end gap-3 items-center mb-6'>
-                                          <input type="checkbox" className="toggle" disabled checked />
-                                          <small>Hide All Details</small>
-                                    </div>
-                                    <div>
-
-                                          <div className="divider mt-6 font-bold"></div>
-                                          <div className='flex items-center gap-8 pl-12'>
-                                                <BiSolidHand className='text-2xl'></BiSolidHand>
-                                                <div className="avatar">
-                                                      <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
-                                                            {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
-                                                            AR
-                                                      </div>
-                                                </div>
-                                                <p>Md Arifur Rahman</p>
-                                                <p>disqualified candidate</p>
-                                                <br />
-                                                <br />
-                                                <p className='flex justify-end'> .....  about 19 Hours ago</p>
-
-                                          </div>
-
-                                          <div className="divider mt-6 font-bold"></div>
-                                          <div className="divider mt-6 font-bold"></div>
-                                          <div className='flex items-center gap-8 pl-12'>
-
-                                                <BiCategoryAlt className='text-2xl'></BiCategoryAlt>
-                                                <div className="avatar">
-                                                      <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
-                                                            {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
-                                                            BK
-                                                      </div>
-                                                </div>
-                                                <p>Md Farhan Massum</p>
-                                                <p>qualified candidate</p>
-                                                <br />
-                                                <br />
-                                                <p className='flex justify-end'> .....  about 9 Hours ago</p>
-
-                                          </div>
-
-                                          <div className="divider mt-6 font-bold"></div>
-                                          <div className="divider mt-6 font-bold"></div>
-
-                                          <div className='flex items-center gap-8 pl-12'>
-
-                                                <BiSolidChat className='text-2xl'></BiSolidChat>
-                                                <div className="avatar">
-                                                      <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
-                                                            {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
-                                                            KH
-                                                      </div>
-                                                </div>
-                                                <p>Kabir Hossain</p>
-                                                <p>interview candidate</p>
-                                                <br />
-                                                <br />
-                                                <p className='flex justify-end'> .....  about 23 Hours ago</p>
-
-                                          </div>
-
-                                          <div className="divider mt-6 font-bold"></div>
-                                          <div className="divider mt-6 font-bold"></div>
-                                          <div className='flex items-center gap-8 pl-12'>
-
-                                                <BiUser className='text-2xl'></BiUser>
-                                                <div className="avatar">
-                                                      <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
-                                                            {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
-                                                            AR
-                                                      </div>
-                                                </div>
-                                                <p>Md Saifull Islam</p>
-                                                <p>Hired candidate</p>
-                                                <br />
-                                                <br />
-                                                <p className='flex justify-end'> .....  about 19 Hours ago</p>
-
-                                          </div>
-
-                                          <div className="divider mt-6 font-bold"></div>
-                                          <div className="divider mt-6 font-bold"></div>
-                                          <div className='flex items-center gap-8 pl-12'>
-                                                <BiPhone className='text-2xl'></BiPhone>
-                                                <div className="avatar">
-                                                      <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
-                                                            {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
-                                                            AB
-                                                      </div>
-                                                </div>
-                                                <p>Anik Bissas Antor</p>
-                                                <p>assesment candidate</p>
-                                                <br />
-                                                <br />
-                                                <p className='flex justify-end'> .....  about 1 week  ago</p>
-
-                                          </div>
-
-                                          <div className="divider mt-6 font-bold"></div>
-
-                                    </div>
-                                    <footer className='text-center'>No more activities to view</footer>
-                              </TabPanel>
-                        </Tabs>
+              <div className="flex items-center gap-8 pl-12">
+                <BiSolidChat className="text-2xl"></BiSolidChat>
+                <div className="avatar">
+                  <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
+                    {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
+                    KH
                   </div>
+                </div>
+                <p>Kabir Hossain</p>
+                <p>interview candidate</p>
+                <br />
+                <br />
+                <p className="flex justify-end"> ..... about 23 Hours ago</p>
+              </div>
 
-            </div >
-      );
+              <div className="divider mt-6 font-bold"></div>
+              <div className="divider mt-6 font-bold"></div>
+              <div className="flex items-center gap-8 pl-12">
+                <BiUser className="text-2xl"></BiUser>
+                <div className="avatar">
+                  <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
+                    {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
+                    AR
+                  </div>
+                </div>
+                <p>Md Saifull Islam</p>
+                <p>Hired candidate</p>
+                <br />
+                <br />
+                <p className="flex justify-end"> ..... about 19 Hours ago</p>
+              </div>
+
+              <div className="divider mt-6 font-bold"></div>
+              <div className="divider mt-6 font-bold"></div>
+              <div className="flex items-center gap-8 pl-12">
+                <BiPhone className="text-2xl"></BiPhone>
+                <div className="avatar">
+                  <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 p-2 text-center">
+                    {/* <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> */}
+                    AB
+                  </div>
+                </div>
+                <p>Anik Bissas Antor</p>
+                <p>assesment candidate</p>
+                <br />
+                <br />
+                <p className="flex justify-end"> ..... about 1 week ago</p>
+              </div>
+
+              <div className="divider mt-6 font-bold"></div>
+            </div>
+            <footer className="text-center">No more activities to view</footer>
+          </TabPanel>
+        </Tabs>
+      </div>
+    </div>
+  );
 };
 
 export default CandidiateUserDetails;
