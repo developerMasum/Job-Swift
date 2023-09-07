@@ -1,11 +1,25 @@
-import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
-import { MdMessage } from "react-icons/md";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 
 export const ContactForm = () => {
   const form = useRef();
+    const hiddenSubmitButton = useRef();
+
+    useEffect(() => {
+      const handleKeyPress = (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          hiddenSubmitButton.current.click(); // Trigger form submission
+        }
+      };
+
+      document.addEventListener("keydown", handleKeyPress);
+
+      return () => {
+        document.removeEventListener("keydown", handleKeyPress);
+      };
+    }, []);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -172,6 +186,8 @@ export const ContactForm = () => {
           <button
             className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark"
             type="submit"
+            style={{ display: "none" }}
+            ref={hiddenSubmitButton} // Hidden submit button
           >
             Send
           </button>
