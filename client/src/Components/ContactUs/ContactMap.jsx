@@ -1,9 +1,13 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const ContactMap = () => {
   const mapRef = useRef(null);
+  const headerHeight = 80; // Replace with the actual height of your header
+
+  // Calculate the map container height
+  const [mapHeight, setMapHeight] = useState(window.innerHeight - headerHeight);
 
   useEffect(() => {
     // Initialize map
@@ -24,11 +28,24 @@ const ContactMap = () => {
     marker.bindPopup("Rajshahi, Bangladesh").openPopup();
   }, []);
 
+  // Update the map container height when the window is resized
+  useEffect(() => {
+    const handleResize = () => {
+      setMapHeight(window.innerHeight - headerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [headerHeight]);
+
   return (
     <div
       id="map"
-      className="map-container md:h-300 lg:h-500 p-4 border border-cyan-600"
-      style={{ width: "100%", height: "100%" }}
+      className="map-container p-4 border border-cyan-600"
+      style={{ width: "100%", height: `${mapHeight}px` }}
     ></div>
   );
 };
