@@ -218,17 +218,17 @@ const router = createBrowserRouter([
         path: "candidate",
         element: <Candidates />
       },
-     
+
       {
         path: "candidate/profile/:id",
         element: <CandidiateUserDetails />,
-       
+        // loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
       },
       {
         path: "settings/profile",
         element: <ProfileSettings />,
       },
-    
+
       {
         path: "report-center/candidiate-flow",
         element: <CandidiateFlow></CandidiateFlow>,
