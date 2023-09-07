@@ -24,7 +24,8 @@ const ShareAppliedDetails = ({stageName}) => {
         try {
           const response = await fetch("http://localhost:5000/all-applications");
           const data = await response.json();
-          setCandidates(data);
+          const firstFourData = data.slice(0, 3);
+          setCandidates(firstFourData);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -87,11 +88,12 @@ const ShareAppliedDetails = ({stageName}) => {
   
                         {activeTab === "tabs2" && (
                           <div className="space-y-2 pt-4">
-                            <img
+                            {/* <img
                               className="w-1/3 mx-auto"
                               src={hand}
                               alt="Hand"
-                            />
+                            /> */}
+                            <HiHand size={140} className="mx-auto"/>
                             <h4 className="font-semibold text-secondary text-xl">
                               No disqualified candidates
                             </h4>
@@ -103,7 +105,7 @@ const ShareAppliedDetails = ({stageName}) => {
                   <div className="w-2/3 ">
                     {activeTab === "tabs1" && (
                       <div className="space-y-2  text-start">
-                        <div className="flex gap-5 justify-end">
+                        <div className="md:flex hidden gap-5 justify-end">
                           <HiOutlineDotsHorizontal size={25} color="gray" />
                           <HiMail size={25} color="gray" />
                           <HiChat size={25} color="gray" />
