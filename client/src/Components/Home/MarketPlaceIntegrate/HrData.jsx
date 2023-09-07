@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
-
+import { Slide } from "react-awesome-reveal";
 const HrData = () => {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 px-10 md:px-0 md:mr-80 items-center justify-items-start">
-      <div className="">
+   <Slide>
+   <div className="">
         <h3 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
           HR Data & Reporting
         </h3>
@@ -24,13 +25,18 @@ const HrData = () => {
           </h4>
         </Link>
       </div>
-      <div className="mt-6 md:mt-0">
+
+    
+   </Slide>
+    <Slide direction="right">
+    <div className="mt-6 md:mt-0">
         <img
           src="https://www.bamboohr.com/media_11be2f9dd0ad8fc0e915c5d7d399ef102cd845269.png?width=2000&format=webply&optimize=medium"
           className="w-96 h-auto rounded-2xl"
           alt=""
         />
       </div>
+    </Slide>
     </div>
   );
 };

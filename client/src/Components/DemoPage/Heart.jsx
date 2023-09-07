@@ -5,7 +5,7 @@ const Heart = () => {
     <div className="max-w-[1100px] mx-auto">
       <div className="max-w-[800px] md:text-center mx-auto p-6 text-justify">
         <div className="space-y-6 mx-auto">
-          <h1 className="text-3xl md:text-4xl justify-self-center text-[#4eab63] font-extrabold">
+          <h1 className="text-3xl md:text-4xl justify-self-center text-primary font-extrabold">
             {" "}
             HR Software with Heart
           </h1>
