@@ -18,6 +18,7 @@ import BannerCompany from "../../Components/Home/Banner/BannerCompany";
 
 // import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
+import SendTextMessage from "../../Components/Dashboard/Candidate/SendTextMessage";
 
 const Home = () => {
   return (
@@ -84,7 +85,11 @@ const Home = () => {
 
           {/* Company */}
           {/* <Company /> */}
-          {/* Program Manager from Ashik faysal */}
+
+          <div className="mt-12">
+            
+            <SendTextMessage />
+          </div>
         </div>
       </div>
     </div>
