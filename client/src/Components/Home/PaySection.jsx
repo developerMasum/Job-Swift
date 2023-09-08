@@ -7,7 +7,7 @@ const PaySection = () => {
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 px-10 md:px-0   md:ml-96   items-center justify-items-end">
       <Slide direction="left">
         <div className=" ">
-          <h2 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
+          <h2 className="text-swift md:text-2xl font-bold text-xl text-center md:text-start mb-2">
             Payroll, Time & Benefits
           </h2>
           <p className="font-semibold text-swift leading-8">
@@ -18,10 +18,10 @@ const PaySection = () => {
           </p>
 
           <Link to="/single-pay" className="">
-            <h3 className="text-primary font-bold text-base text-start md:text-start mt-2 md:mt-8 ">
+            <h3 className="text-swift font-bold text-base text-start md:text-start mt-2 md:mt-8 ">
               Learn More About Payroll, Time & Benefits
               <span className="ml-2">
-                <FaChevronRight className="inline-block text-primary" />
+                <FaChevronRight className="inline-block text-swift" />
               </span>
             </h3>
           </Link>

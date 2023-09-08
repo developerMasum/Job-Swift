@@ -5,30 +5,30 @@ import Swal from "sweetalert2";
 export const ContactForm = () => {
   const form = useRef();
   console.log(form.current);
-    const hiddenSubmitButton = useRef();
+  const hiddenSubmitButton = useRef();
 
-    useEffect(() => {
-      const handleKeyPress = (event) => {
-        if (event.key === "Enter" && !event.shiftKey) {
-          event.preventDefault();
-          hiddenSubmitButton.current.click(); // Trigger form submission
-        }
-      };
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        hiddenSubmitButton.current.click(); // Trigger form submission
+      }
+    };
 
-      document.addEventListener("keydown", handleKeyPress);
+    document.addEventListener("keydown", handleKeyPress);
 
-      return () => {
-        document.removeEventListener("keydown", handleKeyPress);
-      };
-    }, []);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs
       .sendForm(
-        "service_pyxfski", 
-        "template_pk3511d", 
+        "service_pyxfski",
+        "template_pk3511d",
         form.current,
         "KFpl2_TKCnfpdz-y_"
       )
@@ -54,7 +54,7 @@ export const ContactForm = () => {
   return (
     <div className="max-w-md mx-auto p-4 border rounded-md shadow-md">
       <div className="text-center">
-        <h2 className="text-2xl text-primary font-semibold mb-2">Email Us</h2>
+        <h2 className="text-2xl text-swift font-semibold mb-2">Email Us</h2>
         <p className="mb-4">Just complete the form below</p>
       </div>
       <form ref={form} onSubmit={sendEmail}>

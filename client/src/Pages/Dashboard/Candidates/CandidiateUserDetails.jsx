@@ -129,7 +129,7 @@ const CandidiateUserDetails = () => {
             </div>
             <div className="px-4">
               <h1 className="flex gap-2 items-center mb-2 font-bold">
-                <FaUserTie size={20} className="text-primary" />
+                <FaUserTie size={20} className="text-swift" />
                 {firstName} {lastName}
               </h1>
               {educationList?.map((education, index) => {
@@ -137,17 +137,17 @@ const CandidiateUserDetails = () => {
               })}
 
               <h3 className="flex gap-2 items-center mb-2 font-semibold">
-                <BiLocationPlus size={20} className="text-primary" />
+                <BiLocationPlus size={20} className="text-swift" />
                 {location}
               </h3>
               <h3 className="flex gap-2 items-center font-semibold">
-                <BiPhone size={20} className="text-primary" />
+                <BiPhone size={20} className="text-swift" />
                 {phoneNumber}
               </h3>
             </div>
           </div>
           <div className="p-8">
-            <p className="font-bold text-primary hover:underline cursor-pointer">
+            <p className="font-bold text-swift hover:underline cursor-pointer">
               {jobTitle} <small className="ml-2 "> · interview</small>
             </p>
             <div>
@@ -164,7 +164,7 @@ const CandidiateUserDetails = () => {
           <TabList className="flex gap-12 mb-8 flex-col">
             <div>
               <div>
-                <article className="font-bold text-base uppercase text-primary">
+                <article className="font-bold text-base uppercase text-swift">
                   Education
                 </article>
                 <div>
@@ -198,7 +198,7 @@ const CandidiateUserDetails = () => {
           <TabPanel>
             {/* cover letter */}
             <div className="mb-2 border border-slate-100 py-5 pr-5 shadow-sm">
-              <p className="text-primary font-bold text-base mb-3">
+              <p className="text-swift font-bold text-base mb-3">
                 {" "}
                 COVER LETTER{" "}
               </p>
@@ -219,7 +219,7 @@ const CandidiateUserDetails = () => {
             </div>
             {/* summery */}
             <div className="mb-5 border border-slate-100 py-5 pr-5 shadow-sm">
-              <p className="text-primary font-bold text-base mb-3"> SUMMARY </p>
+              <p className="text-swift font-bold text-base mb-3"> SUMMARY </p>
               {summary ? (
                 <>
                   {" "}
@@ -243,24 +243,24 @@ const CandidiateUserDetails = () => {
 
             <div className="mt-10">
               <div>
-                <h1 className="text-primary font-bold text-base mb-3">
+                <h1 className="text-swift font-bold text-base mb-3">
                   CONTACT DETAILS
                 </h1>
                 <div className="mt-6">
                   <p className="flex items-center gap-2 my-2">
-                    <span className="text-primary">
+                    <span className="text-swift">
                       <FaMapMarkerAlt size={18} />
                     </span>
                     <span className="font-semibold">{location}</span>
                   </p>
                   <p className="flex items-center gap-2 my-2">
-                    <span className="text-primary">
+                    <span className="text-swift">
                       <FaPhone size={18} />
                     </span>
                     <span className="font-semibold">{phoneNumber}</span>
                   </p>
                   <p className="flex items-center gap-2 my-2">
-                    <span className="text-primary">
+                    <span className="text-swift">
                       <FaEnvelope size={18} />
                     </span>
                     <span className="font-semibold">{email}</span>
@@ -270,7 +270,7 @@ const CandidiateUserDetails = () => {
               <div className="divider mt-10 font-bold"></div>
 
               <div>
-                <h1 className="text-primary font-bold text-base mb-3 ">
+                <h1 className="text-swift font-bold text-base mb-3 ">
                   CONTACT PREFERENCES
                 </h1>
                 <div className="mt-6 text-swift">

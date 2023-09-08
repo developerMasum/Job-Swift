@@ -11,7 +11,7 @@ const ProgramManager = () => {
   return (
     <div>
       {/* Heading */}
-      <h1 className="text-3xl  font-bold text-center text-primary line leading-tight">
+      <h1 className="text-3xl  font-bold text-center text-swift line leading-tight">
         Manage your entire process, <br />
         from sourcing to employee onboarding <br />
         and management
@@ -34,7 +34,7 @@ const ProgramManager = () => {
             </p>
             <Link
               to={"/hr-data"}
-              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-primary font-bold"
+              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-swift font-bold"
             >
               Learn More
               <span>
@@ -60,7 +60,7 @@ const ProgramManager = () => {
             </p>
             <Link
               to={"/single-pay"}
-              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-primary font-bold"
+              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-swift font-bold"
             >
               Learn More
               <span>
@@ -83,7 +83,7 @@ const ProgramManager = () => {
               Fill your pipeline quickly with one-click job posting to <br />{" "}
               200+ sites, AI-powered sourcing, employee referrals and more.
             </p>
-            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-primary font-bold">
+            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-swift font-bold">
               Learn More
               <span>
                 <FaChevronRight className="inline-block"></FaChevronRight>
@@ -105,7 +105,7 @@ const ProgramManager = () => {
               Create custom onboarding experiences, have new hires e-sign <br />
               documents, and store all employee info in one place.
             </p>
-            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-primary font-bold">
+            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-swift font-bold">
               Learn More
               <span>
                 <FaChevronRight className="inline-block"></FaChevronRight>

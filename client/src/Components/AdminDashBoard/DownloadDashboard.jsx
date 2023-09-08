@@ -12,9 +12,7 @@ const DownloadDashboard = () => {
         <p className="text-sm font-bold space-x-2">
           {" "}
           Hey,{" "}
-          <span className="text-primary">
-            {user?.displayName || user?.email}
-          </span>
+          <span className="text-swift">{user?.displayName || user?.email}</span>
         </p>
         <p className="text-sm font-semibold space-x-2">
           Welcome to your dashboard

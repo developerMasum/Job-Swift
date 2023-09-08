@@ -7,7 +7,7 @@ const HrData = () => {
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 px-10 md:px-0 md:mr-80 items-center justify-items-start">
       <Slide>
         <div className="">
-          <h3 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
+          <h3 className="text-swift md:text-2xl font-bold text-xl text-center md:text-start mb-2">
             HR Data & Reporting
           </h3>
           <p className="text-swift font-semibold leading-8 md:mt-2">
@@ -16,11 +16,11 @@ const HrData = () => {
             back you up and keep you moving.
           </p>
           <Link to={"/hr-data"} className="">
-            <h4 className="text-primary font-bold text-base text-start md:text-start mt-2  md:mt-10 ">
+            <h4 className="text-swift font-bold text-base text-start md:text-start mt-2  md:mt-10 ">
               Learn More About HR Data & Reporting{" "}
               <span>
                 {" "}
-                <FaChevronRight className="inline-block text-primary" />
+                <FaChevronRight className="inline-block text-swift" />
               </span>
             </h4>
           </Link>

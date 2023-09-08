@@ -14,7 +14,7 @@ const PeopleDirectoryTab = () => {
           <h3 className="md:text-3xl text-xl ">People directory</h3>
           <button className="flex bg-[#c7f0f1] px-2 py-1 rounded-full gap-2 items-center">
             <FaPaperPlane color="107191" size={12} />
-            <span className="text-primary text-xs font-bold">BETA</span>
+            <span className="text-swift text-xs font-bold">BETA</span>
           </button>
         </div>
         <button className="bg-[#00756a] hover:bg-[#005f56] md:px-5 px-2 flex items-center gap-2 md:py-2 py-1 rounded-md transition-colors 3s ease-in-out text-white">
@@ -49,7 +49,7 @@ const PeopleDirectoryTab = () => {
                 </p>
               </div>
 
-              <button className="border-[#51c1b5] border md:px-5 px-2 py-1 md:py-2 rounded-xl hover:text-primary font-normal text-primary">
+              <button className="border-[#51c1b5] border md:px-5 px-2 py-1 md:py-2 rounded-xl hover:text-swift font-normal text-swift">
                 Upload a CSV
               </button>
             </div>

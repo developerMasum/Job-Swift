@@ -53,7 +53,7 @@ const AppliedCandidate = ({ candidates, stageName }) => {
 
   return (
     <div>
-      <div className="mt-5 text-secondary">
+      <div className="mt-5 text-second">
         <div className="flex px-2 justify-between w-full items-center ">
           <input type="checkbox" onChange={handleSelectAll} name="" id="box" />
           {/* <div className="">
@@ -67,16 +67,15 @@ const AppliedCandidate = ({ candidates, stageName }) => {
             </select>
           </div> */}
           <div className="">
-    <select
-      className="block appearance-none  w-full bg-gray-100 border-0 text-gray-700 py-1  rounded leading-tight focus:outline-none focus:bg-white"
-      value={sortOrder}
-      onChange={(e) => setSortOrder(e.target.value)}
-    >
-        <option value="newest">⬆ Newest First</option>
-        <option value="oldest">⬇ Oldest First</option>
-    </select>
-</div>
-
+            <select
+              className="block appearance-none  w-full bg-gray-100 border-0 text-gray-700 py-1  rounded leading-tight focus:outline-none focus:bg-white"
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+            >
+              <option value="newest">⬆ Newest First</option>
+              <option value="oldest">⬇ Oldest First</option>
+            </select>
+          </div>
         </div>
         <table className="w-full">
           {/* head */}
@@ -84,10 +83,7 @@ const AppliedCandidate = ({ candidates, stageName }) => {
           <tbody className="py-12">
             {/* rows */}
             {candidatesList.map((candidate, index) => (
-              <tr
-                key={index}
-                className="border-t border-gray-300 text-secondary "
-              >
+              <tr key={index} className="border-t border-gray-300 text-second ">
                 <td className="p-2 ">
                   <label className="">
                     <input
@@ -109,7 +105,7 @@ const AppliedCandidate = ({ candidates, stageName }) => {
                       />
                     </div>
                     <div>
-                      <p className="text-lg mb-1 font-semibold text-secondary">
+                      <p className="text-lg mb-1 font-semibold text-second">
                         {candidate.firstName} {candidate.lastName}
                       </p>
                       {candidate.educationList ? (

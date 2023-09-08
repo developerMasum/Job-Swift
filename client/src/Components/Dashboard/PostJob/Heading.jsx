@@ -39,7 +39,7 @@ const Heading = () => {
           <button className="bg-[#1F7068] text-white px-4 py-2 rounded-md font-semibold hover:bg-opacity-90 transition-colors">
             Save Draft
           </button>
-          <button className="border-[1px] border-[#1F7068] text-primary px-4 py-2 rounded-md font-semibold hover:bg-[#F4F4F4] transition-colors">
+          <button className="border-[1px] border-[#1F7068] text-swift px-4 py-2 rounded-md font-semibold hover:bg-[#F4F4F4] transition-colors">
             Save & Continue
           </button>
         </div>

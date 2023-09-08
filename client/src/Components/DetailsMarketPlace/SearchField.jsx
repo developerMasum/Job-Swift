@@ -20,7 +20,7 @@ const SearchField = () => {
         <input
           type="text"
           id="searchInput"
-          className="w-full border border-gray-300 rounded-full py-2 px-4 mb-4 focus:outline-none focus:ring focus:border-text-primary"
+          className="w-full border border-gray-300 rounded-full py-2 px-4 mb-4 focus:outline-none focus:ring focus:border-text-swift"
           placeholder='Try Searching "Applicant Tracking Software"'
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
