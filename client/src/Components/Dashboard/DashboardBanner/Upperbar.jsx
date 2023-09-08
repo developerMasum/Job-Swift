@@ -182,7 +182,7 @@ const UpperBar = () => {
       )}
 
       {!isAdmin && (
-        <div className="flex justify-between navbar rounded-xl text-black shadow-xl bg-slate-100 fixed z-10  md:flex-row  max-w-7xl mx-auto ">
+        <div className="flex justify-between font-bold navbar rounded-xl text-black shadow-xl bg-slate-100 fixed z-10  md:flex-row  max-w-7xl mx-auto ">
           <div className="flex  lg:md:gap-10  ">
             {/* responsive Mobile view----------------------- */}
             <div className="dropdown ">
@@ -281,7 +281,7 @@ const UpperBar = () => {
 
           {/* large screen view start------------------------------------- */}
 
-          <div className="semi-bold hidden lg:md:flex ">
+          <div className="hidden lg:md:flex ">
             <ul className="menu menu-horizontal  ">
               <li>
                 <Link to={"jobs"}>JOBS</Link>
@@ -458,10 +458,10 @@ const UpperBar = () => {
                     </li>
                     {user && (
                       <>
-                        <div className="text-center">
+                        <div className="text-center w-14 mx-auto">
                           <li
                             onClick={handleLogOut}
-                            className="btn btn-outline btn-xs text-xs btn-error mx-auto my-3 "
+                            className="border border-red-700 rounded-md p-1 hover:bg-red-500 text-xs  mx-auto my-3 "
                           >
                             Log-out
                           </li>
