@@ -11,7 +11,7 @@ const UsersAdmin = () => {
     // console.log(a);
     return res.data;
   });
-  console.log(users);
+  // console.log(users);
 
   const makeAdmin = (user) => {
     console.log("make admin", user);
@@ -68,7 +68,7 @@ const UsersAdmin = () => {
         <p className="font-bold">
           Users : <span className="">{users.length}</span>
         </p>
-        <p className="text-primary font-bold"> Managing the Team Members </p>
+        <p className="text-swift font-bold"> Managing the Team Members </p>
       </div>
       <div>
         <table className="w-full border-collapse border-b">
@@ -91,6 +91,9 @@ const UsersAdmin = () => {
               </th>
               <th className="bg-gray-200 text-left px-4 py-2 font-bold">
                 Role
+              </th>
+              <th className="bg-gray-200 text-left px-4 py-2 font-bold">
+                Action
               </th>
             </tr>
           </thead>

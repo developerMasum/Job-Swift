@@ -3,7 +3,9 @@ import ProgressCards from "./ProgressCards";
 import DownloadDashboard from "./DownloadDashboard";
 import AdminLineChart from "./Charts/AdminLineChart";
 import TopCompanyTable from "./TopCompanyTable";
-import GeographyChart from "./GeographyChart";
+import GeographyChart from "./Charts/GeographyChart";
+import AdminPieChart from "./Charts/AdminPieChart";
+// import GeographyChart from "./Charts/GeographyChart";
 
 const HomeAdmin = () => {
   return (
@@ -15,6 +17,7 @@ const HomeAdmin = () => {
      <div  > <AdminLineChart /> </div>
      <div  > <TopCompanyTable /></div>
      <div> <GeographyChart /> </div>
+     <div> <AdminPieChart /> </div>
       </div>
     </div>
   );

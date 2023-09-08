@@ -21,6 +21,9 @@ const Overview = () => {
   // console.log(formData);
   const jobTitle = formData.jobTitle;
   const [tabIndex, setTabIndex] = useState(0);
+  const currentPath = window.location.pathname;
+  console.log(currentPath);
+  localStorage.setItem('URL', currentPath)
   return (
     <div className="container">
       <div className="border-[1px]">

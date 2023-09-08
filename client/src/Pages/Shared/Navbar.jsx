@@ -69,7 +69,6 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-200 rounded-box w-80"
             >
               {navLink}
-
               <div className="input-group my-3 ml-6">
                 <input
                   type="text"
@@ -182,9 +181,11 @@ const Navbar = () => {
                   Dashboard
                 </button>
               </Link> :
-              <Link to={'/demo-page'}>
-                <button className=" btn btn-primary px-8 hover:bg-white  bg-cyan-500   hidden md:block">Demo</button>
-              </Link>
+             <Link to="/demo-page">
+             <button className="py-2.5 px-5 rounded-xl  border border-cyan-600 hover:bg-white hover:text-cyan-700 hidden md:block">
+               Demo
+             </button>
+           </Link>
 
           }
 

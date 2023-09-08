@@ -18,7 +18,7 @@ import { createJobPost } from "../../../redux/jobSlice";
 import { toast } from "react-hot-toast";
 import Tips from "../../../Components/Dashboard/PostJob/Tips";
 
-import { getAllPost } from "../../../redux/postJob/api";
+// import { getAllPost } from "../../../redux/postJob/api";
 import { useDispatch, useSelector } from "react-redux";
 import { authContext } from "../../../Auth/AuthProvider";
 // import CustomModal from "./CustomModal";
@@ -56,8 +56,8 @@ export const PostJob = () => {
     try {
       await dispatch(createJobPost(postData));
 
-      const serializedData = encodeURIComponent(JSON.stringify(data));
-      navigate(`/overview?data=${serializedData}`);
+      // const serializedData = encodeURIComponent(JSON.stringify(data));
+      navigate('/dashboard/jobs');
       toast.success("Successfully post your job !");
     } catch (error) {
       console.error("Error submitting form:", error);

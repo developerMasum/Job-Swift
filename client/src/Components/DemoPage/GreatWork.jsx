@@ -1,11 +1,9 @@
-
-
 const GreatWork = () => {
   return (
     <div className="max-w-[1100px] mx-auto mt-20">
       <div className=" flex justify-center items-center ">
         <div className="max-w-[700px] text-justify space-y-5">
-          <h1 className=" text-2xl md:text-4xl font-extrabold text-primary text-center">
+          <h1 className=" text-2xl md:text-4xl font-extrabold text-swift text-center">
             We set people free to do great work.
           </h1>
           <p className="text-center text[18px] text-gray-500">

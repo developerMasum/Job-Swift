@@ -5,24 +5,21 @@
 :root {
   --rounded-btn: 0.5rem;
 }
-
+/* text-swift
+text-second */
 @layer utilities {
-  .text-primary {
+  .text-swift {
     color: #0e7490;
   }
 
-  .text-secondary {
+  .text-second {
     @apply text-gray-700;
   }
-
-
-
 }
 
 .background {
   background-image: url("./assets/Register/light_submit_2-[Converted].png");
   width: 100%;
-
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -57,4 +54,13 @@
 
 .style {
   animation: upDownLeftRightAnimation 5s infinite;
+}
+
+.bg-image {
+  background-image: url("https://i.ibb.co/6Yh2jHb/user-2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  /* background-size: contain; */
+  /* background-attachment: fixed; */
 }

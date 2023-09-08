@@ -8,20 +8,17 @@ import Banner from "../../Components/Home/Banner/Banner";
 import Slider from "../../Components/Home/Slider/Slider";
 // import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
 
-
 import { Fade, Slide, Zoom } from "react-awesome-reveal";
 
 // import NewBanner from "../../Components/Test/NewBanner";
 // import HRPlatform from "../../Components/Test/HRPlatform";
 import EmployeeExperienceSection from "../../Components/Test/EmployeeExperienceSection";
-import BannerCompany from "../../Components/Home/Banner/BannerCompany";
 
+import BannerCompany from "../../Components/Home/Banner/BannerCompany";
 
 // import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
 import SendTextMessage from "../../Components/Dashboard/Candidate/SendTextMessage";
-
-
 
 const Home = () => {
   return (
@@ -80,7 +77,7 @@ const Home = () => {
 
           {/* slider */}
           <div className="mt-12">
-            <h2 className="text-3xl font-bold text-center text-primary font-sans ">
+            <h2 className="text-3xl font-bold text-center text-swift font-sans ">
               Why People Love JobSwift
             </h2>
             <Slider />

@@ -8,10 +8,11 @@
         "location":"Dhaka, Dhaka Division, Bangladesh",
         "jobPosition": "Manager", 
         "stage":"applied",
-        "cover-letter":"no upload",
+        "coverLetter":"no upload",
         "resume":"upload",
         "summary":"ASF",
         "contact":"017555555745",
+        "email":"test@gmail.com",
         "education":{
             "educationName":"Bsc",
             "collegeName":"Dhaka, College", 

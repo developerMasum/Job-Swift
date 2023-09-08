@@ -32,7 +32,6 @@ import CandidateSource from "../Pages/Dashboard/Report/CandidateSource";
 import HiringVelocity from "../Pages/Dashboard/Report/HiringVelocity";
 import ProductivityReport from "../Pages/Dashboard/Report/ProductivityReport";
 import HistoricPipeline from "../Pages/Dashboard/Report/HistoricPipeline";
-import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
 import TimeToHire from "../Pages/Dashboard/Report/TimeToHire";
 
 import Overview from "../Components/Overview/Overview";
@@ -53,6 +52,10 @@ import UsersAdmin from "../Components/AdminDashBoard/UsersAdmin";
 import CandidateProfile from "../Components/Dashboard/Candidate/CandidateProfile";
 import AdminRoute from "./AdminRoute";
 import ProfileSettings from "../Components/Dashboard/UserSettings/ProfileSettings";
+import CandidiateUserDetails from "../Pages/Dashboard/Candidates/CandidiateUserDetails";
+
+import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
+import EditJobs from "../Pages/Dashboard/Jobs/EditJobs/EditJobs";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -110,7 +113,13 @@ const router = createBrowserRouter([
         path: "/overview/:id",
         element: <Overview />,
         loader: ({ params }) =>
-        fetch(`http://localhost:5000/job_post/${params.id}`),
+          fetch(`http://localhost:5000/job_post/${params.id}`),
+      },
+      {
+        path: "/editJobs/:id",
+        element: <EditJobs />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/all-post/${params.id}`),
       },
     ],
   },
@@ -128,20 +137,32 @@ const router = createBrowserRouter([
       },
       {
         path: "admin/dashboard",
-        element: <AdminRoute><HomeAdmin /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <HomeAdmin />
+          </AdminRoute>
+        ),
       },
       {
         path: "admin/users",
-        element: <AdminRoute><UsersAdmin /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <UsersAdmin />
+          </AdminRoute>
+        ),
       },
       {
         path: "jobs/post-job",
         element: <PostJob />,
       },
       {
-        path: "jobs/applied-job",
+        path: "jobs/applied-job/:id",
         element: <AppliedJobs />,
+
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/all-post/${params.id}`),
       },
+      
 
       {
         path: "jobs/findCandidates",
@@ -155,6 +176,7 @@ const router = createBrowserRouter([
             path: "candidates",
             element: <FindCandidates></FindCandidates>,
           },
+
           {
             path: "applicationForm",
             element: <ApplicationForm></ApplicationForm>,
@@ -205,47 +227,43 @@ const router = createBrowserRouter([
       },
       {
         path: "candidate",
-        element: <Candidates />,
+        element: <Candidates />
       },
+
       {
         path: "candidate/profile/:id",
-        element: <CandidateProfile />,
-        // loader: (params)=> fetch(`http://localhost:5000/all-applications/${params.id}`)
+        element: <CandidiateUserDetails />,
+        // loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
       },
       {
-        path:"settings/profile",
-        element: <ProfileSettings />
-      },
-      {
-        path: 'report-center/candidiate-flow',
-        element: <CandidiateFlow></CandidiateFlow>
-
+        path: "settings/profile",
+        element: <ProfileSettings />,
       },
 
       {
-        path: 'report-center/candidiate-source',
-        element: <CandidateSource></CandidateSource>
+        path: "report-center/candidiate-flow",
+        element: <CandidiateFlow></CandidiateFlow>,
+      },
 
+      {
+        path: "report-center/candidiate-source",
+        element: <CandidateSource></CandidateSource>,
       },
       {
-        path: 'report-center/hiring-velocity',
-        element: <HiringVelocity></HiringVelocity>
-
+        path: "report-center/hiring-velocity",
+        element: <HiringVelocity></HiringVelocity>,
       },
       {
-        path: 'report-center/time-to-hire',
-        element: <TimeToHire></TimeToHire>
-
+        path: "report-center/time-to-hire",
+        element: <TimeToHire></TimeToHire>,
       },
       {
-        path: 'report-center/productivity-report',
-        element: <ProductivityReport></ProductivityReport>
-
+        path: "report-center/productivity-report",
+        element: <ProductivityReport></ProductivityReport>,
       },
       {
-        path: 'report-center/historic-pipeline',
-        element: <HistoricPipeline></HistoricPipeline>
-
+        path: "report-center/historic-pipeline",
+        element: <HistoricPipeline></HistoricPipeline>,
       },
     ],
   },

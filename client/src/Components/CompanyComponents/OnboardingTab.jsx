@@ -12,10 +12,10 @@ const OnboardingTab = () => {
           <h3 className="md:text-3xl text-xl ">People directory</h3>
           <button className="flex bg-[#c7f0f1] px-2 py-1 rounded-full gap-2 items-center">
             <FaPaperPlane color="107191" size={12} />
-            <span className="text-primary text-xs font-bold">BETA</span>
+            <span className="text-swift text-xs font-bold">BETA</span>
           </button>
         </div>
-        <p className="text-start text-secondary">
+        <p className="text-start text-swift">
           Track the progress of all workflows in the company
         </p>
       </div>
@@ -90,7 +90,7 @@ const OnboardingTab = () => {
               <h5 className="font-medium text-xl">
                 Assign onboarding to new employees
               </h5>
-              <p className="text-sm text-secondary ">
+              <p className="text-sm text-swift ">
                 New hires who have not yet been assigned{" "}
                 <span className="font-medium hover:underline">
                   onboarding workflows
@@ -105,7 +105,7 @@ const OnboardingTab = () => {
               <h5 className="font-medium text-xl">
                 Assign onboarding to new employees
               </h5>
-              <p className=" text-sm text-secondary ">
+              <p className=" text-sm text-swift ">
                 Employees who have been assigned{" "}
                 <span className="font-medium hover:underline">
                   onboarding workflows
@@ -120,7 +120,7 @@ const OnboardingTab = () => {
               <h5 className="font-medium text-xl">
                 See employee onboarding in progress
               </h5>
-              <p className=" text-sm text-secondary ">
+              <p className=" text-sm text-swift ">
                 New hires who have started an
                 <span className="font-medium hover:underline">
                   onboarding workflows
@@ -135,7 +135,7 @@ const OnboardingTab = () => {
               <h5 className="font-medium text-xl">
                 Review completed onboarding
               </h5>
-              <p className=" text-sm text-secondary ">
+              <p className=" text-sm text-swift ">
                 Employees who have finished their onboarding will appear in
                 ‘Complete’.
               </p>
@@ -147,7 +147,7 @@ const OnboardingTab = () => {
               <h5 className="font-medium text-xl">
                 Review incomplete onboarding
               </h5>
-              <p className=" text-sm text-secondary ">
+              <p className=" text-sm text-swift ">
                 Employees who didn’t finish their onboarding and are past their
                 start date will appear in ‘Incomplete’.
               </p>

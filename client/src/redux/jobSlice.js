@@ -49,5 +49,6 @@ const jobSlice = createSlice({
   },
 });
 
+
 export  { createUser, getUsers,createJobPost };
 export default jobSlice.reducer;

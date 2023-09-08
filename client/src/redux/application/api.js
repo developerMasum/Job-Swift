@@ -9,7 +9,7 @@ export const createApplicationPost = createAsyncThunk(
         "http://localhost:5000/application-post",
         data
       );
-      console.log(response.data);
+      // console.log(response.data);
       return response.data; // Return the data received from the server if needed
     } catch (error) {
       // Return the error payload using rejectWithValue
