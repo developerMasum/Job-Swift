@@ -29,5 +29,6 @@ const postSlice = createSlice({
           }
 })
 
+
 export  { getAllPost } 
 export default postSlice.reducer;

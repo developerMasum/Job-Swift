@@ -6,6 +6,7 @@ import PostJobs from "./PostJobs";
 import icons1 from "../../../assets/Image/jobsicon1.png";
 import icons2 from "../../../assets/Image/jobsicons.png";
 import icons3 from "../../../assets/Image/josbicns3.png";
+
 const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
 
 import { AiFillStar } from "react-icons/ai";
@@ -13,13 +14,11 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "../../../redux/postJob/postSlice";
 import { authContext } from "../../../Auth/AuthProvider";
-// import { getAllPost } from "../../../redux/postJob/api";
 const Jobs = () => {
   const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
   const [isSecondOpen, setSecondOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
   const { user } = useContext(authContext);
 
   const jobs = useSelector((state) => state.posts.jobs);
@@ -27,25 +26,11 @@ const Jobs = () => {
   const postId = useSelector((state) => state.posts.jobs).map(
     (post) => post._id
   );
-  // console.log("from filter", filter);
-
-  // setJobs(jobs)
-  // console.log("all jobs", isJobs);
 
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
 
-  // useEffect(() => {
-  //   fetch("/Jobs.json")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setJobs(data);
-  //     })
-  //     .catch((error) =>
-  //       console.error("Error fetching testimonial data:", error)
-  //     );
-  // }, []);
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       {/* Down nav */}
@@ -229,7 +214,7 @@ const Jobs = () => {
                   Invite your team to Workable so you can share feedback and
                   work together to hire the right people.
                 </p>
-                <button className="px-4 py-1 text-primary font-semibold border border-[#00673B] rounded-md">
+                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
                   Send invite{" "}
                 </button>
               </div>
@@ -250,7 +235,7 @@ const Jobs = () => {
                   Ensure candidates see your company logo and custom description
                   on job posts, emails and more.
                 </p>
-                <button className="px-4 py-1 text-primary font-semibold border border-[#00673B] rounded-md">
+                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
                   Send invite{" "}
                 </button>
               </div>
@@ -273,7 +258,7 @@ const Jobs = () => {
                   Workable is best when it's customized for you. Check out all
                   of our features with a personal walkthrough.
                 </p>
-                <button className="px-4 py-1 text-primary font-semibold border border-[#00673B] rounded-md">
+                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
                   Send invite{" "}
                 </button>
               </div>

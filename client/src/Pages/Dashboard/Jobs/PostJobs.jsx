@@ -4,17 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const PostJobs = ({ jobs }) => {
-  // console.log('from prob',jobs);
   const [isVisible, setIsVisible] = useState(false);
-  // console.log(jobs);
-  // get job id for data show
-
-  // console.log(postId);
-  // const handlePublish =(id)=>{
-  //   console.log('from click',id);
-
-  // }
-
   const {
     jobTitle,
     cityName,
@@ -31,6 +21,15 @@ const PostJobs = ({ jobs }) => {
     lastCandidateDate,
     _id,
   } = jobs;
+  const handleDelete = async (id) => {
+    const response = await fetch(`http://localhost:5000/all-post/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   return (
     <div
       className="py-8 rounded-lg  lg:md:px-8 px-6   bg-white mt-5"
@@ -42,7 +41,7 @@ const PostJobs = ({ jobs }) => {
       <div className="lg:md:flex justify-between ">
         <div className="flex lg:md:gap-2  items-center">
           <MdStar size={25} color="#ffca00" />
-          <Link to="applied-job">
+          <Link to={`applied-job/${_id}`}>
             <h2 className="lg:md:text-xl lg:md:font-medium  hover:underline">
               {jobTitle}
             </h2>
@@ -68,7 +67,7 @@ const PostJobs = ({ jobs }) => {
             <div className="-ml-56">
               {isVisible && (
                 <div
-                  className="lg:md:absolute text-sm  text-swift mt-2 mx-auto lg:md:w-96 w-60 rounded-lg shadow-lg space-y-2  bg-white"
+                  className="lg:md:absolute text-sm  text-second mt-2 mx-auto lg:md:w-96 w-60 rounded-lg shadow-lg space-y-2  bg-white"
                   style={{
                     boxShadow:
                       "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
@@ -86,25 +85,27 @@ const PostJobs = ({ jobs }) => {
 
                   <button
                     disabled
-                    className="py-3 border hover:border hover:border-yellow-100 hover:bg-yellow-50 px-3  space-y-2 text-start "
+                    className="py-3  hover:bg-teal-700 hover:text-white  px-3  space-y-2 text-start "
                   >
-                    <h6 className="font-semibold">Use Confidentially</h6>
-                    <p>
-                      Only visible to account admins and members of the hiring
-                      team. Other account members cannot refer candidates or ask
-                      to join the hiring team.
-                    </p>
+                    <Link to={`/editJobs/${_id}`}>
+                      <h6 className="font-semibold">Use Edit</h6>
+                      <p>
+                        Editable only by account admins and members of the
+                        hiring team. Other account members cannot refer
+                        candidates or request to join the hiring team
+                      </p>
+                    </Link>
                   </button>
 
                   <button
-                    disabled
-                    className="py-3 px-3 hover:bg-yellow-50 space-y-2 text-start "
+                    onClick={() => handleDelete(_id)}
+                    className="py-3  hover:bg-teal-700 hover:text-white  px-3  space-y-2 text-start "
                   >
-                    <h6 className="font-semibold">Used Confidentially</h6>
+                    <h6 className="font-semibold">Used Delete</h6>
                     <p>
-                      Only visible to account admins and members of the hiring
-                      team. Other account members cannot refer candidates or ask
-                      to join the hiring team.
+                      Only delete permissions are given to account admins and
+                      members of the hiring team. Other account members cannot
+                      refer candidates or ask to join the hiring team.
                     </p>
                   </button>
                 </div>

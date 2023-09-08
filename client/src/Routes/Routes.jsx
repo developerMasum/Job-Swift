@@ -32,7 +32,6 @@ import CandidateSource from "../Pages/Dashboard/Report/CandidateSource";
 import HiringVelocity from "../Pages/Dashboard/Report/HiringVelocity";
 import ProductivityReport from "../Pages/Dashboard/Report/ProductivityReport";
 import HistoricPipeline from "../Pages/Dashboard/Report/HistoricPipeline";
-import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
 import TimeToHire from "../Pages/Dashboard/Report/TimeToHire";
 
 import Overview from "../Components/Overview/Overview";
@@ -55,6 +54,8 @@ import AdminRoute from "./AdminRoute";
 import ProfileSettings from "../Components/Dashboard/UserSettings/ProfileSettings";
 import CandidiateUserDetails from "../Pages/Dashboard/Candidates/CandidiateUserDetails";
 
+import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
+import EditJobs from "../Pages/Dashboard/Jobs/EditJobs/EditJobs";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -114,6 +115,12 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/job_post/${params.id}`),
       },
+      {
+        path: "/editJobs/:id",
+        element: <EditJobs />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/all-post/${params.id}`),
+      },
     ],
   },
   {
@@ -149,9 +156,13 @@ const router = createBrowserRouter([
         element: <PostJob />,
       },
       {
-        path: "jobs/applied-job",
+        path: "jobs/applied-job/:id",
         element: <AppliedJobs />,
+
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/all-post/${params.id}`),
       },
+      
 
       {
         path: "jobs/findCandidates",

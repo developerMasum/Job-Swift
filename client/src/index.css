@@ -15,14 +15,11 @@
     @apply text-gray-700;
   }
 
-
-
 }
 
 .background {
   background-image: url("./assets/Register/light_submit_2-[Converted].png");
   width: 100%;
-
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
