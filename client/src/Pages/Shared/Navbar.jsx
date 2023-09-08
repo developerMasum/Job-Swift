@@ -47,7 +47,7 @@ const Navbar = () => {
     <>
       <div className="navbar fixed z-10 bg-opacity-100 max-w-screen-xl bg-slate-200 text-black shadow-lg">
         <div className="flex justify-around gap-40 lg:md:navbar-start lg:md:gap-10">
-          <div className="dropdown bg-green-400">
+          <div className="dropdown bg-sky-600">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-200 rounded-box w-80"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-300 rounded-box w-80"
             >
               {navLink}
               <div className="input-group my-3 ml-6">
@@ -94,10 +94,10 @@ const Navbar = () => {
               </div>
 
               <div className="flex gap-6 justify-center items-center mr-8">
-                <Link to={`/login`} className="flex btn btn-outline text-green-600 font-bold btn-sm my-3 w-1/3">
+                <Link to={`/login`} className="flex btn btn-outline font-bold btn-sm my-3 w-1/3">
                   Log In
                 </Link>
-                <Link to={'/demo-page'} className="btn btn-outline  bg-green-500 btn-sm mt-4 lg:md:mt-0 my-3 w-1/2">
+                <Link to={'/demo-page'} className="btn btn-outline   btn-sm mt-4 lg:md:mt-0 my-3 w-1/2">
                   Get a Demo
                 </Link>
               </div>
@@ -181,11 +181,11 @@ const Navbar = () => {
                   Dashboard
                 </button>
               </Link> :
-             <Link to="/demo-page">
-             <button className="px-8 py-2 bg-cyan-500 rounded-md hover:bg-white hover:border border hover:border-cyan-600 text-second hidden md:block">
-               Demo
-             </button>
-           </Link>
+              <Link to="/demo-page">
+                <button className="py-2.5 px-5 rounded-xl  border border-cyan-600 hover:bg-white hover:text-cyan-700 hidden md:block">
+                  Demo
+                </button>
+              </Link>
 
           }
 
