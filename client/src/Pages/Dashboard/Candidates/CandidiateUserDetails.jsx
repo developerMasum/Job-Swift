@@ -127,7 +127,7 @@ const CandidiateUserDetails = () => {
       <div>
         <div className="shadow-2xl flex justify-between">
           <div className="p-8 flex ">
-            <div> 
+            <div>
               <img
                 className="h-24 w-24 rounded-xl border border-sky-600"
                 src={`https://sojib-job-swift.vercel.app/images/${image}`}
