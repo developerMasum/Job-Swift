@@ -3,10 +3,10 @@ import { FaFacebook, FaGithub, FaYoutube, FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
     <>
-      <footer className="footer px-10 py-4 border-2 text-base-content border-sky-600">
+      <footer className="footer px-10 py-4 border-2 text-base-content border-sky-200">
         <div className="items-center grid-flow-col">
           <img
-            className="h-12 border-2 border-sky-600 rounded-xl"
+            className="h-12 border-2 border-sky-200 rounded-xl"
             src={logo3}
             alt=""
           />
@@ -16,7 +16,7 @@ const Footer = () => {
           </p>
         </div>
         <div className="md:place-self-center md:justify-self-end">
-          <div className="grid grid-flow-col gap-4">
+          <div className="grid grid-flow-col gap-4 text-center">
             <a href="">
               <FaFacebook className="h-8 w-8"></FaFacebook>
             </a>
@@ -32,7 +32,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <footer className="footer p-10 bg-sky-600 bg-opacty-30  ">
+      <footer className="footer p-10 bg-sky-200 bg-opacty-30  ">
         <div className="flex justify-between  w-5/6">
           <div className="flex flex-col">
             <span className="font-bold text-black">Services</span>
