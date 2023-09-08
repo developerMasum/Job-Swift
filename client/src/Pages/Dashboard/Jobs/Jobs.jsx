@@ -65,7 +65,7 @@ const Jobs = () => {
             </button>
           </div>
           <Link to="post-job">
-            <button className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
+            <button className="bg-cyan-700 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
               Create a New Job
             </button>
           </Link>
@@ -171,7 +171,7 @@ const Jobs = () => {
 
       <div className="mx-2 lg:md:mx-0 flex gap-8 border-[1px] rounded-md   border-gray-300 p-6 items-center bg-white justify-between">
         <div className="flex flex-col space-y-3">
-          <h2 className="text-3xl font-bold text-cyan-600"> Post a job</h2>
+          <h2 className="text-xl font-bold text-second"> Post a job</h2>
           <p className="text-gray-500">
             Get your job listing in front of millions of candidates today. Do
             things faster with a choice of over 700 job description templates,{" "}
