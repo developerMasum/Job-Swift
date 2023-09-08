@@ -86,7 +86,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
                 />
 
                 <div className='flex justify-start items-center'>
-                <p className='text-xs font-semibold'>Use template </p>
+                <p className='text-xs font-semibold text-swift'>Use template </p>
                 <button
                   type="button"
                   className="text-green-700 underline text-sm font-bold py-2 px-4 rounded"
@@ -148,7 +148,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
             <div className="text-center mt-4">
       <button
         type="submit"
-        className=" hover:bg-slate-400 bg-cyan-800 text-white font-bold py-2 px-4 rounded"
+        className=" hover:bg-slate-400 bg-cyan-800 w-full text-white font-bold py-2 px-4 rounded"
       >
        Send  <FiSend className='inline-block' /> 
       </button>
