@@ -130,7 +130,7 @@ const CandidiateUserDetails = () => {
             <div>
               <img
                 className="h-24 w-24 rounded-xl border border-sky-600"
-                src={`https://sojib-job-swift.vercel.app/images/${image}`}
+                src={`http://localhost:5000/images/${image}`}
                 alt=""
               />
             </div>

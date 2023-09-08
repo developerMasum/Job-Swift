@@ -245,7 +245,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 flex-shrink-0">
                     <img
-                      src={`https://sojib-job-swift.vercel.app/images/${candidate.image}`}
+                      src={`http://localhost:5000/images/${candidate.image}`}
                       alt=""
                       className="w-full h-full object-cover rounded-full"
                     />
