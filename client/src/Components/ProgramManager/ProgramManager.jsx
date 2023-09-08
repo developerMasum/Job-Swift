@@ -28,13 +28,13 @@ const ProgramManager = () => {
             <h4 className="text-lg font-semibold">
               Find and attract candidates
             </h4>
-            <p className="text-gray-500 font-semibold my-6">
+            <p className="text-second font-semibold my-6">
               Fill your pipeline quickly with one-click job posting to 200+
               sites, <br /> AI-powered sourcing, employee referrals and more.
             </p>
             <Link
               to={"/hr-data"}
-              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-swift font-bold"
+              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-gray-700 font-bold"
             >
               Learn More
               <span>
@@ -53,14 +53,14 @@ const ProgramManager = () => {
             <h4 className="text-lg text-swift font-semibold">
               Move the right applicants forward
             </h4>
-            <p className="text-gray-500 font-semibold my-6">
+            <p className="text-second font-semibold my-6">
               Collaborate with hiring teams to evaluate applicants, gather{" "}
               <br />
               feedback and decide who's best, all in one recruiting system.
             </p>
             <Link
               to={"/single-pay"}
-              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-swift font-bold"
+              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-gray-700 font-bold"
             >
               Learn More
               <span>
@@ -79,11 +79,11 @@ const ProgramManager = () => {
             <h4 className="text-lg text-swift font-semibold">
               Make the best hire, in half the time
             </h4>
-            <p className="text-gray-500 font-semibold my-6">
+            <p className="text-second font-semibold my-6">
               Fill your pipeline quickly with one-click job posting to <br />{" "}
               200+ sites, AI-powered sourcing, employee referrals and more.
             </p>
-            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-swift font-bold">
+            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-gray-700 font-bold">
               Learn More
               <span>
                 <FaChevronRight className="inline-block"></FaChevronRight>
@@ -101,11 +101,11 @@ const ProgramManager = () => {
             <h4 className="text-lg text-swift font-semibold">
               Help great hires become great employees
             </h4>
-            <p className="text-gray-500 font-semibold my-6">
+            <p className="text-second font-semibold my-6">
               Create custom onboarding experiences, have new hires e-sign <br />
               documents, and store all employee info in one place.
             </p>
-            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-swift font-bold">
+            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-gray-700 font-bold">
               Learn More
               <span>
                 <FaChevronRight className="inline-block"></FaChevronRight>

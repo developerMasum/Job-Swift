@@ -76,7 +76,7 @@ const Home = () => {
 
           {/* slider */}
           <div className="mt-12">
-            <h2 className="text-3xl font-bold text-center text-swift font-sans ">
+            <h2 className="md:text-4xl text-2xl mb-12 md:mb-0 font-bold text-center text-gray-800 font-sans ">
               Why People Love JobSwift
             </h2>
             <Slider />

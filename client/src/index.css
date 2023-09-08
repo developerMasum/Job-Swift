@@ -12,7 +12,7 @@ text-second */
     color: #0e7490;
   }
 
-  .text-second {
+  .text-second{
     @apply text-gray-700;
   }
 }
