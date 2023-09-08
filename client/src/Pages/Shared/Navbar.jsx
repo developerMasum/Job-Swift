@@ -167,7 +167,7 @@ const Navbar = () => {
             </> : <>
 
               <Link to={'/login'}>
-                <button className="btn btn-primary px-8 hover:bg-white bg-cyan-500 font-semibold hidden md:block ">
+                <button className="px-8 py-2 bg-cyan-500 rounded-md hover:bg-white hover:border border hover:border-cyan-600 text-second hidden md:block ">
                   Login
                 </button>
               </Link>
@@ -177,12 +177,12 @@ const Navbar = () => {
           {
             user ?
               <Link to={'/dashboard/jobs'}>
-                <button className="btn btn-primary px-8 hover:bg-white bg-cyan-500   hidden md:block">
+                <button className="px-8 py-2 bg-cyan-500 rounded-md hover:bg-white hover:border border hover:border-cyan-600 text-second hidden md:block">
                   Dashboard
                 </button>
               </Link> :
              <Link to="/demo-page">
-             <button className="py-2.5 px-5 rounded-xl  border border-cyan-600 hover:bg-white hover:text-cyan-700 hidden md:block">
+             <button className="px-8 py-2 bg-cyan-500 rounded-md hover:bg-white hover:border border hover:border-cyan-600 text-second hidden md:block">
                Demo
              </button>
            </Link>
