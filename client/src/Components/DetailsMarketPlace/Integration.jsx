@@ -38,10 +38,10 @@ const Integration = () => {
             <div className="mt-4">
               <Link
                 to="/"
-                className="text-primary font-medium hover:underline transition duration-300 transform hover:translate-x-1"
+                className="text-swift font-medium hover:underline transition duration-300 transform hover:translate-x-1"
               >
                 {info.link}{" "}
-                <FaExternalLinkAlt className="inline ml-1 text-primary" />
+                <FaExternalLinkAlt className="inline ml-1 text-swift" />
               </Link>
             </div>
           </div>

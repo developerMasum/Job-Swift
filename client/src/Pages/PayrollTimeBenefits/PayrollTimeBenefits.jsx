@@ -26,10 +26,10 @@ const PayrollTimeBenefits = () => {
           <img src={payroll1} alt="" />
         </div>
         <div className="w-full  mt-6  md:pl-10 md:mt-0 md:w-1/2">
-          <h2 className="text-secondary md:text-2xl font-bold text-xl text-center md:text-start mb-5">
+          <h2 className="text-swift md:text-2xl font-bold text-xl text-center md:text-start mb-5">
             No double entry. No headaches.
           </h2>
-          <p className="text-secondary text-justify text-lg leading-8">
+          <p className="text-swift text-justify text-lg leading-8">
             Job Swift allows you to track hours worked, record time-off, manage
             benefits, and run payroll all from a single platform. No more data
             double-entry and manual approval processes—just easy, accurate
@@ -51,11 +51,11 @@ const PayrollTimeBenefits = () => {
           <Title mainTitle="Explore Payroll, Time, & Benefits with Job Swift " />
         </div>
       </div>
-      <div className="px-10 text-secondary grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pt-8">
+      <div className="px-10 text-swift grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pt-8">
         <div className="space-y-4 ">
           <img src={Payroll} alt="" />
           <h4 className="text-xl font-bold hover:text-[#3c1d94]">Payroll</h4>
-          <p className="hover:text-secondary font-semibold text-lg">
+          <p className="hover:text-swift font-semibold text-lg">
             Run payroll faster and more easily than ever before (and with a lot
             less stress).
           </p>
@@ -69,7 +69,7 @@ const PayrollTimeBenefits = () => {
           <h4 className="text-xl font-bold hover:text-[#3c1d94]">
             Benefits Administration
           </h4>
-          <p className="hover:text-secondary font-semibold text-lg">
+          <p className="hover:text-swift font-semibold text-lg">
             Make it simple for employees to enroll in benefits and review their
             elections in one place.
           </p>
@@ -83,7 +83,7 @@ const PayrollTimeBenefits = () => {
           <h4 className="text-xl font-bold hover:text-[#3c1d94]">
             Time Tracking
           </h4>
-          <p className="hover:text-secondary font-semibold text-lg">
+          <p className="hover:text-swift font-semibold text-lg">
             Track time and run payroll without wasting time jumping between
             systems.
           </p>
@@ -95,7 +95,7 @@ const PayrollTimeBenefits = () => {
         <div className="space-y-4 ">
           <img src={strimeLine} alt="" />
           <h4 className="text-xl font-bold hover:text-[#3c1d94]">Time Off</h4>
-          <p className="hover:text-secondary font-semibold text-lg">
+          <p className="hover:text-swift font-semibold text-lg">
             Streamline time-off requests and approvals via desktop and mobile.
           </p>
           <p className="flex gap-4 text-lg items-center hover:text-[#3c1d94] font-bold">
@@ -128,7 +128,7 @@ const PayrollTimeBenefits = () => {
             numbers...it was a complete and utter headache. Job Swift easily
             saves three to four hours per week.”
           </h2>
-          <h2 className="text-xl font-bold text-secondary">
+          <h2 className="text-xl font-bold text-swift">
             AMY BOSTON, EMPLOYEE SUCCESS MANAGER | LIONHEART CRITICAL POWER
             SPECIALISTS
           </h2>

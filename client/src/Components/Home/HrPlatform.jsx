@@ -13,10 +13,10 @@ const HrPlatform = () => {
         />
       </div>
       <div className="w-full space-y-6 mt-6 md:mt-0 md:w-1/2 ">
-        <h2 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
+        <h2 className="text-swift md:text-2xl font-bold text-xl text-center md:text-start mb-2">
           The Complete HR Platform
         </h2>
-        <p className="text-secondary font-semibold leading-8">
+        <p className="text-swift font-semibold leading-8">
           Job Swift simplifies and supports every step in the employee
           experience through its intuitive features and flexible integrations,
           all connected to a single, secure source of data.
@@ -27,7 +27,7 @@ const HrPlatform = () => {
             className="text-[#00673b] font-bold text-lg  text-start md:text-start"
             title="Get My Free Demo"
           >
-            <h3 className="text-primary font-bold text-base text-start md:mt-8 mt-2 md:text-start">
+            <h3 className="text-swift font-bold text-base text-start md:mt-8 mt-2 md:text-start">
               Get My Free Demo
               <FaChevronRight className="inline-block"></FaChevronRight>
             </h3>

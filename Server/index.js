@@ -251,6 +251,37 @@ app.delete("/delete/:id", async (req, res) => {
 
     // get all job post
 
+    app.get("/all-post/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await jobPostCollection.findOne(query);
+      res.send(result);
+    });
+
+    app.patch("/all-post/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const update = { $set: req.body };
+      const result = await jobPostCollection.updateOne(query, update)
+      res.send(result);
+    });
+    app.delete("/all-post/:id", async (req, res) => {
+      try {
+          const id = req.params.id;
+          const query = { _id: new ObjectId(id) };
+  
+          const result = await jobPostCollection.deleteOne(query);
+  
+          
+  
+  
+      } catch (error) {
+          console.error('Error deleting the post:', error);
+          res.status(500).send({ message: 'Internal Server Error' });
+      }
+  });
+  
+
     app.get("/all-post", async (req, res) => {
       const result = await jobPostCollection.find().sort({ _id: -1 }).toArray();
       res.send(result);
@@ -266,12 +297,18 @@ app.delete("/delete/:id", async (req, res) => {
 
     // get all application
 
+    // app.get("/all-applications/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   const query = { _id: new ObjectId(id) };
+    //   const result = await applicationsPostCollection.findOne(query);
+    //   res.send(result);
+   
+    // });
     app.get("/all-applications/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await applicationsPostCollection.findOne(query);
       res.send(result);
-   
     });
 
     // sorting get data -and get data all candidates 

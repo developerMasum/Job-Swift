@@ -69,7 +69,6 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-300 rounded-box w-80"
             >
               {navLink}
-
               <div className="input-group my-3 ml-6">
                 <input
                   type="text"

@@ -1,17 +1,10 @@
 import React from "react";
-import NoContent from "../NoContent";
-import useAppliedJobs from "./useAppliedJobs";
+import ShareAppliedDetails from "../ShareAppliedDetails";
 
 const Offer = () => {
-const [appliedJobs] = useAppliedJobs()
-  const filteredJobs = appliedJobs.filter((job) => job.stage === "offer");
   return (
     <div>
-      {filteredJobs.length > 0 ? (
-        filteredJobs.map((job) => <div key={job.id}>{job.name}</div>)
-      ) : (
-        <NoContent />
-      )}
+     <ShareAppliedDetails />
     </div>
   );
 };

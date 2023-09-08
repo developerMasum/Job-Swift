@@ -8,9 +8,10 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vite test"
+    "test": "vitest"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@emotion/react": "^11.11.1",
     "@react-google-maps/api": "^2.19.2",
     "@react-pdf-viewer/core": "^3.12.0",
@@ -18,8 +19,9 @@
     "@react-pdf/renderer": "^3.1.12",
     "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-query": "^4.33.0",
-    "axios": "^1.4.0",
+    "axios": "^1.5.0",
     "chart.js": "^4.4.0",
+    "emailjs-com": "^3.2.0",
     "esbuild": "^0.19.2",
     "firebase": "^10.1.0",
     "leaflet": "^1.9.4",
@@ -27,7 +29,7 @@
     "lottie-react": "^2.4.0",
     "match-sorter": "^6.3.1",
     "pdfjs": "^2.5.2",
-    "pdfjs-dist": "^3.10.111",
+    "pdfjs-dist": "^3.4.120",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.5",
     "react-chartjs-2": "^5.2.0",
@@ -74,6 +76,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "postcss": "^8.4.27",
     "tailwindcss": "^3.3.3",
-    "vite": "^4.4.9"
+    "vite": "^4.4.9",
+    "vitest": "^0.34.3"
   }
 }

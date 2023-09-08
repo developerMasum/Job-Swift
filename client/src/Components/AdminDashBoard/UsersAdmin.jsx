@@ -68,7 +68,7 @@ const UsersAdmin = () => {
         <p className="font-bold">
           Users : <span className="">{users.length}</span>
         </p>
-        <p className="text-primary font-bold"> Managing the Team Members </p>
+        <p className="text-swift font-bold"> Managing the Team Members </p>
       </div>
       <div>
         <table className="w-full border-collapse border-b">

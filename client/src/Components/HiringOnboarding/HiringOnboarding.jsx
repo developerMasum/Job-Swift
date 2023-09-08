@@ -10,7 +10,7 @@ const HiringOnboarding = () => {
         <h2 className="text-blue-900 italic text-4xl md:text-5xl font-bold my-4">
           Hiring & Onboarding
         </h2>
-        <p className="text-secondary font-semibold my-4">
+        <p className="text-swift font-semibold my-4">
           Improve the experience for candidates, new hires, and HR with
           collaborative hiring and onboarding tools.
         </p>
