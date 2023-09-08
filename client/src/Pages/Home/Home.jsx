@@ -1,4 +1,4 @@
-import PaySection from "../../Components/Home/PaySection";
+// import PaySection from "../../Components/Home/PaySection";
 import HrPlatform from "../../Components/Home/HrPlatform";
 import EmployeeExperience from "../../Components/Home/EmployeeExperience";
 import HeadlineBar from "../Shared/HeadlineBar";
@@ -18,7 +18,7 @@ import BannerCompany from "../../Components/Home/Banner/BannerCompany";
 
 // import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
-import SendTextMessage from "../../Components/Dashboard/Candidate/SendTextMessage";
+// import SendTextMessage from "../../Components/Dashboard/Candidate/SendTextMessage";
 
 const Home = () => {
   return (
@@ -86,10 +86,10 @@ const Home = () => {
           {/* Company */}
           {/* <Company /> */}
 
-          <div className="mt-12">
+          {/* <div className="mt-12">
             
             <SendTextMessage />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
