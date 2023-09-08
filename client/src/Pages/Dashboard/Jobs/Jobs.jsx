@@ -6,6 +6,7 @@ import PostJobs from "./PostJobs";
 import icons1 from "../../../assets/Image/jobsicon1.png";
 import icons2 from "../../../assets/Image/jobsicons.png";
 import icons3 from "../../../assets/Image/josbicns3.png";
+import { FaEdit } from "react-icons/fa";
 
 const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
 
@@ -34,7 +35,7 @@ const Jobs = () => {
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       {/* Down nav */}
-      <div className="md:px-8 w-full px-4 bg-white shadow-md py-4 mb-5">
+      {/* <div className="md:px-8 w-full px-4 bg-white shadow-md py-4 mb-5">
         <div className="flex justify-between">
           <div className="flex items-center gap-1">
             <h2 className="lg:md:text-3xl">MD MASUM</h2>
@@ -51,7 +52,26 @@ const Jobs = () => {
             </Link>
           </div>
         </div>
+
+        
+      </div> */}
+
+      <div className="bg-white rounded-lg border-[1px] p-4 mb-6">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-3">
+            <h2 className="text-xl font-bold text-gray-600">MD MASUM</h2>
+            <button className="text-gray-600 hover:text-cylog transition-colors duration-300">
+              <FaEdit className="w-5 h-5" />
+            </button>
+          </div>
+          <Link to="post-job">
+            <button className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
+              Create a New Job
+            </button>
+          </Link>
+        </div>
       </div>
+
       {/* Dropdown */}
       <div className="flex justify-end pr-16 ">
         <div className="relative z-50">
@@ -129,7 +149,7 @@ const Jobs = () => {
         </div>
       </div>
       {/* Content */}
-      <div className=" mx-2 lg:md:mx-0 flex gap-14 border rounded-md border-gray-400 py-4  items-center bg-white justify-between px-10">
+      {/* <div className=" mx-2 lg:md:mx-0 flex gap-14 border rounded-md border-gray-400 py-4  items-center bg-white justify-between px-10">
         <div className="space-y-3">
           <h2 className="font-semibold text-base text-gray-800">Post a job</h2>
           <p className="text-swift">
@@ -146,6 +166,27 @@ const Jobs = () => {
         </div>
         <div className="w-[280px] h-full">
           <img src={triangle} alt="" />
+        </div>
+      </div> */}
+
+      <div className="mx-2 lg:md:mx-0 flex gap-8 border-[1px] rounded-md   border-gray-300 p-6 items-center bg-white justify-between">
+        <div className="flex flex-col space-y-3">
+          <h2 className="text-3xl font-bold text-cyan-600"> Post a job</h2>
+          <p className="text-gray-500">
+            Get your job listing in front of millions of candidates today. Do
+            things faster with a choice of over 700 job description templates,{" "}
+            <br />
+            and choose to publish on the most popular free and premium job
+            boards.
+          </p>
+          <Link to="post-job">
+            <button className="border border-cyan-600 text-cyan-600 px-6 py-2 rounded-lg font-medium hover:bg-cyan-600 hover:text-white hover:border-cyan-800 transition-colors duration-300">
+              Post a Job
+            </button>
+          </Link>
+        </div>
+        <div className="w-52 h-40">
+          <img src={triangle} alt="" className="w-full h-full" />
         </div>
       </div>
 
