@@ -1,6 +1,7 @@
 import React from "react";
 import { Zoom, Fade } from "react-awesome-reveal";
-
+import Lottie from "lottie-react";
+import lottie from "../../../assets/login/animation_lmae0zqo.json";
 const Banner = () => {
   return (
     <div>
@@ -33,6 +34,7 @@ const Banner = () => {
           </div>
           <Zoom>
             <div>
+              {/* <Lottie animationData={lottie} loop={true} /> */}
               <img
                 className=""
                 src="https://www.bamboohr.com/media_1696a7c6e712d8189262ac2a9d4e0ba3ff0b737be.png?width=2000&format=webply&optimize=medium"
@@ -41,7 +43,7 @@ const Banner = () => {
             </div>
           </Zoom>
         </div>
-       
+
       </div>
       {/* <div className='bg-[#F7FFE5] py-20 rounded-bl-[600px] rounded-br-[300px]'></div> */}
     </div>

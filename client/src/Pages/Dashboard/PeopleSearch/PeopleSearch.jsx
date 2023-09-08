@@ -30,10 +30,10 @@ const PeopleSearch = () => {
     return (
         <div className='pt-20'>
 
-            <Tabs className={'pt-5'}>
-                <TabList className={'font-bold'}>
-                    <Tab >SEARCH</Tab>
-                    <Tab>PINNED SEARCHES</Tab>
+            <Tabs className="pt-5 ">
+                <TabList className={'font-bold flex gap-7'}>
+                    <Tab className="btn btn-outline btn-sm">SEARCH</Tab>
+                    <Tab className="btn btn-outline btn-sm">PINNED SEARCHES</Tab>
                 </TabList>
 
                 {/* tab 1----------------------------- */}
@@ -85,13 +85,13 @@ const PeopleSearch = () => {
 
                                     </div>
                                 </div>
-                                                                
-                               
+
+
                             </div>
                             <div className='lg:md:flex justify-between'>
                                 <div className='pt-5'>
                                     <h2>Location</h2>
-                                    <input className='mt-2 border border-[#c4cfde] rounded-md w-[300px] h-10 ' {...register('location', { required: true })}/>
+                                    <input className='mt-2 border border-[#c4cfde] rounded-md w-[300px] h-10 ' {...register('location', { required: true })} />
                                     {errors.location && <p className='text-red-400 mt-1'>Location is required.</p>}
                                 </div>
                                 <div className='pt-5'>
