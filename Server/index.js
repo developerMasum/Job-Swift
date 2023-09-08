@@ -6,8 +6,6 @@ require("dotenv").config();
 const path = require("path");
 const sendMail = require("./sendMail");
 const jwt = require("jsonwebtoken");
-const { google } = require('googleapis');
-const { OAuth2Client } = require('google-auth-library')
 
 const port = process.env.PORT || 5000;
 
@@ -47,199 +45,6 @@ const verifyJWT = (req, res, next) => {
     next();
   });
 };
-
-
-// for calender 
-
-
-
-
-
-const SECRET_KEY = process.env.ACCESS_TOKEN_SECRET;
-const CLIENT_ID = '1072715479074-b94cftqlul0lopj4qe1vhi36mqhjitc3.apps.googleusercontent.com';
-const CLIENT_SECRET = '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';
-const REDIRECT_URI = 'http://localhost:5173/auth/callback';
-
-const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-
-const PORT = process.env.PORT || 5000;
-
-const users = [
-  { id: 1, username: 'user1', password: 'password1' },
-  { id: 2, username: 'user2', password: 'password2' },
-];
-
-// Middleware to verify JWT token and attach user data to the request
-// const identifyJWT = (req, res, next) => {
-//   const authorization = req.headers.authorization;
-//   if (!authorization) {
-//     return res.status(401).json({ message: 'Unauthorized' });
-//   }
-//   const token = authorization.split(' ')[1];
-
-//   jwt.verify(token, SECRET_KEY, (err, decoded) => {
-//     if (err) {
-//       return res.status(401).json({ message: 'Unauthorized' });
-//     }
-//     req.user = decoded;
-//     next();
-//   });
-// };
-
-// // OAuth2 authentication middleware
-// const authenticateWithGoogle = async (req, res, next) => {
-//   const code = req.query.code;
-
-//   try {
-//     const { tokens } = await oAuth2Client.getToken(code);
-//     oAuth2Client.setCredentials(tokens);
-
-//     // Store tokens securely for future use (e.g., in a database).
-
-//     next();
-//   } catch (error) {
-//     res.status(500).send('Authentication failed.');
-//   }
-// };
-
-// Route to authenticate and generate JWT token
-// app.post('/login', (req, res) => {
-//   const { username, password } = req.body;
-//   const user = users.find((u) => u.username === username && u.password === password);
-
-//   if (!user) {
-//     return res.status(401).json({ message: 'Authentication failed' });
-//   }
-
-//   const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY);
-//   res.json({ token });
-// });
-
-// // Protected route using verifyJWT middleware
-// app.post('/create-event', identifyJWT, async (req, res) => {
-//   const { title, description, startDateTime, endDateTime } = req.body;
-
-//   const calendar = google.calendar({ version: 'v3', auth: oAuth2Client });
-
-//   const event = {
-//     summary: title,
-//     description: description,
-//     start: { dateTime: startDateTime },
-//     end: { dateTime: endDateTime },
-//   };
-
-//   try {
-//     // Create the event using the 'calendar' object
-//     const calendarResponse = await calendar.events.insert({
-//       calendarId: 'primary', // Use the primary calendar
-//       resource: event,
-//     });
-
-//     // Get the created event ID
-//     const eventId = calendarResponse.data.id;
-
-//     // You can add more actions here if needed
-
-//     res.json({ message: 'Event created successfully', eventId });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Event creation failed.' });
-//   }
-// });
-
-
-
-// const SECRET_KEY = 'your_secret_key'; // Replace with your actual secret key
-
-// Define your users array or use a database for user authentication
-// const users = [
-//   { id: 1, username: 'user1', password: 'password1' },
-//   { id: 2, username: 'user2', password: 'password2' },
-// ];
-
-// Create an OAuth2Client with the appropriate scope for Google Calendar API access
-// const CLIENT_ID = 'your_client_id'; // Replace with your actual client ID
-// const CLIENT_SECRET = 'your_client_secret'; // Replace with your actual client secret
-// const REDIRECT_URI = 'http://localhost:5173'; // Replace with your actual redirect URI
-
-// const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-// const SCOPES = ['https://www.googleapis.com/auth/calendar'];
-const SCOPES = ['https://www.googleapis.com/auth/calendar.events'];
-
-// Define a middleware to verify JWT
-const identifyJWT = (req, res, next) => {
-  const authorization = req.headers.authorization;
-
-  if (!authorization) {
-    return res.status(401).json({ message: 'Unauthorized access' });
-  }
-
-  const token = authorization.split(' ')[1];
-
-  jwt.verify(token, SECRET_KEY, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ message: 'Unauthorized access' });
-    }
-
-    req.decoded = decoded;
-    next();
-  });
-};
-
-// Create a route for user login
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  const user = users.find((u) => u.username === username && u.password === password);
-
-  if (!user) {
-    return res.status(401).json({ message: 'Authentication failed' });
-  }
-
-  const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY);
-  res.json({ token });
-});
-
-// Protected route using verifyJWT middleware to create a Google Calendar event
-app.post('/create-event', verifyJWT, async (req, res) => {
-  const { title, description, startDateTime, endDateTime } = req.body;
-
-  // Set the access token for the OAuth2Client from the JWT token
-  const userToken = req.headers.authorization.split(' ')[1];
-  oAuth2Client.setCredentials({ access_token: userToken });
-
-  const calendar = google.calendar({ version: 'v3', auth: oAuth2Client });
-
-  const event = {
-    summary: title,
-    description: description,
-    start: { dateTime: startDateTime },
-    end: { dateTime: endDateTime },
-  };
-
-  try {
-    // Create the event using the 'calendar' object
-    const calendarResponse = await calendar.events.insert({
-      calendarId: 'primary', // Use the primary calendar
-      resource: event,
-    });
-
-    // Get the created event ID
-    const eventId = calendarResponse.data.id;
-
-    // You can add more actions here if needed
-
-    res.json({ message: 'Event created successfully', eventId });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Event creation failed.' });
-  }
-});
-
-
-
-
-
-
 
 // ATSWebsite atswebsite2023
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mq0mae1.mongodb.net/?retryWrites=true&w=majority`
@@ -432,6 +237,32 @@ async function run() {
 
     // get all job post
 
+    app.get("/all-post/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await jobPostCollection.findOne(query);
+      res.send(result);
+    });
+
+    app.patch("/all-post/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const update = { $set: req.body };
+      const result = await jobPostCollection.updateOne(query, update);
+      res.send(result);
+    });
+    app.delete("/all-post/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+
+        const result = await jobPostCollection.deleteOne(query);
+      } catch (error) {
+        console.error("Error deleting the post:", error);
+        res.status(500).send({ message: "Internal Server Error" });
+      }
+    });
+
     app.get("/all-post", async (req, res) => {
       const result = await jobPostCollection.find().sort({ _id: -1 }).toArray();
       res.send(result);
@@ -447,6 +278,13 @@ async function run() {
 
     // get all application
 
+    // app.get("/all-applications/:id", async (req, res) => {
+    //   const id = req.params.id;
+    //   const query = { _id: new ObjectId(id) };
+    //   const result = await applicationsPostCollection.findOne(query);
+    //   res.send(result);
+
+    // });
     app.get("/all-applications/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -519,5 +357,3 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`JobSwift is running on port ${port}`);
 });
-
-
