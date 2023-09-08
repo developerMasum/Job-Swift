@@ -42,7 +42,7 @@ const CandidiateUserDetails = () => {
 
   useEffect(() => {
     // Fetch candidate profile data from the server based on the 'id' parameter
-    const URL = `http://localhost:5000/all-applications/${id}`;
+    const URL = `https://sojib-job-swift.vercel.app/all-applications/${id}`;
     console.log(URL);
     fetch(URL)
       .then((response) => response.json())
@@ -85,10 +85,16 @@ const CandidiateUserDetails = () => {
       <div className="bg-image  bg-opacity-40 border border-slate-300 shadow-lg   ">
         <div className="flex lg:md:justify-end  p-4">
           <div className="flex justify-around gap-8 cursor-pointer bg-white px-4 items-center border border-slate-400 rounded-lg p-2">
-            <BiDotsHorizontal size={30} className="border-r-2 border-slate-400 pr-2 text-swift"></BiDotsHorizontal>
-            <BiEnvelope  size={25} className="text-swift" />
+            <BiDotsHorizontal
+              size={30}
+              className="border-r-2 border-slate-400 pr-2 text-swift"
+            ></BiDotsHorizontal>
+            <BiEnvelope size={25} className="text-swift" />
             <BiMessageCheck size={25} className="text-swift" />
-            <BiSolidCalendar size={35} className="border-r-2 border-slate-400 pr-3 text-swift "></BiSolidCalendar>
+            <BiSolidCalendar
+              size={35}
+              className="border-r-2 border-slate-400 pr-3 text-swift "
+            ></BiSolidCalendar>
             <BiSolidChat size={25} className="text-swift" />
             <div className="flex border-r-2 border-slate-400 pr-8 text-2xl">
               <BiSolidHandRight size={25} className="text-swift" />
@@ -124,7 +130,7 @@ const CandidiateUserDetails = () => {
             <div>
               <img
                 className="h-24 w-24 rounded-xl border border-sky-600"
-                src={`http://localhost:5000/images/${image}`}
+                src={`https://sojib-job-swift.vercel.app/images/${image}`}
                 alt=""
               />
             </div>
@@ -134,7 +140,19 @@ const CandidiateUserDetails = () => {
                 {firstName} {lastName}
               </h1>
               {educationList?.map((education, index) => {
-                return  <h2 className="flex gap-2 items-center mb-2 font-semibold"  key={index}>  <PiGraduationCapBold size={20} className="text-swift" /> {education?.institution}</h2>;
+                return (
+                  <h2
+                    className="flex gap-2 items-center mb-2 font-semibold"
+                    key={index}
+                  >
+                    {" "}
+                    <PiGraduationCapBold
+                      size={20}
+                      className="text-swift"
+                    />{" "}
+                    {education?.institution}
+                  </h2>
+                );
               })}
 
               <h3 className="flex gap-2 items-center mb-2 font-semibold">

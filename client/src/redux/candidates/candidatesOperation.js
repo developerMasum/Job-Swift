@@ -6,7 +6,7 @@
 //   async (_, { rejectWithValue }) => {
 //     try {
 //       const response = await axios.get(
-//         `http://localhost:5000/all-applications?sortOrder=${sortOrder}`
+//         `https://sojib-job-swift.vercel.app/all-applications?sortOrder=${sortOrder}`
 //       );
 //       console.log(response.data);
 //       return response.data; // Return the data received from the server if needed
@@ -22,10 +22,11 @@ import axios from "axios";
 
 export const getAllCandidates = createAsyncThunk(
   "getAllCandidates",
-  async (sortOrder, { rejectWithValue }) => { // Pass sortOrder as an argument
+  async (sortOrder, { rejectWithValue }) => {
+    // Pass sortOrder as an argument
     try {
       const response = await axios.get(
-        `http://localhost:5000/all-applications?sortOrder=${sortOrder}`
+        `https://sojib-job-swift.vercel.app/all-applications?sortOrder=${sortOrder}`
       );
       console.log(response.data);
       return response.data; // Return the data received from the server if needed

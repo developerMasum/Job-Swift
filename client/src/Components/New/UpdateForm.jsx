@@ -413,7 +413,7 @@ const UpdateForm = ({ jobTitle }) => {
     setEmail(data.email);
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "https://sojib-job-swift.vercel.app/upload",
         formData,
         {
           headers: {
@@ -437,7 +437,7 @@ const UpdateForm = ({ jobTitle }) => {
   const [allData, setAllData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/all-applications")
+      .get("https://sojib-job-swift.vercel.app/all-applications")
       .then((res) => {
         console.log(res);
         setAllData(res.data);
@@ -502,7 +502,7 @@ const UpdateForm = ({ jobTitle }) => {
             >
               {/* <div>
                 <img
-                  src={`http://localhost:5000/images/image_1693330074312.jpg`}
+                  src={`https://sojib-job-swift.vercel.app/images/image_1693330074312.jpg`}
                   alt=""
                 />
               </div> */}

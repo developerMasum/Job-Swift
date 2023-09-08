@@ -46,7 +46,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
   };
 
   // async function handleDelete(id) {
-  //   const response = await fetch('http://localhost:5000/delete-candidates', {
+  //   const response = await fetch('https://sojib-job-swift.vercel.app/delete-candidates', {
   //     method: 'DELETE',
   //     headers: {
   //       'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
 
     // Send the POST request to the server
     axios
-      .post("http://localhost:5000/mail", mailData)
+      .post("https://sojib-job-swift.vercel.app/mail", mailData)
       .then((response) => {
         console.log("Email sent successfully:", response.data);
         toast.success("Email sent successfully!"); // Use toast.success to show a success message
@@ -157,7 +157,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
                 <div className="flex justify-start gap-3 items-center ">
                   <div className="w-16 h-16 rounded-full overflow-hidden">
                     <img
-                      src={`http://localhost:5000/images/${candidate.image}`}
+                      src={`https://sojib-job-swift.vercel.app/images/${candidate.image}`}
                       alt=""
                       className="w-full h-full object-cover"
                     />
@@ -245,7 +245,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 flex-shrink-0">
                     <img
-                      src={`http://localhost:5000/images/${candidate.image}`}
+                      src={`https://sojib-job-swift.vercel.app/images/${candidate.image}`}
                       alt=""
                       className="w-full h-full object-cover rounded-full"
                     />

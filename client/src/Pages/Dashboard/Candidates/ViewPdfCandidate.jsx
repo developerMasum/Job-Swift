@@ -1,11 +1,13 @@
-import React from 'react';
-import 'tailwindcss/tailwind.css';
+import React from "react";
+import "tailwindcss/tailwind.css";
 
 function ViewPdfCandidate({ resume }) {
-  const pdfURL = `http://localhost:5000/images/${resume}`;
+  const pdfURL = `https://sojib-job-swift.vercel.app/images/${resume}`;
 
   // Use Google Docs Viewer to display the PDF as an image
-  const googleDocsViewerURL = `https://docs.google.com/gview?url=${encodeURIComponent(pdfURL)}&embedded=true`;
+  const googleDocsViewerURL = `https://docs.google.com/gview?url=${encodeURIComponent(
+    pdfURL
+  )}&embedded=true`;
 
   return (
     <div className="container mx-auto mt-10">
@@ -14,7 +16,6 @@ function ViewPdfCandidate({ resume }) {
         src={googleDocsViewerURL}
         width="100%"
         height="500"
-        
       />
     </div>
   );

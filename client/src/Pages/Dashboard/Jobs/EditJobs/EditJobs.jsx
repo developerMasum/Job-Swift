@@ -3,7 +3,7 @@ import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Tips from "../../../../Components/Dashboard/PostJob/Tips";
 import { useForm } from "react-hook-form";
 import { FiAlertCircle } from "react-icons/fi";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import {
   companyTypes,
   functions,
@@ -15,11 +15,11 @@ import {
 } from "../../../../Components/Dashboard/UtilsJobPost/data";
 
 const EditJobs = () => {
-  const {id} = useParams()
-  
+  const { id } = useParams();
+
   const data = useLoaderData();
-  const navigate = useNavigate()
-// console.log(data);
+  const navigate = useNavigate();
+  // console.log(data);
   const {
     register,
     handleSubmit,
@@ -27,9 +27,8 @@ const EditJobs = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    
     const postData = {
-      id:data._id,
+      id: data._id,
       benefits: data.benefits,
       experience: data.experience,
       employmentType: data.employmentType,
@@ -45,26 +44,28 @@ const EditJobs = () => {
     // console.log(postData);
     // const id = data._id;
 
-        const response = await fetch(`http://localhost:5000/all-post/${id}`,{
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(postData)
-        });
+    const response = await fetch(
+      `https://sojib-job-swift.vercel.app/all-post/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData),
+      }
+    );
 
-        if(response.ok){
-          navigate('/dashboard/jobs')
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: 'Your Jobs has been update',
-            showConfirmButton: false,
-            timer: 500
-          })
-        }
-        
-}
+    if (response.ok) {
+      navigate("/dashboard/jobs");
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Your Jobs has been update",
+        showConfirmButton: false,
+        timer: 500,
+      });
+    }
+  };
   return (
     <div className="pt-20">
       <div className="md:flex justify-between items-center my-10">

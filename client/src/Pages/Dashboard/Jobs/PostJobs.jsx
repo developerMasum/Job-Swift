@@ -22,12 +22,15 @@ const PostJobs = ({ jobs }) => {
     _id,
   } = jobs;
   const handleDelete = async (id) => {
-    const response = await fetch(`http://localhost:5000/all-post/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://sojib-job-swift.vercel.app/all-post/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   };
 
   return (
