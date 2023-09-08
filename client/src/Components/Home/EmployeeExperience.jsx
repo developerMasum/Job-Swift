@@ -9,7 +9,7 @@ const EmployeeExperience = () => {
         <h2 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
           Employee Experience & Performance
         </h2>
-        <p className="font-semibold text-secondary leading-8">
+        <p className="font-semibold text-swift leading-8">
           A strong company culture depends on listening to employees and
           investing in their development. Job Swift offers tools to help you
           gather feedback, strengthen employee satisfaction, and grow your

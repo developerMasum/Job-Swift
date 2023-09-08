@@ -7,7 +7,7 @@ import { FaChevronRight } from "react-icons/fa";
 
 const ExploreHiring = () => {
   return (
-    <div className="text-secondary px-4 md:px-8 lg:px-16 xl:px-20">
+    <div className="text-swift px-4 md:px-8 lg:px-16 xl:px-20">
       <div className="text-center">
         <h2 className="text-blue-900 italic text-center md:text-4xl lg:text-5xl font-bold my-2">
           Explore Hiring & Onboarding with JobSwift
@@ -75,8 +75,8 @@ const ExploreHiring = () => {
             "Without JobSwift, we wouldn't be in a position to handle spikes of
             recruiting or thinking too far ahead. Having a central record to
             ensure data integrity, as well as to automate and help us manage
-            onboarding, has allowed us to provide a seamless experience in one of
-            our biggest hiring years.”
+            onboarding, has allowed us to provide a seamless experience in one
+            of our biggest hiring years.”
           </p>
           <p className="mb-4 text-sm md:text-base leading-6 font-bold text-stone-500 ml-6 mt-5">
             JANE JAXON, VP, PEOPLE, WISTIA

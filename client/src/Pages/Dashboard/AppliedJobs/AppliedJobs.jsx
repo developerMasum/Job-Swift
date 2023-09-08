@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 import { renderAppliedTabs } from "../../../Components/Dashboard/AppliedJobs/renderAppliedTabs";
 import useAppliedJobs from "../../../Components/Dashboard/AppliedJobs/AppliedComponents/useAppliedJobs";
 const AppliedJobs = () => {
-  const [appliedJobs] = useAppliedJobs()
+  const [appliedJobs] = useAppliedJobs();
   const [isToggled, setIsToggled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("tabs1");
@@ -57,7 +57,7 @@ const AppliedJobs = () => {
               <div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
-                    <p className="text-3xl font-[400] text-secondary">
+                    <p className="text-3xl font-[400] text-swift">
                       {job.jobName}
                     </p>
                     <button onClick={handleButtonClick}>
@@ -76,7 +76,7 @@ const AppliedJobs = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center hover:bg-gray-200 px-5 py-2 rounded-md"
               >
-                <button className="text-secondary font-semibold hover:text-[#00756a] px-2">
+                <button className="text-swift font-semibold hover:text-[#00756a] px-2">
                   Add candidates
                 </button>
                 {isOpen ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
@@ -89,7 +89,7 @@ const AppliedJobs = () => {
                     <h5 className="font-semibold text-xl  rounded-lg ">
                       Add resume
                     </h5>
-                    <p className="text-sm text-secondary">
+                    <p className="text-sm text-swift">
                       Add candidate with resume
                     </p>
                   </div>
@@ -97,7 +97,7 @@ const AppliedJobs = () => {
                     <h5 className="font-semibold text-xl  rounded-lg ">
                       Add manually
                     </h5>
-                    <p className="text-sm text-secondary">
+                    <p className="text-sm text-swift">
                       Enter candidate name and details
                     </p>
                   </div>
@@ -118,7 +118,6 @@ const AppliedJobs = () => {
           <div className="flex justify-between">
             {tabsData.map((tab) => (
               <button
-              
                 key={tab.id}
                 style={{
                   borderBottom:

@@ -6,14 +6,14 @@ const FilesTab = () => {
   return (
     <div className="pt-8">
       <div>
-      <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
           <h3 className="md:text-3xl text-xl ">Files</h3>
           <button className="flex bg-[#c7f0f1] px-2 py-1 rounded-full gap-2 items-center">
             <FaPaperPlane color="107191" size={12} />
             <span className="text-primary text-xs font-bold">BETA</span>
           </button>
         </div>
-        <p className="text-start text-secondary">Manage company files</p>
+        <p className="text-start text-swift">Manage company files</p>
       </div>
       {/* Body */}
       <div className="flex flex-col items-center mt-4 sm:flex-row sm:justify-center sm:items-center sm:mt-8">

@@ -10,7 +10,7 @@ const Hiring = () => {
         <h3 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
           Hiring & Onboarding
         </h3>
-        <p className="text-secondary font-semibold leading-8 md:mt-2">
+        <p className="text-swift font-semibold leading-8 md:mt-2">
           Job Swift helps you quickly find, hire, and onboard the best talent.
           With our powerful applicant tracking system and proactive onboarding
           tasks, you can create a compelling candidate experience and better

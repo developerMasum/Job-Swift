@@ -12,7 +12,7 @@ const CheckOut = () => {
           Want to learn more about effective Hiring, Onboarding, and
           Offboarding?
         </h2>
-        <p className="text-secondary font-semibold my-2 mt-5">
+        <p className="text-swift font-semibold my-2 mt-5">
           Check out these additional resources
         </p>
       </div>
@@ -51,7 +51,7 @@ const CheckOut = () => {
             <h2 className=" font-bold text-xl mt-2 ">
               Applicant Tracking System (ATS) Case Study
             </h2>
-            <p className="font-semibold text-secondary mt-2">
+            <p className="font-semibold text-swift mt-2">
               See how the Job Swift ATS helped The Centre for Family Medicine
               rapidly staff emergency COVID-19 vaccination clinics to meet the
               needs of their community.
@@ -75,7 +75,7 @@ const CheckOut = () => {
             <h2 className=" font-bold text-xl mt-2">
               The Definitive Guide to Onboarding
             </h2>
-            <p className="font-semibold mt-2 text-secondary">
+            <p className="font-semibold mt-2 text-swift">
               Everything you need to know to onboard like a pro.
             </p>
 
@@ -93,7 +93,7 @@ const CheckOut = () => {
         <h2 className=" md:text-4xl lg:text-5xl font-bold my-2 italic text-blue-900  ">
           Want to experience what Job Swift can do for you?
         </h2>
-        <p className="text-secondary font-semibold my-2 ">
+        <p className="text-swift font-semibold my-2 ">
           There's no substitute for hands-on experience. Try it yourself.
         </p>
         <h3 className=" mt-5 font-bold text-base text-center md:text-center text-blue-500">

@@ -16,7 +16,7 @@ const HrPlatform = () => {
         <h2 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
           The Complete HR Platform
         </h2>
-        <p className="text-secondary font-semibold leading-8">
+        <p className="text-swift font-semibold leading-8">
           Job Swift simplifies and supports every step in the employee
           experience through its intuitive features and flexible integrations,
           all connected to a single, secure source of data.

@@ -68,7 +68,7 @@ const Assessment = () => {
                     {activeTab === "tabs2" && (
                       <div className="space-y-2 pt-4">
                         <img className="w-1/3 mx-auto" src={hand} alt="Hand" />
-                        <h4 className="font-semibold text-secondary text-xl">
+                        <h4 className="font-semibold text-swift text-xl">
                           No disqualified candidates
                         </h4>
                       </div>

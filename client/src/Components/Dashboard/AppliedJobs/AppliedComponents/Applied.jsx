@@ -77,7 +77,7 @@ const Applied = () => {
                             src={hand}
                             alt="Hand"
                           />
-                          <h4 className="font-semibold text-secondary text-xl">
+                          <h4 className="font-semibold text-swift text-xl">
                             No disqualified candidates
                           </h4>
                         </div>
@@ -170,27 +170,35 @@ const Applied = () => {
                         {isActiveTab === "profile" && (
                           <div className="space-y-2 pt-5">
                             <h5 className="font-medium text-xs text-gray-500">
-                            EDUCATION
+                              EDUCATION
                             </h5>
-                            {
-                              appliedJobs.map(education => <div className="flex items-center gap-10" key={education.id}>
+                            {appliedJobs.map((education) => (
+                              <div
+                                className="flex items-center gap-10"
+                                key={education.id}
+                              >
                                 <p>{education.education.year}</p>
-                                <div className="flex items-center gap-1"> 
-                                <p className="font-medium">{education.education.educationName}</p>
-                                in
-                                <p className="font-medium">{education.education.subject}</p>
-                                at
-                                <p className="font-medium">{education.education.collegeName}</p>
+                                <div className="flex items-center gap-1">
+                                  <p className="font-medium">
+                                    {education.education.educationName}
+                                  </p>
+                                  in
+                                  <p className="font-medium">
+                                    {education.education.subject}
+                                  </p>
+                                  at
+                                  <p className="font-medium">
+                                    {education.education.collegeName}
+                                  </p>
                                 </div>
-                                </div>)
-                            }
+                              </div>
+                            ))}
                             <div>
-                            <h5 className="font-medium pt-7 text-gray-500">
-                            RESUME
-                            </h5>
+                              <h5 className="font-medium pt-7 text-gray-500">
+                                RESUME
+                              </h5>
                             </div>
                           </div>
-                          
                         )}
                       </div>
                     </div>

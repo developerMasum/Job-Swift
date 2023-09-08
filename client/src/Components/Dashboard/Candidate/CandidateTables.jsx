@@ -22,7 +22,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
   const handleCheckbox = (e) => {
     const { value, checked } = e.target;
     setEmailId(value);
-    setDeleteId(value)
+    setDeleteId(value);
     // console.log(value);
 
     if (checked) {
@@ -33,7 +33,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
       setIsChecked("");
     }
   };
-// console.log('deleteId',deleteId);
+  // console.log('deleteId',deleteId);
 
   // console.log(isChecked);
   const handleUnSelectAll = () => {
@@ -90,9 +90,9 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
   };
 
   return (
-    <div className="mt-5 text-secondary">
+    <div className="mt-5 text-swift">
       <div className="flex justify-between w-full items-center ">
-        <p className="w-1/2 text-secondary"> {candidates.length} Candidates</p>
+        <p className="w-1/2 text-swift"> {candidates.length} Candidates</p>
         <div className="w-52">
           <select
             className="block appearance-none w-full bg-gray-100 border-0 text-gray-700 py-1 px-2 rounded leading-tight focus:outline-none focus:bg-white"
@@ -118,7 +118,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
           {candidates.map((candidate) => (
             <tr
               key={candidate._id}
-              className="border-t border-gray-300 text-secondary "
+              className="border-t border-gray-300 text-swift "
             >
               <td className="p-2 ">
                 <label className="pl-28">
@@ -141,7 +141,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
                     />
                   </div>
                   <div>
-                    <p className="text-lg mb-1 font-semibold text-secondary">
+                    <p className="text-lg mb-1 font-semibold text-swift">
                       {candidate.firstName} {candidate.lastName}
                     </p>
                     {candidate.educationList ? (
@@ -204,7 +204,12 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
             <div className="space-y-2 pt-4 text-start">
               <div className="flex gap-5 justify-around items-center">
                 <div className="flex gap-3 ">
-                <Link to={ `profile/${deleteId}`}>  <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">Details</button></Link>
+                  <Link to={`profile/${deleteId}`}>
+                    {" "}
+                    <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">
+                      Details
+                    </button>
+                  </Link>
                   <p>
                     Select:{" "}
                     <span

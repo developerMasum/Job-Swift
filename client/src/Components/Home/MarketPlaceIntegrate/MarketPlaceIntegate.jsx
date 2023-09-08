@@ -15,7 +15,7 @@ const MarketPlaceIntegrate = () => {
         <h2 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
           Integration Marketplace
         </h2>
-        <p className="text-secondary font-semibold leading-8">
+        <p className="text-swift font-semibold leading-8">
           Simplify even more business workflows by connecting vetted, pre-built
           software integrations to Job Swift . Your employee data stays accurate
           and secure, and you have hundreds of solutions at your fingertips to

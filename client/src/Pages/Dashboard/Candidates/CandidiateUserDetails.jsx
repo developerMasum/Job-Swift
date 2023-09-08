@@ -19,9 +19,10 @@ import {
 } from "react-icons/bi";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import Loader from "../../../Components/Loader/Loader";
+import ViewPdfCandidate from "./ViewPdfCandidate";
 
 const CandidiateUserDetails = () => {
   const { id } = useParams();
@@ -75,6 +76,8 @@ const CandidiateUserDetails = () => {
     educationList,
     date,
   } = userDetails2 || {};
+
+  // for pdf view
 
   return (
     <div className="pt-20">
@@ -212,8 +215,7 @@ const CandidiateUserDetails = () => {
                   </p>{" "}
                 </>
               )}
-                 <div className="divider w-5/6"></div>
-              
+              <div className="divider w-5/6"></div>
             </div>
             {/* summery */}
             <div className="mb-5 border border-slate-100 py-5 pr-5 shadow-sm">
@@ -229,14 +231,14 @@ const CandidiateUserDetails = () => {
                   <p className="text-red-800 font-semibold">
                     The candidate did not provide a cover letter{" "}
                   </p>{" "}
-                  
                 </>
               )}
-               <div className="divider w-5/6"></div>
+              <div className="divider w-5/6"></div>
             </div>
 
             <div className="border border-slate-200 p-64 text-center">
               Here will be PDF viewer Section
+              <ViewPdfCandidate resume={resume} />
             </div>
 
             <div className="mt-10">
@@ -268,8 +270,10 @@ const CandidiateUserDetails = () => {
               <div className="divider mt-10 font-bold"></div>
 
               <div>
-                <h1 className="text-primary font-bold text-base mb-3 ">CONTACT PREFERENCES</h1>
-                <div className="mt-6 text-secondary">
+                <h1 className="text-primary font-bold text-base mb-3 ">
+                  CONTACT PREFERENCES
+                </h1>
+                <div className="mt-6 text-swift">
                   <p className="flex gap-6">
                     <span className="font-semibold ">Texting:</span>
                     <span>Enabled - consent confirmed</span>
