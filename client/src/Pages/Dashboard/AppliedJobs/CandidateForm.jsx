@@ -14,12 +14,26 @@ const CandidateForm = ({ closeModal }) => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
   // Define the 'handleSubmit' function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Access form data using e.target
+    const formData = {
+      firstName: e.target.firstName.value,
+      lastName: e.target.lastName.value,
+      headline: e.target.headline.value,
+      email: e.target.email.value,
+      phoneNumber: e.target.phoneNumber.value,
+    };
+
+    // Log the form data to the console
+    console.log("Form Data:", formData);
+
     // Handle form submission here, e.g., send data to a server or update state
-    // You can access form data using e.target elements, like e.target.firstName.value
+
+    // Close the modal
+    
   };
 
   // Define the 'handleCancel' function to close the modal when the "Cancel" button is clicked
@@ -59,13 +73,13 @@ const CandidateForm = ({ closeModal }) => {
                 <div className="origin-top-right absolute right-0 mt-2 md:mt-80 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ">
                   <div className="py-1">
                     <ul>
-                      <li className="hover:bg-blue-700 hover:text-white px-4 py-2">Soured</li>
-                      <li className="hover:bg-blue-700 hover:text-white px-4 py-2">Applied</li>
-                      <li className="hover:bg-blue-700 hover:text-white px-4 py-2">Phone Screen</li>
-                      <li className="hover:bg-blue-700 hover:text-white px-4 py-2">Assessment</li>
-                      <li className="hover:bg-blue-700 hover:text-white px-4 py-2">Interview</li>
-                      <li className="hover:bg-blue-700 hover:text-white px-4 py-2">Offer</li>
-                      <li className="hover:bg-blue-700 hover:text-white px-4 py-2">Hired</li>
+                      <li className="px-4 py-2">Soured</li>
+                      <li className="px-4 py-2">Applied</li>
+                      <li className="px-4 py-2">Phone Screen</li>
+                      <li className="px-4 py-2">Assessment</li>
+                      <li className="px-4 py-2">Interview</li>
+                      <li className="px-4 py-2">Offer</li>
+                      <li className="px-4 py-2">Hired</li>
                     </ul>
                   </div>
                 </div>
