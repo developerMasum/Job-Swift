@@ -18,7 +18,10 @@ import BannerCompany from "../../Components/Home/Banner/BannerCompany";
 
 // import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
-
+import FileUpload from "../../Components/File/FileUpload";
+import IntegrationMarketplace from "../../Components/Home/MarketPlaceIntegrate/MarketPlaceIntegate";
+import Evaluate from "../../Components/Home/Evaluate/Evaluate";
+import KeyFeatures from "../../Components/Home/KeyFeature/Features";
 
 
 const Home = () => {
@@ -36,7 +39,8 @@ const Home = () => {
       <div className="md:px-12">
         <EmployeeExperienceSection></EmployeeExperienceSection>
       </div>
-      
+      {/* <FileUpload></FileUpload> */}
+      <KeyFeatures></KeyFeatures>
 
       <div className="mt-12">
         <ProgramManager />
@@ -59,11 +63,11 @@ const Home = () => {
           <PaySection />
 
         </div> */}
-        <div className="mt-12">
-          <Slide>
-            <Hiring />{" "}
-          </Slide>
-        </div>
+       
+          
+            <Hiring />
+          
+      
 
         <div className="mt-16 mb-5">
           <Slide direction="right">
@@ -71,12 +75,15 @@ const Home = () => {
             <EmployeeExperience />
           </Slide>
 
-          <div className="mt-12 mb-12">
+          {/* <div className="mt-12 mb-12">
             <Zoom>
               {" "}
               <MarketPlaceIntegrate />
             </Zoom>
-          </div>
+          </div> */}
+
+          <IntegrationMarketplace></IntegrationMarketplace>
+          <Evaluate></Evaluate>
 
           {/* slider */}
           <div className="mt-12">

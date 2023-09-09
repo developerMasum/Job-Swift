@@ -9,7 +9,7 @@
 text-second */
 @layer utilities {
   .text-swift {
-    color: #0e7490;
+    /* color: #0e7490; */
   }
 
   .text-second {
@@ -63,4 +63,8 @@ text-second */
 
   /* background-size: contain; */
   /* background-attachment: fixed; */
+}
+
+body{
+  @apply bg-[#fffafa]
 }

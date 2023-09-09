@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 const MarketPlaceIntegrate = () => {
   return (
-    <div className="flex flex-wrap max-w-[1100px] mx-auto justify-between items-center mt-8 md:mt-16 px-12 md:0">
+    <div className="md:flex justify-evenly items-center">
       <div className="w-full md:w-1/2">
         <img
-          src="https://www.bamboohr.com/media_13163d8538f44e479364c47dd3057531b1af2e429.png?width=2000&format=webply&optimize=medium"
+          src="https://i.ibb.co/yB1ZZt3/marketplace01png.png"
           alt=""
         />
       </div>
@@ -24,7 +24,7 @@ const MarketPlaceIntegrate = () => {
         <div>
           <Link
             to="/details-marketplace"
-            className="text-[#00673b] font-bold text-lg text-start md:text-start"
+            className="text-primary font-bold text-lg text-start md:text-start"
             title="Learn More About Integration Marketplace"
           >
             <h3 className="text-swift font-bold text-base text-start md:mt-8 mt-2 md:text-start">

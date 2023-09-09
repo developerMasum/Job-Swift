@@ -60,14 +60,7 @@ const BannerCompany = () => {
                 alt={company.name}
                 className="w-36 h-36 mx-auto mb-4"
               />
-              <a
-                href={company.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-400 hover:text-cyan-600 font-semibold"
-              >
-                {company.name}
-              </a>
+              
             </div>
           ))}
         </div>
