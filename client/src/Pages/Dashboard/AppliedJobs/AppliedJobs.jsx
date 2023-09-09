@@ -10,6 +10,7 @@ import {
 import { toast } from "react-hot-toast";
 import { renderAppliedTabs } from "../../../Components/Dashboard/AppliedJobs/renderAppliedTabs";
 import useAppliedJobs from "../../../Components/Dashboard/AppliedJobs/AppliedComponents/useAppliedJobs";
+import AddCandidatesModal from "./AddCandidatesModal";
 const AppliedJobs = () => {
   // const [appliedJobs] = useAppliedJobs();
   const { id } = useParams();
@@ -41,6 +42,16 @@ const AppliedJobs = () => {
     { id: "tabs7", label: "Offer" },
     { id: "tabs8", label: "Hired" },
   ];
+  //For modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <section className="pt-16 bg-white px-5 md:px-0">
       <div className=" font-semibold bg-[#c7f0f1] p-2 text-center text-sm">
@@ -98,10 +109,21 @@ const AppliedJobs = () => {
                 </h5>
                 <p className="text-sm text-second">Add candidate with resume</p>
               </div>
+              <div>
+              </div>
               <div className="hover:bg-yellow-500 px-3 py-1">
-                <h5 className="font-semibold text-xl  rounded-lg ">
-                  Add manually
-                </h5>
+                <div>
+                  <h5
+                    onClick={openModal}
+                    className="font-semibold text-xl  rounded-lg "
+                  >
+                    Add manually
+                  </h5>
+                  <AddCandidatesModal
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                  />
+                </div>
                 <p className="text-sm text-second">
                   Enter candidate name and details
                 </p>
