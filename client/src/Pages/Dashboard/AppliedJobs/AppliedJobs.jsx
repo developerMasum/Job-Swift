@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { FaPaperPlane } from "react-icons/fa";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   MdKeyboardArrowDown,
   MdOutlineEdit,
@@ -42,16 +42,7 @@ const AppliedJobs = () => {
     { id: "tabs7", label: "Offer" },
     { id: "tabs8", label: "Hired" },
   ];
-  //For modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
   return (
     <section className="pt-16 bg-white px-5 md:px-0">
       <div className=" font-semibold bg-[#c7f0f1] p-2 text-center text-sm">
@@ -63,7 +54,6 @@ const AppliedJobs = () => {
             <BsFillQuestionCircleFill color="#107191" />
           </div>
           <Link>
-            {" "}
             <p className="font-thin text-[#636d77] underline">
               Use the old view
             </p>
@@ -109,20 +99,9 @@ const AppliedJobs = () => {
                 </h5>
                 <p className="text-sm text-second">Add candidate with resume</p>
               </div>
-              <div>
-              </div>
               <div className="hover:bg-yellow-500 px-3 py-1">
                 <div>
-                  <h5
-                    onClick={openModal}
-                    className="font-semibold text-xl  rounded-lg "
-                  >
-                    Add manually
-                  </h5>
-                  <AddCandidatesModal
-                    isOpen={isModalOpen}
-                    onClose={closeModal}
-                  />
+                  <AddCandidatesModal />
                 </div>
                 <p className="text-sm text-second">
                   Enter candidate name and details
