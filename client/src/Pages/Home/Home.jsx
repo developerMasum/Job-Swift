@@ -19,13 +19,16 @@ import BannerCompany from "../../Components/Home/Banner/BannerCompany";
 // import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
 
+
+
 const Home = () => {
   return (
     <div className="pt-5 lg:md:pt-16">
       <Slide>
-        <HeadlineBar />
+        {/* <HeadlineBar /> */}
       </Slide>
       <Banner />
+    
 
       <div>
         <BannerCompany />
@@ -33,6 +36,7 @@ const Home = () => {
       <div className="md:px-12">
         <EmployeeExperienceSection></EmployeeExperienceSection>
       </div>
+      
 
       <div className="mt-12">
         <ProgramManager />

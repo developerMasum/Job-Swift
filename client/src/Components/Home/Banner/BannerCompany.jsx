@@ -1,41 +1,76 @@
 import React from "react";
-import { Roll } from "react-awesome-reveal";
 
 const BannerCompany = () => {
+  const partnerCompanies = [
+    {
+      name: "Postmates",
+      website: "https://www.postmates.com/",
+      logoUrl:
+        "https://www.bamboohr.com/assets/partner-logos/postmates.svg?width=250&format=webply&optimize=medium",
+    },
+    {
+      name: "UserTesting",
+      website: "https://www.usertesting.com/",
+      logoUrl:
+        "https://www.bamboohr.com/assets/partner-logos/usertesting.svg?width=250&format=webply&optimize=medium",
+    },
+    {
+      name: "SoundCloud",
+      website: "https://soundcloud.com/",
+      logoUrl:
+        "https://www.bamboohr.com/assets/partner-logos/soundcloud.svg?width=250&format=webply&optimize=medium",
+    },
+    {
+      name: "ZipRecruiter",
+      website: "https://www.ziprecruiter.com/",
+      logoUrl:
+        "https://www.bamboohr.com/assets/partner-logos/ziprecruiter.svg?width=250&format=webply&optimize=medium",
+    },
+    {
+      name: "Jacksonville Jaguars",
+      website: "https://www.jaguars.com/",
+      logoUrl:
+        "https://www.bamboohr.com/assets/partner-logos/jacksonville-jaguars.svg?width=250&format=webply&optimize=medium",
+    },
+    {
+      name: "Change.org",
+      website: "https://www.change.org/",
+      logoUrl:
+        "https://www.bamboohr.com/assets/partner-logos/change-org.svg?width=250&format=webply&optimize=medium",
+    },
+  ];
+
   return (
-    <div>
-      <div>
-        <h2 className="md:mt-16 px-3 md:px-0 text-[30px] font-black text-center text-swift">
-          30,000+ Companies Big & Small Trust Job Swift
+    <div className="bg-white py-16 text-gray-800">
+      <div className="container mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-8 text-cyan-400">
+          Trusted by 30,000+ Companies
         </h2>
-      </div>
-      <div className="py-14 md:flex justify-center md:gap-16 grid grid-rows-3 grid-flow-col gap-4 gap-y-5">
-        <Roll>
-          <img
-            src="https://www.bamboohr.com/assets/partner-logos/postmates.svg?width=250&format=webply&optimize=medium"
-            alt=""
-          />
-          <img
-            src="https://www.bamboohr.com/assets/partner-logos/usertesting.svg?width=250&format=webply&optimize=medium"
-            alt=""
-          />
-          <img
-            src="https://www.bamboohr.com/assets/partner-logos/soundcloud.svg?width=250&format=webply&optimize=medium"
-            alt=""
-          />
-          <img
-            src="https://www.bamboohr.com/assets/partner-logos/ziprecruiter.svg?width=250&format=webply&optimize=medium"
-            alt=""
-          />
-          <img
-            src="https://www.bamboohr.com/assets/partner-logos/jacksonville-jaguars.svg?width=250&format=webply&optimize=medium"
-            alt=""
-          />
-          <img
-            src="https://www.bamboohr.com/assets/partner-logos/change-org.svg?width=250&format=webply&optimize=medium"
-            alt=""
-          />
-        </Roll>
+        <p className="text-lg text-gray-600 mb-8">
+          Explore the companies that trust us to simplify their HR and hiring processes.
+        </p>
+        <div className="md:flex gap-10">
+          {partnerCompanies.map((company, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 border-[1px] rounded-lg hover:bg-cyan-50 hover:text-cyan-500 transition duration-300 ease-in-out"
+            >
+              <img
+                src={company.logoUrl}
+                alt={company.name}
+                className="w-36 h-36 mx-auto mb-4"
+              />
+              <a
+                href={company.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:text-cyan-600 font-semibold"
+              >
+                {company.name}
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
