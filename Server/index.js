@@ -6,8 +6,14 @@ require("dotenv").config();
 const path = require("path");
 const sendMail = require("./sendMail");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
 const port = process.env.PORT || 5000;
+const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
+app.use(express.static("public/images"));
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+}
 
 // middleware
 const corsOptions = {
@@ -45,12 +51,6 @@ const verifyJWT = (req, res, next) => {
     next();
   });
 };
-
-
-
-
-
-
 
 // ATSWebsite atswebsite2023
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mq0mae1.mongodb.net/?retryWrites=true&w=majority`
@@ -94,7 +94,7 @@ async function run() {
       .db("JobSwiftDb")
       .collection("applications");
 
-      //  jwt token 
+    //  jwt token
     app.post("/jwt", (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
@@ -146,14 +146,7 @@ async function run() {
       }
     );
 
-    // post data of a new user
-    // app.post("/user", async (req, res) => {
-    //   const query = req.body;
-    //   const result = await UserCollection.insertOne(query);
-    //   res.send(result);
-    // });
-
-    // put data as a new user 
+    // put data as a new user
     app.put("/user/:email", async (req, res) => {
       const email = req.params.email;
       // console.log(email);
@@ -169,71 +162,63 @@ async function run() {
       res.send(result);
     });
 
-   
-// --------------------admin---------------
- // make admin
- app.patch("/users/admin/:id", async (req, res) => {
-  const id = req.params.id;
-  // console.log(id);
-  const filter = { _id: new ObjectId(id) };
-  const updateDoc = {
-    $set: {
-      role: "admin",
-    },
-  };
+    // --------------------admin---------------
+    // make admin
+    app.patch("/users/admin/:id", async (req, res) => {
+      const id = req.params.id;
+      // console.log(id);
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "admin",
+        },
+      };
 
-  const result = await UserCollection.updateOne(filter, updateDoc);
-  res.send(result);
-});
+      const result = await UserCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
 
-// get admin data,is it admin or not
-app.get('/users/admin/:email',verifyJWT, async (req, res) => {
-  const email = req.params.email;
+    // get admin data,is it admin or not
+    app.get("/users/admin/:email", verifyJWT, async (req, res) => {
+      const email = req.params.email;
 
-  if (req.decoded.email !== email) {
-    res.send({ admin: false })
-  }
-  // console.log(req.decoded.email);
-  const query = { email: email }
-  console.log(query);
-  const user = await UserCollection.findOne(query);
-  const result = { admin: user?.role === 'admin' }
-  res.send(result);
-})
+      if (req.decoded.email !== email) {
+        res.send({ admin: false });
+      }
+      // console.log(req.decoded.email);
+      const query = { email: email };
+      console.log(query);
+      const user = await UserCollection.findOne(query);
+      const result = { admin: user?.role === "admin" };
+      res.send(result);
+    });
 
-// verify admin 
-const verifyAdmin = async (req, res, next) => {
-  const email = req.decoded.email;
-  const query = { email: email };
-  const user = await UserCollection.findOne(query);
-  if (user?.role !== "admin") {
-    return res
-      .status(403)
-      .send({ error: true, message: "forbidden message" });
-  }
-  next();
-};
+    // verify admin
+    const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email: email };
+      const user = await UserCollection.findOne(query);
+      if (user?.role !== "admin") {
+        return res
+          .status(403)
+          .send({ error: true, message: "forbidden message" });
+      }
+      next();
+    };
 
+    // get users data  info
+    app.get("/users", verifyJWT, verifyAdmin, async (req, res) => {
+      const result = await UserCollection.find().toArray();
+      res.send(result);
+    });
 
- // get users data  info
- app.get("/users",verifyJWT, verifyAdmin, async (req, res) => {
-  const result = await UserCollection.find().toArray();
-  res.send(result);
-});
-
-// delete user
-app.delete("/delete/:id", async (req, res) => {
-  const id = req.params.id;
-  const query = { _id: new ObjectId(id) };
-  const result = await UserCollection.deleteOne(query);
-  res.send(result);
-});
-
-
-
-
-
-
+    // delete user
+    app.delete("/delete/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await UserCollection.deleteOne(query);
+      res.send(result);
+    });
 
     // -----------------post job ---------------
     // post a new job
@@ -262,25 +247,20 @@ app.delete("/delete/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const update = { $set: req.body };
-      const result = await jobPostCollection.updateOne(query, update)
+      const result = await jobPostCollection.updateOne(query, update);
       res.send(result);
     });
     app.delete("/all-post/:id", async (req, res) => {
       try {
-          const id = req.params.id;
-          const query = { _id: new ObjectId(id) };
-  
-          const result = await jobPostCollection.deleteOne(query);
-  
-          
-  
-  
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+
+        const result = await jobPostCollection.deleteOne(query);
       } catch (error) {
-          console.error('Error deleting the post:', error);
-          res.status(500).send({ message: 'Internal Server Error' });
+        console.error("Error deleting the post:", error);
+        res.status(500).send({ message: "Internal Server Error" });
       }
-  });
-  
+    });
 
     app.get("/all-post", async (req, res) => {
       const result = await jobPostCollection.find().sort({ _id: -1 }).toArray();
@@ -302,7 +282,7 @@ app.delete("/delete/:id", async (req, res) => {
     //   const query = { _id: new ObjectId(id) };
     //   const result = await applicationsPostCollection.findOne(query);
     //   res.send(result);
-   
+
     // });
     app.get("/all-applications/:id", async (req, res) => {
       const id = req.params.id;
@@ -311,7 +291,7 @@ app.delete("/delete/:id", async (req, res) => {
       res.send(result);
     });
 
-    // sorting get data -and get data all candidates 
+    // sorting get data -and get data all candidates
     app.get("/all-applications", async (req, res) => {
       const sortOrder = req.query.sortOrder || "newest";
 
