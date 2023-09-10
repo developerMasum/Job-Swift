@@ -319,6 +319,25 @@ async function run() {
     });
 
 
+    // test 
+    app.get('/all-candidate/:email', async (req, res) => {
+      const email = req.params.email;
+      // console.log(email);
+    
+      try {
+        const result = await applicationsPostCollection
+          .find({ jobPosterEmail: email })
+          .toArray();
+   
+        res.send(result);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while fetching data');
+      }
+    });
+    
+    
+
     
 
     // all applicant set stages-----------------------------

@@ -199,8 +199,8 @@ const Navbar = () => {
   const [scrolling, setScrolling] = useState(false);
   const [activeLink, setActiveLink] = useState(null); // Initialize activeLink as null
 
-  const { user, logout } = useContext(authContext);
-  console.log(user);
+  const { user } = useContext(authContext);
+  // console.log(user);
 
   // Function to handle link clicks and set the activeLink
   const handleLinkClick = (index) => {
@@ -225,7 +225,7 @@ const Navbar = () => {
   return (
     <nav
       className={`navbar fixed z-10 text-white font-bold flex items-center justify-between flex-wrap px-6 ${
-        scrolling ? "bg-white text-slate-800 shadow-md" : ""
+        scrolling ? "bg-white text-black shadow-md" : ""
       }`}
     >
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
@@ -264,7 +264,7 @@ const Navbar = () => {
           isOpen ? "block" : "hidden"
         }`}
       >
-        <div className="text-sm lg:flex-grow">
+        <div className="text-sm text-slate-400 lg:flex-grow">
           <a
             href="#"
             className={`block mt-4 sm:w-16   lg:inline-block lg:mt-0 text-white-200 mr-4 ${
@@ -317,7 +317,7 @@ const Navbar = () => {
               <button className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block">
                 Dashboard
               </button>
-            </Link> </>) : <div className="flex justify-center gap-2 items-center"> <Link className="px-5 border border-1 py-2 rounded-md border-emerald-800" to={'/login'}>Login</Link> <button className="bg-white text-teal-700 rounded-md px-5 py-2">Get a demo</button> </div>
+            </Link> </>) : <div className="flex justify-center gap-2 items-center"> <Link className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block" to={'/login'}>Login</Link> <button className="bg-white text-teal-700 rounded-md px-5 py-2">Get a demo</button> </div>
           }
         </div>
       </div>

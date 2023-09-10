@@ -10,7 +10,7 @@ text-second */
 @layer utilities {
   .active-link {
     border-bottom: 2px solid rgb(91, 195, 16);
-    color: rgb(7, 229, 166);
+    color: rgb(8, 61, 74);
     font-weight: 600;
   }
   @media (max-width: 767px) {

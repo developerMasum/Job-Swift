@@ -13,12 +13,29 @@ import SendMailModal from "./SendMailModal";
 import { FaCaretDown } from "react-icons/fa";
 import { authContext } from "../../../Auth/AuthProvider";
 
-const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
+const CandidateTables = ({ candidates }) => {
   console.log(candidates);
-  const {user} = useContext(authContext)
-  const email  = user?.email;
-const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
-// console.log(specificCandidate);
+//   const {user} = useContext(authContext)
+//   const email  = user?.email;
+// const candidates = candidates 
+// console.log(candidates);
+
+
+
+
+
+// axios.get(`http://localhost:5000/test/${email}`)
+//   .then((response) => {
+//     // Handle the successful response here
+//     console.log('test :', response.data);
+//   })
+//   .catch((error) => {
+//     // Handle any errors that occurred during the request
+//     console.error('Error:', error);
+//   });
+
+
+
 
 
   const [isChecked, setIsChecked] = useState("");
@@ -126,14 +143,14 @@ const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
 
       <div className="flex justify-between w-full items-center mb-4">
         <p className="text-xl font-bold text-gray-800">
-          {specificCandidate.length} <span className="text-gray-500">Candidates</span>
+          {candidates.length} <span className="text-gray-500">Candidates</span>
         </p>
 
         <div className="relative w-52">
           <select
             className="block appearance-none w-full bg-gray-100 border border-gray-300 text-gray-800 py-2 pl-3 pr-10 rounded-lg leading-tight focus:outline-none focus:border-gray-500"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
+         
+           
           >
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>
@@ -243,7 +260,7 @@ const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
         </thead>
         <tbody>
           {/* Rows */}
-          {specificCandidate.map((candidate) => (
+          {candidates.map((candidate) => (
             <tr
               key={candidate._id}
               className="hover:bg-gray-100 transition-colors divide-y-[1px] divide-gray-400 duration-300"
