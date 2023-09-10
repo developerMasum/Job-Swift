@@ -114,6 +114,7 @@ async function run() {
           // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
           await applicationsPostCollection.insertOne({
             jobTitle: formData.jobTitle,
+            jobPosterEmail: formData.jobPosterEmail,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
@@ -317,23 +318,44 @@ async function run() {
       }
     });
 
-    app.delete("/delete-candidates", async (req, res) => {
-      const candidatesToDelete = req.body; // An array of candidate IDs
-      console.log(candidatesToDelete);
-      try {
-        // Use the `deleteMany` method to delete candidates by their IDs
-        const result = await candidatesCollection.deleteMany({
-          _id: { $in: candidatesToDelete.map((id) => new ObjectId(id)) },
-        });
 
-        if (result.deletedCount > 0) {
-          res.status(204).send(); // Successfully deleted candidates
+    
+
+    // all applicant set stages-----------------------------
+    app.patch("/applicant/stage/:id", async (req, res) => {
+      const id = req.params.id;
+      const stage = req.body.stage;
+      console.log(stage);
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          stage: stage,
+        },
+      };
+
+      try {
+        const result = await applicationsPostCollection.updateOne(
+          filter,
+          updateDoc
+        );
+
+        if (result.modifiedCount === 1) {
+          res.status(200).send(`Updated ${id}'s stage to ${stage}`);
         } else {
-          res.status(404).json({ error: "No candidates found for deletion" });
+          res.status(404).send("Applicant not found");
         }
       } catch (error) {
-        res.status(500).json({ error: "Error deleting candidates" });
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
       }
+    });
+
+    // delete a candidate
+    app.delete("/delete-candidate/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await applicationsPostCollection.deleteOne(query);
+      res.send(result);
     });
 
     // resume app.use('/uploads', upload.array("image", "resume"));

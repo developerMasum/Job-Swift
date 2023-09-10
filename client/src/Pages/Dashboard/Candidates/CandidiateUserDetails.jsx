@@ -17,6 +17,7 @@ import {
   BiUser,
   BiCategoryAlt,
 } from "react-icons/bi";
+import toast from "react-hot-toast";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 
@@ -24,10 +25,13 @@ import { useEffect, useState } from "react";
 import Loader from "../../../Components/Loader/Loader";
 import ViewPdfCandidate from "./ViewPdfCandidate";
 import { PiGraduationCapBold } from "react-icons/pi";
+import CandidateStages from "./CandidateStages";
+
 
 const CandidiateUserDetails = () => {
+
   const { id } = useParams();
-  console.log("error", id);
+  // console.log("error", id);
   const [userDetails2, setUserDetails2] = useState(null);
 
   // time and date fixer
@@ -41,9 +45,7 @@ const CandidiateUserDetails = () => {
   };
 
   useEffect(() => {
-    // Fetch candidate profile data from the server based on the 'id' parameter
-    const URL = `https://sojib-job-swift.vercel.app/all-applications/${id}`;
-    console.log(URL);
+    const URL = `http://localhost:5000/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -55,12 +57,39 @@ const CandidiateUserDetails = () => {
       });
   }, [id]); // Include 'id' as a dependency in the useEffect dependency array
 
-  // Check if profileData is still null or loading, and render accordingly
   if (userDetails2 === null) {
     return <Loader />;
   }
 
-  console.log(userDetails2);
+  // console.log(userDetails2);
+
+  // handleDisQualified
+const handleDisQualified=(id)=>{
+  try {
+    const response = fetch(
+      `http://localhost:5000/applicant/stage/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ stage: "Disqualified" }),
+      }
+    );
+
+    if (response) {
+      toast.error('This Candidate marked as Disqualified');
+      setCurrentStage(itemName);
+    } else {
+      console.error("Failed to update stage.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+
+}
+
+
 
   const {
     email,
@@ -78,7 +107,7 @@ const CandidiateUserDetails = () => {
     date,
   } = userDetails2 || {};
 
-  // for pdf view
+
 
   return (
     <div className="pt-20">
@@ -100,27 +129,9 @@ const CandidiateUserDetails = () => {
               <BiSolidHandRight size={25} className="text-swift" />
               <BiSolidHandLeft size={25} className="text-swift" />
             </div>
-            <BiSolidHand size={25} className="text-red-700"></BiSolidHand>
-            <details className="dropdown bg-cyan-700 text-white cursor-pointer rounded-md px-2">
-              <summary className="m-1 ">Move to Offer</summary>
-              <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 text-second rounded-box w-fit">
-                <li>
-                  <a>Sourced</a>
-                </li>
-                <li>
-                  <a>Applied</a>
-                </li>
-                <li>
-                  <a>Interview</a>
-                </li>
-                <li>
-                  <a>Offer</a>
-                </li>
-                <li>
-                  <a>Hired</a>
-                </li>
-              </ul>
-            </details>
+            <BiSolidHand onClick={()=>handleDisQualified(id)} size={25} className="text-red-700"></BiSolidHand>
+            <CandidateStages  id={id}/>
+            
           </div>
         </div>
       </div>
@@ -300,22 +311,6 @@ const CandidiateUserDetails = () => {
                 </div>
               </div>
               <div className="divider mt-10 font-bold"></div>
-
-              {/* <div>
-                <h1 className="font-bold">SOCIAL PROFILES</h1>
-
-                <div className="mt-6">
-                  <p>
-                    {" "}
-                    These profiles were automatically retrieved, not provided by
-                    the candidate.
-                  </p>
-                  <p className="flex gap-6 mt-4 text-xl">
-                    <BiLogoLinkedinSquare></BiLogoLinkedinSquare>
-                    <BiLogoFacebookSquare></BiLogoFacebookSquare>
-                  </p>
-                </div>
-              </div> */}
             </div>
           </TabPanel>
           <TabPanel className="border  rounded-lg p-8">

@@ -5,11 +5,11 @@ import { authContext } from "../../Auth/AuthProvider";
 // import { AuthContext } from "../providers/AuthProvider";
 
 const useAxiosSecure = () => {
-  const { logout,logIn } = useContext(authContext);
+  const { logout, logIn } = useContext(authContext);
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: "https://sojib-job-swift.vercel.app/",
+    baseURL: "http://localhost:5000/",
   });
 
   useEffect(() => {
