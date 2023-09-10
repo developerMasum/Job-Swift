@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { MdClear, MdKeyboardArrowDown, MdStar } from "react-icons/md";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+// import { authContext } from "../../../Auth/AuthProvider";
 
 const PostJobs = ({ jobs }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,14 +23,41 @@ const PostJobs = ({ jobs }) => {
     lastCandidateDate,
     _id,
   } = jobs;
-  const handleDelete = async (id) => {
-    const response = await fetch(`http://localhost:5000/all-post/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/all-post/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your order has been deleted.", "success");
+
+              window.location.reload();
+            }
+          });
+      }
     });
   };
+
+// stage ar kaj baj
+// const appliedStage = 
+// const { candidates, isLoading, error } = useSelector((state) => state.candidates);
+// const {user} = useContext(authContext)
+// const email  = user?.email;
+// const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
+// const Stage = filteredCandidates.map(candidate => candidate.stage)
+// console.log('frp, job post',specificCandidate);
+
 
   return (
     <div
@@ -143,7 +172,7 @@ const PostJobs = ({ jobs }) => {
           <span>
             <MdClear className="w-7 h-7" color="red" />
           </span>
-          This job is not published on your careers page or on any job boards
+        job published in career page
         </h2>
         <div className="lg:md:flex">
           <p>Candidates:{totalCandidates}</p>

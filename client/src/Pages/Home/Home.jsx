@@ -1,4 +1,4 @@
-import PaySection from "../../Components/Home/PaySection";
+// import PaySection from "../../Components/Home/PaySection";
 import HrPlatform from "../../Components/Home/HrPlatform";
 import EmployeeExperience from "../../Components/Home/EmployeeExperience";
 import HeadlineBar from "../Shared/HeadlineBar";
@@ -25,7 +25,7 @@ import KeyFeatures from "../../Components/Home/KeyFeature/Features";
 
 const Home = () => {
   return (
-    <div className="pt-5 lg:md:pt-16">
+    <div className="">
       <Slide>{/* <HeadlineBar /> */}</Slide>
       <Banner />
 
@@ -59,7 +59,6 @@ const Home = () => {
           <PaySection />
 
         </div> */}
-
         <Hiring />
 
         <div className="mt-16 mb-5">
@@ -80,7 +79,7 @@ const Home = () => {
 
           {/* slider */}
           <div className="mt-12">
-            <h2 className="text-3xl font-bold text-center text-swift font-sans ">
+            <h2 className="md:text-4xl text-2xl mb-12 md:mb-0 font-bold text-center text-gray-800 font-sans ">
               Why People Love JobSwift
             </h2>
             <Slider />
@@ -88,7 +87,11 @@ const Home = () => {
 
           {/* Company */}
           {/* <Company /> */}
-          {/* Program Manager from Ashik faysal */}
+
+          {/* <div className="mt-12">
+            
+            <SendTextMessage />
+          </div> */}
         </div>
       </div>
     </div>

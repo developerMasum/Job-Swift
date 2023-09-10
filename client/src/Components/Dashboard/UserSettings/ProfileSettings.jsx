@@ -23,7 +23,7 @@ const ProfileSettings = () => {
       </div>
       <div>
         <div className="bg-slate-100  max-w-2xl container mx-auto">
-          <h3 className="text-3xl font-semibold text-center text-gray-600 font-serif">
+          <h3 className="text-2xl mb-2 font-bold text-center text-swift">
             Profile
           </h3>
           <form
@@ -120,9 +120,10 @@ const ProfileSettings = () => {
                 >
                   Photo
                 </label>
-                <div className="flex flex-col items-center border-dashed p-8 border-[1px] border-gray-500 rounded-lg shadow-md">
-                  <div className="flex items-center border-[2px]  hover:shadow-xl rounded-md border-gray-400 bg-gray-100 h-20 px-2">
+                <div className="flex flex-col items-center border-dashed py-8 border-[1px] border-gray-500 rounded-lg shadow-md">
+                  <div className="md:flex items-center border-[2px]  hover:shadow-xl rounded-md border-gray-400 bg-gray-100 h-20 px-2">
                     <input
+                      className="md:w-1/2"
                       type="file"
                       id="image"
                       name="image"
@@ -132,9 +133,9 @@ const ProfileSettings = () => {
 
                     <label
                       htmlFor="image"
-                      className="cursor-pointer flex items-center space-x-2 p-2 text-gray-500 rounded-md border-[1px]"
+                      className="cursor-pointer flex items-center space-x-2 p-2 text-gray-500 rounded-md border-[1px] md:w-1/2"
                     >
-                      <RiImageAddLine className="text-2xl" />{" "}
+                      <RiImageAddLine className="text-2xl" />
                       <span>Choose JPG, PNG</span>
                     </label>
                   </div>
@@ -144,7 +145,7 @@ const ProfileSettings = () => {
             <div className="flex items-center justify-center">
               <button
                 type="submit"
-                className="bg-blue-500 w-48 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+                className="bg-primary mt-3 text-white px-4 py-2 rounded-md hover:bg-primary-dark w-full"
               >
                 Save
               </button>

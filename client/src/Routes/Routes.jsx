@@ -162,7 +162,6 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/all-post/${params.id}`),
       },
-      
 
       {
         path: "jobs/findCandidates",
@@ -227,7 +226,7 @@ const router = createBrowserRouter([
       },
       {
         path: "candidate",
-        element: <Candidates />
+        element: <Candidates />,
       },
 
       {

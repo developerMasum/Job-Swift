@@ -17,16 +17,21 @@ import {
   BiUser,
   BiCategoryAlt,
 } from "react-icons/bi";
+import toast from "react-hot-toast";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
 import Loader from "../../../Components/Loader/Loader";
 import ViewPdfCandidate from "./ViewPdfCandidate";
+import { PiGraduationCapBold } from "react-icons/pi";
+import CandidateStages from "./CandidateStages";
+
 
 const CandidiateUserDetails = () => {
+
   const { id } = useParams();
-  console.log("error", id);
+  // console.log("error", id);
   const [userDetails2, setUserDetails2] = useState(null);
 
   // time and date fixer
@@ -40,9 +45,7 @@ const CandidiateUserDetails = () => {
   };
 
   useEffect(() => {
-    // Fetch candidate profile data from the server based on the 'id' parameter
     const URL = `http://localhost:5000/all-applications/${id}`;
-    console.log(URL);
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -54,12 +57,39 @@ const CandidiateUserDetails = () => {
       });
   }, [id]); // Include 'id' as a dependency in the useEffect dependency array
 
-  // Check if profileData is still null or loading, and render accordingly
   if (userDetails2 === null) {
     return <Loader />;
   }
 
-  console.log(userDetails2);
+  // console.log(userDetails2);
+
+  // handleDisQualified
+const handleDisQualified=(id)=>{
+  try {
+    const response = fetch(
+      `http://localhost:5000/applicant/stage/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ stage: "Disqualified" }),
+      }
+    );
+
+    if (response) {
+      toast.error('This Candidate marked as Disqualified');
+      setCurrentStage(itemName);
+    } else {
+      console.error("Failed to update stage.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+
+}
+
+
 
   const {
     email,
@@ -77,43 +107,31 @@ const CandidiateUserDetails = () => {
     date,
   } = userDetails2 || {};
 
-  // for pdf view
+
 
   return (
     <div className="pt-20">
       <div className="bg-image  bg-opacity-40 border border-slate-300 shadow-lg   ">
         <div className="flex lg:md:justify-end  p-4">
-          <div className="flex justify-around gap-8 bg-white px-4 items-center border border-slate-400 rounded-lg p-2">
-            <BiDotsHorizontal className="border-r-2 border-slate-400 pr-2 text-3xl"></BiDotsHorizontal>
-            <BiEnvelope></BiEnvelope>
-            <BiMessageCheck></BiMessageCheck>
-            <BiSolidCalendar className="border-r-2 border-slate-400 pr-3 text-3xl"></BiSolidCalendar>
-            <BiSolidChat></BiSolidChat>
+          <div className="flex justify-around gap-8 cursor-pointer bg-white px-4 items-center border border-slate-400 rounded-lg p-2">
+            <BiDotsHorizontal
+              size={30}
+              className="border-r-2 border-slate-400 pr-2 text-swift"
+            ></BiDotsHorizontal>
+            <BiEnvelope size={25} className="text-swift" />
+            <BiMessageCheck size={25} className="text-swift" />
+            <BiSolidCalendar
+              size={35}
+              className="border-r-2 border-slate-400 pr-3 text-swift "
+            ></BiSolidCalendar>
+            <BiSolidChat size={25} className="text-swift" />
             <div className="flex border-r-2 border-slate-400 pr-8 text-2xl">
-              <BiSolidHandRight></BiSolidHandRight>
-              <BiSolidHandLeft></BiSolidHandLeft>
+              <BiSolidHandRight size={25} className="text-swift" />
+              <BiSolidHandLeft size={25} className="text-swift" />
             </div>
-            <BiSolidHand className="text-red-700"></BiSolidHand>
-            <details className="dropdown btn-sm btn-primary rounded-md">
-              <summary className="m-1 ">Move to Offer</summary>
-              <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-fit">
-                <li>
-                  <a>Sourced</a>
-                </li>
-                <li>
-                  <a>Applied</a>
-                </li>
-                <li>
-                  <a>Interview</a>
-                </li>
-                <li>
-                  <a>Offer</a>
-                </li>
-                <li>
-                  <a>Hired</a>
-                </li>
-              </ul>
-            </details>
+            <BiSolidHand onClick={()=>handleDisQualified(id)} size={25} className="text-red-700"></BiSolidHand>
+            <CandidateStages  id={id}/>
+            
           </div>
         </div>
       </div>
@@ -123,7 +141,7 @@ const CandidiateUserDetails = () => {
             <div>
               <img
                 className="h-24 w-24 rounded-xl border border-sky-600"
-                src={`https://server-wheat-beta.vercel.app/images/${image}`}
+                src={`http://localhost:5000/images/${image}`}
                 alt=""
               />
             </div>
@@ -133,7 +151,19 @@ const CandidiateUserDetails = () => {
                 {firstName} {lastName}
               </h1>
               {educationList?.map((education, index) => {
-                return <h2 key={index}>{education?.institution}</h2>;
+                return (
+                  <h2
+                    className="flex gap-2 items-center mb-2 font-semibold"
+                    key={index}
+                  >
+                    {" "}
+                    <PiGraduationCapBold
+                      size={20}
+                      className="text-swift"
+                    />{" "}
+                    {education?.institution}
+                  </h2>
+                );
               })}
 
               <h3 className="flex gap-2 items-center mb-2 font-semibold">
@@ -185,11 +215,11 @@ const CandidiateUserDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-12">
-              <Tab className="btn-outline border border-slate-700 rounded-lg  px-8 py-2">
+            <div className="flex gap-12 cursor-pointer">
+              <Tab className=" bg-cyan-700  text-white  rounded-lg  px-8 py-2">
                 Profile
               </Tab>
-              <Tab className="btn-outline border border-slate-700 rounded-lg  px-8 py-2">
+              <Tab className="border border-1 hover:bg-cyan-600 border-cyan-700 rounded-lg  px-8 py-2">
                 Timeline
               </Tab>
             </div>
@@ -238,7 +268,7 @@ const CandidiateUserDetails = () => {
 
             <div className="border max-w-4xl border-slate-200 p-10 text-center">
               <iframe
-                src={`https://server-wheat-beta.vercel.app/${resume}`}
+                src={`http://localhost:5000/images/${resume}`}
                 width={100}
                 title="Uploaded Resume"
                 className="mt-2 border border-gray-400 rounded"
@@ -278,7 +308,7 @@ const CandidiateUserDetails = () => {
                 <h1 className="text-swift font-bold text-base mb-3 ">
                   CONTACT PREFERENCES
                 </h1>
-                <div className="mt-6 text-swift">
+                <div className="mt-6 ">
                   <p className="flex gap-6">
                     <span className="font-semibold ">Texting:</span>
                     <span>Enabled - consent confirmed</span>
@@ -286,22 +316,6 @@ const CandidiateUserDetails = () => {
                 </div>
               </div>
               <div className="divider mt-10 font-bold"></div>
-
-              {/* <div>
-                <h1 className="font-bold">SOCIAL PROFILES</h1>
-
-                <div className="mt-6">
-                  <p>
-                    {" "}
-                    These profiles were automatically retrieved, not provided by
-                    the candidate.
-                  </p>
-                  <p className="flex gap-6 mt-4 text-xl">
-                    <BiLogoLinkedinSquare></BiLogoLinkedinSquare>
-                    <BiLogoFacebookSquare></BiLogoFacebookSquare>
-                  </p>
-                </div>
-              </div> */}
             </div>
           </TabPanel>
           <TabPanel className="border  rounded-lg p-8">

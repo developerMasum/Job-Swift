@@ -34,28 +34,6 @@ const Jobs = () => {
 
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
-      {/* Down nav */}
-      {/* <div className="md:px-8 w-full px-4 bg-white shadow-md py-4 mb-5">
-        <div className="flex justify-between">
-          <div className="flex items-center gap-1">
-            <h2 className="lg:md:text-3xl">MD MASUM</h2>
-            <button className="pt-1">
-              {" "}
-              <LuEdit className="h-5 w-5  text-gray-500" />
-            </button>
-          </div>
-          <div>
-            <Link to="post-job">
-              <button className="bg-[#00756a] border-2 border-[#00756a] px-5 py-2 rounded-lg text-white lg:md:font-medium hover:bg-[#005f56] hover:border-[#005f56] transition-colors 3s ease-in-out">
-                Create a new job
-              </button>
-            </Link>
-          </div>
-        </div>
-
-        
-      </div> */}
-
       <div className="bg-white rounded-lg border-[1px] p-4 mb-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
@@ -65,7 +43,7 @@ const Jobs = () => {
             </button>
           </div>
           <Link to="post-job">
-            <button className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
+            <button className="bg-cyan-700 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
               Create a New Job
             </button>
           </Link>
@@ -148,30 +126,10 @@ const Jobs = () => {
           )}
         </div>
       </div>
-      {/* Content */}
-      {/* <div className=" mx-2 lg:md:mx-0 flex gap-14 border rounded-md border-gray-400 py-4  items-center bg-white justify-between px-10">
-        <div className="space-y-3">
-          <h2 className="font-semibold text-base text-gray-800">Post a job</h2>
-          <p className="text-swift">
-            Get your job listing in front of millions of candidates today. Do
-            things faster with a choice of over 700 job description templates,
-            and choose to publish on the most popular free and premium job
-            boards.
-          </p>
-          <Link to="post-job">
-            <button className=" text-[#00756a] px-5 py-1 border border-[#00756a] rounded-lg hover:bg-[#ffffdd] transition-colors 3s ease-in-out font-medium">
-              Post a job
-            </button>
-          </Link>
-        </div>
-        <div className="w-[280px] h-full">
-          <img src={triangle} alt="" />
-        </div>
-      </div> */}
 
       <div className="mx-2 lg:md:mx-0 flex gap-8 border-[1px] rounded-md   border-gray-300 p-6 items-center bg-white justify-between">
         <div className="flex flex-col space-y-3">
-          <h2 className="text-3xl font-bold text-cyan-600"> Post a job</h2>
+          <h2 className="text-xl font-bold text-second"> Post a job</h2>
           <p className="text-gray-500">
             Get your job listing in front of millions of candidates today. Do
             things faster with a choice of over 700 job description templates,{" "}

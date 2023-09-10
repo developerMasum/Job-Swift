@@ -299,7 +299,8 @@ import { AiOutlineFilePdf } from "react-icons/ai";
 import axios from "axios";
 import { RiImageAddLine } from "react-icons/ri";
 
-const UpdateForm = ({ jobTitle }) => {
+const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
+  console.log(jobPosterEmail);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -395,6 +396,7 @@ const UpdateForm = ({ jobTitle }) => {
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
     formData.append("jobTitle", jobTitle);
+    formData.append("jobPosterEmail", jobPosterEmail);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
     formData.append("email", data.email);
@@ -413,7 +415,7 @@ const UpdateForm = ({ jobTitle }) => {
     setEmail(data.email);
     try {
       const response = await axios.post(
-        "https://server-wheat-beta.vercel.app/upload",
+        "http://localhost:5000/upload",
         formData,
         {
           headers: {
@@ -421,9 +423,9 @@ const UpdateForm = ({ jobTitle }) => {
           },
         }
       );
-      console.log(response.data);
+      console.log('from overview',response.data);
     } catch (error) {
-      console.error(error);
+      console.error('from overview',error);
     }
 
     setTimeout(() => {
