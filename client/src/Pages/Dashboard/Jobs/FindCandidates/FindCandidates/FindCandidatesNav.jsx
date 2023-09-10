@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BiChevronDown } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllPost } from '../../../../../redux/postJob/api';
+import { authContext } from '../../../../../Auth/AuthProvider';
 
 const FindCandidatesNav = () => {
     return (
@@ -109,7 +112,7 @@ const FindCandidatesNav = () => {
                 </div>
 
                 <div className='flex gap-1  lg:md:pt-6 lg:md:pb-5'>
-                    <Link to='jobDetails'>
+                    <Link to={'jobDetails'}>
                         <p className=' hover:bg-[#f2f4f5] ms-4 ps-4 lg:md:pe-32 py-2 rounded-lg'>
                             Job details
                         </p>

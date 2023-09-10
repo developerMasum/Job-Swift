@@ -121,6 +121,7 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/all-post/${params.id}`),
       },
+      
     ],
   },
   {
@@ -158,15 +159,14 @@ const router = createBrowserRouter([
       {
         path: "jobs/applied-job/:id",
         element: <AppliedJobs />,
-
         loader: ({ params }) =>
           fetch(`http://localhost:5000/all-post/${params.id}`),
       },
-      
 
       {
         path: "jobs/findCandidates",
         element: <FindCandidatesLayout></FindCandidatesLayout>,
+        
         children: [
           {
             path: "teamMembers",
@@ -189,6 +189,7 @@ const router = createBrowserRouter([
           {
             path: "jobDetails",
             element: <JobsDetails></JobsDetails>,
+            
           },
         ],
       },
@@ -227,7 +228,7 @@ const router = createBrowserRouter([
       },
       {
         path: "candidate",
-        element: <Candidates />
+        element: <Candidates />,
       },
 
       {
