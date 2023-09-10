@@ -26,7 +26,7 @@ import KeyFeatures from "../../Components/Home/KeyFeature/Features";
 
 const Home = () => {
   return (
-    <div className="pt-5 lg:md:pt-16">
+    <div className="">
       <Slide>
         {/* <HeadlineBar /> */}
       </Slide>

@@ -182,7 +182,7 @@ const UpperBar = () => {
       )}
 
       {!isAdmin && (
-        <div className="flex justify-between font-bold navbar rounded-xl text-black shadow-xl bg-slate-100 fixed z-10  md:flex-row  max-w-7xl mx-auto ">
+        <div className="flex justify-between font-bold navbar rounded-xl text-black shadow-xl bg-slate-100 fixed z-10  md:flex-row  mx-auto ">
           <div className="flex  lg:md:gap-10  ">
             {/* responsive Mobile view----------------------- */}
             <div className="dropdown ">
