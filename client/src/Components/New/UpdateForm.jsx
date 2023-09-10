@@ -501,23 +501,6 @@ const UpdateForm = ({ jobTitle }) => {
               className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
               encType="multipart/form-data"
             >
-             
-              <div>
-       {
-        allData?.map(file=><>
-         
-         <img width={100} src={`http://localhost:5000/${file?.image}`} alt="" />
-         <iframe
-              src={`http://localhost:5000/${file?.resume}`}
-              width={100}
-              title="Uploaded Resume"
-            className="mt-2 border border-gray-400 rounded"
-           style={{ width: '100%', height: '400px' }}
-           />
-        
-        </>)
-       }
-      </div>
               <div className="bg-neutral-100 p-2">
                 <h1 className="text-lg font-semibold text-gray-500">
                   Personal Details
