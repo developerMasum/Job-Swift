@@ -39,7 +39,7 @@ const Home = () => {
       <div className="md:px-12">
         <EmployeeExperienceSection></EmployeeExperienceSection>
       </div>
-      {/* <FileUpload></FileUpload> */}
+      <FileUpload></FileUpload>
       <KeyFeatures></KeyFeatures>
 
       <div className="mt-12">
