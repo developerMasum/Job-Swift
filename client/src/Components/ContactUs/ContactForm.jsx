@@ -55,9 +55,9 @@ export const ContactForm = () => {
     <div className="max-w-md mx-auto p-4 border rounded-md shadow-md">
       <div className="text-center">
         <h2 className="text-2xl text-swift font-semibold mb-2">Email Us</h2>
-        <p className="mb-4">Just complete the form below</p>
+        <p className="mb-4 text-second">Just complete the form below</p>
       </div>
-      <form ref={form} onSubmit={sendEmail}>
+      <form className="text-second" ref={form} onSubmit={sendEmail}>
         <div className="md:flex gap-4">
           <div className="mb-4">
             <label htmlFor="firstName" className="block mb-2">
@@ -95,49 +95,6 @@ export const ContactForm = () => {
             className="w-full p-2 border rounded-md"
             required
           />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="companyName" className="block mb-2">
-            Company Name:
-          </label>
-          <input
-            type="text"
-            id="companyName"
-            name="companyName"
-            className="w-full p-2 border rounded-md"
-            required
-          />
-        </div>
-        <div className="md:flex gap-4">
-          <div className="mb-4">
-            <label htmlFor="phoneNumber" className="block mb-2">
-              Phone Number:
-            </label>
-            <input
-              type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
-              className="w-full p-2 border rounded-md"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="employeeCount" className="block mb-2">
-              Employee Count:
-            </label>
-            <select
-              id="employeeCount"
-              name="employeeCount"
-              className="w-full p-2 border rounded-md"
-              required
-            >
-              <option value="">Select</option>
-              <option value="1-10">1-10</option>
-              <option value="11-50">11-50</option>
-              <option value="51-100">51-100</option>
-              <option value="101+">101+</option>
-            </select>
-          </div>
         </div>
         <div className="mb-4">
           <label htmlFor="jobSwiftCustomer" className="block mb-2">
@@ -178,14 +135,14 @@ export const ContactForm = () => {
           <textarea
             id="message"
             name="message"
-            rows="2"
+            rows="4"
             className="w-full p-2 border rounded-md"
             required
           ></textarea>
         </div>
         <div className="text-center">
           <button
-            className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark"
+            className="bg-primary mt-3 text-white px-4 py-2 rounded-md hover:bg-primary-dark w-full"
             type="submit"
             ref={hiddenSubmitButton} // Hidden submit button
           >

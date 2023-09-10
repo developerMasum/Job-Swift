@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
@@ -11,9 +11,16 @@ import {
 } from "react-icons/hi";
 import SendMailModal from "./SendMailModal";
 import { FaCaretDown } from "react-icons/fa";
+import { authContext } from "../../../Auth/AuthProvider";
 
 const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
-  // console.log(candidates);
+  console.log(candidates);
+  const {user} = useContext(authContext)
+  const email  = user?.email;
+const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
+// console.log(specificCandidate);
+
+
   const [isChecked, setIsChecked] = useState("");
   // const [sortOrder, setSortOrder] = useState("newest");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,20 +52,30 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
     });
   };
 
-  // async function handleDelete(id) {
-  //   const response = await fetch('http://localhost:5000/delete-candidates', {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(id),
-  //   });
+  async function handleDelete(id) {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/delete-candidate/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-  //   if (!response.ok) {
-  //     console.error('Error deleting candidates:', response.statusText);
-
-  //   }
-  // }
+      if (response.status === 200) {
+        toast.success("Candidate deleted successfully", {
+          position: "bottom-center",
+        });
+      } else {
+        // Handle other response statuses if needed
+        console.error("Failed to delete candidate. Status:", response.status);
+      }
+    } catch (error) {
+      console.error("An error occurred while deleting the candidate:", error);
+    }
+  }
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -79,10 +96,11 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
     axios
       .post("http://localhost:5000/mail", mailData)
       .then((response) => {
-        console.log("Email sent successfully:", response.data);
-        toast.success("Email sent successfully!"); // Use toast.success to show a success message
+        // The code inside this block will only run if the request is successful
+        toast.success("Email sent successfully!");
       })
       .catch((error) => {
+        // The code inside this block will run if there's an error with the request
         console.error("Error sending email:", error);
         toast.error("Error sending email.");
       });
@@ -108,7 +126,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
 
       <div className="flex justify-between w-full items-center mb-4">
         <p className="text-xl font-bold text-gray-800">
-          {candidates.length} <span className="text-gray-500">Candidates</span>
+          {specificCandidate.length} <span className="text-gray-500">Candidates</span>
         </p>
 
         <div className="relative w-52">
@@ -157,7 +175,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
                 <div className="flex justify-start gap-3 items-center ">
                   <div className="w-16 h-16 rounded-full overflow-hidden">
                     <img
-                      src={`http://localhost:5000/images/${candidate.image}`}
+                      src={`http://localhost:5000//images/${candidate.image}`}
                       alt=""
                       className="w-full h-full object-cover"
                     />
@@ -225,7 +243,7 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
         </thead>
         <tbody>
           {/* Rows */}
-          {candidates.map((candidate) => (
+          {specificCandidate.map((candidate) => (
             <tr
               key={candidate._id}
               className="hover:bg-gray-100 transition-colors divide-y-[1px] divide-gray-400 duration-300"
@@ -266,7 +284,18 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
                     {candidate.jobTitle}
                   </p>
                   <p className="text-sm text-gray-500">{candidate.location}</p>
-                  <p className="text-sm text-gray-500">at ---- Stage</p>
+                  {candidate?.stage ? (
+                    <>
+                      <p className="text-sm text-gray-500">
+                        at <span className="font-bold">{candidate.stage}</span>{" "}
+                        Stage
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-sm text-gray-500">
+                      at <span className="font-bold">Applied</span> Stage
+                    </p>
+                  )}
                   <p className="text-sm text-gray-500">
                     {(() => {
                       const timestamp = candidate.date;
@@ -301,11 +330,11 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
                   <Link to={`profile/${deleteId}`}>
                     {" "}
                     <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">
-                      Details
+                      Show Details
                     </button>
                   </Link>
-                  <p>
-                    Select:{" "}
+                  <p className="text-gray-800">
+                    Select:
                     <span
                       onClick={handleUnSelectAll}
                       className="font-semibold cursor-pointer"
@@ -319,15 +348,26 @@ const CandidateTables = ({ candidates, setSortOrder, sortOrder }) => {
                     onClick={() => handleDelete(isChecked)}
                     size={25}
                     color="red"
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:text-red-800"
+                    title="Delete This User"
                   />
                   <HiMail
                     onClick={openModal}
                     size={25}
                     className="text-sky-800 hover:text-lime-800 cursor-pointer"
+                    title="Send Mail "
                   />
-                  <HiChat size={25} className="text-sky-800" />
-                  <HiHand size={25} color="red" />
+                  <HiChat
+                    size={25}
+                    title="Message"
+                    className="text-sky-800 cursor-pointer"
+                  />
+                  <HiHand
+                    size={25}
+                    color="red"
+                    title="Disqualify"
+                    className="cursor-pointer"
+                  />
                   <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">
                     Move to Next Step
                   </button>

@@ -8,11 +8,22 @@
 /* text-swift
 text-second */
 @layer utilities {
-  .text-swift {
-    /* color: #0e7490; */
+  .active-link {
+    border-bottom: 2px solid rgb(91, 195, 16);
+    color: rgb(7, 229, 166);
+    font-weight: 600;
   }
+  @media (max-width: 767px) {
+    .active-link {
+      border-bottom: 2px solid red;
+      /* border-right: 100px; */
+      color: coral;
+      font-weight: 600;
+    }
+  }
+  
 
-  .text-second {
+  .text-second{
     @apply text-gray-700;
   }
 }

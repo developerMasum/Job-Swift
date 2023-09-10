@@ -46,12 +46,6 @@ const verifyJWT = (req, res, next) => {
   });
 };
 
-
-
-
-
-
-
 // ATSWebsite atswebsite2023
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mq0mae1.mongodb.net/?retryWrites=true&w=majority`
 const storage = multer.diskStorage({
@@ -94,7 +88,7 @@ async function run() {
       .db("JobSwiftDb")
       .collection("applications");
 
-      //  jwt token 
+    //  jwt token
     app.post("/jwt", (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
@@ -120,6 +114,7 @@ async function run() {
           // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
           await applicationsPostCollection.insertOne({
             jobTitle: formData.jobTitle,
+            jobPosterEmail: formData.jobPosterEmail,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
@@ -153,7 +148,7 @@ async function run() {
     //   res.send(result);
     // });
 
-    // put data as a new user 
+    // put data as a new user
     app.put("/user/:email", async (req, res) => {
       const email = req.params.email;
       // console.log(email);
@@ -169,71 +164,63 @@ async function run() {
       res.send(result);
     });
 
-   
-// --------------------admin---------------
- // make admin
- app.patch("/users/admin/:id", async (req, res) => {
-  const id = req.params.id;
-  // console.log(id);
-  const filter = { _id: new ObjectId(id) };
-  const updateDoc = {
-    $set: {
-      role: "admin",
-    },
-  };
+    // --------------------admin---------------
+    // make admin
+    app.patch("/users/admin/:id", async (req, res) => {
+      const id = req.params.id;
+      // console.log(id);
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "admin",
+        },
+      };
 
-  const result = await UserCollection.updateOne(filter, updateDoc);
-  res.send(result);
-});
+      const result = await UserCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
 
-// get admin data,is it admin or not
-app.get('/users/admin/:email',verifyJWT, async (req, res) => {
-  const email = req.params.email;
+    // get admin data,is it admin or not
+    app.get("/users/admin/:email", verifyJWT, async (req, res) => {
+      const email = req.params.email;
 
-  if (req.decoded.email !== email) {
-    res.send({ admin: false })
-  }
-  // console.log(req.decoded.email);
-  const query = { email: email }
-  console.log(query);
-  const user = await UserCollection.findOne(query);
-  const result = { admin: user?.role === 'admin' }
-  res.send(result);
-})
+      if (req.decoded.email !== email) {
+        res.send({ admin: false });
+      }
+      // console.log(req.decoded.email);
+      const query = { email: email };
+      console.log(query);
+      const user = await UserCollection.findOne(query);
+      const result = { admin: user?.role === "admin" };
+      res.send(result);
+    });
 
-// verify admin 
-const verifyAdmin = async (req, res, next) => {
-  const email = req.decoded.email;
-  const query = { email: email };
-  const user = await UserCollection.findOne(query);
-  if (user?.role !== "admin") {
-    return res
-      .status(403)
-      .send({ error: true, message: "forbidden message" });
-  }
-  next();
-};
+    // verify admin
+    const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email: email };
+      const user = await UserCollection.findOne(query);
+      if (user?.role !== "admin") {
+        return res
+          .status(403)
+          .send({ error: true, message: "forbidden message" });
+      }
+      next();
+    };
 
+    // get users data  info
+    app.get("/users", verifyJWT, verifyAdmin, async (req, res) => {
+      const result = await UserCollection.find().toArray();
+      res.send(result);
+    });
 
- // get users data  info
- app.get("/users",verifyJWT, verifyAdmin, async (req, res) => {
-  const result = await UserCollection.find().toArray();
-  res.send(result);
-});
-
-// delete user
-app.delete("/delete/:id", async (req, res) => {
-  const id = req.params.id;
-  const query = { _id: new ObjectId(id) };
-  const result = await UserCollection.deleteOne(query);
-  res.send(result);
-});
-
-
-
-
-
-
+    // delete user
+    app.delete("/delete/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await UserCollection.deleteOne(query);
+      res.send(result);
+    });
 
     // -----------------post job ---------------
     // post a new job
@@ -262,25 +249,20 @@ app.delete("/delete/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const update = { $set: req.body };
-      const result = await jobPostCollection.updateOne(query, update)
+      const result = await jobPostCollection.updateOne(query, update);
       res.send(result);
     });
     app.delete("/all-post/:id", async (req, res) => {
       try {
-          const id = req.params.id;
-          const query = { _id: new ObjectId(id) };
-  
-          const result = await jobPostCollection.deleteOne(query);
-  
-          
-  
-  
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+
+        const result = await jobPostCollection.deleteOne(query);
       } catch (error) {
-          console.error('Error deleting the post:', error);
-          res.status(500).send({ message: 'Internal Server Error' });
+        console.error("Error deleting the post:", error);
+        res.status(500).send({ message: "Internal Server Error" });
       }
-  });
-  
+    });
 
     app.get("/all-post", async (req, res) => {
       const result = await jobPostCollection.find().sort({ _id: -1 }).toArray();
@@ -302,7 +284,7 @@ app.delete("/delete/:id", async (req, res) => {
     //   const query = { _id: new ObjectId(id) };
     //   const result = await applicationsPostCollection.findOne(query);
     //   res.send(result);
-   
+
     // });
     app.get("/all-applications/:id", async (req, res) => {
       const id = req.params.id;
@@ -311,7 +293,7 @@ app.delete("/delete/:id", async (req, res) => {
       res.send(result);
     });
 
-    // sorting get data -and get data all candidates 
+    // sorting get data -and get data all candidates
     app.get("/all-applications", async (req, res) => {
       const sortOrder = req.query.sortOrder || "newest";
 
@@ -336,23 +318,44 @@ app.delete("/delete/:id", async (req, res) => {
       }
     });
 
-    app.delete("/delete-candidates", async (req, res) => {
-      const candidatesToDelete = req.body; // An array of candidate IDs
-      console.log(candidatesToDelete);
-      try {
-        // Use the `deleteMany` method to delete candidates by their IDs
-        const result = await candidatesCollection.deleteMany({
-          _id: { $in: candidatesToDelete.map((id) => new ObjectId(id)) },
-        });
 
-        if (result.deletedCount > 0) {
-          res.status(204).send(); // Successfully deleted candidates
+    
+
+    // all applicant set stages-----------------------------
+    app.patch("/applicant/stage/:id", async (req, res) => {
+      const id = req.params.id;
+      const stage = req.body.stage;
+      console.log(stage);
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          stage: stage,
+        },
+      };
+
+      try {
+        const result = await applicationsPostCollection.updateOne(
+          filter,
+          updateDoc
+        );
+
+        if (result.modifiedCount === 1) {
+          res.status(200).send(`Updated ${id}'s stage to ${stage}`);
         } else {
-          res.status(404).json({ error: "No candidates found for deletion" });
+          res.status(404).send("Applicant not found");
         }
       } catch (error) {
-        res.status(500).json({ error: "Error deleting candidates" });
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
       }
+    });
+
+    // delete a candidate
+    app.delete("/delete-candidate/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await applicationsPostCollection.deleteOne(query);
+      res.send(result);
     });
 
     // resume app.use('/uploads', upload.array("image", "resume"));

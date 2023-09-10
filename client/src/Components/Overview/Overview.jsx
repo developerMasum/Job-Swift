@@ -12,17 +12,19 @@ import UpdateForm from "../New/UpdateForm";
 
 const Overview = () => {
   const formData = useLoaderData()
-  // console.log(data);
+  // console.log('finding error',formData);
   const location = useLocation();
   const { user } = useContext(authContext);
   const queryParams = new URLSearchParams(location.search);
   const serializedData = queryParams.get("data");
   // const formData = JSON.parse(decodeURIComponent(serializedData));
   // console.log(formData);
-  const jobTitle = formData.jobTitle;
+  const jobTitle = formData?.jobTitle;
+  const jobPosterEmail = formData?.userEmail;
+  // console.log(jobPosterEmail);
   const [tabIndex, setTabIndex] = useState(0);
   const currentPath = window.location.pathname;
-  console.log(currentPath);
+  // console.log(currentPath);
   localStorage.setItem('URL', currentPath)
   return (
     <div className="container">
@@ -115,7 +117,7 @@ const Overview = () => {
           </TabPanel>
           <TabPanel>
             {/* <FormNew></FormNew> */}
-            <UpdateForm jobTitle={jobTitle}></UpdateForm>
+            <UpdateForm jobPosterEmail={jobPosterEmail} jobTitle={jobTitle}></UpdateForm>
           </TabPanel>
         </Tabs>
       </div>
