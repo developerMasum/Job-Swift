@@ -31,9 +31,8 @@ const CandidateForm = ({ closeModal }) => {
     console.log("Form Data:", formData);
 
     // Handle form submission here, e.g., send data to a server or update state
-
+ e.target.reset();
     // Close the modal
-    
   };
 
   // Define the 'handleCancel' function to close the modal when the "Cancel" button is clicked
