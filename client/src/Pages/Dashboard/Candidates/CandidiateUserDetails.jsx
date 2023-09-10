@@ -123,7 +123,7 @@ const CandidiateUserDetails = () => {
             <div>
               <img
                 className="h-24 w-24 rounded-xl border border-sky-600"
-                src={`http://localhost:5000/images/${image}`}
+                src={`https://server-wheat-beta.vercel.app/images/${image}`}
                 alt=""
               />
             </div>
@@ -238,7 +238,7 @@ const CandidiateUserDetails = () => {
 
             <div className="border max-w-4xl border-slate-200 p-10 text-center">
               <iframe
-                src={`http://localhost:5000/${resume}`}
+                src={`https://server-wheat-beta.vercel.app/${resume}`}
                 width={100}
                 title="Uploaded Resume"
                 className="mt-2 border border-gray-400 rounded"

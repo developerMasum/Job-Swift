@@ -413,7 +413,7 @@ const UpdateForm = ({ jobTitle }) => {
     setEmail(data.email);
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "https://server-wheat-beta.vercel.app/upload",
         formData,
         {
           headers: {
