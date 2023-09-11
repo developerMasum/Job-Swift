@@ -283,23 +283,23 @@ const Navbar = () => {
           >
             Second Link
           </a>
-          <a
-            href="#"
+          <Link
+           to='blogs'
             className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 ${
               activeLink === 2 ? "active-link" : "" // Apply active style for the third link
             }`}
             onClick={() => handleLinkClick(2)} // Set activeLink to 2 on click
           >
-            Third Link
-          </a>
+            Blogs
+          </Link>
           <Link
-            to={'/'}
+            to={'/contact-us'}
             className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 ${
               activeLink === 3 ? "active-link" : "" // Apply active style for the fourth link
             }`}
             onClick={() => handleLinkClick(3)} // Set activeLink to 3 on click
           >
-            Fourth Link
+           Contact us
           </Link>
         </div>
         <div className="flex flex-col sm:flex-row justify-start md:lg:flex  items-center">
