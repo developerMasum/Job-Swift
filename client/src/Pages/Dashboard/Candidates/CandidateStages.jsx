@@ -8,14 +8,15 @@ function CandidateStages({ id }) {
   const [stages, setStages] = useState([
     "Sourced",
     "Applied",
+    "Assessment",
     "Interview",
     "Offer",
-    "Hired",
+    "Hired"
   ]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const url = `https://server-job-swift.vercel.app/all-applications/${id}`;
+  const url = `http://localhost:5000/all-applications/${id}`;
 
   useEffect(() => {
     axios
@@ -37,7 +38,7 @@ function CandidateStages({ id }) {
 
     try {
       const response = await fetch(
-        `https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        `http://localhost:5000/applicant/stage/${id}`,
         {
           method: "PATCH",
           headers: {

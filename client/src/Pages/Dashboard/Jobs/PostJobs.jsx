@@ -34,7 +34,7 @@ const PostJobs = ({ jobs }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://server-job-swift.vercel.app/all-post/${id}`, {
+        fetch(`http://localhost:5000/all-post/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -71,7 +71,7 @@ const PostJobs = ({ jobs }) => {
           <MdStar size={25} color="#ffca00" />
           <Link to={`applied-job/${_id}`}>
             <h2 className="lg:md:text-xl lg:md:font-medium  hover:underline">
-              {jobTitle}
+              {jobs?.jobTitleFor}
             </h2>
           </Link>
           <p className="flex gap-1 text-gray-500">
@@ -145,25 +145,23 @@ const PostJobs = ({ jobs }) => {
 
       <div className="lg:md:flex pt-7 lg:md:px-10 pe-6 mx-auto pb-5 justify-between grid grid-cols-4 gap-4">
         <div className="font-medium  text-center text-gray-600">
-          <p> - </p> <p>Sourced</p>
+          <p>{jobs?.Sourced}</p> <p>Sourced</p>
         </div>
         <div className="font-medium  text-center text-gray-600">
-          <p> - </p> <p>Applied</p>
+          <p> {jobs?.Applied} </p> <p>Applied</p>
+        </div>
+       
+        <div className="font-medium text-center text-gray-600">
+          <p>{jobs?.Assessment}</p> <p>Assessment</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Phone Screen</p>
+          <p>{jobs?.Interview}</p> <p>Interview</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Assessment</p>
+          <p>{jobs?.Offer}</p> <p>Offer</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Interview</p>
-        </div>
-        <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Offer</p>
-        </div>
-        <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Hired</p>
+          <p> {jobs?.Hired}</p> <p>Hired</p>
         </div>
       </div>
       <div className="flex  pt-1 justify-between text-gray-600  ">

@@ -346,7 +346,7 @@ const Navbar = () => {
             </>
           ) : (
             <div className="flex justify-center gap-2 items-center">
-              {" "}
+              
               <Link
                 className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block"
                 to={"/login"}

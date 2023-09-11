@@ -114,6 +114,7 @@ async function run() {
           // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
           await applicationsPostCollection.insertOne({
             jobTitle: formData.jobTitle,
+            stage: formData.stage,
             jobPosterEmail: formData.jobPosterEmail,
             firstName: formData.firstName,
             lastName: formData.lastName,
@@ -319,7 +320,7 @@ async function run() {
     });
 
 
-    // test 
+    // test  get candidate by specific jobs
     app.get('/all-candidate/:email', async (req, res) => {
       const email = req.params.email;
       // console.log(email);
@@ -336,6 +337,7 @@ async function run() {
       }
     });
     
+
     
 
     

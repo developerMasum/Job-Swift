@@ -15,22 +15,72 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "../../../redux/postJob/postSlice";
 import { authContext } from "../../../Auth/AuthProvider";
+import { getAllCandidates } from "../../../redux/candidates/candidatesOperation";
 const Jobs = () => {
   const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
   const [isSecondOpen, setSecondOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { user } = useContext(authContext);
+  const email = user?.email;
 
-  const jobs = useSelector((state) => state.posts.jobs);
-  const isJobs = jobs.filter((d) => d.userEmail === user?.email);
-  // const postId = useSelector((state) => state.posts.jobs).map(
-  //   (post) => post._id
-  // );
+  const { candidates, isLoading, error } = useSelector((state) => state.candidates);
+console.log('from jobs', candidates);
+useEffect(() => {
+  // Dispatch the action to fetch candidates based on the selected sorting order
+  dispatch(getAllCandidates(email));
+}, [dispatch]);
+
+const jobs = useSelector((state) => state.posts.jobs);
+const isJobs = jobs.filter((d) => d.userEmail === user?.email);
+const jobTitleFor = isJobs.map(j => j.jobTitle);
+const mappedTitle = jobTitleFor.map(jt => {
+  const filteredByTitle = candidates.filter(c => c.jobTitle === jt);
+  const interviewCount = filteredByTitle.filter(ft => ft.stage === "Interview").length;
+  const sourcedCount = filteredByTitle.filter(ft => ft.stage === "Sourced").length;
+  const appliedCount = filteredByTitle.filter(ft => ft.stage === "Applied").length;
+  const offerCount = filteredByTitle.filter(ft => ft.stage === "Offer").length;
+  const hiredCount = filteredByTitle.filter(ft => ft.stage === "Hired").length;
+  const assessmentCount = filteredByTitle.filter(ft => ft.stage === "Assessment").length;
+
+  console.log(`Job Title: ${jt}`);
+  console.log(`Interview Count: ${interviewCount}`);
+  console.log(`Sourced Count: ${sourcedCount}`);
+  console.log(`Applied Count: ${appliedCount}`);
+  console.log(`Offer Count: ${offerCount}`);
+  console.log(`Hired Count: ${hiredCount}`);
+  console.log(`Assessment Count: ${assessmentCount}`);
+
+  return {
+    jobTitleFor: jt,
+    Interview: interviewCount,
+    Sourced: sourcedCount,
+    Applied: appliedCount,
+    Offer: offerCount,
+    Hired: hiredCount,
+    Assessment:assessmentCount
+  
+  };
+});
+  // console.log('job title',mappedTitle);
+  // const resilt = jobTitle.filter(job=>job.jobTitle===)
+  // console.log('isjobs',resilt);
+  
 
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
+
+
+  // ---------------------------------------candidates---------------------
+
+
+
+  // const filteredByTitle = candidates.filter(c =>c.jobTitle ==="Ai Dev")
+  // console.log('from jobs',filteredByTitle);
+
+
+
 
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
@@ -156,10 +206,15 @@ const Jobs = () => {
           <p className="text-xs font-bold text-swift ">Delete sample data</p>
         </div>
         <div className="">
-          {isJobs.map((jobs) => (
+          {mappedTitle.map((jobs) => (
             <PostJobs jobs={jobs} key={jobs._id} />
           ))}
         </div>
+        {/* <div className="">
+          {mappedTitle.map((jobs) => (
+            <PostJobs jobs={jobs} key={jobs._id} />
+          ))}
+        </div> */}
         <div className="pt-8 pb-6">
           <h2 className="pb-4 text-xs font-bold text-swift">TALENT POOL</h2>
 
