@@ -228,12 +228,12 @@ const Navbar = () => {
         scrolling ? "bg-white text-black shadow-md" : "bg-#00756a"
       }`}
     >
-      <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
-        <img
-          src="https://pub-static.fotor.com/assets/projects/pages/5367889ea0f04e499fe8ffea853e2e33/red-fire-football-club-eaf753c529e84e4d8bdf1042c1f18cdc.jpg"
+      <div className="flex items-center flex-shrink-0 text-gray-700 mr-6 lg:mr-72">
+       <Link to='/' className="flex justify-between items-center font-thin"> <img
+          src="https://i.ibb.co/MBnZyxD/logo-js.png" 
           className="w-12 h-12 mr-2"
           alt="Logo"
-        />{" "}
+        /> <p className="text-xl text-white-700">Job Swift</p></Link>
         {/* Adjust width and height as needed */}
       </div>
 
@@ -269,43 +269,63 @@ const Navbar = () => {
       >
         <div className="text-sm text-slate-400 lg:flex-grow">
           <Link
-            to="/"
-            className={`block mt-4 sm:w-16 lg:inline-block font-bold lg:mt-0 mr-4 ${
+            to="/details-marketplace"
+            className={`block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${
               activeLink === 0 ? "active-link" : ""
             }`}
-            style={{ color: scrolling ? "#00756A" : "#16887da2" }} // Fix the style property syntax
+            style={{ color: scrolling ? "#00756A" : "white" }} // Fix the style property syntax
             onClick={() => handleLinkClick(0)} // Set activeLink to 0 on click
           >
-            First Link
+           Market Place
+          </Link>
+          <Link
+            to="/single-pay"
+            className={`block mt-4 sm:w-14 lg:inline-block font-bold lg:mt-0 mr-4 ${
+              activeLink === 8 ? "active-link" : ""
+            }`}
+            style={{ color: scrolling ? "#00756A" : "white" }} // Fix the style property syntax
+            onClick={() => handleLinkClick(8)} // Set activeLink to 0 on click
+          >
+           Benefits
           </Link>
 
-          <a
-            href="#"
-            className={`block mt-4 sm:w-16 lg:inline-block font-bold lg:mt-0 mr-4 ${
+          <Link
+           to="/hiring"
+            className={`block mt-4 sm:w-28 lg:inline-block font-bold lg:mt-0 mr-4 ${
+              activeLink === 2 ? "active-link" : ""
+            }`}
+            style={{ color: scrolling ? "#00756A" : "white" }}
+            onClick={() => handleLinkClick(2)} // Set activeLink to 1 on click
+          >
+            Hiring & Board
+          </Link>
+          <Link to='/hr-data'
+            
+            className={`block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${
               activeLink === 1 ? "active-link" : ""
             }`}
             style={{ color: scrolling ? "#00756A" : "white" }}
             onClick={() => handleLinkClick(1)} // Set activeLink to 1 on click
           >
-            Second Link
-          </a>
+           Hr Reporting
+          </Link>
           <Link
             to="blogs"
-            className={`block mt-4 sm:w-16 lg:inline-block font-bold lg:mt-0 mr-4 ${
-              activeLink === 2 ? "active-link" : ""
+            className={`block mt-4 sm:w-12 lg:inline-block font-bold lg:mt-0 mr-4 ${
+              activeLink === 3 ? "active-link" : ""
             }`}
             style={{ color: scrolling ? "#00756A" : "white" }}
-            onClick={() => handleLinkClick(2)} // Set activeLink to 2 on click
+            onClick={() => handleLinkClick(3)} // Set activeLink to 2 on click
           >
             Blogs
           </Link>
           <Link
             to="/contact-us"
-            className={`block mt-4 sm:w-16 lg:inline-block font-bold lg:mt-0 mr-4 ${
-              activeLink === 3 ? "active-link" : ""
+            className={`block mt-4 sm:w-18 lg:inline-block font-bold lg:mt-0 mr-4 ${
+              activeLink === 4 ? "active-link" : ""
             }`}
             style={{ color: scrolling ? "#00756A" : "white" }}
-            onClick={() => handleLinkClick(3)} // Set activeLink to 3 on click
+            onClick={() => handleLinkClick(4)} // Set activeLink to 3 on click
           >
             Contact us
           </Link>

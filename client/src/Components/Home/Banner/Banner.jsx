@@ -105,7 +105,7 @@ const Banner = () => {
               <div className="flex items-center">
                 <div><BsPlayCircleFill className="text-sky-300"></BsPlayCircleFill></div>
                 <div>
-                  <Link className="text-sm ms-2 hover:underline">SEE WORKABLE IN ACTION</Link> <span className="mx-4">or</span>
+                  <Link className="text-sm ms-2 hover:underline italic">SEE JOB SWIFT IN ACTION</Link> <span className="mx-4">or</span>
                 </div>
               </div>
 
