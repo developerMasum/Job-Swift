@@ -268,7 +268,7 @@ const handleDisQualified=(id)=>{
 
             <div className="border max-w-4xl border-slate-200 p-10 text-center">
               <iframe
-                src={`http://localhost:5000/${resume}`}
+               src={`http://localhost:5000/images/${resume}`}
                 width={100}
                 title="Uploaded Resume"
                 className="mt-2 border border-gray-400 rounded"

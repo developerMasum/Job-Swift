@@ -24,9 +24,9 @@ const Jobs = () => {
 
   const jobs = useSelector((state) => state.posts.jobs);
   const isJobs = jobs.filter((d) => d.userEmail === user?.email);
-  const postId = useSelector((state) => state.posts.jobs).map(
-    (post) => post._id
-  );
+  // const postId = useSelector((state) => state.posts.jobs).map(
+  //   (post) => post._id
+  // );
 
   useEffect(() => {
     dispatch(getAllPost());
