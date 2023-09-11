@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineRight } from "react-icons/ai";
+
 
 const BlogCard = ({ blog }) => {
   // Destructure properties from the 'blog' object
@@ -43,9 +45,10 @@ const BlogCard = ({ blog }) => {
       <div className="px-6 pb-4">
         <Link
           to={`/blogs/${id}`}
-          className={`block text-center font-semibold bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 py-2 px-4 rounded-full hover:from-gray-500 hover:via-gray-600 hover:to-gray-700 dark:hover:from-gray-700 dark:hover:via-gray-800 dark:hover:to-gray-900 transition duration-300 ease-in-out transform hover:scale-105`}
+          className={`flex items-center text-center font-semibold underline py-2 px-4 rounded-full text-teal-700 transition duration-300 ease-in-out transform hover:scale-105`}
         >
-          Read More
+          <span>Read More</span>
+          <AiOutlineRight size={16}/>
         </Link>
       </div>
     </div>

@@ -56,7 +56,7 @@ const BlogDetails = () => {
               {/* Blog Title */}
               <h1 className="font-bold text-xl mb-2">{blog.title}</h1>
               <p className="text-gray-700">Author: {blog.author}</p>
-              <p className="pt-4 pb-2 text-gray-700">{blog.content}</p>
+              {/* <p className="pt-4 pb-2 text-gray-700">{blog.content}</p> */}
 
               {/* Blog Publication Date */}
               <p className="text-gray-700">
