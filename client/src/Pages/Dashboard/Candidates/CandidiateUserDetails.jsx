@@ -27,9 +27,7 @@ import ViewPdfCandidate from "./ViewPdfCandidate";
 import { PiGraduationCapBold } from "react-icons/pi";
 import CandidateStages from "./CandidateStages";
 
-
 const CandidiateUserDetails = () => {
-
   const { id } = useParams();
   // console.log("error", id);
   const [userDetails2, setUserDetails2] = useState(null);
@@ -64,32 +62,26 @@ const CandidiateUserDetails = () => {
   // console.log(userDetails2);
 
   // handleDisQualified
-const handleDisQualified=(id)=>{
-  try {
-    const response = fetch(
-      `http://localhost:5000/applicant/stage/${id}`,
-      {
+  const handleDisQualified = (id) => {
+    try {
+      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ stage: "Disqualified" }),
+      });
+
+      if (response) {
+        toast.error("This Candidate marked as Disqualified");
+        setCurrentStage(itemName);
+      } else {
+        console.error("Failed to update stage.");
       }
-    );
-
-    if (response) {
-      toast.error('This Candidate marked as Disqualified');
-      setCurrentStage(itemName);
-    } else {
-      console.error("Failed to update stage.");
+    } catch (error) {
+      console.error("Error:", error);
     }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-
-}
-
-
+  };
 
   const {
     email,
@@ -102,12 +94,10 @@ const handleDisQualified=(id)=>{
     resume,
     coverLetter,
     summary,
-
+    stage,
     educationList,
     date,
   } = userDetails2 || {};
-
-
 
   return (
     <div className="pt-20">
@@ -129,9 +119,13 @@ const handleDisQualified=(id)=>{
               <BiSolidHandRight size={25} className="text-swift" />
               <BiSolidHandLeft size={25} className="text-swift" />
             </div>
-            <BiSolidHand onClick={()=>handleDisQualified(id)} size={25} className="text-red-700"></BiSolidHand>
-            <CandidateStages  id={id}/>
-            
+            <BiSolidHand
+              onClick={() => handleDisQualified(id)}
+              size={25}
+              className="text-red-700"
+            ></BiSolidHand>
+
+            <CandidateStages id={id} />
           </div>
         </div>
       </div>
@@ -178,7 +172,7 @@ const handleDisQualified=(id)=>{
           </div>
           <div className="p-8">
             <p className="font-bold text-swift hover:underline cursor-pointer">
-              {jobTitle} <small className="ml-2 "> · interview</small>
+              {jobTitle} <small className="ml-2 "> · {stage}</small>
             </p>
             <div>
               <p>
@@ -216,10 +210,10 @@ const handleDisQualified=(id)=>{
               </div>
             </div>
             <div className="flex gap-12 cursor-pointer">
-              <Tab className=" bg-cyan-700  text-white  rounded-lg  px-8 py-2">
+              <Tab className=" bg-teal-700  text-white  rounded-lg  px-8 py-2">
                 Profile
               </Tab>
-              <Tab className="border border-1 hover:bg-cyan-600 border-cyan-700 rounded-lg  px-8 py-2">
+              <Tab className="border border-1 hover:bg-teal-700  border-teal-700 font-semibold text-sm rounded-lg  px-8 py-2">
                 Timeline
               </Tab>
             </div>
@@ -268,7 +262,7 @@ const handleDisQualified=(id)=>{
 
             <div className="border max-w-4xl border-slate-200 p-10 text-center">
               <iframe
-               src={`http://localhost:5000/images/${resume}`}
+                src={`http://localhost:5000/images/${resume}`}
                 width={100}
                 title="Uploaded Resume"
                 className="mt-2 border border-gray-400 rounded"

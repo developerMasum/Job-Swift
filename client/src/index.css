@@ -26,6 +26,9 @@ text-second */
   .text-second{
     @apply text-gray-700;
   }
+  .text-swift{
+    @apply  text-[#00756A];
+  }
 }
 
 .background {

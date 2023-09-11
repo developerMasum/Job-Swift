@@ -224,8 +224,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`navbar fixed z-10 text-white font-bold flex items-center justify-between flex-wrap px-6 ${
-        scrolling ? "bg-white text-black shadow-md" : ""
+      className={`navbar fixed z-10 text-white font-bold bg-#00756a flex items-center justify-between flex-wrap px-6 ${
+        scrolling ? "bg-white text-black shadow-md" : "bg-#00756a"
       }`}
     >
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
@@ -243,20 +243,23 @@ const Navbar = () => {
           className="flex items-center px-3 py-2 rounded text-black-500 hover:text-black-400"
         >
           <svg
-            className={`fill-current h-3 w-3 ${isOpen ? "hidden" : "block"}`}
+            className={`fill-current text-black h-3 w-3 ${
+              isOpen ? "hidden" : "block"
+            }`}
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
           </svg>
           <svg
-            className={`fill-current h-3 w-3 ${isOpen ? "block" : "hidden"}`}
+            className={`fill-current text-black h-3 w-3 ${
+              isOpen ? "block" : "hidden"
+            }`}
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
           </svg>
-          {/* ... (your button code) */}
         </button>
       </div>
       <div
@@ -265,60 +268,76 @@ const Navbar = () => {
         }`}
       >
         <div className="text-sm text-slate-400 lg:flex-grow">
-          <a
-            href="#"
-            className={`block mt-4 sm:w-16   lg:inline-block lg:mt-0 text-white-200 mr-4 ${
-              activeLink === 0 ? "active-link" : "" // Apply active style for the first link
+          <Link
+            to="/"
+            className={`block mt-4 sm:w-16 lg:inline-block font-bold lg:mt-0 mr-4 ${
+              activeLink === 0 ? "active-link" : ""
             }`}
+            style={{ color: scrolling ? "#00756A" : "#16887da2" }} // Fix the style property syntax
             onClick={() => handleLinkClick(0)} // Set activeLink to 0 on click
           >
             First Link
-          </a>
+          </Link>
+
           <a
             href="#"
-            className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 ${
-              activeLink === 1 ? "active-link" : "" // Apply active style for the second link
+            className={`block mt-4 sm:w-16 lg:inline-block font-bold lg:mt-0 mr-4 ${
+              activeLink === 1 ? "active-link" : ""
             }`}
+            style={{ color: scrolling ? "#00756A" : "white" }}
             onClick={() => handleLinkClick(1)} // Set activeLink to 1 on click
           >
             Second Link
           </a>
           <Link
-           to='blogs'
-            className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 ${
-              activeLink === 2 ? "active-link" : "" // Apply active style for the third link
+            to="blogs"
+            className={`block mt-4 sm:w-16 lg:inline-block font-bold lg:mt-0 mr-4 ${
+              activeLink === 2 ? "active-link" : ""
             }`}
+            style={{ color: scrolling ? "#00756A" : "white" }}
             onClick={() => handleLinkClick(2)} // Set activeLink to 2 on click
           >
             Blogs
           </Link>
           <Link
-            to={'/contact-us'}
-            className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 ${
-              activeLink === 3 ? "active-link" : "" // Apply active style for the fourth link
+            to="/contact-us"
+            className={`block mt-4 sm:w-16 lg:inline-block font-bold lg:mt-0 mr-4 ${
+              activeLink === 3 ? "active-link" : ""
             }`}
+            style={{ color: scrolling ? "#00756A" : "white" }}
             onClick={() => handleLinkClick(3)} // Set activeLink to 3 on click
           >
-           Contact us
+            Contact us
           </Link>
         </div>
         <div className="flex flex-col sm:flex-row justify-start md:lg:flex  items-center">
-       
-          
-
-          {user ? ( <>
-
-            <img
-            src={user?.photoURL}
-            alt=""
-            className="w-10 h-10 rounded-full mr-3"
-          /> 
-            <Link to={"/dashboard/jobs"}>
-              <button className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block">
-                Dashboard
-              </button>
-            </Link> </>) : <div className="flex justify-center gap-2 items-center"> <Link className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block" to={'/login'}>Login</Link> <button className="bg-white text-teal-700 rounded-md px-5 py-2">Get a demo</button> </div>
-          }
+          {user ? (
+            <>
+              <img
+                src={user?.photoURL}
+                alt=""
+                className="w-10 h-10 rounded-full mr-3"
+              />
+              <Link to={"/dashboard/jobs"}>
+                <button className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block">
+                  Dashboard
+                </button>
+              </Link>{" "}
+            </>
+          ) : (
+            <div className="flex justify-center gap-2 items-center">
+              {" "}
+              <Link
+                className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block"
+                to={"/login"}
+              >
+                Login
+              </Link>{" "}
+              <button className="bg-white text-teal-700 rounded-md px-5 py-2">
+                Get a demo
+              </button>{" "}
+            </div>
+          )}
         </div>
       </div>
     </nav>
