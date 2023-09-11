@@ -15,7 +15,7 @@ const UsersAdmin = () => {
 
   const makeAdmin = (user) => {
     console.log("make admin", user);
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(`https://server-job-swift.vercel.app/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -45,7 +45,7 @@ const UsersAdmin = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(`https://server-job-swift.vercel.app/delete/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

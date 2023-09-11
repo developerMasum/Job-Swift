@@ -22,7 +22,9 @@ const ShareAppliedDetails = ({ stageName }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/all-applications");
+        const response = await fetch(
+          "https://server-job-swift.vercel.app/all-applications"
+        );
         const data = await response.json();
         const firstFourData = data.slice(0, 3);
         setCandidates(firstFourData);

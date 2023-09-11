@@ -34,7 +34,7 @@ const PostJobs = ({ jobs }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/all-post/${id}`, {
+        fetch(`https://server-job-swift.vercel.app/all-post/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -49,15 +49,14 @@ const PostJobs = ({ jobs }) => {
     });
   };
 
-// stage ar kaj baj
-// const appliedStage = 
-// const { candidates, isLoading, error } = useSelector((state) => state.candidates);
-// const {user} = useContext(authContext)
-// const email  = user?.email;
-// const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
-// const Stage = filteredCandidates.map(candidate => candidate.stage)
-// console.log('frp, job post',specificCandidate);
-
+  // stage ar kaj baj
+  // const appliedStage =
+  // const { candidates, isLoading, error } = useSelector((state) => state.candidates);
+  // const {user} = useContext(authContext)
+  // const email  = user?.email;
+  // const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
+  // const Stage = filteredCandidates.map(candidate => candidate.stage)
+  // console.log('frp, job post',specificCandidate);
 
   return (
     <div
@@ -172,7 +171,7 @@ const PostJobs = ({ jobs }) => {
           <span>
             <MdClear className="w-7 h-7" color="red" />
           </span>
-        job published in career page
+          job published in career page
         </h2>
         <div className="lg:md:flex">
           <p>Candidates:{totalCandidates}</p>
