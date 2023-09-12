@@ -34,32 +34,33 @@ useEffect(() => {
 const jobs = useSelector((state) => state.posts.jobs);
 const isJobs = jobs.filter((d) => d.userEmail === user?.email);
 const jobTitleFor = isJobs.map(j => j.jobTitle);
-const mappedTitle = jobTitleFor.map(jt => {
-  const filteredByTitle = candidates.filter(c => c.jobTitle === jt);
-  const interviewCount = filteredByTitle.filter(ft => ft.stage === "Interview").length;
-  const sourcedCount = filteredByTitle.filter(ft => ft.stage === "Sourced").length;
-  const appliedCount = filteredByTitle.filter(ft => ft.stage === "Applied").length;
-  const offerCount = filteredByTitle.filter(ft => ft.stage === "Offer").length;
-  const hiredCount = filteredByTitle.filter(ft => ft.stage === "Hired").length;
-  const assessmentCount = filteredByTitle.filter(ft => ft.stage === "Assessment").length;
+const mappedTitle = isJobs.map((j) => {
+  const filteredByTitle = candidates.filter((c) => c.jobTitle === j.jobTitle && c.jobId === j._id); 
+  const interviewCount = filteredByTitle.filter((ft) => ft.stage === "Interview").length;
+  const sourcedCount = filteredByTitle.filter((ft) => ft.stage === "Sourced").length;
+  const appliedCount = filteredByTitle.filter((ft) => ft.stage === "Applied").length;
+  const offerCount = filteredByTitle.filter((ft) => ft.stage === "Offer").length;
+  const hiredCount = filteredByTitle.filter((ft) => ft.stage === "Hired").length;
+  const assessmentCount = filteredByTitle.filter((ft) => ft.stage === "Assessment").length;
 
-  console.log(`Job Title: ${jt}`);
-  console.log(`Interview Count: ${interviewCount}`);
-  console.log(`Sourced Count: ${sourcedCount}`);
-  console.log(`Applied Count: ${appliedCount}`);
-  console.log(`Offer Count: ${offerCount}`);
-  console.log(`Hired Count: ${hiredCount}`);
-  console.log(`Assessment Count: ${assessmentCount}`);
+  // console.log(`Job Title: ${j.jobTitle}`);
+  // console.log(`Job ID: ${j._id}`); 
+  // console.log(`Interview Count: ${interviewCount}`);
+  // console.log(`Sourced Count: ${sourcedCount}`);
+  // console.log(`Applied Count: ${appliedCount}`);
+  // console.log(`Offer Count: ${offerCount}`);
+  // console.log(`Hired Count: ${hiredCount}`);
+  // console.log(`Assessment Count: ${assessmentCount}`);
 
   return {
-    jobTitleFor: jt,
+    jobTitleFor: j.jobTitle,
+    jobId: j._id,
     Interview: interviewCount,
     Sourced: sourcedCount,
     Applied: appliedCount,
     Offer: offerCount,
     Hired: hiredCount,
-    Assessment:assessmentCount
-  
+    Assessment: assessmentCount,
   };
 });
   // console.log('job title',mappedTitle);
@@ -71,16 +72,7 @@ const mappedTitle = jobTitleFor.map(jt => {
     dispatch(getAllPost());
   }, []);
 
-
   // ---------------------------------------candidates---------------------
-
-
-
-  // const filteredByTitle = candidates.filter(c =>c.jobTitle ==="Ai Dev")
-  // console.log('from jobs',filteredByTitle);
-
-
-
 
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">

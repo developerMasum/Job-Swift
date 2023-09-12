@@ -21,6 +21,7 @@ const Overview = () => {
   // console.log(formData);
   const jobTitle = formData?.jobTitle;
   const jobPosterEmail = formData?.userEmail;
+  const jobId = formData?._id;
   // console.log(jobPosterEmail);
   const [tabIndex, setTabIndex] = useState(0);
   const currentPath = window.location.pathname;
@@ -117,7 +118,7 @@ const Overview = () => {
           </TabPanel>
           <TabPanel>
             {/* <FormNew></FormNew> */}
-            <UpdateForm jobPosterEmail={jobPosterEmail} jobTitle={jobTitle}></UpdateForm>
+            <UpdateForm jobPosterEmail={jobPosterEmail} jobTitle={jobTitle} jobId={jobId} ></UpdateForm>
           </TabPanel>
         </Tabs>
       </div>

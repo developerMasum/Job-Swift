@@ -299,8 +299,8 @@ import { AiOutlineFilePdf } from "react-icons/ai";
 import axios from "axios";
 import { RiImageAddLine } from "react-icons/ri";
 
-const UpdateForm = ({ jobTitle, jobPosterEmail }) => {
-  console.log(jobPosterEmail);
+const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
+  // console.log(jobId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -396,6 +396,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail }) => {
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
     formData.append("jobTitle", jobTitle);
+    formData.append("jobId", jobId);
     formData.append("stage", "Sourced");
     formData.append("jobPosterEmail", jobPosterEmail);
     formData.append("firstName", data.firstName);
