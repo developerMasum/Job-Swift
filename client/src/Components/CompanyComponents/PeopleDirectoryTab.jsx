@@ -7,6 +7,7 @@ import images from "../../assets/Image/peopleDirectory.png";
 import chiringe from "../../assets/Image/chiringe.png";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { RiCloseLine } from "react-icons/ri";
+import Swal from "sweetalert2";
 
 const PeopleDirectoryTab = () => {
   // Define state for the modal
@@ -39,7 +40,21 @@ const PeopleDirectoryTab = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can handle the form submission here, e.g., send the data to an API
-    console.log(formData);
+
+    // Show a SweetAlert2 success message
+    Swal.fire({
+      icon: "success",
+      title: "Form Submitted!",
+      text: "The form has been successfully submitted.",
+      timer: 3000,
+    });
+
+    // Clear the form fields
+    setFormData({
+      name: "",
+      email: "",
+      companyName: "",
+    });
   };
 
   const [isPlaying, setIsPlaying] = useState(false);
