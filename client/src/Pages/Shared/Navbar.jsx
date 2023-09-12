@@ -193,7 +193,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { authContext } from "../../Auth/AuthProvider";
 import { Link } from "react-router-dom";
-
+import logo_js from "../../assets/Image/logo_js.png"
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
@@ -224,14 +224,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`navbar fixed z-10 text-white font-bold flex items-center justify-between flex-wrap px-6 ${
-        scrolling ? "bg-white text-slate-800 shadow-md" : ""
-      }`}
+      className={`navbar fixed z-10  font-bold flex items-center justify-between flex-wrap px-6 
+      ${scrolling ? "lg:md:bg-white text-white lg:md:bg-opacity-90 lg:md:text-[#00756a] lg:md:shadow-lg" : "text-white"}`}
     >
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
         <img
-          src="https://pub-static.fotor.com/assets/projects/pages/5367889ea0f04e499fe8ffea853e2e33/red-fire-football-club-eaf753c529e84e4d8bdf1042c1f18cdc.jpg"
-          className="w-12 h-12 mr-2"
+          src={logo_js}
+          className={`w-12 h-12 mr-2  p-2 rounded-full 
+          ${scrolling ? "bg-white bg-opacity-80 lg:md:bg-opacity-0 " : "bg-white bg-opacity-80"}`}
           alt="Logo"
         />{" "}
         {/* Adjust width and height as needed */}
@@ -243,15 +243,15 @@ const Navbar = () => {
           className="flex items-center px-3 py-2 rounded text-black-500 hover:text-black-400"
         >
           <svg
-            className={`fill-current h-3 w-3 ${isOpen ? "hidden" : "block"}`}
-            viewBox="0 0 20 20"
+            className={`fill-current h-9 w-9 p-2 rounded-full bg-emerald-200 bg-opacity-80  ${isOpen ? "hidden" : "block"}`}
+            // viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
           </svg>
           <svg
-            className={`fill-current h-3 w-3 ${isOpen ? "block" : "hidden"}`}
-            viewBox="0 0 20 20"
+            className={`fill-current h-9 w-9  bg-emerald-200 bg-opacity-80 p-2 rounded-full ${isOpen ? "block" : "hidden"}`}
+            // viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
@@ -260,64 +260,74 @@ const Navbar = () => {
         </button>
       </div>
       <div
-        className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${
-          isOpen ? "block" : "hidden"
-        }`}
+        className={`bg-[#00756a] rounded-lg bg-opacity-90 lg:md:bg-opacity-0 ps-4 lg:md:ps-0  pb-5 lg:md:pb-0 w-full block flex-grow lg:flex lg:items-center lg:w-auto ${isOpen ? "block" : "hidden"
+          }`}
       >
-        <div className="text-sm lg:flex-grow">
+        <div className="text-[13px] lg:flex-grow py-2  lg:md:bg-opacity-0 w-40 lg:md:w-100 ">
           <a
             href="#"
-            className={`block mt-4 sm:w-16   lg:inline-block lg:mt-0 text-white-200 mr-4 ${
-              activeLink === 0 ? "active-link" : "" // Apply active style for the first link
-            }`}
+            className={`block mt-4 sm:w-20 lg:inline-block lg:mt-0 text-white-200 mr-4 opacity-80 hover:opacity-100 ${activeLink === 0 ? "active-link" : "" // Apply active style for the first link
+              }`}
             onClick={() => handleLinkClick(0)} // Set activeLink to 0 on click
           >
             First Link
           </a>
           <a
             href="#"
-            className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 ${
-              activeLink === 1 ? "active-link" : "" // Apply active style for the second link
-            }`}
+            className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 opacity-80 hover:opacity-100 ${activeLink === 1 ? "active-link" : "" // Apply active style for the second link
+              }`}
             onClick={() => handleLinkClick(1)} // Set activeLink to 1 on click
           >
             Second Link
           </a>
           <a
             href="#"
-            className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 ${
-              activeLink === 2 ? "active-link" : "" // Apply active style for the third link
-            }`}
+            className={` block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 opacity-80 hover:opacity-100 ${activeLink === 2 ? "active-link" : "" // Apply active style for the third link
+              }`}
             onClick={() => handleLinkClick(2)} // Set activeLink to 2 on click
           >
             Third Link
           </a>
           <Link
             to={'/'}
-            className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 ${
-              activeLink === 3 ? "active-link" : "" // Apply active style for the fourth link
-            }`}
+            className={`block mt-4 sm:w-20  lg:inline-block lg:mt-0 text-white-200 mr-4 opacity-80 hover:opacity-100 ${activeLink === 3 ? "active-link" : "" // Apply active style for the fourth link
+              }`}
             onClick={() => handleLinkClick(3)} // Set activeLink to 3 on click
           >
             Fourth Link
           </Link>
         </div>
-        <div className="flex flex-col sm:flex-row justify-start md:lg:flex  items-center">
-       
-          
+        <div className=" flex-col sm:flex-row justify-start md:lg:flex  items-center">
 
-          {user ? ( <>
 
-            <img
-            src={user?.photoURL}
-            alt=""
-            className="w-10 h-10 rounded-full mr-3"
-          /> 
-            <Link to={"/dashboard/jobs"}>
-              <button className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block">
-                Dashboard
-              </button>
-            </Link> </>) : <div className="flex justify-center gap-2 items-center"> <Link className="px-5 border border-1 py-2 rounded-md border-emerald-800" to={'/login'}>Login</Link> <button className="bg-white text-teal-700 rounded-md px-5 py-2">Get a demo</button> </div>
+
+          {user ? (
+            <>
+              <div className="flex justify-between">
+                <div >
+                  <img
+                    src={user?.photoURL}
+                    alt=""
+                    className="w-9 h-9 rounded-full mx-3"
+                  />
+                </div>
+                <div>
+                  <Link to={"/dashboard/jobs"}>
+                    <button className="px-6 py-1 border-emerald-300 hover:bg-emerald-300  border-b-2 border-t-2 rounded-lg  md:block">
+                      Dashboard
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </>) :
+            <div className="flex justify-between  gap-2 items-center">
+              <div>
+                <Link className="px-5  py-1 rounded-lg border-emerald-300 hover:bg-emerald-300  border-b-2  rounded-b-lg" to={'/login'}>Login</Link>
+              </div>
+              <div>
+                <button className=" hover:bg-opacity-100 rounded-lg px-3 py-1  lg:md:border-t-2 border-b-2 lg:md:border-b-0 border-emerald-300 hover:bg-emerald-300">Get a demo</button>
+              </div>
+            </div>
           }
         </div>
       </div>
