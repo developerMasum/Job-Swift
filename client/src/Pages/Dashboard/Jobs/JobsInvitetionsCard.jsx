@@ -54,7 +54,7 @@ const JobsInvitationsCard = () => {
         {/* Content */}
         <div className="space-y-3">
           <h4 className="font-semibold">Work as a team</h4>
-          <p className="text-swift text-sm">
+          <p className="text-gray-500 text-sm">
             Invite your team to JobSwift so you can share feedback and work
             together to hire the right people.
           </p>
@@ -84,7 +84,7 @@ const JobsInvitationsCard = () => {
       >
         <div className="space-y-3">
           <h4 className="font-semibold">Show off your brand</h4>
-          <p className="text-swift text-sm">
+          <p className="text-gray-500 text-sm">
             Ensure candidates see your company logo and custom description on
             job posts, emails, and more.
           </p>
@@ -112,7 +112,7 @@ const JobsInvitationsCard = () => {
       >
         <div className="space-y-3">
           <h4 className="font-semibold">Find the best features for you</h4>
-          <p className="text-swift text-sm">
+          <p className="text-gray-500 text-sm">
             JobSwift is best when it's customized for you. Check out all of our
             features with a personal walkthrough.
           </p>
