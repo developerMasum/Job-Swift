@@ -1,19 +1,22 @@
 
 // export default Candidates;
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../../../Components/Dashboard/Candidate/SearchBar";
 import SearchResult from "../../../Components/Dashboard/Candidate/SearchResult";
 import CandidateTables from "../../../Components/Dashboard/Candidate/CandidateTables";
 import ScanNewCandidate from "../../../Components/Dashboard/Candidate/ScanNewCandidate";
 import { getAllCandidates } from "../../../redux/candidates/candidatesOperation";
+import { authContext } from "../../../Auth/AuthProvider";
 
 const Candidates = () => {
   const dispatch = useDispatch();
   const { candidates, isLoading, error } = useSelector((state) => state.candidates);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResult, setSearchResult] = useState("");
-  const [sortOrder, setSortOrder] = useState("newest");
+  // const [sortOrder, setSortOrder] = useState("newest");
+  const {user} = useContext(authContext)
+  const email  = user?.email;
 
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -22,8 +25,8 @@ const Candidates = () => {
 
   useEffect(() => {
     // Dispatch the action to fetch candidates based on the selected sorting order
-    dispatch(getAllCandidates(sortOrder));
-  }, [dispatch, sortOrder]);
+    dispatch(getAllCandidates(email));
+  }, [dispatch]);
 
   return (
     <div className="pt-[68px] flex justify-between items-start gap-6 w-full">
@@ -46,7 +49,7 @@ const Candidates = () => {
           ) : error ? (
             <p>Error: {error}</p>
           ) : (
-            <CandidateTables candidates={candidates} setSortOrder={setSortOrder} sortOrder={sortOrder} />
+            <CandidateTables candidates={candidates}  />
           )}
         </div>
       </div>

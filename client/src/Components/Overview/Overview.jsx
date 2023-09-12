@@ -6,46 +6,26 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { authContext } from "../../Auth/AuthProvider";
 import UpdateForm from "../New/UpdateForm";
-import {
-  RiFacebookFill,
-  RiInstagramFill,
-  RiGithubFill,
-  RiLinkedinBoxFill,
-  RiWhatsappFill,
-} from "react-icons/ri";
 import SocialLink from "./SocialLink";
 
 
 // Define the Overview component
 const Overview = () => {
-  // Fetch form data from router
-  const formData = useLoaderData();
+  const formData = useLoaderData()
+  // console.log('finding error',formData);
   const location = useLocation();
   const { user } = useContext(authContext);
   const queryParams = new URLSearchParams(location.search);
   const serializedData = queryParams.get("data");
-
-  // Extract job title and initialize tab index
-  const jobTitle = formData.jobTitle;
+  // const formData = JSON.parse(decodeURIComponent(serializedData));
+  // console.log(formData);
+  const jobTitle = formData?.jobTitle;
+  const jobPosterEmail = formData?.userEmail;
+  // console.log(jobPosterEmail);
   const [tabIndex, setTabIndex] = useState(0);
   const currentPath = window.location.pathname;
-
-  // Store the current URL in local storage
-  localStorage.setItem("URL", currentPath);
-
-  // Handle modal state
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Function to open the modal
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  // Function to close the modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
+  // console.log(currentPath);
+  localStorage.setItem('URL', currentPath)
   return (
     <div className="container">
       <div className="border-[1px]">

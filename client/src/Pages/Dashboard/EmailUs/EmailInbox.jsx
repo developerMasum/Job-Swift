@@ -12,7 +12,7 @@ const EmailInbox = () => {
   }, []);
 
   return (
-    <div className="mx-4 md:mx-0">
+    <div className="mx-4 md:mx-auto w-3/4">
       {/* Add margin on mobile and remove on medium (md) screens */}
       <h2 className="text-2xl font-semibold mb-4">Email Inbox</h2>
       <div className="grid gap-2">

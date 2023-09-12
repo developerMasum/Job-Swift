@@ -13,48 +13,76 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "../../../redux/postJob/postSlice";
 import { authContext } from "../../../Auth/AuthProvider";
-import JobsInvitetionsCard from "./JobsInvitetionsCard";
+import { getAllCandidates } from "../../../redux/candidates/candidatesOperation";
+import JobsInvitationsCard from "./JobsInvitetionsCard";
 const Jobs = () => {
   const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
   const [isSecondOpen, setSecondOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { user } = useContext(authContext);
+  const email = user?.email;
 
-  const jobs = useSelector((state) => state.posts.jobs);
-  const isJobs = jobs.filter((d) => d.userEmail === user?.email);
-  const postId = useSelector((state) => state.posts.jobs).map(
-    (post) => post._id
-  );
+  const { candidates, isLoading, error } = useSelector((state) => state.candidates);
+console.log('from jobs', candidates);
+useEffect(() => {
+  // Dispatch the action to fetch candidates based on the selected sorting order
+  dispatch(getAllCandidates(email));
+}, [dispatch]);
+
+const jobs = useSelector((state) => state.posts.jobs);
+const isJobs = jobs.filter((d) => d.userEmail === user?.email);
+const jobTitleFor = isJobs.map(j => j.jobTitle);
+const mappedTitle = jobTitleFor.map(jt => {
+  const filteredByTitle = candidates.filter(c => c.jobTitle === jt);
+  const interviewCount = filteredByTitle.filter(ft => ft.stage === "Interview").length;
+  const sourcedCount = filteredByTitle.filter(ft => ft.stage === "Sourced").length;
+  const appliedCount = filteredByTitle.filter(ft => ft.stage === "Applied").length;
+  const offerCount = filteredByTitle.filter(ft => ft.stage === "Offer").length;
+  const hiredCount = filteredByTitle.filter(ft => ft.stage === "Hired").length;
+  const assessmentCount = filteredByTitle.filter(ft => ft.stage === "Assessment").length;
+
+  console.log(`Job Title: ${jt}`);
+  console.log(`Interview Count: ${interviewCount}`);
+  console.log(`Sourced Count: ${sourcedCount}`);
+  console.log(`Applied Count: ${appliedCount}`);
+  console.log(`Offer Count: ${offerCount}`);
+  console.log(`Hired Count: ${hiredCount}`);
+  console.log(`Assessment Count: ${assessmentCount}`);
+
+  return {
+    jobTitleFor: jt,
+    Interview: interviewCount,
+    Sourced: sourcedCount,
+    Applied: appliedCount,
+    Offer: offerCount,
+    Hired: hiredCount,
+    Assessment:assessmentCount
+  
+  };
+});
+  // console.log('job title',mappedTitle);
+  // const resilt = jobTitle.filter(job=>job.jobTitle===)
+  // console.log('isjobs',resilt);
+  
 
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
 
+
+  // ---------------------------------------candidates---------------------
+
+
+
+  // const filteredByTitle = candidates.filter(c =>c.jobTitle ==="Ai Dev")
+  // console.log('from jobs',filteredByTitle);
+
+
+
+
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
-      {/* Down nav */}
-      {/* <div className="md:px-8 w-full px-4 bg-white shadow-md py-4 mb-5">
-        <div className="flex justify-between">
-          <div className="flex items-center gap-1">
-            <h2 className="lg:md:text-3xl">MD MASUM</h2>
-            <button className="pt-1">
-              {" "}
-              <LuEdit className="h-5 w-5  text-gray-500" />
-            </button>
-          </div>
-          <div>
-            <Link to="post-job">
-              <button className="bg-[#00756a] border-2 border-[#00756a] px-5 py-2 rounded-lg text-white lg:md:font-medium hover:bg-[#005f56] hover:border-[#005f56] transition-colors 3s ease-in-out">
-                Create a new job
-              </button>
-            </Link>
-          </div>
-        </div>
-
-        
-      </div> */}
-
       <div className="bg-white rounded-lg border-[1px] p-4 mb-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
@@ -147,26 +175,6 @@ const Jobs = () => {
           )}
         </div>
       </div>
-      {/* Content */}
-      {/* <div className=" mx-2 lg:md:mx-0 flex gap-14 border rounded-md border-gray-400 py-4  items-center bg-white justify-between px-10">
-        <div className="space-y-3">
-          <h2 className="font-semibold text-base text-gray-800">Post a job</h2>
-          <p className="text-swift">
-            Get your job listing in front of millions of candidates today. Do
-            things faster with a choice of over 700 job description templates,
-            and choose to publish on the most popular free and premium job
-            boards.
-          </p>
-          <Link to="post-job">
-            <button className=" text-[#00756a] px-5 py-1 border border-[#00756a] rounded-lg hover:bg-[#ffffdd] transition-colors 3s ease-in-out font-medium">
-              Post a job
-            </button>
-          </Link>
-        </div>
-        <div className="w-[280px] h-full">
-          <img src={triangle} alt="" />
-        </div>
-      </div> */}
 
       <div className="mx-2 lg:md:mx-0 flex gap-8 border-[1px] rounded-md   border-gray-300 p-6 items-center bg-white justify-between">
         <div className="flex flex-col space-y-3">
@@ -197,10 +205,15 @@ const Jobs = () => {
           <p className="text-xs font-bold text-swift ">Delete sample data</p>
         </div>
         <div className="">
-          {isJobs.map((jobs) => (
+          {mappedTitle.map((jobs) => (
             <PostJobs jobs={jobs} key={jobs._id} />
           ))}
         </div>
+        {/* <div className="">
+          {mappedTitle.map((jobs) => (
+            <PostJobs jobs={jobs} key={jobs._id} />
+          ))}
+        </div> */}
         <div className="pt-8 pb-6">
           <h2 className="pb-4 text-xs font-bold text-swift">TALENT POOL</h2>
 
@@ -240,7 +253,7 @@ const Jobs = () => {
               Don't show again
             </h2>
           </div>
-          <JobsInvitetionsCard />
+          <JobsInvitationsCard />
         </div>
       </div>
     </div>

@@ -52,7 +52,7 @@
     "react-spinners": "^0.13.8",
     "react-tabs": "^6.0.2",
     "react-timezone-select": "^2.1.2",
-    "react-transition-group": "^4.4.5",
+    "react-type-animation": "^3.1.0",
     "recharts": "^2.8.0",
     "smart-webcomponents-react": "^16.0.1",
     "sort-by": "^1.2.0",
