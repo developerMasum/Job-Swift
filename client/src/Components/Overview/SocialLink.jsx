@@ -139,7 +139,7 @@ const SocialLink = () => {
           <p>Find Jobs on Monster</p>
         </div>
       </a>
-      \ {/* Glassdoor */}
+       {/* Glassdoor */}
       <a
         href="https://www.glassdoor.com"
         target="_blank"
