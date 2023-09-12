@@ -9,7 +9,7 @@ import AdminPieChart from "./Charts/AdminPieChart";
 
 const HomeAdmin = () => {
   return (
-    <div className="md:lg:pl-40 pt-16">
+    <div className="md:lg:pl-48 pt-16">
       <DownloadDashboard />
 
       <ProgressCards />

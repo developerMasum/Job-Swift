@@ -90,7 +90,7 @@ const AdminLineChart = () => {
     <div>
       <div>
         {" "}
-        <p className="uppercase text-sm font-bold text-swift pb-6">
+        <p className="uppercase text-sm font-bold text-cyan-700 pb-6">
           {" "}
           Application wise hired candidate{" "}
         </p>

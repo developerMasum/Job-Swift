@@ -27,6 +27,19 @@ const Overview = () => {
   const currentPath = window.location.pathname;
   // console.log(currentPath);
   localStorage.setItem('URL', currentPath)
+
+  // Modal state management
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
   return (
     <div className="container">
       <div className="border-[1px]">

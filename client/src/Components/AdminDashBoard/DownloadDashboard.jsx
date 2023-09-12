@@ -7,12 +7,12 @@ const DownloadDashboard = () => {
   console.log(user);
   // console.log(user);
   return (
-    <div className="flex justify-between items-center mb-10">
+    <div className="flex justify-between items-center mb-10 ml-16">
       <div>
         <p className="text-sm font-bold space-x-2">
           {" "}
           Hey,{" "}
-          <span className="text-swift">{user?.displayName || user?.email}</span>
+          <span className="text-cyan-700">{user?.displayName || user?.email}</span>
         </p>
         <p className="text-sm font-semibold space-x-2">
           Welcome to your dashboard

@@ -33,10 +33,7 @@ const LogIn = () => {
     useContext(authContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const from =
-    location.state?.from?.pathname ||
-    (isAdmin && "/dashboard/admin/dashboard") ||
-    (!isAdmin && "/dashboard/jobs");
+  const destination = (isAdmin && "/dashboard/admin/users") || "/dashboard/jobs";
 
   // const [error, setError] = useState(null)
 
@@ -66,7 +63,7 @@ const LogIn = () => {
         // console.log(user);
 
         toast.success("Successfully LogIn");
-        navigate(from, { replace: true });
+        navigate(destination);
       })
       .catch((error) => {
         const errorMessage = error.message;
