@@ -1,28 +1,32 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdClear, MdKeyboardArrowDown, MdStar } from "react-icons/md";
+
 // import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 // import { authContext } from "../../../Auth/AuthProvider";
 
 const PostJobs = ({ jobs }) => {
+  const[allDta,setAllData]=useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const {
     jobTitle,
     cityName,
     jobLocation,
-    Sourced,
-    Applied,
-    PhoneScreen,
-    Assessment,
-    Interview,
-    Offer,
-    Hired,
+    source,
+    applied,
+    phoneScreen,
+    assessment,
+    interview,
+    offer,
+    hired,
     totalCandidates,
     totalActiveCandidates,
     lastCandidateDate,
     _id,
+   
   } = jobs;
+  // console.log(appliedJobId);
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -48,7 +52,13 @@ const PostJobs = ({ jobs }) => {
       }
     });
   };
+//   const allCadidates = useSelector(state=>state.candidates)
+//   console.log(allCadidates);
 
+// const dispatch = useDispatch()
+//   useContext(()=>{
+// dispatch(_id)
+//   },[dispatch])
 // stage ar kaj baj
 // const appliedStage = 
 // const { candidates, isLoading, error } = useSelector((state) => state.candidates);
@@ -57,11 +67,22 @@ const PostJobs = ({ jobs }) => {
 // const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
 // const Stage = filteredCandidates.map(candidate => candidate.stage)
 // console.log('frp, job post',specificCandidate);
+const appliedJobId = localStorage.getItem('appliedJobId')
+console.log(appliedJobId);
+// useEffect(()=>{
+//   fetch(`http://localhost:5000/candidate-stage/${appliedJobId}`)
+//   .then(res=>res.json())
+//   .then(data=>{
+//     console.log(data);
+//     setAllData(data)
+//   })
+// },[_id])
 
+// console.log(allDta);
 
   return (
     <div
-      className="py-8 rounded-lg  lg:md:px-8 px-6   bg-white mt-5"
+      className="py-8 rounded-lg  lg:md:px-8 px-6   bg-gray-100e mt-5"
       style={{
         boxShadow:
           "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset",
@@ -146,25 +167,25 @@ const PostJobs = ({ jobs }) => {
 
       <div className="lg:md:flex pt-7 lg:md:px-10 pe-6 mx-auto pb-5 justify-between grid grid-cols-4 gap-4">
         <div className="font-medium  text-center text-gray-600">
-          <p> - </p> <p>Sourced</p>
+          <p> - </p> <p>Sourced ({source})</p>
         </div>
         <div className="font-medium  text-center text-gray-600">
-          <p> - </p> <p>Applied</p>
+          <p> - </p> <p>Applied ({applied})</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Phone Screen</p>
+          <p> - </p> <p>Phone Screen ({phoneScreen})</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Assessment</p>
+          <p> - </p> <p>Assessment ({assessment})</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Interview</p>
+          <p> - </p> <p>Interview ({interview})</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Offer</p>
+          <p> - </p> <p>Offer ({offer})</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Hired</p>
+          <p> - </p> <p>Hired ({hired})</p>
         </div>
       </div>
       <div className="flex  pt-1 justify-between text-gray-600  ">

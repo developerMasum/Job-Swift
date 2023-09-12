@@ -29,6 +29,7 @@ const Candidates = () => {
     dispatch(getAllCandidates(email));
   }, [dispatch]);
 
+
   return (
     <div className="pt-[68px] flex justify-between items-start gap-6 w-full">
       <div className="w-8/12">

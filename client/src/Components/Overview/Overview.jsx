@@ -13,6 +13,11 @@ import UpdateForm from "../New/UpdateForm";
 const Overview = () => {
   const formData = useLoaderData()
   // console.log('finding error',formData);
+  
+  const appliedJobId = formData._id;
+ 
+
+  console.log('id', appliedJobId);
   const location = useLocation();
   const { user } = useContext(authContext);
   const queryParams = new URLSearchParams(location.search);
@@ -117,7 +122,7 @@ const Overview = () => {
           </TabPanel>
           <TabPanel>
             {/* <FormNew></FormNew> */}
-            <UpdateForm jobPosterEmail={jobPosterEmail} jobTitle={jobTitle}></UpdateForm>
+            <UpdateForm jobPosterEmail={jobPosterEmail} jobTitle={jobTitle} appliedJobId={appliedJobId}></UpdateForm>
           </TabPanel>
         </Tabs>
       </div>

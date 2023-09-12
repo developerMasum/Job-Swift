@@ -93,6 +93,9 @@ async function run() {
     const applicationsPostCollection = client
       .db("JobSwiftDb")
       .collection("applications");
+    const candidatesCollection = client
+      .db("JobSwiftDb")
+      .collection("candidates");
 
     //  jwt token
     app.post("/jwt", (req, res) => {
@@ -132,7 +135,9 @@ async function run() {
             image: imageFilePath,
             date: currentDate,
             educationList: educationList, // Save parsed educationList
-            experienceList: experienceList, // Save parsed experienceList
+            experienceList: experienceList,
+            stage: formData.stage,
+            appliedJobId: formData.appliedJobId,
           });
 
           res
@@ -153,6 +158,57 @@ async function run() {
     //   const result = await UserCollection.insertOne(query);
     //   res.send(result);
     // });
+
+    // sobuj code
+    // save applicants
+
+    app.put("/users/:email", async (req, res) => {
+      const email = req.params.email;
+      const user = req.body;
+      const query = { email: email };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: user,
+      };
+      const result = await usersCollection.updateOne(query, updateDoc, options);
+      res.send(result);
+    });
+
+    // source increase by id
+
+    app.patch("/sourced/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+
+      const updateDoc = {
+        $inc: {
+          source: 1,
+        },
+      };
+
+      const result = await jobPostCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    // update two field
+
+    // all applicant post job get
+    app.get("/candidate-stage/:id", async (req, res) => {
+      const id = req.params.id;
+
+      try {
+        const result = await applicationsPostCollection
+          .find({ appliedJobId: id }) // Use the correct field name and ID
+          .toArray();
+
+        res.send(result);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("An error occurred while fetching data");
+      }
+    });
+
+    // update two elements
 
     // put data as a new user
     app.put("/user/:email", async (req, res) => {
@@ -324,27 +380,22 @@ async function run() {
       }
     });
 
-
-    // test 
-    app.get('/all-candidate/:email', async (req, res) => {
+    // test
+    app.get("/all-candidate/:email", async (req, res) => {
       const email = req.params.email;
       // console.log(email);
-    
+
       try {
         const result = await applicationsPostCollection
           .find({ jobPosterEmail: email })
           .toArray();
-   
+
         res.send(result);
       } catch (error) {
         console.error(error);
-        res.status(500).send('An error occurred while fetching data');
+        res.status(500).send("An error occurred while fetching data");
       }
     });
-    
-    
-
-    
 
     // all applicant set stages-----------------------------
     app.patch("/applicant/stage/:id", async (req, res) => {

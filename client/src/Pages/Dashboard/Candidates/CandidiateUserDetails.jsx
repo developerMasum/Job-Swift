@@ -102,12 +102,13 @@ const handleDisQualified=(id)=>{
     resume,
     coverLetter,
     summary,
+    appliedJobId,
 
     educationList,
     date,
   } = userDetails2 || {};
 
-
+console.log(appliedJobId);
 
   return (
     <div className="pt-20">
@@ -130,7 +131,7 @@ const handleDisQualified=(id)=>{
               <BiSolidHandLeft size={25} className="text-swift" />
             </div>
             <BiSolidHand onClick={()=>handleDisQualified(id)} size={25} className="text-red-700"></BiSolidHand>
-            <CandidateStages  id={id}/>
+            <CandidateStages appliedJobId={appliedJobId}  id={id}/>
             
           </div>
         </div>

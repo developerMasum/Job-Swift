@@ -20,6 +20,7 @@
     "mongodb": "^5.7.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.4",
-    "openai": "^4.2.0"
+    "openai": "^4.2.0",
+    "use-deep-compare": "^1.1.0"
   }
 }

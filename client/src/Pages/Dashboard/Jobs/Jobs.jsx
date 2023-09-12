@@ -23,6 +23,7 @@ const Jobs = () => {
   const { user } = useContext(authContext);
 
   const jobs = useSelector((state) => state.posts.jobs);
+ 
   const isJobs = jobs.filter((d) => d.userEmail === user?.email);
   const postId = useSelector((state) => state.posts.jobs).map(
     (post) => post._id
@@ -31,6 +32,9 @@ const Jobs = () => {
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
+  console.log(isJobs);
+
+
 
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
