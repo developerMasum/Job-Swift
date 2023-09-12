@@ -123,7 +123,9 @@ async function run() {
           // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
           await applicationsPostCollection.insertOne({
             jobTitle: formData.jobTitle,
+            stage: formData.stage,
             jobPosterEmail: formData.jobPosterEmail,
+            jobId: formData.jobId,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
@@ -380,8 +382,9 @@ async function run() {
       }
     });
 
-    // test
-    app.get("/all-candidate/:email", async (req, res) => {
+
+    // test  get candidate by specific jobs
+    app.get('/all-candidate/:email', async (req, res) => {
       const email = req.params.email;
       // console.log(email);
 
@@ -396,6 +399,11 @@ async function run() {
         res.status(500).send("An error occurred while fetching data");
       }
     });
+    
+
+    
+
+    
 
     // all applicant set stages-----------------------------
     app.patch("/applicant/stage/:id", async (req, res) => {

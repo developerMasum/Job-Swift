@@ -9,24 +9,6 @@ import Swal from "sweetalert2";
 const PostJobs = ({ jobs }) => {
   const[allDta,setAllData]=useState([]);
   const [isVisible, setIsVisible] = useState(false);
-  const {
-    jobTitle,
-    cityName,
-    jobLocation,
-    source,
-    applied,
-    phoneScreen,
-    assessment,
-    interview,
-    offer,
-    hired,
-    totalCandidates,
-    totalActiveCandidates,
-    lastCandidateDate,
-    _id,
-   
-  } = jobs;
-  // console.log(appliedJobId);
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -55,30 +37,6 @@ const PostJobs = ({ jobs }) => {
 //   const allCadidates = useSelector(state=>state.candidates)
 //   console.log(allCadidates);
 
-// const dispatch = useDispatch()
-//   useContext(()=>{
-// dispatch(_id)
-//   },[dispatch])
-// stage ar kaj baj
-// const appliedStage = 
-// const { candidates, isLoading, error } = useSelector((state) => state.candidates);
-// const {user} = useContext(authContext)
-// const email  = user?.email;
-// const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
-// const Stage = filteredCandidates.map(candidate => candidate.stage)
-// console.log('frp, job post',specificCandidate);
-const appliedJobId = localStorage.getItem('appliedJobId')
-console.log(appliedJobId);
-// useEffect(()=>{
-//   fetch(`http://localhost:5000/candidate-stage/${appliedJobId}`)
-//   .then(res=>res.json())
-//   .then(data=>{
-//     console.log(data);
-//     setAllData(data)
-//   })
-// },[_id])
-
-// console.log(allDta);
 
   return (
     <div
@@ -91,14 +49,12 @@ console.log(appliedJobId);
       <div className="lg:md:flex justify-between ">
         <div className="flex lg:md:gap-2  items-center">
           <MdStar size={25} color="#ffca00" />
-          <Link to={`applied-job/${_id}`}>
+          <Link to={`applied-job/${jobs.jobId}`}>
             <h2 className="lg:md:text-xl lg:md:font-medium  hover:underline">
-              {jobTitle}
+              {jobs?.jobTitleFor}
             </h2>
           </Link>
-          <p className="flex gap-1 text-gray-500">
-            <span>{cityName}</span>,<span>{jobLocation}</span>
-          </p>
+          
         </div>
         <div className="flex lg:md:gap-2 gap-6 lg:md:mt-0 mt-5">
           <button className="text-swift px-4 py-1 rounded-lg border-gray-600 border">
@@ -124,7 +80,7 @@ console.log(appliedJobId);
                   }}
                 >
                   <button className="space-y-2  text-start hover:bg-teal-700 hover:text-white  px-3 pt-5 py-3">
-                    <Link to={`/overview/${_id}`}>
+                    <Link to={`/overview/${jobs.jobId}`}>
                       <h6 className="font-semibold">Publish</h6>
                       <p>
                         Visible on your careers page and selected free and
@@ -137,7 +93,7 @@ console.log(appliedJobId);
                     disabled
                     className="py-3  hover:bg-teal-700 hover:text-white  px-3  space-y-2 text-start "
                   >
-                    <Link to={`/editJobs/${_id}`}>
+                    <Link to={`/editJobs/${jobs.jobId}`}>
                       <h6 className="font-semibold">Use Edit</h6>
                       <p>
                         Editable only by account admins and members of the
@@ -148,7 +104,7 @@ console.log(appliedJobId);
                   </button>
 
                   <button
-                    onClick={() => handleDelete(_id)}
+                    onClick={() => handleDelete(jobs.jobId)}
                     className="py-3  hover:bg-teal-700 hover:text-white  px-3  space-y-2 text-start "
                   >
                     <h6 className="font-semibold">Used Delete</h6>
@@ -167,25 +123,23 @@ console.log(appliedJobId);
 
       <div className="lg:md:flex pt-7 lg:md:px-10 pe-6 mx-auto pb-5 justify-between grid grid-cols-4 gap-4">
         <div className="font-medium  text-center text-gray-600">
-          <p> - </p> <p>Sourced ({source})</p>
+          <p>{jobs?.Sourced}</p> <p>Sourced</p>
         </div>
         <div className="font-medium  text-center text-gray-600">
-          <p> - </p> <p>Applied ({applied})</p>
+          <p> {jobs?.Applied} </p> <p>Applied</p>
+        </div>
+       
+        <div className="font-medium text-center text-gray-600">
+          <p>{jobs?.Assessment}</p> <p>Assessment</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Phone Screen ({phoneScreen})</p>
+          <p>{jobs?.Interview}</p> <p>Interview</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Assessment ({assessment})</p>
+          <p>{jobs?.Offer}</p> <p>Offer</p>
         </div>
         <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Interview ({interview})</p>
-        </div>
-        <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Offer ({offer})</p>
-        </div>
-        <div className="font-medium text-center text-gray-600">
-          <p> - </p> <p>Hired ({hired})</p>
+          <p> {jobs?.Hired}</p> <p>Hired</p>
         </div>
       </div>
       <div className="flex  pt-1 justify-between text-gray-600  ">
@@ -193,12 +147,11 @@ console.log(appliedJobId);
           <span>
             <MdClear className="w-7 h-7" color="red" />
           </span>
-        job published in career page
+          job published in career page
         </h2>
         <div className="lg:md:flex">
-          <p>Candidates:{totalCandidates}</p>
-          <p>{totalActiveCandidates} active in pipeline</p>
-          <p>last CandidateDate: {lastCandidateDate} </p>
+          {/* <p>Candidates:{jobs.length}</p> */}
+          
         </div>
       </div>
     </div>

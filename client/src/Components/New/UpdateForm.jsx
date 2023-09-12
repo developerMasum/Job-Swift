@@ -303,9 +303,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCandidates } from "../../redux/candidates/candidatesOperation";
 import { authContext } from "../../Auth/AuthProvider";
 
-const UpdateForm = ({ jobTitle ,jobPosterEmail, appliedJobId}) => {
-  console.log(appliedJobId);
-  localStorage.setItem('appliedJobId', appliedJobId)
+const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
+  // console.log(jobId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -406,6 +405,8 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail, appliedJobId}) => {
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
     formData.append("jobTitle", jobTitle);
+    formData.append("jobId", jobId);
+    formData.append("stage", "Sourced");
     formData.append("jobPosterEmail", jobPosterEmail);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);

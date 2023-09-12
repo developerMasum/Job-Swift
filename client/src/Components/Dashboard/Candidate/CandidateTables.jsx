@@ -15,28 +15,20 @@ import { authContext } from "../../../Auth/AuthProvider";
 
 const CandidateTables = ({ candidates }) => {
   console.log(candidates);
-//   const {user} = useContext(authContext)
-//   const email  = user?.email;
-// const candidates = candidates 
-// console.log(candidates);
+  //   const {user} = useContext(authContext)
+  //   const email  = user?.email;
+  // const candidates = candidates
+  // console.log(candidates);
 
-
-
-
-
-// axios.get(`http://localhost:5000/test/${email}`)
-//   .then((response) => {
-//     // Handle the successful response here
-//     console.log('test :', response.data);
-//   })
-//   .catch((error) => {
-//     // Handle any errors that occurred during the request
-//     console.error('Error:', error);
-//   });
-
-
-
-
+  // axios.get(`http://localhost:5000/test/${email}`)
+  //   .then((response) => {
+  //     // Handle the successful response here
+  //     console.log('test :', response.data);
+  //   })
+  //   .catch((error) => {
+  //     // Handle any errors that occurred during the request
+  //     console.error('Error:', error);
+  //   });
 
   const [isChecked, setIsChecked] = useState("");
   // const [sortOrder, setSortOrder] = useState("newest");
@@ -147,11 +139,7 @@ const CandidateTables = ({ candidates }) => {
         </p>
 
         <div className="relative w-52">
-          <select
-            className="block appearance-none w-full bg-gray-100 border border-gray-300 text-gray-800 py-2 pl-3 pr-10 rounded-lg leading-tight focus:outline-none focus:border-gray-500"
-         
-           
-          >
+          <select className="block appearance-none w-full bg-gray-100 border border-gray-300 text-gray-800 py-2 pl-3 pr-10 rounded-lg leading-tight focus:outline-none focus:border-gray-500">
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>
           </select>

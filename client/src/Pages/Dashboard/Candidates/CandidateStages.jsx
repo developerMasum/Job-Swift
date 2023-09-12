@@ -6,11 +6,12 @@ function CandidateStages({ id }) {
   const [selectedItem, setSelectedItem] = useState("");
   const [currentStage, setCurrentStage] = useState("");
   const [stages, setStages] = useState([
-    "sourced",
-    "applied",
-    "interview",
-    "offer",
-    "hired",
+    "Sourced",
+    "Applied",
+    "Assessment",
+    "Interview",
+    "Offer",
+    "Hired"
   ]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

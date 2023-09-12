@@ -13,7 +13,7 @@
 //       try {
 //         const response = await axios.get(apiUrl);
 //         const responseData = response.data;
-//         const stages = responseData.map((item) => item.stage); 
+//         const stages = responseData.map((item) => item.stage);
 //         console.log(stages);
 
 //         setData(stages);

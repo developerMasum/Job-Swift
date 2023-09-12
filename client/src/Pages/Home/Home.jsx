@@ -26,7 +26,7 @@ import KeyFeatures from "../../Components/Home/KeyFeature/Features";
 const Home = () => {
   return (
     <div className="">
-      <Slide>{/* <HeadlineBar /> */}</Slide>
+    
       <Banner />
 
       <div>
@@ -36,14 +36,14 @@ const Home = () => {
         <EmployeeExperienceSection></EmployeeExperienceSection>
       </div>
 
-      <KeyFeatures></KeyFeatures>
+      {/* <KeyFeatures></KeyFeatures> */}
 
       <div className="mt-12">
         <ProgramManager />
       </div>
-      <Fade>
+      {/* <Fade>
         <HrPlatform />
-      </Fade>
+      </Fade> */}
       {/* <NewBanner></NewBanner> */}
       {/* <HRPlatform></HRPlatform> */}
 
@@ -59,12 +59,12 @@ const Home = () => {
           <PaySection />
 
         </div> */}
-        <Hiring />
+        {/* <Hiring /> */}
 
         <div className="mt-16 mb-5">
           <Slide direction="right">
             {" "}
-            <EmployeeExperience />
+            {/* <EmployeeExperience /> */}
           </Slide>
 
           {/* <div className="mt-12 mb-12">
@@ -74,13 +74,14 @@ const Home = () => {
             </Zoom>
           </div> */}
 
-          <IntegrationMarketplace></IntegrationMarketplace>
+          {/* <IntegrationMarketplace></IntegrationMarketplace> */}
           <Evaluate></Evaluate>
 
           {/* slider */}
           <div className="mt-12">
-            <h2 className="md:text-4xl text-2xl mb-12 md:mb-0 font-bold text-center text-gray-800 font-sans ">
+            <h2 className="md:text-4xl text-2xl mb-12 md:mb-0 font-bold text-center text-teal-700 italic font-sans ">
               Why People Love JobSwift
+              <p className="text-sm font-bold text-slate-700 pt-3">best companies employers feedback</p>
             </h2>
             <Slider />
           </div>

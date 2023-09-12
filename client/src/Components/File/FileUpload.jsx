@@ -1,12 +1,10 @@
-
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function ImageForm() {
   const [imageData, setImageData] = useState(null);
   const [resumeData, setResumeData] = useState(null);
-  const[allFiles, setAllFiles] = useState([])
+  const [allFiles, setAllFiles] = useState([]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -34,44 +32,42 @@ function ImageForm() {
     event.preventDefault();
 
     if (!imageData || !resumeData) {
-      console.error('Image and/or resume data is missing.');
+      console.error("Image and/or resume data is missing.");
       return;
     }
 
     try {
       // Make an Axios POST request with the formData
-      const response = await axios.post('http://localhost:5000/upload-file', {
+      const response = await axios.post("http://localhost:5000/upload-file", {
         image: imageData,
         resume: resumeData,
       });
 
       console.log(response.data);
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error("Error:", error.message);
     }
   };
 
   console.log(imageData);
- 
 
-
-    useEffect(()=>{
-      fetch('http://localhost:5000/get-file',{
-        method:"GET"
-      })
-      .then(res=>res.json())
-      .then(data=>{
+  useEffect(() => {
+    fetch("http://localhost:5000/get-file", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-        setAllFiles(data)
-      })
-
-    },[])
-    console.log(allFiles);
+        setAllFiles(data);
+      });
+  }, []);
+  console.log(allFiles);
 
   return (
     <div className="max-w-md mx-auto p-6">
-     
-      <h1 className="text-2xl font-semibold mb-4">Upload Image and Resume (base64)</h1>
+      <h1 className="text-2xl font-semibold mb-4">
+        Upload Image and Resume (base64)
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="image" className="block text-gray-700">
@@ -105,24 +101,21 @@ function ImageForm() {
         </div>
       </form>
       <div>
-       {
-        allFiles?.map(file=><>
-         
-         <img width={100} src={file.image} alt="" />
-         <iframe
+        {allFiles?.map((file) => (
+          <>
+            <img width={100} src={file.image} alt="" />
+            <iframe
               src={file.resume}
               width={100}
               title="Uploaded Resume"
-            className="mt-2 border border-gray-400 rounded"
-           style={{ width: '100%', height: '400px' }}
-           />
-        
-        </>)
-       }
+              className="mt-2 border border-gray-400 rounded"
+              style={{ width: "100%", height: "400px" }}
+            />
+          </>
+        ))}
       </div>
     </div>
   );
 }
 
 export default ImageForm;
-

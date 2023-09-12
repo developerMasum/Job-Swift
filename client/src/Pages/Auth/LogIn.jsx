@@ -72,124 +72,189 @@ const LogIn = () => {
         toast.error(errorMessage);
       });
   };
-  // if (loading) {
-  //   return <Loader />
-  // }
 
   return (
-    <div className="lg:md:bg-gradient-to-r lg:md:from-indigo-900 lg:md:via-indigo-800 lg:md:to-indigo-500 lg:md:p-32 lg:md:rounded-tl-[100px] lg:md:rounded-br-[100px] mt-2">
-      <div className="card flex lg:flex-row  lg:w-2/3  mx-auto  border pb-0 rounded-2xl shadow-lg shadow-black h-[380px]">
-        <div className="lg:md:w-2/3 hidden md:block">
-          <img className="h-[380px] rounded-l-2xl" src={login} alt="" />
-        </div>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="card-body my-24 lg:md:my-0 h-[380px] lg:md:w-[420px] bg-white  rounded-r-2xl "
-        >
-          {/* <div className=' font-bold  '>
-            <h1 className='text-center font-serif text-xl'>Log In Now</h1>
-          </div> */}
+    // <div className="container mx-auto">
+    //   <div className="md:flex justify-center items-center p-32 gap-10">
+    //   {/* <div>
+    //     <img src="https://i.ibb.co/Fqhmwhz/login01.png" alt="" />
+    //   </div> */}
+    //   <div>
+    //     <form
+    //       onSubmit={handleSubmit(onSubmit)}
+    //       className="card-body my-24 lg:md:my-0 h-[380px] lg:md:w-[500px] border-[1px] bg-gray-200 rounded-md "
+    //     >
+    //       <div className="form-control">
+    //         <label className="label">
+    //           <span className="label-text font-semibold">Email</span>
+    //         </label>
+    //         <input
+    //           type="email"
+    //           ref={emailRef}
+    //           {...register("email", { required: true })}
+    //           placeholder="email"
+    //           className="rounded-md "
+    //         />
+    //         {errors.email && (
+    //           <span className="text-red-500">This field is required</span>
+    //         )}
+    //       </div>
+    //       <div className="form-control ">
+    //         <label className="label">
+    //           <span className="label-text font-semibold">Password</span>
+    //         </label>
 
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text font-semibold">Email</span>
+    //         <div className="flex rounded-md px-1 border-black border">
+    //           <input
+    //             type={showPassword ? "text" : "password"}
+    //             {...register("password", {
+    //               required: true,
+    //               minLength: 6,
+    //               pattern:
+    //                 /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
+    //             })}
+    //             placeholder="password"
+    //             className="outline-none border-none focus:border-none focus:ring-0 flex-grow"
+    //           />
+    //           <button
+    //             className="cursor-pointer p-2"
+    //             onClick={() => setShowPassword(!showPassword)}
+    //           >
+    //             {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+    //           </button>
+    //         </div>
+
+    //         {errors.password && (
+    //           <span className="text-red-500">This field is required</span>
+    //         )}
+
+    //         {errors.password?.type === "minLength" && (
+    //           <span className="text-red-500">
+    //             Password Must be Six Character
+    //           </span>
+    //         )}
+    //         {errors.password?.type === "pattern" && (
+    //           <span className="text-red-500">
+    //             At least one uppercase letter, one lowercase letter, one number
+    //             and one special character
+    //           </span>
+    //         )}
+
+    //         <label className="label">
+    //           <Link
+    //             to={"forgotPassword"}
+    //             className="label-text-alt link link-hover font-semibold"
+    //           >
+    //             Forgot password?
+    //           </Link>
+    //         </label>
+    //       </div>
+    //       <small className="font-semibold">
+    //         Are you new to Job Swift?{" "}
+    //         <span>
+    //           <Link className="ml-1  text-swift underline" to="/register">
+    //             Register Now
+    //           </Link>
+    //         </span>
+    //       </small>
+    //       <div className="form-control lg:md:px-20">
+    //         <input
+    //           type="submit"
+    //           placeholder=""
+    //           value="Login"
+    //           className="border-2 border-cyan-500 hover:bg-cyan-500 rounded-lg py-1 font-medium hover:text-white"
+    //         />
+    //       </div>
+
+    //       <SocialLogIn></SocialLogIn>
+    //     </form>
+    //   </div>
+    // </div>
+    // </div>
+
+    <div
+    className="min-h-screen flex items-center justify-center bg-cover bg-center"
+    style={{
+      backgroundImage: `url('https://i.ibb.co/Fqhmwhz/login01.png')`,
+    }}
+  >
+    <div className="md:flex md:items-center md:space-x-8 shadow-lg rounded-lg w-full md:w-[800px] bg-opacity-80 backdrop-blur p-6 md:p-12 bg-[#1f4440] text-white">
+      <div className="md:w-1/2">
+        <h2 className="text-4xl text-400 font-semibold mb-4">
+          Welcome to Jobs Swift
+        </h2>
+        <p className="text-gray-300 text-lg mb-6">
+          Discover a world of jobs and filtering at Jobs Swift. Sign in to your account.
+        </p>
+      </div>
+      <div className="md:w-1/2 border border-gray-100 rounded-lg p-2">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-semibold text-gray-400">
+              Email
             </label>
             <input
               type="email"
-              ref={emailRef}
-              {...register("email", { required: true })}
-              placeholder="email"
-              className="rounded-md "
+              id="email"
+              required
+              placeholder="Email"
+              className="w-full px-4 py-2 rounded-lg border bg-[#17403d] text-gray-300 focus:outline-none focus:ring focus:border-[#00756A]"
             />
-            {errors.email && (
-              <span className="text-red-500">This field is required</span>
-            )}
           </div>
-          <div className="form-control ">
-            <label className="label">
-              <span className="label-text font-semibold">Password</span>
+          <div>
+            <label htmlFor="password" className="block text-sm font-semibold text-gray-400">
+              Password
             </label>
-            {/* <div className="flex border-2 border-gray-400">
-              <input
-              type="password"
-              {...register("password", {
-                required: true,
-                minLength: 6,
-                pattern:
-                  /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
-              })}
-              placeholder="password"
-              className="rounded-md border-none focus:border-none"
-              
-            />
-
-            </div> */}
-            <div className="flex rounded-md px-1 border-black border">
+            <div className="flex rounded-lg border bg-[#17403d] text-gray-300">
               <input
                 type={showPassword ? "text" : "password"}
-                {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  pattern:
-                    /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
-                })}
-                placeholder="password"
-                className="outline-none border-none focus:border-none focus:ring-0 flex-grow"
+                id="password"
+                required
+                placeholder="Password"
+                className="w-full px-4 py-2 rounded-lg border bg-[#17403d] text-gray-300 focus:outline-none focus:ring focus:border-[#00756A] flex-grow"
               />
               <button
-                className="cursor-pointer p-2"
+                type="button"
                 onClick={() => setShowPassword(!showPassword)}
+                className="p-2"
               >
-                {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                {showPassword ? (
+                  <AiFillEyeInvisible className="text-gray-500" />
+                ) : (
+                  <AiFillEye className="text-gray-500" />
+                )}
               </button>
             </div>
-
-            {errors.password && (
-              <span className="text-red-500">This field is required</span>
-            )}
-
-            {errors.password?.type === "minLength" && (
-              <span className="text-red-500">
-                Password Must be Six Character
-              </span>
-            )}
-            {errors.password?.type === "pattern" && (
-              <span className="text-red-500">
-                At least one uppercase letter, one lowercase letter, one number
-                and one special character
-              </span>
-            )}
-
-            <label className="label">
-              <Link
-                to={"forgotPassword"}
-                className="label-text-alt link link-hover font-semibold"
-              >
-                Forgot password?
-              </Link>
-            </label>
           </div>
-          <small className="font-semibold">
-            Are you new to Job Swift?{" "}
-            <span>
-              <Link className="ml-1  text-swift underline" to="/register">
-                Register Now
-              </Link>
-            </span>
-          </small>
-          <div className="form-control lg:md:px-20">
-            <input
+          <div className="text-center">
+            <Link to="forgotPassword" className="text-gray-400 hover:underline text-sm">
+              Forgot password?
+            </Link>
+          </div>
+          <div>
+            <button
               type="submit"
-              placeholder=""
-              value="Login"
-              className="border-2 border-cyan-500 hover:bg-cyan-500 rounded-lg py-1 font-medium hover:text-white"
-            />
+              className="w-full bg-[#00756A] hover:bg-[#00584E] text-white py-2 rounded-lg font-semibold transition duration-300 ease-in-out"
+            >
+              Login
+            </button>
           </div>
-
-          <SocialLogIn></SocialLogIn>
         </form>
+        <div className="mt-4">
+          <small className="block font-semibold text-center text-gray-400">
+            New to Jobs Swift?{" "}
+            <Link to="/register" className="text-gray-400 hover:underline">
+              Register Now
+            </Link>
+          </small>
+        </div>
+        <div className="mt-4 text-white">
+          <SocialLogIn />
+        </div>
       </div>
     </div>
+  </div>
+
   );
 };
 

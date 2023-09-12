@@ -33,9 +33,9 @@ const SocialLogIn = () => {
     }
     return (
         <div>
-            <div className='divider my-1'></div>
+            <div className='divider  my-1'></div>
             <div className=' text-center'>
-                <button onClick={handleGoogle} className="btn btn-circle btn-outline  btn-sm">
+                <button onClick={handleGoogle} className="btn btn-circle btn-outline text-white  btn-sm">
                     <FaGoogle className=''></FaGoogle>
                 </button>
             </div>

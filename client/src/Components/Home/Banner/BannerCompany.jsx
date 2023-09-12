@@ -43,7 +43,7 @@ const BannerCompany = () => {
   return (
     <div className="bg-white py-16 text-gray-800">
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-8 text-cyan-400">
+        <h2 className="text-4xl font-bold mb-8 text-teal-700 italic">
           Trusted by 30,000+ Companies
         </h2>
         <p className="text-lg text-gray-600 mb-8">

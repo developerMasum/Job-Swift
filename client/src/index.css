@@ -9,9 +9,12 @@
 text-second */
 @layer utilities {
   .active-link {
-    border-bottom: 2px solid rgb(91, 195, 16);
+    border-bottom: 3px solid rgba(17, 229, 155, 0.752);
     color: rgb(8, 61, 74);
     font-weight: 600;
+    transition: border-color 0.3s ease;
+    border-radius: 2px;
+    align-items: center;
   }
   @media (max-width: 767px) {
     .active-link {
@@ -25,6 +28,9 @@ text-second */
 
   .text-second{
     @apply text-gray-700;
+  }
+  .text-swift{
+    @apply  text-[#00756A];
   }
 }
 
@@ -78,4 +84,26 @@ text-second */
 
 body{
   @apply bg-[#fffafa]
+}
+
+
+.custom-shape-divider-bottom-1694422255 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1694422255 svg {
+  position: relative;
+  display: block;
+  width: calc(189% + 1.3px);
+  height: 228px;
+}
+
+.custom-shape-divider-bottom-1694422255 .shape-fill {
+  fill: #FFFFFF;
 }
