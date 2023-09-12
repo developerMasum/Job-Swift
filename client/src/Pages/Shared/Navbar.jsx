@@ -225,7 +225,7 @@ const Navbar = () => {
   return (
     <nav
       className={`navbar fixed z-10  font-bold flex items-center justify-between flex-wrap px-6 
-      ${scrolling ? "lg:md:bg-white text-white lg:md:bg-opacity-90 lg:md:text-[#00756a] lg:md:shadow-lg" : "text-white"}`}
+      ${scrolling ? "lg:md:bg-white bg-opacity-90 text-white  lg:md:text-[#00756a] lg:md:shadow-lg" : "text-white"}`}
     >
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
         <img
