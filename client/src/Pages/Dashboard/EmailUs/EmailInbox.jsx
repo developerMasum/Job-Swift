@@ -15,11 +15,11 @@ const EmailInbox = () => {
     <div className="mx-4 md:mx-0">
       {/* Add margin on mobile and remove on medium (md) screens */}
       <h2 className="text-2xl font-semibold mb-4">Email Inbox</h2>
-      <div className="grid gap-4">
+      <div className="grid gap-2">
         {email.map((e) => (
           <div
             key={e.id}
-            className="bg-white p-4 shadow-md rounded-lg grid grid-cols-12 transform hover:scale-105 transition-transform duration-300"
+            className="bg-white p-4 shadow-sm rounded-lg grid grid-cols-12 transform hover:scale-105 transition-transform duration-300"
           >
             <div className="col-span-12 md:col-span-2">
               {/* Full width on mobile and 2 columns on medium screens */}
