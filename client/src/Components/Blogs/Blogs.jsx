@@ -33,7 +33,7 @@ const Blogs = () => {
   return (
     <div className="mt-20 px-2 text-swift pb-20">
       <div className="mb-20 mt-40">
-        <img src={blogImage} alt="Read our blogs" />
+        <img className=" rounded-2xl w-full" src={blogImage} alt="Read our blogs" />
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {visibleBlogs.map((blog) => (

@@ -3,9 +3,7 @@ import { MdKeyboardArrowDown, MdClear } from "react-icons/md";
 import { LuEdit } from "react-icons/lu";
 import triangle from "../../../assets/Image/triangles4-1.svg";
 import PostJobs from "./PostJobs";
-import icons1 from "../../../assets/Image/jobsicon1.png";
-import icons2 from "../../../assets/Image/jobsicons.png";
-import icons3 from "../../../assets/Image/josbicns3.png";
+
 import { FaEdit } from "react-icons/fa";
 
 const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
@@ -16,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "../../../redux/postJob/postSlice";
 import { authContext } from "../../../Auth/AuthProvider";
 import { getAllCandidates } from "../../../redux/candidates/candidatesOperation";
+import JobsInvitationsCard from "./JobsInvitetionsCard";
 const Jobs = () => {
   const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
@@ -246,73 +245,7 @@ const mappedTitle = isJobs.map((j) => {
               Don't show again
             </h2>
           </div>
-          <div className="px-5 mx-auto pb-20 grid lg:md:grid-cols-3 gap-7">
-            <div
-              className="flex px-4 py-3 rounded-lg"
-              style={{
-                boxShadow:
-                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
-              }}
-            >
-              <div className="space-y-3">
-                <h4 className="font-semibold">Work as a team</h4>
-                <p className="text-swift text-sm">
-                  Invite your team to Workable so you can share feedback and
-                  work together to hire the right people.
-                </p>
-                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
-                  Send invite{" "}
-                </button>
-              </div>
-              <div>
-                <img className="w-[200px] h-[100px]" src={icons1} alt="" />
-              </div>
-            </div>
-            <div
-              className="flex px-4 rounded-lg py-3"
-              style={{
-                boxShadow:
-                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
-              }}
-            >
-              <div className="space-y-3">
-                <h4 className="font-semibold">Show off your brand</h4>
-                <p className="text-swift text-sm">
-                  Ensure candidates see your company logo and custom description
-                  on job posts, emails and more.
-                </p>
-                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
-                  Send invite{" "}
-                </button>
-              </div>
-              <div>
-                <img className="w-[200px] h-[100px]" src={icons2} alt="" />
-              </div>
-            </div>
-            <div
-              className="flex rounded-lg px-4 py-3"
-              style={{
-                boxShadow:
-                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
-              }}
-            >
-              <div className="space-y-3">
-                <h4 className="font-semibold">
-                  Find the best features for you
-                </h4>
-                <p className="text-swift text-sm">
-                  Workable is best when it's customized for you. Check out all
-                  of our features with a personal walkthrough.
-                </p>
-                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
-                  Send invite{" "}
-                </button>
-              </div>
-              <div>
-                <img className="w-[200px] h-[100px]" src={icons3} alt="" />
-              </div>
-            </div>
-          </div>
+          <JobsInvitationsCard />
         </div>
       </div>
     </div>
