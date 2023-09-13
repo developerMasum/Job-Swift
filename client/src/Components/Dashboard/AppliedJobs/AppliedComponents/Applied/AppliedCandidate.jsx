@@ -110,12 +110,9 @@ const AppliedCandidate = ({ candidates, stageName }) => {
                       </p>
                       {candidate.educationList ? (
                         <>
-                          {" "}
                           <p>
-                            {" "}
                             {candidate.educationList?.map((edu) => (
                               <span className="text-sm">
-                                {" "}
                                 {edu?.degree ? edu?.degree : ""} from{" "}
                                 {edu?.institution ? edu?.institution : " "}{" "}
                               </span>
@@ -144,7 +141,6 @@ const AppliedCandidate = ({ candidates, stageName }) => {
           " "
         ) : (
           <>
-            {" "}
             <div className="mt-5 mb-3 fixed bottom-0 left-0 right-0 bg-orange-200 py-3">
               <div className="space-y-2 pt-4 text-start">
                 <div className="flex gap-5 justify-around items-center">
