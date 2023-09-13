@@ -59,6 +59,7 @@ import EditJobs from "../Pages/Dashboard/Jobs/EditJobs/EditJobs";
 import Blogs from "../Components/Blogs/Blogs";
 import BlogDetails from "../Components/Blogs/BlogDetails";
 import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
+import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LogIn />,
+      },
+      {
+        path: "/terms",
+        element: <TermsAndConditions />,
       },
       {
         path: "/login/forgotPassword",

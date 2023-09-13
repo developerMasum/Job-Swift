@@ -124,7 +124,7 @@ const LogIn = () => {
             />
 
             </div> */}
-            <div className="flex rounded-md px-1 border-green-800  border">
+            <div className="flex rounded-md px-1 bg-white border-green-800  border">
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", {
@@ -163,7 +163,7 @@ const LogIn = () => {
             <label className="label">
               <Link
                 to={"forgotPassword"}
-                className="label-text-alt link link-hover font-semibold text-lg"
+                className="underline font-semibold text-sm"
               >
                 Forgot password?
               </Link>
@@ -172,7 +172,7 @@ const LogIn = () => {
           <small className="font-semibold">
             Are you new to Job Swift?{" "}
             <span>
-              <Link className="ml-1  text-swift underline text-[18px]" to="/register">
+              <Link className="ml-1  text-blue-700 underline text-sm font-bold" to="/register">
                 Register Now
               </Link>
             </span>

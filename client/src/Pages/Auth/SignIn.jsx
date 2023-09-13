@@ -264,7 +264,7 @@ const SignIn = () => {
                   onChange={(e) => setIsCheckboxChecked(e.target.checked)}
                 />
                 <span className="text-white font-medium">
-                  I agree with <span className="underline text-blue-700">terms and condition</span>
+                  I agree with <span className="underline text-blue-700"> <Link to='/terms'> terms and condition</Link> </span>
                 </span>
               </div>
               <button
@@ -278,7 +278,7 @@ const SignIn = () => {
                 Sign Up
               </button>
               <div className="text-center">
-                <p className="text-white font-medium">Already have an account? <Link to='/login' className="hover:underline ">Login Here</Link></p>
+                <p className="text-white text-sm font-semibold">Already have an account? <Link to='/login' className="underline text-cyan-50 ">Login Here</Link></p>
               </div>
             </div>
           </form>

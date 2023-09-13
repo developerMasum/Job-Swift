@@ -1,44 +1,19 @@
-import React, { useContext, useState } from "react";
-import { MdClear, MdKeyboardArrowDown, MdStar } from "react-icons/md";
-// import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import {
+  MdKeyboardArrowDown,
+  MdPublishedWithChanges,
+  MdStar,
+} from "react-icons/md";
+
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-// import { authContext } from "../../../Auth/AuthProvider";
 
-const PostJobs = ({ jobs }) => {
+const PostJobs = ({ jobs,handleDelete }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/all-post/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your order has been deleted.", "success");
-
-              window.location.reload();
-            }
-          });
-      }
-    });
-  };
 
 
   return (
-    <div
-      className="py-8 rounded-lg  lg:md:px-8 px-6 shadow-slate-200 shadow-sm  bg-white mt-5"
-      
-    >
+    <div className="py-8 rounded-lg  lg:md:px-8 px-6 shadow-slate-200 shadow-sm  bg-white mt-5">
       <div className="lg:md:flex justify-between ">
         <div className="flex lg:md:gap-2  items-center">
           <MdStar size={25} color="#ffca00" />
@@ -47,7 +22,6 @@ const PostJobs = ({ jobs }) => {
               {jobs?.jobTitleFor}
             </h2>
           </Link>
-          
         </div>
         <div className="flex lg:md:gap-2 gap-6 lg:md:mt-0 mt-5">
           <button className="text-swift px-4 py-1 rounded-lg border-gray-600 border">
@@ -121,7 +95,7 @@ const PostJobs = ({ jobs }) => {
         <div className="font-medium  text-center text-gray-600">
           <p> {jobs?.Applied} </p> <p>Applied</p>
         </div>
-       
+
         <div className="font-medium text-center text-gray-600">
           <p>{jobs?.Assessment}</p> <p>Assessment</p>
         </div>
@@ -138,13 +112,12 @@ const PostJobs = ({ jobs }) => {
       <div className="flex  pt-1 justify-between text-gray-600  ">
         <h2 className="flex  gap-2 items-center">
           <span>
-            <MdClear className="w-7 h-7" color="red" />
+            <MdPublishedWithChanges className="w-5 h-5" color="green" />
           </span>
-          job published in career page
+          This job is now available.
         </h2>
         <div className="lg:md:flex">
           {/* <p>Candidates:{jobs.length}</p> */}
-          
         </div>
       </div>
     </div>

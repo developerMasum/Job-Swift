@@ -154,7 +154,7 @@ const Navbar = () => {
                 </div>
                 <div>
                   <Link to={"/dashboard/jobs"}>
-                    <button className="px-6 py-1 border-emerald-300 hover:bg-emerald-300  border-b-2 border-t-2 rounded-lg  md:block">
+                    <button className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block">
                       Dashboard
                     </button>
                   </Link>
