@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-
 import {
   AiOutlineFilePdf,
   AiOutlineMail,
   AiOutlinePhone,
 } from "react-icons/ai";
+import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
+import NoContent from "../../NoContent";
 
-import LoaderInternal from "../../LoaderInternal/LoaderInternal";
-import NoContent from "./NoContent";
 
-
-const Table = ({ appliedCandi: candidates, isLoading }) => {
+const HiredDetails = ({ appliedCandi: candidates, isLoading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
 
   useEffect(() => {
     // Initialize selectedCandidate with the first candidate
-    if (candidates.length > 0) {
+    if (candidates?.length > 0) {
       setSelectedCandidate(candidates[0]);
     }
   }, [candidates]);
@@ -265,9 +263,4 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   );
 };
 
-export default Table;
-
-
-
-
-
+export default HiredDetails;

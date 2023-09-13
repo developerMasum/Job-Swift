@@ -6,12 +6,13 @@ import {
   AiOutlineMail,
   AiOutlinePhone,
 } from "react-icons/ai";
+import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
+import NoContent from "../../NoContent";
 
-import LoaderInternal from "../../LoaderInternal/LoaderInternal";
-import NoContent from "./NoContent";
 
 
-const Table = ({ appliedCandi: candidates, isLoading }) => {
+
+const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
 
   useEffect(() => {
@@ -265,7 +266,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   );
 };
 
-export default Table;
+export default InterviewDetails;
 
 
 

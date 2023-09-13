@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 
-
 import {
   AiOutlineFilePdf,
   AiOutlineMail,
   AiOutlinePhone,
 } from "react-icons/ai";
+import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
+import NoContent from "../../NoContent";
 
-import LoaderInternal from "../../LoaderInternal/LoaderInternal";
-import NoContent from "./NoContent";
 
 
-const Table = ({ appliedCandi: candidates, isLoading }) => {
+
+const AssessmentDetails = ({ assessmentCandi: candidates, isLoading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
               </thead>
               <tbody>
                 {/* Rows */}
-                {candidates?.map((candidate) => (
+                {candidates.map((candidate) => (
                   <tr
                     key={candidate._id}
                     className="hover:bg-gray-100 transition-colors divide-y-[1px] divide-gray-400 duration-300"
@@ -265,9 +265,4 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   );
 };
 
-export default Table;
-
-
-
-
-
+export default AssessmentDetails;
