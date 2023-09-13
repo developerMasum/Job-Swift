@@ -170,8 +170,8 @@ const router = createBrowserRouter([
         path: "jobs/applied-job/:id",
         element: <AppliedJobs />,
 
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-post/${params.id}`),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/all-post/${params.id}`),
       },
 
       {
