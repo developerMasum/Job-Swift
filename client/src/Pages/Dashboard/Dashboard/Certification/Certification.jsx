@@ -6,7 +6,8 @@ const Certification = () => {
   // Initialize form data using useState
   const [formData, setFormData] = useState({
     userName: "Ashik Faysal",
-    courseName: "Web Development",
+    company:"Job Swift",
+    title: "Web Development",
     startDate: "2022-01-01",
     endDate: "2023-01-12",
     signature: "",
@@ -66,9 +67,9 @@ const Certification = () => {
   };
 
   return (
-    <div className="bg-gray-100 pt-8 min-h-screen flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-4 md:p-8 w-full md:w-1/2">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
+    <div className="bg-gray-300 pt-8 min-h-screen flex items-center justify-center">
+      <div className="bg-slate-400 rounded-lg shadow-2xl p-4 md:p-8 w-full md:w-1/2">
+        <h2 className="text-2xl text-white md:text-3xl font-bold text-center mb-4">
           Certification Form
         </h2>
         <form onSubmit={handleSubmit}>
@@ -78,7 +79,7 @@ const Certification = () => {
               htmlFor="userName"
               className="text-sm md:text-base font-semibold"
             >
-              User Name
+              Candidate Name
             </label>
             <input
               type="text"
@@ -89,57 +90,58 @@ const Certification = () => {
               onChange={handleInputChange}
             />
           </div>
+          {/* Company Name input */}
+          <div className="mb-4">
+            <label
+              htmlFor="userName"
+              className="text-sm md:text-base font-semibold"
+            >
+              Company Name
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              className="border rounded w-full px-3 py-2 transition duration-300 hover:border-blue-500 focus:border-blue-500 focus:outline-none"
+              value={formData.company}
+              onChange={handleInputChange}
+            />
+          </div>
           {/* Course Name input */}
           <div className="mb-4">
             <label
               htmlFor="courseName"
               className="text-sm md:text-base font-semibold"
             >
-              Course Name
+              Job Title
             </label>
             <input
               type="text"
-              id="courseName"
-              name="courseName"
+              id="title"
+              name="title"
               className="border rounded w-full px-3 py-2 transition duration-300 hover:border-blue-500 focus:border-blue-500 focus:outline-none"
-              value={formData.courseName}
+              value={formData.title}
               onChange={handleInputChange}
             />
           </div>
-          {/* Start Date input */}
+          {/* Hiring Date input */}
           <div className="mb-4">
             <label
-              htmlFor="startDate"
+              htmlFor="hiringDate"
               className="text-sm md:text-base font-semibold"
             >
-              Date of Conduct - Start
+              Hiring Date
             </label>
             <input
               type="date"
-              id="startDate"
-              name="startDate"
+              id="hiringDate"
+              name="hiringDate"
               className="border rounded w-full px-3 py-2 transition duration-300 hover:border-blue-500 focus:border-blue-500 focus:outline-none"
               value={formData.startDate}
               onChange={handleInputChange}
             />
           </div>
-          {/* End Date input */}
-          <div className="mb-4">
-            <label
-              htmlFor="endDate"
-              className="text-sm md:text-base font-semibold"
-            >
-              Date of Conduct - End
-            </label>
-            <input
-              type="date"
-              id="endDate"
-              name="endDate"
-              className="border rounded w-full px-3 py-2 transition duration-300 hover:border-blue-500 focus:border-blue-500 focus:outline-none"
-              value={formData.endDate}
-              onChange={handleInputChange}
-            />
-          </div>
+
           {/* Signature (PNG) input */}
           <div className="mb-4">
             <label
@@ -202,23 +204,25 @@ const Certification = () => {
       <div class="min-h-screen flex items-center justify-center bg-gray-100">
         <div class="bg-white p-8 rounded-lg">
           <div class="flex items-center justify-center mb-4"></div>
-          <h1 class="text-5xl font-bold mb-4">Certificate of Completion with Excellence</h1>
+          <h1 class="text-5xl font-bold mb-4 text-stone-500">Offer Letter From
+          <span class="text-gray-500">${formData.company}</span>
+          </h1>
           <div class="mb-2">
-            <p class="text-2xl">Is Awarded to</p>
-            <h2 class="text-3xl font-bold">${formData.userName}</h2>
+            <p class="text-2xl text-stone-500 font-bold">Dear,</p>
+            <h2 class="text-3xl font-bold text-stone-500">${formData.userName}</h2>
           </div>
-          <p class="mb-4">For successful completion of the <span class="text-3xl font-semibold">${formData.courseName} Course</span></p>
+          <p class="mb-4">For successful completion of the <span class="text-3xl font-semibold text-stone-500">${formData.title}</span></p>
           <div class="my-2">
             <p>With a rigorous amount of Javascript, HTML, CSS, React and applied these skills to build several projects.</p>
             <p>We found the student hard-working, dedicated, and a quick learner, who finished the assigned tasks on time.</p>
           </div>
-          <p class="mb-4 text-2xl font-semibold">You Did It, and we are proud of you!</p>
+          <p class="mb-4 text-2xl font-semibold text-stone-500">You Did It, and we are proud of you!</p>
           <div class="flex text-5xl font-bold items-center justify-between mt-12">
-            <h2>Job Swift</h2>
+            <h2 class="text-stone-500">${formData.title}</h2>
             <div>
               <img src="${formData.signature}" width="100" height="50" />
               <hr />
-              <p class="text-lg">${formData.signatureDetails}</p>
+              <p class="text-lg text-stone-500">${formData.signatureDetails}</p>
             </div>
           </div>
           <div class="flex justify-end mt-4">
@@ -245,7 +249,7 @@ const Certification = () => {
             <button
               type="button"
               onClick={downloadPDF}
-              className="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full w-1/2 transition duration-300 transform hover:scale-105 mt-4"
+              className="bg-stone-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full w-1/2 transition duration-300 transform hover:scale-105 mt-4"
             >
               Download PDF
             </button>
