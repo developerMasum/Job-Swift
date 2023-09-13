@@ -389,10 +389,10 @@ const UpperBar = () => {
               >
                 <div className="text-black">
                   <li>
-                    <Link>Workable</Link>
+                    <Link to="get-certificate">Get Certificate</Link>
                   </li>
                   <li>
-                    <Link>Workable Referrals</Link>
+                    <Link>Certification List</Link>
                   </li>
                 </div>
               </ul>

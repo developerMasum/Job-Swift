@@ -17,16 +17,8 @@ const HistoricalReports = () => {
     { icon: PiFlowArrowFill, title: "Candidate Flow", linkData: "candidiate-flow", description: "The number of new candidates and the number moved forward over time." },
     { icon: LuCheckCircle, title: "Candidate Sources", linkData: "candidiate-source", description: "See the source of all candidates, including the most successful ones." },
     { icon: TbArrowsRight, title: "Hiring Velocity", linkData: "hiring-velocity", description: "Track the average time it takes candidates to get to each stage." },
-    { icon: GoClock, title: "Time to Hire", linkData: "time-to-hire", description: "View the time taken to fill a job, and the time from application to hire." },
-    { icon: LuArrowUp10, title: "Productivity", linkData: "productivity-report", description: "See the activity of your hiring team to track their productivity over time." },
     { icon: WiTornado, title: "Historic Pipeline", linkData: "historic-pipeline", description: "Track the percentage of candidates making it through each stage." },
-    { icon: ImCircleDown, title: "Referrals Breakdown", linkData: "referrals-breakdown", description: "See the source and status of all referred candidates." },
-    { icon: IoIosPeople, title: "Referrals", linkData: "referrals-report", description: "Find out how active and successful your employees referral networks are." },
-    { icon: GrCompliance, title: "Compliance (EEO)", description: "View and export applicant responses to the EEO survey." },
-    { icon: BsInstagram, title: "Campaigns", linkData: "campaigns", description: "View the performance of your Workable driven social media campaigns." },
-    { icon: LuMonitor, title: "Video Interviews", linkData: "video-interviews", description: "View the performance of your video interviews." },
-    { icon: GiThreeKeys, title: "Assessments", linkData: "assessments-report", description: "View the performance of your Assessments." },
-    { icon: CiMenuFries, title: "Candidate Surveys", linkData: "candidate-Surveys", description: "View the performance from your surveys." },
+   
   ];
   return (
     <div className="p-4 space-y-4">
