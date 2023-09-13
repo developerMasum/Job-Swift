@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Ashik",
+    "companyName": "Company A Inc.",
+    "email": "cert1@example.com",
+    "date": "2023-09-13",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "This certification focuses on the fundamentals of the industry."
+  },
+  {
+    "name": "Faysal",
+    "companyName": "Company B Corporation",
+    "email": "cert2@example.com",
+    "date": "2023-09-14",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Advanced certification for experienced professionals."
+  },
+  {
+    "name": "Akash",
+    "companyName": "Company C Ltd.",
+    "email": "cert3@example.com",
+    "date": "2023-09-15",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "A comprehensive certification program for IT experts."
+  },
+  {
+    "name": "Rabbani",
+    "companyName": "Company D International",
+    "email": "cert4@example.com",
+    "date": "2023-09-16",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Certification in project management and leadership."
+  },
+  {
+    "name": "Masum",
+    "companyName": "Company E Enterprises",
+    "email": "cert5@example.com",
+    "date": "2023-09-17",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Specialized certification in data analytics."
+  },
+  {
+    "name": "Ariful",
+    "companyName": "Company F Technologies",
+    "email": "cert6@example.com",
+    "date": "2023-09-18",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Certification for web developers and designers."
+  },
+  {
+    "name": "Anik",
+    "companyName": "Company G Solutions",
+    "email": "cert7@example.com",
+    "date": "2023-09-19",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Advanced certification for cloud computing professionals."
+  },
+  {
+    "name": "Bayezid",
+    "companyName": "Company H Group",
+    "email": "cert8@example.com",
+    "date": "2023-09-20",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Certification in cybersecurity and network defense."
+  },
+  {
+    "name": "Basher",
+    "companyName": "Company I Innovations",
+    "email": "cert9@example.com",
+    "date": "2023-09-21",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Certification for healthcare professionals."
+  },
+  {
+    "name": "Sojib",
+    "companyName": "Company J Solutions",
+    "email": "cert10@example.com",
+    "date": "2023-09-22",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Certification for educators and teachers."
+  },
+  {
+    "name": "No name",
+    "companyName": "Company K Group",
+    "email": "cert11@example.com",
+    "date": "2023-09-23",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Certification for financial analysts."
+  },
+  {
+    "name": "Mone nai",
+    "companyName": "Company L Innovations",
+    "email": "cert12@example.com",
+    "date": "2023-09-24",
+    "image": "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Certification in environmental sustainability."
+  }
+]

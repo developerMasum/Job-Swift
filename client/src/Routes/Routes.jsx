@@ -60,6 +60,7 @@ import Blogs from "../Components/Blogs/Blogs";
 import BlogDetails from "../Components/Blogs/BlogDetails";
 import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
 import Certification from "../Pages/Dashboard/Dashboard/Certification/Certification";
+import CertificationList from "../Pages/Dashboard/Dashboard/Certification/CertificationList";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -247,6 +248,10 @@ const router = createBrowserRouter([
       {
         path: "get-certificate",
         element: <Certification />,
+      },
+      {
+        path: "certification-list",
+        element: <CertificationList />,
       },
       {
         path: "candidate/profile/:id",

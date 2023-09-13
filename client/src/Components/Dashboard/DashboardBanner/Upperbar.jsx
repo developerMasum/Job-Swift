@@ -392,7 +392,7 @@ const UpperBar = () => {
                     <Link to="get-certificate">Get Certificate</Link>
                   </li>
                   <li>
-                    <Link>Certification List</Link>
+                    <Link to="certification-list">Certification List</Link>
                   </li>
                 </div>
               </ul>

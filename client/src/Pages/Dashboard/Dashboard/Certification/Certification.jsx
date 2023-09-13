@@ -9,8 +9,7 @@ const Certification = () => {
     courseName: "Web Development",
     startDate: "2022-01-01",
     endDate: "2023-01-12",
-    signature:
-      "",
+    signature: "",
     signatureDetails: "Web Developer",
   });
 
