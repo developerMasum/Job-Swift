@@ -5,7 +5,7 @@ import { CgMenuGridR } from "react-icons/cg";
 import { FaToolbox, FaUserAlt, FaUserPlus } from "react-icons/fa";
 import { BiSolidCalendar } from "react-icons/bi";
 import { RiUserSearchFill } from "react-icons/ri";
-import { BsPieChart, BsGraphUp, BsFillHouseAddFill } from "react-icons/bs";
+import { BsPieChart, BsGraphUp, BsFillHouseAddFill, BsSearch } from "react-icons/bs";
 import userBackupImage from "../../../assets/Image/userImage.jpeg";
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../../../Auth/AuthProvider";
@@ -330,13 +330,16 @@ const UpperBar = () => {
             <div className="form-control">
               <div className="flex gap-12">
                 {/* input */}
-                <div className="input-group ">
+                <div className=" flex justify-center items-center">
                   <input
                     type="text"
                     placeholder="Search for candidates..."
-                    className="input  input-sm px-[-30px] hidden lg:block text-white border-2 border-cyan-800"
+                    className="rounded-lg input-sm  hidden lg:block   pe-16  bg-slate-500 bg-opacity-0 border-[0.1] hover:border-2"
                   />
-                  <button className="btn btn-outline btn-sm hidden lg:block border-2 border-cyan-800">
+                  
+                    <button><BsSearch className="-mx-7"></BsSearch></button>
+                  
+                  {/* <button className="btn btn-outline btn-sm hidden lg:block border-2 border-cyan-800">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-6  "
@@ -351,7 +354,7 @@ const UpperBar = () => {
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                       />
                     </svg>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
