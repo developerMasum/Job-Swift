@@ -420,7 +420,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     formData.append("date", isoDateString);
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
-    formData.append('appliedJobId', appliedJobId);
+    // formData.append('appliedJobId', appliedJobId);
     formData.append('stage', stage)
     console.log(data);
     setFirstName(data.firstName);
@@ -444,7 +444,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
 
     setTimeout(() => {
       setIsSubmitting(false);
-      // setIsSubmitted(true);
+      setIsSubmitted(true);
     }, 4000);
   };
 

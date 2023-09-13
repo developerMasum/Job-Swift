@@ -175,7 +175,7 @@ const LogIn = () => {
     <div
     className="min-h-screen flex items-center justify-center bg-cover bg-center"
     style={{
-      backgroundImage: `url('https://i.ibb.co/Fqhmwhz/login01.png')`,
+      backgroundImage: `url('https://i.ibb.co/K56y6f8/logigbackground.png')`,
     }}
   >
     <div className="md:flex md:items-center md:space-x-8 shadow-lg rounded-lg w-full md:w-[800px] bg-opacity-80 backdrop-blur p-6 md:p-12 bg-[#1f4440] text-white">
@@ -187,7 +187,7 @@ const LogIn = () => {
           Discover a world of jobs and filtering at Jobs Swift. Sign in to your account.
         </p>
       </div>
-      <div className="md:w-1/2 border border-gray-100 rounded-lg p-2">
+      <div className="md:w-1/2 border border-[#609794] rounded-lg p-2">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm font-semibold text-gray-400">
@@ -243,7 +243,7 @@ const LogIn = () => {
         <div className="mt-4">
           <small className="block font-semibold text-center text-gray-400">
             New to Jobs Swift?{" "}
-            <Link to="/register" className="text-gray-400 hover:underline">
+            <Link to="/register" className="text-[#15413e] hover:underline">
               Register Now
             </Link>
           </small>
