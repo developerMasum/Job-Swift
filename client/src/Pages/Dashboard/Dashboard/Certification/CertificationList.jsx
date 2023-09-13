@@ -16,29 +16,57 @@ const CertificationList = () => {
       <h1 className="text-3xl font-bold mb-4 text-center">
         Certification List
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {certificationData.map((cert, index) => (
-          <div key={index}>
-            <div className="max-w-sm rounded overflow-hidden shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform">
-              <img className="w-full" src={cert.image} alt={cert.name} />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">{cert.name}</div>
-                <p className="text-gray-700 text-base">{cert.description}</p>
-              </div>
-              <div className="px-6 py-4">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                  #HTML
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                  #CSS
-                </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-                  #JavaScript
-                </span>
-              </div>
-            </div>
+
+      <div className="overflow-x-auto">
+        <div className="md:w-3/4 md:mx-auto overflow-x-scroll">
+          <div className="w-full md:overflow-auto">
+            <table className="min-w-full bg-white">
+              <thead>
+                <tr>
+                  <th className="py-3 px-6 text-left text-2xl font-medium text-gray-800">
+                    Serial No
+                  </th>
+                  <th className="py-3 px-6 text-left text-2xl font-medium text-gray-800">
+                    Candidate Name
+                  </th>
+                  <th className="py-3 px-6 text-left text-2xl font-medium text-gray-800">
+                    Company Name
+                  </th>
+                  <th className="py-3 px-6 text-left text-2xl font-medium text-gray-800">
+                    Job Title
+                  </th>
+                  <th className="py-3 px-6 text-left text-2xl font-medium text-gray-800">
+                    Hiring Date
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {certificationData.map((certification) => (
+                  <tr
+                    key={certification.id}
+                    className="border-t border-gray-200 hover:bg-blue-100 hover:opacity-75"
+                  >
+                    <td className="py-4 px-6 whitespace-no-wrap">
+                      {certification.id}.
+                    </td>
+                    <td className="py-4 px-6 whitespace-no-wrap">
+                      {certification.userName}
+                    </td>
+                    <td className="py-4 px-6 whitespace-no-wrap">
+                      {certification.companyName}
+                    </td>
+                    <td className="py-4 px-6 whitespace-no-wrap">
+                      {certification.jobTitle}
+                    </td>
+                    <td className="py-4 px-6 whitespace-no-wrap">
+                      {certification.hiringDate}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );

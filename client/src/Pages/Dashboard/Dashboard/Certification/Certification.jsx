@@ -67,9 +67,9 @@ const Certification = () => {
   };
 
   return (
-    <div className="bg-gray-300 pt-8 min-h-screen flex items-center justify-center">
-      <div class="bg-gradient-to-r from-stone-500 via-indigo-500 to-gray-500 rounded-lg shadow-2xl p-4 md:p-8 w-full md:w-1/2">
-        <h2 className="text-2xl text-white md:text-3xl font-bold text-center mb-4">
+    <div className=" pt-8 min-h-screen flex items-center justify-center">
+      <div class=" rounded-lg shadow-2xl p-4 md:p-8 w-full md:w-1/2">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
           Certification Form
         </h2>
         <form onSubmit={handleSubmit}>
