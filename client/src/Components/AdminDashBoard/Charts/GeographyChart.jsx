@@ -23,7 +23,7 @@ const GeographyChart = () => {
   return (
     <div className="w-3/4 h-96 my-8 ml-20">
       <div>
-        <p className="uppercase text-sm font-bold text-swift pb-3">
+        <p className="uppercase text-sm font-bold text-cyan-700 pb-3">
           Geography Based User Traffic
         </p>
       </div>

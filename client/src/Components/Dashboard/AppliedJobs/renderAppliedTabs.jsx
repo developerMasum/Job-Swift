@@ -6,24 +6,24 @@ import Offer from "./AppliedComponents/Offer";
 import PhoneScreen from "./AppliedComponents/PhoneScreen";
 import Sourced from "./AppliedComponents/Sourced";
 
-export const renderAppliedTabs = (activeTab) => {
+export const renderAppliedTabs = (activeTab, id) => {
   switch (activeTab) {
-    case "tabs1":
-      return <Assessment />;
+    // case "tabs1":
+    //   return <Assessment id={id} />;
     case "tabs2":
-      return <Sourced />;
+      return <Sourced id={id} />;
     case "tabs3":
-      return <Applied />;
-    case "tabs4":
-      return <PhoneScreen />;
+      return <Applied id={id} />;
+    // case "tabs4":
+    //   return <PhoneScreen id={id} />;
     case "tabs5":
-      return <Assessment />;
+      return <Assessment id={id} />;
     case "tabs6":
-      return <Interview />;
+      return <Interview id={id} />;
     case "tabs7":
-      return <Offer />;
+      return <Offer id={id} />;
     case "tabs8":
-      return <Hired />;
+      return <Hired id={id} />;
     default:
       return null;
   }

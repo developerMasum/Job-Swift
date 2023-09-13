@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { authContext } from "../../Auth/AuthProvider";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import icon from "../../assets/Register/Asset 1.svg";
+import sign_up from "../../assets/Image/sign_up.png"
 const SignIn = () => {
   const [countries, setCountries] = useState([]);
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
@@ -64,25 +65,30 @@ const SignIn = () => {
     });
   };
 
+
   return (
-    <div className="w-full">
-      <div className="md:flex justify-between items-center p-10 gap-10 container mx-auto">
-        <div className="md:w-1/2">
-          <img src="https://i.ibb.co/Jp4GSbv/loginfinal01.png" alt="" />
-        </div>
+    <div className="bg-gradient-to-r from-[#00756a] to-[#677500]">
+      <h2 className="pb-2 border-b-4 rounded-b-lg w-[40%] text-center mx-auto flex justify-center lg:md:text-5xl text-2xl mb-5 lg:md:mb-0 font-bold text-white pt-7">
+        See Job Swift in Action
+      </h2>
+      <div className=" md:flex flex-row-reverse items-center  md:pr-5 md:h-screen md:p-10 lg:md:-mt-16">
+      
+        {/* <h1 className="text-white text-center md:hidden px-6  font-[900] text-3xl">
+          See Job Swift in Action
+        </h1> */}
+        <img
+          className="md:w-5/12 lg:md:h-[550px] lg:md:w-[700px] style  pb-7 md:pb-0"
+          src={icon}
+          alt=""
+        />
 
-        {/* <img
-        className="md:w-5/12	 w-full style p-10 pb-7 md:pb-0"
-        src={icon}
-        alt=""
-      /> */}
-
-        <div className="md:w-1/2">
-          <form className=" bg-[#00673b] border rounded-lg space-y-2 p-4 " onSubmit={handleSubmit(onSubmit)}>
-            <h1 className=" text-center mb-4 text-gray-500    font-[900] text-3xl">
-              See Job Swift in Action
-            </h1>
-           
+        <div className="md:w-3/5 w-full px-5 ">
+          <form className="" onSubmit={handleSubmit(onSubmit)}>
+            
+            <div
+              className="space-y-3 p-6 w-full md:ml-5 rounded-2xl bg-white bg-opacity-30"
+            // style={{ backgroundColor: "rgba(10,10,43,0.75)" }}
+            >
               <div className="md:flex space-y-4 md:space-y-0 md:space-x-2">
                 <Controller
                   name="firstName"
@@ -92,7 +98,7 @@ const SignIn = () => {
                     <input
                       {...field}
                       type="text"
-                      className="flex-1 bg-[#305d4a] p-2 focus:outline-none rounded placeholder-gray-400  w-full"
+                      className="flex-1 p-2 focus:outline-none rounded-l-lg placeholder-gray-400  w-full"
                       placeholder="First Name"
                     />
                   )}
@@ -105,7 +111,7 @@ const SignIn = () => {
                     <input
                       {...field}
                       type="text"
-                      className="flex-1  bg-[#305d4a] focus:outline-none rounded  p-2 placeholder-gray-400 w-full"
+                      className="flex-1 focus:outline-none rounded-r-lg  p-2 placeholder-gray-400 w-full"
                       placeholder="Last Name"
                     />
                   )}
@@ -120,7 +126,7 @@ const SignIn = () => {
                   <input
                     {...field}
                     type="text"
-                    className="w-full  bg-[#305d4a]  p-2 placeholder-gray-400 focus:outline-none rounded"
+                    className="w-full  p-2 placeholder-gray-400 focus:outline-none rounded"
                     placeholder="Job Title"
                   />
                 )}
@@ -133,7 +139,7 @@ const SignIn = () => {
                   <input
                     {...field}
                     type="text"
-                    className="w-full p-2  bg-[#305d4a] placeholder-gray-400 focus:outline-none rounded"
+                    className="w-full p-2 placeholder-gray-400 focus:outline-none rounded"
                     placeholder="Company Name"
                   />
                 )}
@@ -147,7 +153,7 @@ const SignIn = () => {
                     <input
                       {...field}
                       type="tel"
-                      className="flex-1 p-2  bg-[#305d4a] placeholder-gray-400 focus:outline-none rounded w-full"
+                      className="flex-1 p-2 placeholder-gray-400 focus:outline-none rounded-l-lg w-full"
                       placeholder="Phone Number"
                     />
                   )}
@@ -159,7 +165,7 @@ const SignIn = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="flex-1 focus:outline-none  bg-[#305d4a] rounded p-2   w-full"
+                      className="flex-1 focus:outline-none rounded-r-lg p-2   w-full"
                     >
                       <option value="">Employee Count</option>
                       <option value="1-10">1-10</option>
@@ -171,6 +177,9 @@ const SignIn = () => {
                 />
               </div>
 
+              {/* Other fields */}
+              {/* ... */}
+
               <Controller
                 name="country"
                 control={control}
@@ -178,7 +187,7 @@ const SignIn = () => {
                 render={({ field }) => (
                   <select
                     {...field}
-                    className="w-full  bg-[#305d4a] focus:outline-none p-2  rounded"
+                    className="w-full focus:outline-none p-2  rounded"
                   >
                     <option value="">Select Country</option>
                     {countries.map((country, index) => (
@@ -206,12 +215,15 @@ const SignIn = () => {
                   <input
                     {...field}
                     type="email"
-                    className="w-full  bg-[#305d4a] p-2 placeholder-gray-400 focus:outline-none rounded"
+
+                    className="w-full p-2 placeholder-gray-400 focus:outline-none rounded"
                     placeholder="Email Address"
                   />
                 )}
               />
               <div className="relative">
+                {" "}
+                {/* A container to position the show/hide button */}
                 <Controller
                   name="password"
                   control={control}
@@ -225,7 +237,7 @@ const SignIn = () => {
                     <input
                       {...field}
                       type={showPassword ? "text" : "password"}
-                      className="w-full p-2  bg-[#305d4a] placeholder-gray-400 focus:outline-none rounded"
+                      className="w-full p-2 placeholder-gray-400 focus:outline-none rounded"
                       placeholder="Enter Your Password"
                     />
                   )}
@@ -252,32 +264,23 @@ const SignIn = () => {
                   onChange={(e) => setIsCheckboxChecked(e.target.checked)}
                 />
                 <span className="text-white font-medium">
-                  I agree with{" "}
-                  <span className="underline text-blue-400">
-                    terms and condition
-                  </span>
+                  I agree with <span className="underline text-blue-700">terms and condition</span>
                 </span>
               </div>
               <button
                 type="submit"
                 disabled={!isCheckboxChecked}
-                className={`w-full p-2 text-white rounded ${
-                  isCheckboxChecked
-                    ? "bg-[#00673b] hover:bg-[#00572b]"
-                    : "bg-gray-400 cursor-not-allowed"
-                }`}
+                className={`w-full p-2 text-white rounded ${isCheckboxChecked
+                  ? "bg-[#00673b] hover:bg-[#00572b]"
+                  : "bg-gray-400 cursor-not-allowed"
+                  }`}
               >
                 Sign Up
               </button>
               <div className="text-center">
-                <p className="text-white font-medium">
-                  Already have an account?{" "}
-                  <Link to="/login" className="hover:underline ">
-                    Login Here
-                  </Link>
-                </p>
+                <p className="text-white font-medium">Already have an account? <Link to='/login' className="hover:underline ">Login Here</Link></p>
               </div>
-           
+            </div>
           </form>
         </div>
       </div>

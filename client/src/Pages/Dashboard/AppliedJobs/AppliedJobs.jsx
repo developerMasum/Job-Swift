@@ -19,7 +19,7 @@ const AppliedJobs = () => {
   const jobs = appliedJobs.find((job) => job._id === id);
   const [isToggled, setIsToggled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("tabs1");
+  const [activeTab, setActiveTab] = useState("tabs2");
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleButtonClick = () => {
@@ -33,10 +33,10 @@ const AppliedJobs = () => {
     return tab ? tab.label : "Select Tab";
   };
   const tabsData = [
-    { id: "tabs1", label: "All" },
+    // { id: "tabs1", label: "All" },
     { id: "tabs2", label: "Sourced" },
     { id: "tabs3", label: "Applied" },
-    { id: "tabs4", label: "Phone Screen" },
+    // { id: "tabs4", label: "Phone Screen" },
     { id: "tabs5", label: "Assessment" },
     { id: "tabs6", label: "Interview" },
     { id: "tabs7", label: "Offer" },
@@ -188,7 +188,7 @@ const AppliedJobs = () => {
           </div>
         </div>
       </div>
-      <div className="text-center">{renderAppliedTabs(activeTab)}</div>
+      <div className="text-center">{renderAppliedTabs(activeTab,id)}</div>
     </section>
   );
 };

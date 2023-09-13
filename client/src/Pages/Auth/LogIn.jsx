@@ -11,7 +11,8 @@ import { toast } from "react-hot-toast";
 import Loader from "../../Components/Loader/Loader";
 import useAdmin from "../../Hooks/AdminHook/useAdmin";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-
+import "./LogIn.css";
+import login_keyboard from "../../assets/Image/login_keyboard.png";
 const LogIn = () => {
   const [isAdmin] = useAdmin();
   const [showPassword, setShowPassword] = useState(false);
@@ -32,10 +33,7 @@ const LogIn = () => {
     useContext(authContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const from =
-    location.state?.from?.pathname ||
-    (isAdmin && "/dashboard/admin/dashboard") ||
-    (!isAdmin && "/dashboard/jobs");
+  const destination = (isAdmin && "/dashboard/admin/users") || "/dashboard/jobs";
 
   // const [error, setError] = useState(null)
 
@@ -65,7 +63,7 @@ const LogIn = () => {
         // console.log(user);
 
         toast.success("Successfully LogIn");
-        navigate(from, { replace: true });
+        navigate(destination);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -74,170 +72,120 @@ const LogIn = () => {
   };
 
   return (
-    // <div className="container mx-auto">
-    //   <div className="md:flex justify-center items-center p-32 gap-10">
-    //   {/* <div>
-    //     <img src="https://i.ibb.co/Fqhmwhz/login01.png" alt="" />
-    //   </div> */}
-    //   <div>
-    //     <form
-    //       onSubmit={handleSubmit(onSubmit)}
-    //       className="card-body my-24 lg:md:my-0 h-[380px] lg:md:w-[500px] border-[1px] bg-gray-200 rounded-md "
-    //     >
-    //       <div className="form-control">
-    //         <label className="label">
-    //           <span className="label-text font-semibold">Email</span>
-    //         </label>
-    //         <input
-    //           type="email"
-    //           ref={emailRef}
-    //           {...register("email", { required: true })}
-    //           placeholder="email"
-    //           className="rounded-md "
-    //         />
-    //         {errors.email && (
-    //           <span className="text-red-500">This field is required</span>
-    //         )}
-    //       </div>
-    //       <div className="form-control ">
-    //         <label className="label">
-    //           <span className="label-text font-semibold">Password</span>
-    //         </label>
+    <div className=" bg-gradient-to-r from-[#00756a] to-[#677500]  lg:md:p-32">
+      {/* // <div className="login_container"> */}
+      <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 rounded-2xl shadow-lg shadow-black ">
+        <div className="">
+          {/* <img className="h-[380px] rounded-l-2xl" src={login} alt="" /> */}
+          <img src={login_keyboard} alt="" className="h-[100%] lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5" />
+        </div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="card-body lg:md:my-0  lg:md:w-[420px] bg-white bg-opacity-40 rounded-r-2xl "
+        >
+          {/* <div className=' font-bold  '>
+            <h1 className='text-center font-serif text-xl'>Log In Now</h1>
+          </div> */}
 
-    //         <div className="flex rounded-md px-1 border-black border">
-    //           <input
-    //             type={showPassword ? "text" : "password"}
-    //             {...register("password", {
-    //               required: true,
-    //               minLength: 6,
-    //               pattern:
-    //                 /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
-    //             })}
-    //             placeholder="password"
-    //             className="outline-none border-none focus:border-none focus:ring-0 flex-grow"
-    //           />
-    //           <button
-    //             className="cursor-pointer p-2"
-    //             onClick={() => setShowPassword(!showPassword)}
-    //           >
-    //             {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-    //           </button>
-    //         </div>
-
-    //         {errors.password && (
-    //           <span className="text-red-500">This field is required</span>
-    //         )}
-
-    //         {errors.password?.type === "minLength" && (
-    //           <span className="text-red-500">
-    //             Password Must be Six Character
-    //           </span>
-    //         )}
-    //         {errors.password?.type === "pattern" && (
-    //           <span className="text-red-500">
-    //             At least one uppercase letter, one lowercase letter, one number
-    //             and one special character
-    //           </span>
-    //         )}
-
-    //         <label className="label">
-    //           <Link
-    //             to={"forgotPassword"}
-    //             className="label-text-alt link link-hover font-semibold"
-    //           >
-    //             Forgot password?
-    //           </Link>
-    //         </label>
-    //       </div>
-    //       <small className="font-semibold">
-    //         Are you new to Job Swift?{" "}
-    //         <span>
-    //           <Link className="ml-1  text-swift underline" to="/register">
-    //             Register Now
-    //           </Link>
-    //         </span>
-    //       </small>
-    //       <div className="form-control lg:md:px-20">
-    //         <input
-    //           type="submit"
-    //           placeholder=""
-    //           value="Login"
-    //           className="border-2 border-cyan-500 hover:bg-cyan-500 rounded-lg py-1 font-medium hover:text-white"
-    //         />
-    //       </div>
-
-    //       <SocialLogIn></SocialLogIn>
-    //     </form>
-    //   </div>
-    // </div>
-    // </div>
-
-    <div
-    className="min-h-screen flex items-center justify-center bg-cover bg-center"
-    style={{
-      backgroundImage: `url('https://i.ibb.co/K56y6f8/logigbackground.png')`,
-    }}
-  >
-    <div className="md:flex md:items-center md:space-x-8 shadow-lg rounded-lg w-full md:w-[800px] bg-opacity-80 backdrop-blur p-6 md:p-12 bg-[#1f4440] text-white">
-      <div className="md:w-1/2">
-        <h2 className="text-4xl text-400 font-semibold mb-4">
-          Welcome to Jobs Swift
-        </h2>
-        <p className="text-gray-300 text-lg mb-6">
-          Discover a world of jobs and filtering at Jobs Swift. Sign in to your account.
-        </p>
-      </div>
-      <div className="md:w-1/2 border border-[#609794] rounded-lg p-2">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-400">
-              Email
+          <div className="form-control">
+            <label className="label ">
+              <span className="label-text  text-green-100">Email</span>
             </label>
             <input
               type="email"
-              id="email"
-              required
-              placeholder="Email"
-              className="w-full px-4 py-2 rounded-lg border bg-[#17403d] text-gray-300 focus:outline-none focus:ring focus:border-[#00756A]"
+              ref={emailRef}
+              {...register("email", { required: true })}
+              placeholder="email"
+              className="rounded-md bg-green-200 bg-opacity-0 border-green-800 "
             />
+            {errors.email && (
+              <span className="text-orange-800">This field is required</span>
+            )}
           </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-semibold text-gray-400">
-              Password
+          <div className="form-control ">
+            <label className="label">
+              <span className="label-text text-green-100">Password</span>
             </label>
-            <div className="flex rounded-lg border bg-[#17403d] text-gray-300">
+            {/* <div className="flex border-2 border-gray-400">
+              <input
+              type="password"
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                pattern:
+                  /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
+              })}
+              placeholder="password"
+              className="rounded-md border-none focus:border-none"
+              
+            />
+
+            </div> */}
+            <div className="flex rounded-md px-1 border-green-800  border">
               <input
                 type={showPassword ? "text" : "password"}
-                id="password"
-                required
-                placeholder="Password"
-                className="w-full px-4 py-2 rounded-lg border bg-[#17403d] text-gray-300 focus:outline-none focus:ring focus:border-[#00756A] flex-grow"
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  pattern:
+                    /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
+                })}
+                placeholder="password"
+                className="focus:border-none focus:ring-0 flex-grow bg-green-200 bg-opacity-0 border-none"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 className="p-2"
               >
-                {showPassword ? (
-                  <AiFillEyeInvisible className="text-gray-500" />
-                ) : (
-                  <AiFillEye className="text-gray-500" />
-                )}
+                {showPassword ? <AiFillEyeInvisible className="" /> : <AiFillEye className="" />}
               </button>
             </div>
+
+            {errors.password && (
+              <span className="text-orange-800">This field is required</span>
+            )}
+
+            {errors.password?.type === "minLength" && (
+              <span className="text-orange-800">
+                Password Must be Six Character
+              </span>
+            )}
+            {errors.password?.type === "pattern" && (
+              <span className="text-orange-800">
+                At least one uppercase letter, one lowercase letter, one number
+                and one special character
+              </span>
+            )}
+
+            <label className="label">
+              <Link
+                to={"forgotPassword"}
+                className="label-text-alt link link-hover font-semibold text-lg"
+              >
+                Forgot password?
+              </Link>
+            </label>
           </div>
-          <div className="text-center">
-            <Link to="forgotPassword" className="text-gray-400 hover:underline text-sm">
-              Forgot password?
-            </Link>
-          </div>
-          <div>
-            <button
+          <small className="font-semibold">
+            Are you new to Job Swift?{" "}
+            <span>
+              <Link className="ml-1  text-swift underline text-[18px]" to="/register">
+                Register Now
+              </Link>
+            </span>
+          </small>
+          <div className="form-control lg:md:px-20">
+            <input
               type="submit"
-              className="w-full bg-[#00756A] hover:bg-[#00584E] text-white py-2 rounded-lg font-semibold transition duration-300 ease-in-out"
-            >
-              Login
-            </button>
+              placeholder=""
+              value="Login"
+              className="border  bg-lime-800 hover:bg-lime-600    rounded-lg py-1 font-medium text-white"
+            />
+          </div>
+
+          <div className="ms-16 md:lg:">
+            <SocialLogIn></SocialLogIn>
           </div>
         </form>
         <div className="mt-4">
@@ -253,7 +201,7 @@ const LogIn = () => {
         </div>
       </div>
     </div>
-  </div>
+  
 
   );
 };

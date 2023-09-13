@@ -63,12 +63,12 @@ const UsersAdmin = () => {
   };
 
   return (
-    <div className="pl-36">
+    <div className="pl-48">
       <div className="pt-12 pb-8">
         <p className="font-bold">
           Users : <span className="">{users.length}</span>
         </p>
-        <p className="text-swift font-bold"> Managing the Team Members </p>
+        <p className="text-cyan-700 font-bold"> Managing the Team Members </p>
       </div>
       <div>
         <table className="w-full border-collapse border-b">

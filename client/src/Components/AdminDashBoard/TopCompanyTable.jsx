@@ -76,7 +76,7 @@ const TopCompanyTable = () => {
   return (
     <div className=" pl-12 ">
       <div>
-        <p className="text-swift uppercase text-sm font-bold pb-6">
+        <p className="text-cyan-700 uppercase text-sm font-bold pb-6">
           Top companies with the number of hired candidates
         </p>
       </div>
