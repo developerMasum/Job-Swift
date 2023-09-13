@@ -299,7 +299,8 @@ import { AiOutlineFilePdf } from "react-icons/ai";
 import axios from "axios";
 import { RiImageAddLine } from "react-icons/ri";
 
-const UpdateForm = ({ jobTitle }) => {
+const UpdateForm = ({ jobTitle, jobPosterEmail }) => {
+  console.log(jobPosterEmail);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -395,6 +396,8 @@ const UpdateForm = ({ jobTitle }) => {
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
     formData.append("jobTitle", jobTitle);
+    formData.append("stage", "Sourced");
+    formData.append("jobPosterEmail", jobPosterEmail);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
     formData.append("email", data.email);
@@ -428,7 +431,7 @@ const UpdateForm = ({ jobTitle }) => {
 
     setTimeout(() => {
       setIsSubmitting(false);
-      setIsSubmitted(true);
+      // setIsSubmitted(true);
     }, 4000);
   };
 
@@ -439,13 +442,14 @@ const UpdateForm = ({ jobTitle }) => {
     axios
       .get("http://localhost:5000/all-applications")
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setAllData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  console.log(allData);
 
   // for image
 
@@ -500,12 +504,6 @@ const UpdateForm = ({ jobTitle }) => {
               className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
               encType="multipart/form-data"
             >
-              {/* <div>
-                <img
-                  src={`http://localhost:5000/images/image_1693330074312.jpg`}
-                  alt=""
-                />
-              </div> */}
               <div className="bg-neutral-100 p-2">
                 <h1 className="text-lg font-semibold text-gray-500">
                   Personal Details

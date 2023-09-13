@@ -29,7 +29,7 @@ const Candidate = ({ candidates }) => {
     <div className="pt-20">
       <div>
         <div className="p-6 bg-white shadow-md rounded-lg flex justify-between">
-          <h5 className="text-lg font-semibold mb-2">Candidates</h5>
+          <h5 className="text-base font-semibold mb-2">Candidates</h5>
           <div>
             <label className="font-semibold text-gray-600">
               Creation Date:

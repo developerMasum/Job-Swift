@@ -18,7 +18,7 @@ import useAdmin from "../../../Hooks/AdminHook/useAdmin";
 const UpperBar = () => {
   const { user, logout } = useContext(authContext);
   const [isAdmin] = useAdmin();
-  // console.log('isadmin',isAdmin);
+  console.log('isadmin', isAdmin);
   // const [isAdmin,setIsAdmin] = useState(false)
 
   const name = user?.displayName || "Mr X man";
@@ -38,24 +38,24 @@ const UpperBar = () => {
         toast.error(error);
       });
   };
-// set Admin 
-// useEffect(() => {
-//   // Set isAdmin within the useEffect to ensure it's updated when user changes.
-//   const adminEmail = "admin@gmail.com";
-//   const originEmail = user?.email;
+  // set Admin 
+  // useEffect(() => {
+  //   // Set isAdmin within the useEffect to ensure it's updated when user changes.
+  //   const adminEmail = "admin@gmail.com";
+  //   const originEmail = user?.email;
 
-//   if (adminEmail === originEmail) {
-//     setIsAdmin(true);
-//   } else {
-//     setIsAdmin(false);
-//   }
-// }, [user]);
-// console.log(origin);
+  //   if (adminEmail === originEmail) {
+  //     setIsAdmin(true);
+  //   } else {
+  //     setIsAdmin(false);
+  //   }
+  // }, [user]);
+  // console.log(origin);
   // const isAdmin = true;
   const [toggle, setToggle] = useState(false);
 
   const [isActive, setActive] = useState("false");
-  
+
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
@@ -66,9 +66,9 @@ const UpperBar = () => {
       {isAdmin && (
         <>
           {/* Small Screen Navbar */}
-          <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
+          <div className="bg-gray-200  flex justify-between md:hidden">
             <div>
-              <div className="block cursor-pointer p-4 font-bold">
+              <div className="block cursor-pointer p-4 font-semibold">
                 {/* <Logo /> */}
                 <p>Admin Dashboard</p>
               </div>
@@ -83,17 +83,16 @@ const UpperBar = () => {
           </div>
           {/* Sidebar */}
           <div
-            className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-44 space-y-6 px-2  py-4 absolute inset-y-0 left-0 transform ${
-              isActive && "-translate-x-full"
-            }  md:translate-x-0  transition duration-200 ease-in-out`}
+            className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-44 space-y-6 px-2  py-4 absolute inset-y-0 left-0 transform ${isActive && "-translate-x-full"
+              }  md:translate-x-0  transition duration-200 ease-in-out`}
           >
             <div>
               {/* Branding & Profile Info */}
-              
+
               <div>
                 <div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
                   {/* <Logo /> */}
-                  <p className="uppercase text-sm font-bold">Admin Dashboard</p>
+                  <p className="uppercase text-sm semi-bold">Admin Dashboard</p>
                   <img src="../../../assets/logo/Job Swift.png" alt="" />
                   <img src="../../../assets/logo/Job Swift.png" alt="" />
                 </div>
@@ -120,18 +119,17 @@ const UpperBar = () => {
               </div>
 
               {/* Nav Items */}
-              <div className="flex flex-col justify-between flex-1 mt-6">
+              <div className="flex flex-col justify-between flex-1 mt-6 text-black">
                 <nav>
                   <>
-                  
+
                     {/* Menu Links */}
                     <NavLink
                       to="admin/dashboard"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                          isActive
-                            ? " text-cyan-500"
-                            : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive
+                          ? " text-cyan-500"
+                          : "text-gray-600"
                         }`
                       }
                     >
@@ -142,10 +140,9 @@ const UpperBar = () => {
                     <NavLink
                       to="admin/users"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                          isActive
-                            ? " text-cyan-500"
-                            : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive
+                          ? " text-cyan-500"
+                          : "text-gray-600"
                         }`
                       }
                     >
@@ -163,8 +160,7 @@ const UpperBar = () => {
               <NavLink
                 to="/dashboard/profile"
                 className={({ isActive }) =>
-                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
                   }`
                 }
               >
@@ -186,7 +182,7 @@ const UpperBar = () => {
       )}
 
       {!isAdmin && (
-        <div className="flex justify-between navbar rounded-xl shadow-xl bg-slate-100 fixed z-10  md:flex-row  max-w-7xl mx-auto ">
+        <div className="flex justify-between font-bold navbar rounded-xl text-black shadow-xl bg-slate-100 fixed z-10  md:flex-row  mx-auto ">
           <div className="flex  lg:md:gap-10  ">
             {/* responsive Mobile view----------------------- */}
             <div className="dropdown ">
@@ -285,7 +281,7 @@ const UpperBar = () => {
 
           {/* large screen view start------------------------------------- */}
 
-          <div className="font-bold hidden lg:md:flex ">
+          <div className="hidden lg:md:flex ">
             <ul className="menu menu-horizontal  ">
               <li>
                 <Link to={"jobs"}>JOBS</Link>
@@ -438,7 +434,7 @@ const UpperBar = () => {
                             />
                           </Link>
                           <h2>
-                            <span className="font-bold">{name}</span>
+                            <span className="semi-bold">{name}</span>
                             <br />
                             {/* <span className="text-[10px]">{userEmail}</span> */}
                           </h2>
@@ -462,10 +458,10 @@ const UpperBar = () => {
                     </li>
                     {user && (
                       <>
-                        <div className="text-center">
+                        <div className="text-center w-14 mx-auto">
                           <li
                             onClick={handleLogOut}
-                            className="btn btn-outline btn-xs text-xs btn-error mx-auto my-3 "
+                            className="border border-red-700 rounded-md p-1 hover:bg-red-500 text-xs  mx-auto my-3 "
                           >
                             Log-out
                           </li>

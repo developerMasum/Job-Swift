@@ -6,7 +6,10 @@ export const createUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     const email = data.email;
     try {
-      const response = await axios.put(`http://localhost:5000/user/${email}`, data);
+      const response = await axios.put(
+        `http://localhost:5000/user/${email}`,
+        data
+      );
       return response.data; // Return the data received from the server if needed
     } catch (error) {
       // Return the error payload using rejectWithValue
@@ -42,6 +45,3 @@ export const createJobPost = createAsyncThunk(
     }
   }
 );
-
-
-
