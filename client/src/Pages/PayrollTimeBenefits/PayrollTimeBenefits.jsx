@@ -29,19 +29,23 @@ const PayrollTimeBenefits = () => {
           <h2 className="text-swift md:text-2xl font-bold text-xl text-center md:text-start mb-5">
             No double entry. No headaches.
           </h2>
-          <p className="text-swift text-justify text-lg leading-8">
+          <p className="text-gray-800 text-justify text-lg leading-8">
             Job Swift allows you to track hours worked, record time-off, manage
             benefits, and run payroll all from a single platform. No more data
             double-entry and manual approval processes—just easy, accurate
             paydays for you and your employees.
           </p>
           <div className="flex pt-10 gap-10">
-            <button className="bg-cyan-500 border-4 border-cyan-600 text-white font-bold px-6 py-2 rounded-full hover:bg-cyan-600 transition ease-out duration-300">
-              Get My Free Demo
-            </button>
-            <button className="border-2 border-cyan-500 px-7 py-3 rounded-full hover:bg-cyan-100 transition ease-out duration-300 ">
-              Try It Free
-            </button>
+            <Link to="/demo-page">
+              <button className="bg-teal-700 text-white font-bold px-6 py-2 rounded-md hover:bg-cyan-600 transition ease-out duration-300">
+                Get My Free Demo
+              </button>
+            </Link>
+            <Link to="/login">
+              <button className="border-2 border-teal-700 px-6 py-2 rounded-md hover:bg-cyan-100 transition ease-out duration-300 ">
+                Try It Free
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -59,36 +63,32 @@ const PayrollTimeBenefits = () => {
             Run payroll faster and more easily than ever before (and with a lot
             less stress).
           </p>
-          <p className="flex gap-4 text-lg items-center text-gray-700 hover:underline font-bold">
-            <Link>Explore Payroll</Link>
+          <p className="flex gap-4 text-lg items-center text-gray-700  font-bold">
+            <span>Explore Payroll</span>
             <FaChevronRight />
           </p>
         </div>
         <div className="space-y-4 ">
           <img src={Administration} alt="" />
-          <h4 className="text-xl font-bold ">
-            Benefits Administration
-          </h4>
+          <h4 className="text-xl font-bold ">Benefits Administration</h4>
           <p className="text-second font-semibold text-lg">
             Make it simple for employees to enroll in benefits and review their
             elections in one place.
           </p>
-          <p className="flex gap-4 text-lg items-center text-gray-700 hover:underline font-bold">
-            <Link>Explore Administration</Link>
+          <p className="flex gap-4 text-lg items-center text-gray-700  font-bold">
+            <span>Explore Administration</span>
             <FaChevronRight />
           </p>
         </div>
         <div className="space-y-4 ">
           <img src={Time} alt="" />
-          <h4 className="text-xl font-bold ">
-            Time Tracking
-          </h4>
+          <h4 className="text-xl font-bold ">Time Tracking</h4>
           <p className="text-second font-semibold text-lg">
             Track time and run payroll without wasting time jumping between
             systems.
           </p>
-          <p className="flex gap-4 hover:underline text-gray-700 text-lg items-center  font-bold">
-            <Link>Explore Time Tracking</Link>
+          <p className="flex gap-4  text-gray-700 text-lg items-center  font-bold">
+            <span>Explore Time Tracking</span>
             <FaChevronRight />
           </p>
         </div>
@@ -98,8 +98,8 @@ const PayrollTimeBenefits = () => {
           <p className="text-second font-semibold text-lg">
             Streamline time-off requests and approvals via desktop and mobile.
           </p>
-          <p className="flex gap-4 text-lg items-center hover:underline text-gray-700 font-bold">
-            <Link>Explore Time Off</Link>
+          <p className="flex gap-4 text-lg items-center text-gray-700 font-bold">
+            <span>Explore Time Off</span>
             <FaChevronRight />
           </p>
         </div>
@@ -113,16 +113,18 @@ const PayrollTimeBenefits = () => {
             "Bring all the pieces together in a single HRIS for flawlessly accurate paydays."
           }
         />
-        <button className="bg-cyan-500 border-4 border-cyan-700 text-white font-bold px-6 py-2 rounded-full hover:bg-cyan-700 mt-12 transition ease-out duration-300">
-          Get My Free Demo
-        </button>
+        <Link to="/demo-page">
+          <button className="bg-teal-700 text-white font-bold my-12 px-6 py-2 rounded-md hover:bg-cyan-600 transition ease-out duration-300">
+            Get My Free Demo
+          </button>
+        </Link>
       </div>
       <div className="md:flex items-center  gap-10">
         <div className="md:w-1/2">
           <img src={payroll2} alt="" />
         </div>
         <div className="md:w-1/2 space-y-7">
-          <h2 className="text-2xl font-semibold text-second">
+          <h2 className="text-2xl text-gray-700 font-semibold text-second">
             “Every Tuesday I was tracking down information, having to beg
             managers to approve time, manually entering [data], adding up
             numbers...it was a complete and utter headache. Job Swift easily
@@ -132,9 +134,11 @@ const PayrollTimeBenefits = () => {
             AMY BOSTON, EMPLOYEE SUCCESS MANAGER | LIONHEART CRITICAL POWER
             SPECIALISTS
           </h2>
-          <button className="bg-cyan-500 border-2 border-cyan-500 hover:border-cyan-600 text-white font-bold px-6 transition ease-out duration-300 hover:text-second py-2 rounded-full hover:bg-white">
-            Read Amy’s Story
-          </button>
+          <Link to="/blogs">
+            <button className="bg-teal-700 text-white font-bold px-6 py-2 my-4 rounded-md hover:bg-cyan-600 transition ease-out duration-300">
+              Read Amy’s Story
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -160,8 +164,8 @@ const PayrollTimeBenefits = () => {
               how Job Swift makes the dream of all-in-one payroll, time
               tracking, and benefits data a reality
             </p>
-            <p className="flex gap-3 text-[17px] items-center font-semibold text-gray-700 hover:underline">
-              <Link>Watch the Webinar</Link> <FaChevronRight />{" "}
+            <p className="flex gap-3 text-[17px] items-center font-semibold text-gray-700">
+              <span>Watch the Webinar</span> <FaChevronRight />{" "}
             </p>
           </div>
           <div className="space-y-5">
@@ -175,8 +179,8 @@ const PayrollTimeBenefits = () => {
               how Job Swift makes the dream of all-in-one payroll, time
               tracking, and benefits data a reality
             </p>
-            <p className="flex gap-3 text-[17px] items-center font-semibold text-gray-700 hover:underline">
-              <Link>Watch the Webinar</Link> <FaChevronRight />{" "}
+            <p className="flex gap-3 text-[17px] items-center font-semibold text-gray-700">
+              <span>Watch the Webinar</span> <FaChevronRight />{" "}
             </p>
           </div>
         </div>

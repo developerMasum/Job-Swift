@@ -859,7 +859,7 @@ console.log(email);
 
               <button
                 type="submit"
-                className={`bg-green-500 px-8 py-1 rounded-md font-semibold text-white w-full mt-6 mb-0 ${
+                className={`bg-teal-700 px-8 py-1 rounded-md font-semibold text-white w-full mt-6 mb-0 ${
                   isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 disabled={isSubmitting}

@@ -59,6 +59,9 @@ import EditJobs from "../Pages/Dashboard/Jobs/EditJobs/EditJobs";
 import Blogs from "../Components/Blogs/Blogs";
 import BlogDetails from "../Components/Blogs/BlogDetails";
 import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
+import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
+import Certification from "../Pages/Dashboard/Dashboard/Certification/Certification";
+import CertificationList from "../Pages/Dashboard/Dashboard/Certification/CertificationList";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -99,6 +102,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LogIn />,
+      },
+      {
+        path: "/terms",
+        element: <TermsAndConditions />,
       },
       {
         path: "/login/forgotPassword",
@@ -242,6 +249,14 @@ const router = createBrowserRouter([
       {
         path: "inbox-email",
         element: <EmailUs />,
+      },
+      {
+        path: "get-certificate",
+        element: <Certification />,
+      },
+      {
+        path: "certification-list",
+        element: <CertificationList />,
       },
       {
         path: "candidate/profile/:id",

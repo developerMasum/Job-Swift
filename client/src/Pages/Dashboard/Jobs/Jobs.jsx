@@ -4,7 +4,6 @@ import { LuEdit } from "react-icons/lu";
 import triangle from "../../../assets/Image/triangles4-1.svg";
 import PostJobs from "./PostJobs";
 
-import { FaEdit } from "react-icons/fa";
 
 const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
 
@@ -15,6 +14,7 @@ import { getAllPost } from "../../../redux/postJob/postSlice";
 import { authContext } from "../../../Auth/AuthProvider";
 import { getAllCandidates } from "../../../redux/candidates/candidatesOperation";
 import JobsInvitationsCard from "./JobsInvitetionsCard";
+import Swal from "sweetalert2";
 const Jobs = () => {
   const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
@@ -22,9 +22,10 @@ const Jobs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { user } = useContext(authContext);
   const email = user?.email;
+  const nameOrMail = user?.displayName ;
 
   const { candidates, isLoading, error } = useSelector((state) => state.candidates);
-console.log('from jobs', candidates);
+// console.log('from jobs', candidates);
 useEffect(() => {
   // Dispatch the action to fetch candidates based on the selected sorting order
   dispatch(getAllCandidates(email));
@@ -74,20 +75,47 @@ const mappedTitle = isJobs.map((j) => {
 
 
 
-  // ---------------------------------------candidates---------------------
+  // ---------------------------------------job delete ---------------------
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/all-post/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your order has been deleted.", "success");
+
+             
+            //   const remaining = jobs.filter((job) => job.jobId !== id);
+            // setMappedTitle(remaining)
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       <div className="bg-white rounded-lg border-[1px] p-4 mb-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
-            <h2 className="text-xl font-bold text-gray-600">MD MASUM</h2>
-            <button className="text-gray-600 hover:text-cylog transition-colors duration-300">
+            <h2 className="text-xl font-bold text-gray-600">{nameOrMail} </h2>
+            {/* <button className="text-gray-600 hover:text-cylog transition-colors duration-300">
               <FaEdit className="w-5 h-5" />
-            </button>
+            </button> */}
           </div>
           <Link to="post-job">
-            <button className="bg-cyan-700 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
+            <button className="bg-teal-700 hover:bg-teal-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
               Create a New Job
             </button>
           </Link>
@@ -95,7 +123,7 @@ const mappedTitle = isJobs.map((j) => {
       </div>
 
       {/* Dropdown */}
-      <div className="flex justify-end pr-16 ">
+      {/* <div className="flex justify-end pr-16 ">
         <div className="relative z-50">
           <button
             onClick={() => {
@@ -169,7 +197,7 @@ const mappedTitle = isJobs.map((j) => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
 
       <div className="mx-2 lg:md:mx-0 flex gap-8 border-[1px] rounded-md   border-gray-300 p-6 items-center bg-white justify-between">
         <div className="flex flex-col space-y-3">
@@ -182,7 +210,7 @@ const mappedTitle = isJobs.map((j) => {
             boards.
           </p>
           <Link to="post-job">
-            <button className="border border-cyan-600 text-cyan-600 px-6 py-2 rounded-lg font-medium hover:bg-cyan-600 hover:text-white hover:border-cyan-800 transition-colors duration-300">
+            <button className="border border-teal-600 text-teal-600 px-6 py-2 rounded-lg font-medium hover:bg-teal-600 hover:text-white hover:border-teal-800 transition-colors duration-300">
               Post a Job
             </button>
           </Link>
@@ -196,12 +224,12 @@ const mappedTitle = isJobs.map((j) => {
 
       <div className="pt-10 px-2 lg:md:px-0">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-bold text-swift ">SAMPLE JOBS</p>
-          <p className="text-xs font-bold text-swift ">Delete sample data</p>
+          <p className="text-xs font-bold text-swift ">ALL POSTED JOBS</p>
+          <p className="text-xs font-bold text-swift uppercase ">Showing with candidates Stages</p>
         </div>
         <div className="">
-          {mappedTitle.map((jobs) => (
-            <PostJobs jobs={jobs} key={jobs._id} />
+          {mappedTitle.map((jobs,index) => (
+            <PostJobs handleDelete={handleDelete} jobs={jobs} key={index} />
           ))}
         </div>
         {/* <div className="">
@@ -221,22 +249,8 @@ const mappedTitle = isJobs.map((j) => {
               <p>
                 Add candidates by email: send resumes to{" "}
                 <span className="hover:underline">
-                  md-masum@jobs.workablemail.com
+                  md-masum@jobs.swift.com
                 </span>
-              </p>
-            </div>
-            <div className="flex gap-3 items-center">
-              <p
-                className="group-hover:block hidden text-swift hover:underline font-medium
-              "
-              >
-                Upload Resume
-              </p>
-              <p
-                className="group-hover:block hidden text-swift hover:underline font-medium
-              "
-              >
-                Refer Candidate
               </p>
             </div>
           </div>
@@ -244,9 +258,6 @@ const mappedTitle = isJobs.map((j) => {
         <div>
           <div className="flex justify-between pb-8 mx-5">
             <h2 className=" text-xs font-bold text-swift">SUGGESTED ACTIONS</h2>
-            <h2 className=" text-xs font-bold text-swift hover:underline">
-              Don't show again
-            </h2>
           </div>
           <JobsInvitationsCard />
         </div>

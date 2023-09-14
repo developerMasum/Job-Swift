@@ -33,7 +33,8 @@ const LogIn = () => {
     useContext(authContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const destination = (isAdmin && "/dashboard/admin/users") || "/dashboard/jobs";
+  const destination =
+    (isAdmin && "/dashboard/admin/users") || "/dashboard/jobs";
 
   // const [error, setError] = useState(null)
 
@@ -77,7 +78,11 @@ const LogIn = () => {
       <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 rounded-2xl shadow-lg shadow-black ">
         <div className="">
           {/* <img className="h-[380px] rounded-l-2xl" src={login} alt="" /> */}
-          <img src={login_keyboard} alt="" className="h-[100%] lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5" />
+          <img
+            src={login_keyboard}
+            alt=""
+            className="h-[100%] lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5"
+          />
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -121,7 +126,7 @@ const LogIn = () => {
             />
 
             </div> */}
-            <div className="flex rounded-md px-1 border-green-800  border">
+            <div className="flex rounded-md px-1 bg-white border-green-800  border">
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", {
@@ -138,7 +143,11 @@ const LogIn = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="p-2"
               >
-                {showPassword ? <AiFillEyeInvisible className="" /> : <AiFillEye className="" />}
+                {showPassword ? (
+                  <AiFillEyeInvisible className="" />
+                ) : (
+                  <AiFillEye className="" />
+                )}
               </button>
             </div>
 
@@ -161,7 +170,7 @@ const LogIn = () => {
             <label className="label">
               <Link
                 to={"forgotPassword"}
-                className="label-text-alt link link-hover font-semibold text-lg"
+                className="underline font-semibold text-sm"
               >
                 Forgot password?
               </Link>
@@ -170,7 +179,10 @@ const LogIn = () => {
           <small className="font-semibold">
             Are you new to Job Swift?{" "}
             <span>
-              <Link className="ml-1  text-swift underline text-[18px]" to="/register">
+              <Link
+                className="ml-1  text-blue-700 underline text-sm font-bold"
+                to="/register"
+              >
                 Register Now
               </Link>
             </span>
@@ -188,21 +200,8 @@ const LogIn = () => {
             <SocialLogIn></SocialLogIn>
           </div>
         </form>
-        <div className="mt-4">
-          <small className="block font-semibold text-center text-gray-400">
-            New to Jobs Swift?{" "}
-            <Link to="/register" className="text-[#15413e] hover:underline">
-              Register Now
-            </Link>
-          </small>
-        </div>
-        <div className="mt-4 text-white">
-          <SocialLogIn />
-        </div>
       </div>
     </div>
-  
-
   );
 };
 

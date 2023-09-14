@@ -105,12 +105,12 @@ const Banner = () => {
               <div className="flex items-center">
                 <div><BsPlayCircleFill className="text-sky-300"></BsPlayCircleFill></div>
                 <div>
-                  <Link className="text-sm ms-2 hover:underline italic">SEE JOB SWIFT IN ACTION</Link> <span className="mx-4">or</span>
+                  <a href="https://youtube.com/shorts/fokJetG3Z0c?si=zNo9EKkG7OoqQ99F" className="text-sm ms-2 hover:underline italic">SEE JOB SWIFT IN ACTION</a> <span className="mx-4">or</span>
                 </div>
               </div>
 
               <div className="lg:md:my-0 my-2">
-                <Link><button className=" border py-2 px-4 rounded-lg hover:text-green-900 hover:bg-white flex items-center ">Get stared <MdKeyboardArrowRight className="text-sky-300"></MdKeyboardArrowRight></button></Link>
+                <Link to='/register'><button className=" border py-2 px-4 rounded-lg hover:text-green-900 hover:bg-white flex items-center ">Get stared <MdKeyboardArrowRight className="text-sky-300"></MdKeyboardArrowRight></button></Link>
               </div>
             </div>
           </div>
