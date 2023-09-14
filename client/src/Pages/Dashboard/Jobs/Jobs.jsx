@@ -15,6 +15,7 @@ import { authContext } from "../../../Auth/AuthProvider";
 import { getAllCandidates } from "../../../redux/candidates/candidatesOperation";
 import JobsInvitationsCard from "./JobsInvitetionsCard";
 import Swal from "sweetalert2";
+import LoaderInternal from "../../../Components/LoaderInternal/LoaderInternal";
 const Jobs = () => {
   const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
@@ -103,6 +104,10 @@ const mappedTitle = isJobs.map((j) => {
       }
     });
   };
+
+  if(isLoading){
+    return <LoaderInternal></LoaderInternal>
+  }
 
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">

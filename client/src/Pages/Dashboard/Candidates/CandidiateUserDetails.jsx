@@ -100,8 +100,9 @@ const CandidiateUserDetails = () => {
   } = userDetails2 || {};
 
   return (
-    <div className="pt-20">
-      <div className="bg-image  bg-opacity-40 border border-slate-300 shadow-lg   ">
+    <div className="pt-16">
+     <div className="container mx-auto">
+     <div className="bg-image  bg-opacity-20 border    ">
         <div className="flex lg:md:justify-end  p-4">
           <div className="flex justify-around gap-8 cursor-pointer bg-white px-4 items-center border border-slate-400 rounded-lg p-2">
             <BiDotsHorizontal
@@ -130,8 +131,8 @@ const CandidiateUserDetails = () => {
         </div>
       </div>
       <div>
-        <div className="shadow-2xl flex justify-between">
-          <div className="p-8 flex ">
+        <div className=" flex justify-between">
+          <div className="p-4 flex ">
             <div>
               <img
                 className="h-24 w-24 rounded-xl border border-sky-600"
@@ -170,7 +171,7 @@ const CandidiateUserDetails = () => {
               </h3>
             </div>
           </div>
-          <div className="p-8">
+          <div className="p-4">
             <p className="font-bold text-swift hover:underline cursor-pointer">
               {jobTitle} <small className="ml-2 "> · {stage}</small>
             </p>
@@ -183,7 +184,7 @@ const CandidiateUserDetails = () => {
         </div>
       </div>
 
-      <div className="mt-12 shadow-lg border border-slate-200 p-5 rounded-lg">
+      <div className="mt-4 border border-slate-200 p-5 rounded-lg">
         <Tabs>
           <TabList className="flex gap-12 mb-8 flex-col">
             <div>
@@ -260,7 +261,7 @@ const CandidiateUserDetails = () => {
               <div className="divider w-5/6"></div>
             </div>
 
-            <div className="border max-w-4xl border-slate-200 p-10 text-center">
+            <div className="border max-w-3xl border-slate-200 p-10 text-center">
               <iframe
                 src={`http://localhost:5000/images/${resume}`}
                 width={100}
@@ -270,7 +271,7 @@ const CandidiateUserDetails = () => {
               />
             </div>
 
-            <div className="mt-10">
+            <div className="mt-4">
               <div>
                 <h1 className="text-swift font-bold text-base mb-3">
                   CONTACT DETAILS
@@ -409,6 +410,7 @@ const CandidiateUserDetails = () => {
           </TabPanel>
         </Tabs>
       </div>
+     </div>
     </div>
   );
 };

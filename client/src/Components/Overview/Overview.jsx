@@ -12,11 +12,10 @@ import SocialLink from "./SocialLink";
 const Overview = () => {
   const formData = useLoaderData();
   // console.log('finding error',formData);
-  
-  const appliedJobId = formData._id;
- 
 
-  console.log('id', appliedJobId);
+  const appliedJobId = formData._id;
+
+  console.log("id", appliedJobId);
   const location = useLocation();
   const { user } = useContext(authContext);
   const queryParams = new URLSearchParams(location.search);
@@ -49,10 +48,10 @@ const Overview = () => {
   };
 
   return (
-    <div className="container">
-      <div className="border-[1px]">
-        <div className="border-b-[1px]  bg-green-100">
-          {/* Job title header */}
+    <div className="">
+      {/* <div className="border-[1px] ">
+        <div className="border-b-[1px]  bg-gray-100">
+        
           <h1 className="text-2xl font-semibold mb-4 text-center">
             Job Preview: {formData?.jobTitle}
           </h1>
@@ -60,7 +59,7 @@ const Overview = () => {
 
         <div className="flex justify-between items-center bg-[#F5F5F5] border-b-[1px] shadow-md rounded-md p-4">
           <div className="p-4">
-            {/* User and job information */}
+            
             <h1 className="font-bold text-3xl text-[#00756a] mb-2">
               {user?.displayName}
             </h1>
@@ -70,7 +69,7 @@ const Overview = () => {
               <h2 className="text-[#707070]">• {formData?.employmentType}</h2>
             </div>
           </div>
-          {/* Button to open the modal */}
+          
           <button
             onClick={openModal}
             className="flex items-center text-[#00756a] hover:text-[#004f46]"
@@ -79,13 +78,42 @@ const Overview = () => {
             <span className="font-semibold">Share Jobs</span>
           </button>
         </div>
+      </div> */}
+
+      <div className="border bg-[#eef1f1] rounded-sm ">
+        <div className=" border-b border-gray-300 py-4">
+          <h1 className="text-2xl font-semibold text-center text-gray-800">
+            Job Preview: {formData?.jobTitle}
+          </h1>
+        </div>
+
+        <div className="md:flex justify-around items-center border-b border-gray-300 rounded-t-md p-4">
+          <div className="flex flex-col space-y-2">
+            <h1 className="text-xl uppercase font-bold text-[#00756a]">
+              {user?.displayName}
+            </h1>
+            <h1 className="text-xl text-gray-500  font-semibold">
+              {formData?.jobTitle}
+            </h1>
+            <div className="flex items-center text-gray-600">
+              <span className="mr-2">{formData?.jobLocation}</span>
+              <span className="text-[#707070]">
+                • {formData?.employmentType}
+              </span>
+            </div>
+          </div>
+          <button
+            onClick={openModal}
+            className="flex items-center text-[#00756a] hover:text-[#004f46] font-semibold"
+          >
+            <RiShareForwardLine className="text-2xl mr-1" />
+            <span>Share Jobs</span>
+          </button>
+        </div>
       </div>
+
       <div className=" my-6 mx-auto max-w-4xl">
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          {/* <TabList>
-            <Tab>Overview</Tab>
-            <Tab>Application</Tab>
-          </TabList> */}
           <div>
             <TabList className="flex gap-5 cursor-pointer">
               <Tab
@@ -109,35 +137,32 @@ const Overview = () => {
                 Application
               </Tab>
             </TabList>
-
-            {/* {activeTab === 0 && <div>Overview Content</div>}
-      {activeTab === 1 && <div>Application Content</div>} */}
           </div>
 
           <TabPanel>
-            <div className="bg-gray-50 shadow-lg">
+            <div className="bg-[#ffff]50 border-[1px] px-2 rounded-sm">
               <div className="overview-content p-4 divide-y-2 leading-7 space-y-5">
                 {/* Job description */}
                 <div>
-                  <h1 className="text-lg text-gray-600 font-bold ">
+                  <h1 className="text-lg text-gray-600 font-bold">
                     Description
                   </h1>
-                  <p className="text-gray-500">{formData?.jobDescriptions}</p>
+                  <p className="text-gray-700">{formData?.jobDescriptions}</p>
                 </div>
                 {/* Benefits */}
                 <div>
                   <h1 className="text-lg text-gray-600 font-bold">Benefits</h1>
-                  <p className="text-gray-500 ">{formData?.benefits}</p>
+                  <p className="text-gray-700">{formData?.benefits}</p>
                 </div>
 
                 <div>
-                  {formData && formData.responsibilities && (
+                  {formData && formData.requirements && (
                     <div>
                       {/* Job requirements */}
                       <h3 className="text-lg font-semibold mt-4">
-                        Requirements:
+                        Requirements
                       </h3>
-                      <ul className="list-disc list-inside">
+                      <ul className="list-disc list-inside text-gray-700">
                         {formData.requirements
                           .split(".")
                           .map((requirement, index) => (
@@ -154,9 +179,9 @@ const Overview = () => {
                     <div>
                       {/* Job responsibilities */}
                       <h3 className="text-lg font-semibold mt-4">
-                        Responsibilities:
+                        Responsibilities
                       </h3>
-                      <ul className="list-disc list-inside">
+                      <ul className="list-disc list-inside text-gray-700">
                         {formData.responsibilities
                           .split(".")
                           .map((responsibilityPart, index) => (
@@ -169,11 +194,24 @@ const Overview = () => {
                     </div>
                   )}
                 </div>
+                {/* Additional content */}
+                <div>
+                  <h3 className="text-lg font-semibold mt-4">Why Join Us?</h3>
+                  <p className="text-gray-700">
+                    We offer a collaborative work environment, competitive
+                    salary, and opportunities for professional growth. Join our
+                    team and be a part of our mission to change the industry!
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mt-4">How to Apply</h3>
+                  <p className="text-gray-700">
+                    Interested candidates should submit their resume and cover
+                    letter to careers@example.com. Please include the job title
+                    in the subject line of your email.
+                  </p>
+                </div>
               </div>
-              {/* Apply button */}
-              <button className="bg-green-500 px-8 py-1 rounded-md font-semibold text-white w-full mt-6">
-                Apply for the post
-              </button>
             </div>
           </TabPanel>
           <TabPanel>

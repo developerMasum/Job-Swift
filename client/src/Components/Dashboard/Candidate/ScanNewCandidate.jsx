@@ -4,7 +4,7 @@ import { RiShareBoxFill } from "react-icons/ri";
 const ScanNewCandidate = () => {
   return (
     <div className="my-2">
-      <div className="bg-white shadow-md rounded p-6">
+      <div className="  border rounded-lg p-6">
         <h4 className="font-semibold mb-2 text-swift">
           Scan millions of profiles with People Search
         </h4>
@@ -16,7 +16,7 @@ const ScanNewCandidate = () => {
           Start your search <RiShareBoxFill className="ml-2" color="green" />
         </button>
       </div>
-      <div className="bg-white shadow-md rounded p-6 mt-5">
+      <div className=" border rounded-lg p-6 mt-5">
         <h4 className=" font-semibold mb-2 text-swift"> New candidates page</h4>
         <p className="text-gray-600 mb-4 text-sm ">
           You're now using the improved candidates page. <br /> To learn more,

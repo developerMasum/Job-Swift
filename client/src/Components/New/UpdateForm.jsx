@@ -303,7 +303,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCandidates } from "../../redux/candidates/candidatesOperation";
 import { authContext } from "../../Auth/AuthProvider";
 
-const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
+const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   // console.log(jobId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -395,12 +395,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     formState: { errors },
   } = useForm();
 
-
-
-
-
   const onSubmit = async (data) => {
-    const stage = 'sourced';
     setIsSubmitting(true);
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
@@ -421,7 +416,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
     // formData.append('appliedJobId', appliedJobId);
-    formData.append('stage', stage)
+
     console.log(data);
     setFirstName(data.firstName);
     setLastName(data.lastName);
@@ -436,10 +431,10 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
           },
         }
       );
-      console.log('from overview',response.data);
-      updateData(appliedJobId)
+      console.log("from overview", response.data);
+      updateData(appliedJobId);
     } catch (error) {
-      console.error('from overview',error);
+      console.error("from overview", error);
     }
 
     setTimeout(() => {
@@ -475,22 +470,21 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     }
   };
 
+  // for new
+  const { user } = useContext(authContext);
+  const emailCandidates = user?.email;
+  const { candidates, isLoading, error } = useSelector(
+    (state) => state.candidates
+  );
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // Dispatch the action to fetch candidates based on the selected sorting order
+    dispatch(getAllCandidates(emailCandidates));
+  }, [dispatch]);
 
-// for new 
-const {user} = useContext(authContext)
-const emailCandidates = user?.email;
-const { candidates, isLoading, error } = useSelector((state) => state.candidates);
-
- const dispatch = useDispatch();
-useEffect(() => {
-  // Dispatch the action to fetch candidates based on the selected sorting order
-  dispatch(getAllCandidates(emailCandidates));
-}, [dispatch]);
-
-
-console.log(candidates);
-console.log(email);
+  console.log(candidates);
+  console.log(email);
 
   return (
     <div>
@@ -507,23 +501,22 @@ console.log(email);
             ,
           </p>
           <p className="text-lg text-gray-700">
-            Your aspiration to join our team has been received with delight. Our
-            discerning recruitment team is currently engrossed in evaluating
-            your application.
+            We are thrilled to have received your application. Our dedicated
+            recruitment team is currently evaluating your qualifications.
           </p>
           <p className="text-lg text-gray-700">
-            If your skills resonate with our needs, we will expediently reach
-            out to you through <span className="text-green-600">{email}</span>{" "}
-            to discuss the forthcoming stages of the application process.
+            If your skills align with our requirements, we will contact you
+            through <span className="text-green-600">{email}</span> to discuss
+            the next steps in the application process.
           </p>
           <p className="text-lg text-gray-700">
-            Meanwhile, we extend an invitation to explore our company's website.
-            Dive into the realm of our innovative projects, imbibe our ethos,
-            and fathom the impact we create.
+            In the meantime, we invite you to explore our company's website.
+            Discover our innovative projects, our values, and the impact we
+            make.
           </p>
           <p className="text-xl text-gray-800 font-semibold">
-            Anticipation builds as we envision the prospect of your addition to
-            our team. Our eagerness to connect with you soon knows no bounds!
+            We are excited about the possibility of having you join our team. We
+            look forward to connecting with you soon!
           </p>
         </div>
       ) : (
