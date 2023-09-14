@@ -6,9 +6,14 @@ import {
   AiOutlinePhone,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import NoContent from "../../NoContent";
-import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
+
+
 import toast from "react-hot-toast";
+import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
+import NoContent from "../../NoContent";
+
+
+
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = new Date(dateString).toLocaleDateString(
@@ -71,11 +76,11 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
       {candidates?.length === 0 ? (
         <NoContent></NoContent>
       ) : (
-        <div className="p-10 md:flex gap-4  ">
-          <div className="md:w-2/5">
+        <div className="md:p-10 md:flex gap-4  ">
+          <div className="md:w-2/5 w-full border ">
             <table className="w-full shadow-lg rounded-lg overflow-hidden">
               {/* Head */}
-              <thead className="bg-gray-200 text-gray-500">
+              <thead className="bg-teal-900 text-white">
                 <tr>
                   <th className="px-6 py-3 text-left">Select</th>
                   <th className="px-6 py-3">Candidate Information</th>
@@ -167,13 +172,13 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
               </tbody>
             </table>
           </div>
-          <div className="md:w-3/5">
+          <div className="md:w-3/5 w-full">
             {selectedCandidate ? (
               <div>
                 {/* mail section */}
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div className="bg-white shadow-lg border mt-5 md:mt-0 rounded-lg overflow-hidden">
                   <div>
-                    <div className="px-6 py-4 w-10/12 border-t bg-teal-900 text-white border-gray-200">
+                    <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
                       <div className="flex items-center justify-around space-x-4">
                         <a
                           href={`http://localhost:5000/images/${selectedCandidate.resume}`}
@@ -304,7 +309,7 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
                       Resume:
                     </p>
 
-                    <div className="border max-w-4xl border-slate-200 p-10 text-center">
+                    <div className="border max-w-4xl border-slate-200 p-5 text-center">
                       <iframe
                         src={`http://localhost:5000/images/${selectedCandidate?.resume}`}
                         width={100}

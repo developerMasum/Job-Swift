@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from "react";
 
-
 import {
   AiOutlineFilePdf,
   AiOutlineMail,
   AiOutlinePhone,
 } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
+
+import toast from "react-hot-toast";
 import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
 import NoContent from "../../NoContent";
 
+const formatDate = (dateString) => {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = new Date(dateString).toLocaleDateString(
+    undefined,
+    options
+  );
+  return formattedDate;
+};
 
-
-
-const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
+const Table = ({ interviewCandi: candidates, isLoading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
 
   useEffect(() => {
@@ -38,16 +47,38 @@ const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
     return <LoaderInternal></LoaderInternal>;
   }
 
+  // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
+  const handleMoveToApplied = (id) => {
+    try {
+      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ stage: "Offer" }),
+      });
+
+      if (response) {
+        toast.success("This Candidate moved to Applied");
+        window.location.reload(true);
+      } else {
+        console.error("Failed to update stage.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <div className="w-full overflow-x-auto">
       {candidates?.length === 0 ? (
         <NoContent></NoContent>
       ) : (
-        <div className="p-10 md:flex gap-4  ">
-          <div className="md:w-2/5">
+        <div className="md:p-10 md:flex gap-4  ">
+          <div className="md:w-2/5 w-full border ">
             <table className="w-full shadow-lg rounded-lg overflow-hidden">
               {/* Head */}
-              <thead className="bg-gray-200 text-gray-500">
+              <thead className="bg-teal-900 text-white">
                 <tr>
                   <th className="px-6 py-3 text-left">Select</th>
                   <th className="px-6 py-3">Candidate Information</th>
@@ -56,7 +87,7 @@ const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
               </thead>
               <tbody>
                 {/* Rows */}
-                {candidates?.map((candidate) => (
+                {candidates.map((candidate) => (
                   <tr
                     key={candidate._id}
                     className="hover:bg-gray-100 transition-colors divide-y-[1px] divide-gray-400 duration-300"
@@ -139,10 +170,48 @@ const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
               </tbody>
             </table>
           </div>
-          <div className="md:w-3/5">
+          <div className="md:w-3/5 w-full">
             {selectedCandidate ? (
               <div>
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                {/* mail section */}
+                <div className="bg-white shadow-lg border mt-5 md:mt-0 rounded-lg overflow-hidden">
+                  <div>
+                    <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
+                      <div className="flex items-center justify-around space-x-4">
+                        <a
+                          href={`http://localhost:5000/images/${selectedCandidate.resume}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-white  space-x-2 hover:text-blue-500"
+                        >
+                          <AiOutlineFilePdf className="w-6 h-6" />
+                          <span>Download Resume</span>
+                        </a>
+                        <a
+                          href={`mailto:${selectedCandidate.email}`}
+                          className="flex items-center space-x-2 hover:text-blue-500 text-white "
+                        >
+                          <AiOutlineMail className="w-6 h-6" />
+                          <span>Email</span>
+                        </a>
+                        <a
+                          href={`tel:${selectedCandidate.phoneNumber}`}
+                          className="flex items-center space-x-2 hover:text-blue-500 text-white "
+                        >
+                          <AiOutlinePhone className="w-6 h-6" />
+                          <span>Call</span>
+                        </a>
+                        <button
+                          onClick={() =>
+                            handleMoveToApplied(selectedCandidate?._id)
+                          }
+                          className="border border-indigo-100 px-4 rounded-md py-1"
+                        >
+                          move to Offer
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                   <div className="px-6 py-8">
                     <div className="flex justify-between items-center">
                       <div className="flex items-center space-x-4">
@@ -158,22 +227,27 @@ const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
                             {selectedCandidate.firstName}{" "}
                             {selectedCandidate.lastName}
                           </h2>
-                          <p className="text-gray-600 text-lg">
+                          <p className="text-gray-600 text-lg text-start">
                             {selectedCandidate.jobTitle}
+                          </p>
+                          <p className="text-gray-600 text-sm text-start">
+                            {selectedCandidate.location}
                           </p>
                         </div>
                       </div>
-                      <div className="text-gray-600 text-sm">
-                        {selectedCandidate.location}
-                      </div>
                     </div>
-                    <div className="mt-6 text-gray-600 text-lg">
-                      {selectedCandidate.summary}
+                    <div className="mt-6 text-gray-600 text-lg  text-start ">
+                      <span className="mb-5  text-teal-700 font-bold text-sm">
+                        Summery:
+                      </span>
+                      <p className="border-zinc-300 border border-opacity-40">
+                        {selectedCandidate.summary}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="px-6 py-4 border-t border-gray-200">
-                    <h3 className="text-2xl font-semibold text-gray-800">
+                  <div className="px-6 py-4 border-t border-gray-200 text-start">
+                    <h3 className="mb-5  text-teal-700 font-bold text-sm">
                       Experience
                     </h3>
                     <ul className="mt-4">
@@ -193,7 +267,8 @@ const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
                               {experience.jobType}
                             </p>
                             <p className="text-gray-600">
-                              {experience.startDate} - {experience.endDate}
+                              {formatDate(experience.startDate)} -{" "}
+                              {formatDate(experience.endDate)}
                             </p>
                           </li>
                         )
@@ -201,8 +276,8 @@ const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
                     </ul>
                   </div>
 
-                  <div className="px-6 py-4 border-t border-gray-200">
-                    <h3 className="text-2xl font-semibold text-gray-800">
+                  <div className="px-6 py-4 border-t border-gray-200 text-start ">
+                    <h3 className="mb-5  text-teal-700 font-bold text-sm">
                       Education
                     </h3>
                     <ul className="mt-4">
@@ -219,39 +294,27 @@ const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
                               {education.school}, {education.fieldOfStudy}
                             </p>
                             <p className="text-gray-600">
-                              {education.startDate} - {education.endDate}
+                              {formatDate(education.startDate)} -{" "}
+                              {formatDate(education.endDate)}
                             </p>
                           </li>
                         )
                       )}
                     </ul>
                   </div>
+                  <div className="px-6 py-4 border-t border-gray-200 text-start ">
+                    <p className="mb-5  text-teal-700 font-bold text-sm">
+                      Resume:
+                    </p>
 
-                  <div className="px-6 py-4 border-t border-gray-200">
-                    <div className="flex items-center space-x-4">
-                      <a
-                        href={`http://localhost:5000/images/${selectedCandidate.resume}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center space-x-2 text-gray-600 hover:text-blue-500"
-                      >
-                        <AiOutlineFilePdf className="w-6 h-6" />
-                        <span>View Resume</span>
-                      </a>
-                      <a
-                        href={`mailto:${selectedCandidate.email}`}
-                        className="flex items-center space-x-2 text-gray-600 hover:text-blue-500"
-                      >
-                        <AiOutlineMail className="w-6 h-6" />
-                        <span>Email</span>
-                      </a>
-                      <a
-                        href={`tel:${selectedCandidate.phoneNumber}`}
-                        className="flex items-center space-x-2 text-gray-600 hover:text-blue-500"
-                      >
-                        <AiOutlinePhone className="w-6 h-6" />
-                        <span>Call</span>
-                      </a>
+                    <div className="border max-w-4xl border-slate-200 p-5 text-center">
+                      <iframe
+                        src={`http://localhost:5000/images/${selectedCandidate?.resume}`}
+                        width={100}
+                        title="Uploaded Resume"
+                        className="mt-2 border border-gray-400 rounded"
+                        style={{ width: "100%", height: "400px" }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -266,9 +329,4 @@ const InterviewDetails = ({ interviewCandi: candidates, isLoading }) => {
   );
 };
 
-export default InterviewDetails;
-
-
-
-
-
+export default Table;
