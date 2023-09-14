@@ -400,7 +400,6 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
 
 
   const onSubmit = async (data) => {
-    const stage = 'sourced';
     setIsSubmitting(true);
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
@@ -421,7 +420,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
     // formData.append('appliedJobId', appliedJobId);
-    formData.append('stage', stage)
+    // formData.append('stage', stage)
     console.log(data);
     setFirstName(data.firstName);
     setLastName(data.lastName);

@@ -1,4 +1,4 @@
-import logo2 from "../../../assets/login/swift__1_-removebg-preview (1).png";
+import logo2 from "../../../assets/Image/logo_js.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout, GrMail } from "react-icons/gr";
 import { CgMenuGridR } from "react-icons/cg";
@@ -181,7 +181,7 @@ const UpperBar = () => {
       )}
 
       {!isAdmin && (
-        <div className="flex justify-between font-bold navbar rounded-xl text-black shadow-xl bg-slate-100 fixed z-10  md:flex-row  mx-auto ">
+        <div className="flex justify-between font-bold navbar rounded-sm text-black shadow-md bg-slate-100  fixed z-10  md:flex-row  mx-auto ">
           <div className="flex  lg:md:gap-10  ">
             {/* responsive Mobile view----------------------- */}
             <div className="dropdown ">
@@ -273,7 +273,8 @@ const UpperBar = () => {
             </div>
 
             <Link to={`/`}>
-              <img className="h-10 w-24  " src={logo2} alt="" />
+              <img className="h-10 w-10  " src={logo2} alt="" />
+           
             </Link>
           </div>
           {/* ---------------------------------------------------- end mobile view */}

@@ -43,14 +43,14 @@ const mappedTitle = isJobs.map((j) => {
   const hiredCount = filteredByTitle.filter((ft) => ft.stage === "Hired").length;
   const assessmentCount = filteredByTitle.filter((ft) => ft.stage === "Assessment").length;
 
-  // console.log(`Job Title: ${j.jobTitle}`);
-  // console.log(`Job ID: ${j._id}`); 
-  // console.log(`Interview Count: ${interviewCount}`);
-  // console.log(`Sourced Count: ${sourcedCount}`);
-  // console.log(`Applied Count: ${appliedCount}`);
-  // console.log(`Offer Count: ${offerCount}`);
-  // console.log(`Hired Count: ${hiredCount}`);
-  // console.log(`Assessment Count: ${assessmentCount}`);
+  console.log(`Job Title: ${j.jobTitle}`);
+  console.log(`Job ID: ${j._id}`); 
+  console.log(`Interview Count: ${interviewCount}`);
+  console.log(`Sourced Count: ${sourcedCount}`);
+  console.log(`Applied Count: ${appliedCount}`);
+  console.log(`Offer Count: ${offerCount}`);
+  console.log(`Hired Count: ${hiredCount}`);
+  console.log(`Assessment Count: ${assessmentCount}`);
 
   return {
     jobTitleFor: j.jobTitle,
