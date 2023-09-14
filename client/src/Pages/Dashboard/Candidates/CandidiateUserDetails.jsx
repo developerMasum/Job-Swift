@@ -28,6 +28,7 @@ import { PiGraduationCapBold } from "react-icons/pi";
 import CandidateStages from "./CandidateStages";
 import { RiCloseLine } from "react-icons/ri";
 import Calendar from "react-calendar"; // Import the react-calendar component
+import Swal from "sweetalert2";
 
 const CandidiateUserDetails = () => {
   const { id } = useParams();
@@ -91,7 +92,7 @@ const CandidiateUserDetails = () => {
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    setModalEmail(e.target.value);
   };
 
   const handleEmailSubmit = (e) => {
@@ -109,7 +110,7 @@ const CandidiateUserDetails = () => {
     // Clear the input fields
     setName("");
     setPhone("");
-    setEmail("");
+    setModalEmail("");
 
     // Close the modal
     closeEmailModal();
@@ -126,6 +127,11 @@ const CandidiateUserDetails = () => {
     e.preventDefault();
     // Add your logic to handle the message submission here
     console.log("Message Sent:", message);
+    Swal.fire({
+      icon: "success",
+      title: "Success!",
+      text: "Your Comment has been sent successfully.",
+    });
     // Close the modal after submission
     closeMessageModal();
   };
@@ -727,6 +733,7 @@ const CandidiateUserDetails = () => {
                 </div>
                 <div className="text-center">
                   <button
+                    onSubmit={handleCommentSubmit}
                     type="submit"
                     className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400"
                   >
