@@ -623,7 +623,7 @@ const CandidiateUserDetails = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
+                  className="bg-teal-700 text-white px-4 py-2 rounded-md hover:bg-teal-500 focus:outline-none"
                 >
                   Send Email
                 </button>
@@ -660,7 +660,7 @@ const CandidiateUserDetails = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none"
+                  className="bg-teal-700 text-white px-4 py-2 rounded-md hover:bg-teal-500 focus:outline-none"
                 >
                   Send Message
                 </button>
@@ -735,7 +735,7 @@ const CandidiateUserDetails = () => {
                   <button
                     onSubmit={handleCommentSubmit}
                     type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400"
+                    className="bg-teal-700 text-white px-4 py-2 rounded-lg hover:bg-teal-500 focus:outline-none focus:ring focus:ring-blue-400"
                   >
                     Comment Submit
                   </button>
