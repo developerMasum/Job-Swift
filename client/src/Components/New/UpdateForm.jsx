@@ -303,7 +303,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCandidates } from "../../redux/candidates/candidatesOperation";
 import { authContext } from "../../Auth/AuthProvider";
 
-const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
+const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   // console.log(jobId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -395,10 +395,6 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     formState: { errors },
   } = useForm();
 
-
-
-
-
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     const isoDateString = new Date().toISOString();
@@ -427,7 +423,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     setEmail(data.email);
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "https://server-job-swift.vercel.app/upload",
         formData,
         {
           headers: {
@@ -435,10 +431,10 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
           },
         }
       );
-      console.log('from overview',response.data);
-      updateData(appliedJobId)
+      console.log("from overview", response.data);
+      updateData(appliedJobId);
     } catch (error) {
-      console.error('from overview',error);
+      console.error("from overview", error);
     }
 
     setTimeout(() => {
@@ -452,7 +448,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
   const [allData, setAllData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/all-applications")
+      .get("https://server-job-swift.vercel.app/all-applications")
       .then((res) => {
         console.log(res.data);
         setAllData(res.data);
@@ -474,22 +470,21 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     }
   };
 
+  // for new
+  const { user } = useContext(authContext);
+  const emailCandidates = user?.email;
+  const { candidates, isLoading, error } = useSelector(
+    (state) => state.candidates
+  );
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // Dispatch the action to fetch candidates based on the selected sorting order
+    dispatch(getAllCandidates(emailCandidates));
+  }, [dispatch]);
 
-// for new 
-const {user} = useContext(authContext)
-const emailCandidates = user?.email;
-const { candidates, isLoading, error } = useSelector((state) => state.candidates);
-
- const dispatch = useDispatch();
-useEffect(() => {
-  // Dispatch the action to fetch candidates based on the selected sorting order
-  dispatch(getAllCandidates(emailCandidates));
-}, [dispatch]);
-
-
-console.log(candidates);
-console.log(email);
+  console.log(candidates);
+  console.log(email);
 
   return (
     <div>

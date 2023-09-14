@@ -4,7 +4,6 @@ import { LuEdit } from "react-icons/lu";
 import triangle from "../../../assets/Image/triangles4-1.svg";
 import PostJobs from "./PostJobs";
 
-
 const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
 
 import { AiFillStar } from "react-icons/ai";
@@ -22,58 +21,71 @@ const Jobs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { user } = useContext(authContext);
   const email = user?.email;
-  const nameOrMail = user?.displayName ;
+  const nameOrMail = user?.displayName;
 
-  const { candidates, isLoading, error } = useSelector((state) => state.candidates);
-// console.log('from jobs', candidates);
-useEffect(() => {
-  // Dispatch the action to fetch candidates based on the selected sorting order
-  dispatch(getAllCandidates(email));
-}, [dispatch]);
+  const { candidates, isLoading, error } = useSelector(
+    (state) => state.candidates
+  );
+  // console.log('from jobs', candidates);
+  useEffect(() => {
+    // Dispatch the action to fetch candidates based on the selected sorting order
+    dispatch(getAllCandidates(email));
+  }, [dispatch]);
 
-const jobs = useSelector((state) => state.posts.jobs);
-const isJobs = jobs.filter((d) => d.userEmail === user?.email);
-const jobTitleFor = isJobs.map(j => j.jobTitle);
-const mappedTitle = isJobs.map((j) => {
-  const filteredByTitle = candidates.filter((c) => c.jobTitle === j.jobTitle && c.jobId === j._id); 
-  const interviewCount = filteredByTitle.filter((ft) => ft.stage === "Interview").length;
-  const sourcedCount = filteredByTitle.filter((ft) => ft.stage === "Sourced").length;
-  const appliedCount = filteredByTitle.filter((ft) => ft.stage === "Applied").length;
-  const offerCount = filteredByTitle.filter((ft) => ft.stage === "Offer").length;
-  const hiredCount = filteredByTitle.filter((ft) => ft.stage === "Hired").length;
-  const assessmentCount = filteredByTitle.filter((ft) => ft.stage === "Assessment").length;
+  const jobs = useSelector((state) => state.posts.jobs);
+  const isJobs = jobs.filter((d) => d.userEmail === user?.email);
+  const jobTitleFor = isJobs.map((j) => j.jobTitle);
+  const mappedTitle = isJobs.map((j) => {
+    const filteredByTitle = candidates.filter(
+      (c) => c.jobTitle === j.jobTitle && c.jobId === j._id
+    );
+    const interviewCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Interview"
+    ).length;
+    const sourcedCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Sourced"
+    ).length;
+    const appliedCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Applied"
+    ).length;
+    const offerCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Offer"
+    ).length;
+    const hiredCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Hired"
+    ).length;
+    const assessmentCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Assessment"
+    ).length;
 
-  console.log(`Job Title: ${j.jobTitle}`);
-  console.log(`Job ID: ${j._id}`); 
-  console.log(`Interview Count: ${interviewCount}`);
-  console.log(`Sourced Count: ${sourcedCount}`);
-  console.log(`Applied Count: ${appliedCount}`);
-  console.log(`Offer Count: ${offerCount}`);
-  console.log(`Hired Count: ${hiredCount}`);
-  console.log(`Assessment Count: ${assessmentCount}`);
+    console.log(`Job Title: ${j.jobTitle}`);
+    console.log(`Job ID: ${j._id}`);
+    console.log(`Interview Count: ${interviewCount}`);
+    console.log(`Sourced Count: ${sourcedCount}`);
+    console.log(`Applied Count: ${appliedCount}`);
+    console.log(`Offer Count: ${offerCount}`);
+    console.log(`Hired Count: ${hiredCount}`);
+    console.log(`Assessment Count: ${assessmentCount}`);
 
-  return {
-    jobTitleFor: j.jobTitle,
-    jobId: j._id,
-    Interview: interviewCount,
-    Sourced: sourcedCount,
-    Applied: appliedCount,
-    Offer: offerCount,
-    Hired: hiredCount,
-    Assessment: assessmentCount,
-  };
-});
+    return {
+      jobTitleFor: j.jobTitle,
+      jobId: j._id,
+      Interview: interviewCount,
+      Sourced: sourcedCount,
+      Applied: appliedCount,
+      Offer: offerCount,
+      Hired: hiredCount,
+      Assessment: assessmentCount,
+    };
+  });
   // console.log('job title',mappedTitle);
   // const resilt = jobTitle.filter(job=>job.jobTitle===)
   // console.log('isjobs',resilt);
-  
 
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
   console.log(isJobs);
-
-
 
   // ---------------------------------------job delete ---------------------
   const handleDelete = (id) => {
@@ -87,7 +99,7 @@ const mappedTitle = isJobs.map((j) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/all-post/${id}`, {
+        fetch(`https://server-job-swift.vercel.app/all-post/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -95,9 +107,8 @@ const mappedTitle = isJobs.map((j) => {
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your order has been deleted.", "success");
 
-             
-            //   const remaining = jobs.filter((job) => job.jobId !== id);
-            // setMappedTitle(remaining)
+              //   const remaining = jobs.filter((job) => job.jobId !== id);
+              // setMappedTitle(remaining)
             }
           });
       }
@@ -225,10 +236,12 @@ const mappedTitle = isJobs.map((j) => {
       <div className="pt-10 px-2 lg:md:px-0">
         <div className="flex items-center justify-between">
           <p className="text-xs font-bold text-swift ">ALL POSTED JOBS</p>
-          <p className="text-xs font-bold text-swift uppercase ">Showing with candidates Stages</p>
+          <p className="text-xs font-bold text-swift uppercase ">
+            Showing with candidates Stages
+          </p>
         </div>
         <div className="">
-          {mappedTitle.map((jobs,index) => (
+          {mappedTitle.map((jobs, index) => (
             <PostJobs handleDelete={handleDelete} jobs={jobs} key={index} />
           ))}
         </div>
@@ -248,9 +261,7 @@ const mappedTitle = isJobs.map((j) => {
               <h4 className="text-lg font-semibold">Talent Pool</h4>
               <p>
                 Add candidates by email: send resumes to{" "}
-                <span className="hover:underline">
-                  md-masum@jobs.swift.com
-                </span>
+                <span className="hover:underline">md-masum@jobs.swift.com</span>
               </p>
             </div>
           </div>
