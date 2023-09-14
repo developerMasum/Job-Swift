@@ -71,6 +71,9 @@ const mappedTitle = isJobs.map((j) => {
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
+  console.log(isJobs);
+
+
 
   // ---------------------------------------job delete ---------------------
   const handleDelete = (id) => {

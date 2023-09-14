@@ -44,8 +44,8 @@ const AppliedJobs = () => {
   ];
 
   return (
-    <section className="pt-16 bg-white px-5 md:px-0">
-      <div className=" font-semibold bg-[#c7f0f1] p-2 text-center text-sm">
+    <section className="pt-16 bg-white px-5 md:px-0 ">
+      <div className=" font-semibold bg-[#c7f0f1] p-2 text-center  text-sm">
         <div className="flex justify-between">
           <div></div>
           <div className="flex justify-center gap-2 items-center">
@@ -61,7 +61,7 @@ const AppliedJobs = () => {
         </div>
       </div>
       <div className="pt-8">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center container mx-auto">
           <div>
             <div className="flex items-center md:gap-4">
               <div className="flex items-center ">
@@ -113,7 +113,7 @@ const AppliedJobs = () => {
       </div>
       <div className="pt-10">
         <div
-          className="bg-white rounded-md hidden md:block"
+          className="bg-white rounded-md hidden md:block container mx-auto"
           style={{
             boxShadow:
               "rgba(0, 0, 0, 0.2) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.1) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.9) 0px 0px 0px 5px inset",

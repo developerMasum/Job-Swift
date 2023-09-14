@@ -12,6 +12,7 @@ import { authContext } from "../../../Auth/AuthProvider";
 const Candidates = () => {
   const dispatch = useDispatch();
   const { candidates, isLoading, error } = useSelector((state) => state.candidates);
+  console.log(candidates);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResult, setSearchResult] = useState("");
   // const [sortOrder, setSortOrder] = useState("newest");
@@ -27,6 +28,7 @@ const Candidates = () => {
     // Dispatch the action to fetch candidates based on the selected sorting order
     dispatch(getAllCandidates(email));
   }, [dispatch]);
+
 
   return (
     <div className="pt-[68px] flex justify-between items-start gap-6 w-full">

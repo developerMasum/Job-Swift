@@ -70,9 +70,6 @@ const LogIn = () => {
         toast.error(errorMessage);
       });
   };
-  // if (loading) {
-  //   return <Loader />
-  // }
 
   return (
     <div className=" bg-gradient-to-r from-[#00756a] to-[#677500]  lg:md:p-32">
@@ -137,8 +134,9 @@ const LogIn = () => {
                 className="focus:border-none focus:ring-0 flex-grow bg-green-200 bg-opacity-0 border-none"
               />
               <button
-                className="cursor-pointer p-2"
+                type="button"
                 onClick={() => setShowPassword(!showPassword)}
+                className="p-2"
               >
                 {showPassword ? <AiFillEyeInvisible className="" /> : <AiFillEye className="" />}
               </button>
@@ -190,8 +188,21 @@ const LogIn = () => {
             <SocialLogIn></SocialLogIn>
           </div>
         </form>
+        <div className="mt-4">
+          <small className="block font-semibold text-center text-gray-400">
+            New to Jobs Swift?{" "}
+            <Link to="/register" className="text-[#15413e] hover:underline">
+              Register Now
+            </Link>
+          </small>
+        </div>
+        <div className="mt-4 text-white">
+          <SocialLogIn />
+        </div>
       </div>
     </div>
+  
+
   );
 };
 

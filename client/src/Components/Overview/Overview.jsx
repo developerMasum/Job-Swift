@@ -12,6 +12,11 @@ import SocialLink from "./SocialLink";
 const Overview = () => {
   const formData = useLoaderData();
   // console.log('finding error',formData);
+  
+  const appliedJobId = formData._id;
+ 
+
+  console.log('id', appliedJobId);
   const location = useLocation();
   const { user } = useContext(authContext);
   const queryParams = new URLSearchParams(location.search);

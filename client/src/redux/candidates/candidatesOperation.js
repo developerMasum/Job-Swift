@@ -17,3 +17,20 @@ export const getAllCandidates = createAsyncThunk(
     }
   }
 );
+
+export const getAllCandidatesById = createAsyncThunk(
+  "getAllCandidatesById",
+  async (id, { rejectWithValue }) => {
+    // Pass sortOrder as an argument
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/candidate-stage/${id}`
+      );
+      // console.log(response.data);
+      return response.data; // Return the data received from the server if needed
+    } catch (error) {
+      // Return the error payload using rejectWithValue
+      return rejectWithValue(error.response.data);
+    }
+  }
+);

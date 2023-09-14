@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiFillCheckCircle } from "react-icons/ai";
 import { RiDeleteBin2Line } from "react-icons/ri";
@@ -298,6 +298,10 @@ const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
 import { AiOutlineFilePdf } from "react-icons/ai";
 import axios from "axios";
 import { RiImageAddLine } from "react-icons/ri";
+import { updateData } from "../../api/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCandidates } from "../../redux/candidates/candidatesOperation";
+import { authContext } from "../../Auth/AuthProvider";
 
 const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
   // console.log(jobId);
@@ -391,7 +395,12 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     formState: { errors },
   } = useForm();
 
+
+
+
+
   const onSubmit = async (data) => {
+    const stage = 'sourced';
     setIsSubmitting(true);
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
@@ -411,6 +420,8 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
     formData.append("date", isoDateString);
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
+    // formData.append('appliedJobId', appliedJobId);
+    formData.append('stage', stage)
     console.log(data);
     setFirstName(data.firstName);
     setLastName(data.lastName);
@@ -425,9 +436,10 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
           },
         }
       );
-      console.log(response.data);
+      console.log('from overview',response.data);
+      updateData(appliedJobId)
     } catch (error) {
-      console.error(error);
+      console.error('from overview',error);
     }
 
     setTimeout(() => {
@@ -462,6 +474,23 @@ const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
       setUploadedResume("");
     }
   };
+
+
+
+// for new 
+const {user} = useContext(authContext)
+const emailCandidates = user?.email;
+const { candidates, isLoading, error } = useSelector((state) => state.candidates);
+
+ const dispatch = useDispatch();
+useEffect(() => {
+  // Dispatch the action to fetch candidates based on the selected sorting order
+  dispatch(getAllCandidates(emailCandidates));
+}, [dispatch]);
+
+
+console.log(candidates);
+console.log(email);
 
   return (
     <div>

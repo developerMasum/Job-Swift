@@ -4,6 +4,7 @@ import NoContent from "../NoContent";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCandidates } from "../../../../redux/candidates/candidatesOperation";
 import { authContext } from "../../../../Auth/AuthProvider";
+import SourcedDetails from "./Applied/SourcedDetails";
 
 const Sourced = () => {
   const {user} = useContext(authContext)
@@ -26,7 +27,7 @@ console.log(sourcedCandi);
   // const filteredJobs = appliedJobs.filter((job) => job.stage === "sourced");
   return (
   <div>
-    <h2> hello {sourcedCandi.length} </h2>
+   <SourcedDetails sourcedCandi={sourcedCandi} isLoading={isLoading}  stageName={sourcedCandi.length} />
 
 
   </div>
