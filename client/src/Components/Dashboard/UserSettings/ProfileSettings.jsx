@@ -145,7 +145,7 @@ const ProfileSettings = () => {
             <div className="flex items-center justify-center">
               <button
                 type="submit"
-                className="bg-primary mt-3 text-white px-4 py-2 rounded-md hover:bg-primary-dark w-full"
+                className="bg-teal-700 mt-3 text-white px-4 py-2 rounded-md hover:bg-teal-500 w-full"
               >
                 Save
               </button>

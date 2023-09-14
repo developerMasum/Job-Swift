@@ -18,7 +18,7 @@ import useAdmin from "../../../Hooks/AdminHook/useAdmin";
 const UpperBar = () => {
   const { user, logout } = useContext(authContext);
   const [isAdmin] = useAdmin();
-  console.log('isadmin', isAdmin);
+  console.log("isadmin", isAdmin);
   // const [isAdmin,setIsAdmin] = useState(false)
 
   const name = user?.displayName || "Mr X man";
@@ -32,13 +32,13 @@ const UpperBar = () => {
     logout()
       .then(() => {
         toast.success("log out successful");
-        navigate('/')
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error);
       });
   };
-  // set Admin 
+  // set Admin
   // useEffect(() => {
   //   // Set isAdmin within the useEffect to ensure it's updated when user changes.
   //   const adminEmail = "admin@gmail.com";
@@ -173,7 +173,7 @@ const UpperBar = () => {
               >
                 <GrLogout className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Logout</span>
+                <span className="mx-4 font-medium ">Logout</span>
               </button>
             </div>
           </div>
@@ -449,18 +449,13 @@ const UpperBar = () => {
                     <li className="mt-4">
                       <Link to="settings/profile">Setting</Link>
                     </li>
-                    <li>
-                      <Link>Help</Link>
-                    </li>
-                    <li>
-                      <Link>Add Company</Link>
-                    </li>
+
                     {user && (
                       <>
                         <div className="text-center w-14 mx-auto">
                           <li
                             onClick={handleLogOut}
-                            className="border border-red-700 rounded-md p-1 hover:bg-red-500 text-xs  mx-auto my-3 "
+                            className="border border-teal-700 cursor-pointer hover:text-white rounded-md p-1 hover:bg-red-500 text-xs  mx-auto my-3 "
                           >
                             Log-out
                           </li>

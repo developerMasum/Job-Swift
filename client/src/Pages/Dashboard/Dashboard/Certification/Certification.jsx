@@ -10,7 +10,7 @@ const Certification = () => {
     title: "Web Development",
     startDate: "2022-01-01",
     endDate: "2023-01-12",
-    signature: "",
+    signature: "https://static.cdn.wisestamp.com/wp-content/uploads/2020/08/Oprah-Winfrey-Signature-1.png",
     signatureDetails: "Web Developer",
   });
 
@@ -181,7 +181,7 @@ const Certification = () => {
             <button
               type="button"
               onClick={handleGenerateCertificate}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full w-full transition duration-300 transform hover:scale-105"
+              className="bg-teal-700 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md w-full transition duration-300 transform hover:scale-105"
             >
               Generate Certificate
             </button>
@@ -198,58 +198,62 @@ const Certification = () => {
         <div className="bg-white rounded-lg shadow-lg p-4 md:p-8 w-full">
           {/* Certificate Content */}
           <div
-            id="certificate-content"
-            dangerouslySetInnerHTML={{
-              __html: `
-      <div class="min-h-screen flex items-center justify-center bg-gray-100">
-        <div class="bg-white p-8 rounded-lg">
-          <div class="flex items-center justify-center mb-4"></div>
-          <h1 class="text-5xl font-bold mb-4 text-stone-500">Offer Letter From
-          <span class="text-gray-500">${formData.company}</span>
-          </h1>
-          <div class="mb-2">
-            <p class="text-2xl text-stone-500 font-bold">Dear,</p>
-            <h2 class="text-3xl font-bold text-stone-500">${formData.userName}</h2>
+  id="certificate-content"
+  dangerouslySetInnerHTML={{
+    __html: `
+      <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <div class="text-center mb-4">
+            <img src="https://i.ibb.co/Y218M42/logo-js.png" alt="Company Logo" class="w-16 h-16 mx-auto mb-2" />
+            <h1 class="text-4xl font-bold">Offer Letter From
+              <span>${formData.company}</span>
+            </h1>
           </div>
-          <p class="mb-4">For successful completion of the <span class="text-3xl font-semibold text-stone-500">${formData.title}</span></p>
-          <div class="my-2">
-            <p>With a rigorous amount of Javascript, HTML, CSS, React and applied these skills to build several projects.</p>
-            <p>We found the student hard-working, dedicated, and a quick learner, who finished the assigned tasks on time.</p>
+          <div class="mb-4">
+            <p class="text-xl font-semibold">Dear ${formData.userName},</p>
+            <p class="text-2xl font-bold">Congratulations!</p>
           </div>
-          <p class="mb-4 text-2xl font-semibold text-stone-500">You Did It, and we are proud of you!</p>
-          <div class="flex text-5xl font-bold items-center justify-between mt-12">
-            <h2 class="text-stone-500">${formData.title}</h2>
+          <p class="mb-6 text-lg">
+            We are pleased to offer you the position of <span class="text-2xl font-semibold">${formData.title}</span> at ${formData.company}.
+          </p>
+          <div class="mb-6">
+            <p class="text-lg">During your training, you demonstrated exceptional skills in JavaScript, HTML, CSS, React, and the ability to apply these skills effectively to real-world projects.</p>
+            <p class="text-lg">Your dedication, hard work, and quick learning have made you a valuable addition to our team.</p>
+          </div>
+          <p class="mb-6 text-2xl font-semibold">You Did It, and we are proud of you!</p>
+          <div class="flex items-center justify-between">
+            <h2 class="text-3xl font-bold">${formData.title}</h2>
             <div>
-              <img src="${formData.signature}" width="100" height="50" />
-              <hr />
-              <p class="text-lg text-stone-500">${formData.signatureDetails}</p>
+              <img src="${formData.signature}" alt="Signature" class="w-32 h-16 mb-2" />
+              <hr class="border" />
+              <p class="text-lg">${formData.signatureDetails}</p>
             </div>
           </div>
-          <div class="flex justify-end mt-4">
+          <div class="mt-8 flex justify-between">
             <p class="text-lg font-semibold">Course Duration: 8 weeks</p>
-          </div>
-          <div class="flex justify-end mt-4">
             <p class="text-lg font-semibold">Certificate ID: 123456789</p>
           </div>
         </div>
       </div>
     `,
-            }}
-          ></div>
+  }}
+></div>
+
+
 
           {/* Close and Download PDF buttons */}
           <div className="md:flex justify-around w-1/2 mx-auto gap-4">
             <button
               type="button"
               onClick={closeModal}
-              className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full w-1/2 transition duration-300 transform hover:scale-105 mt-4"
+              className="bg-teal-700 hover:bg-teal-700 text-white font-semibold py-2 px-4 rounded-md w-1/2 transition duration-300 transform hover:scale-105 mt-4"
             >
               Close
             </button>
             <button
               type="button"
               onClick={downloadPDF}
-              className="bg-stone-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full w-1/2 transition duration-300 transform hover:scale-105 mt-4"
+              className="border border-teal-700 hover:bg-green-700 text-gray-700 font-semibold py-2 px-4 rounded-md hover:text-white w-1/2 transition duration-300 transform hover:scale-105 mt-4"
             >
               Download PDF
             </button>

@@ -112,7 +112,7 @@ const mappedTitle = isJobs.map((j) => {
             </button> */}
           </div>
           <Link to="post-job">
-            <button className="bg-cyan-700 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
+            <button className="bg-teal-700 hover:bg-teal-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
               Create a New Job
             </button>
           </Link>
@@ -120,7 +120,7 @@ const mappedTitle = isJobs.map((j) => {
       </div>
 
       {/* Dropdown */}
-      <div className="flex justify-end pr-16 ">
+      {/* <div className="flex justify-end pr-16 ">
         <div className="relative z-50">
           <button
             onClick={() => {
@@ -194,7 +194,7 @@ const mappedTitle = isJobs.map((j) => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
 
       <div className="mx-2 lg:md:mx-0 flex gap-8 border-[1px] rounded-md   border-gray-300 p-6 items-center bg-white justify-between">
         <div className="flex flex-col space-y-3">
@@ -246,22 +246,8 @@ const mappedTitle = isJobs.map((j) => {
               <p>
                 Add candidates by email: send resumes to{" "}
                 <span className="hover:underline">
-                  md-masum@jobs.workablemail.com
+                  md-masum@jobs.swift.com
                 </span>
-              </p>
-            </div>
-            <div className="flex gap-3 items-center">
-              <p
-                className="group-hover:block hidden text-swift hover:underline font-medium
-              "
-              >
-                Upload Resume
-              </p>
-              <p
-                className="group-hover:block hidden text-swift hover:underline font-medium
-              "
-              >
-                Refer Candidate
               </p>
             </div>
           </div>
@@ -269,9 +255,6 @@ const mappedTitle = isJobs.map((j) => {
         <div>
           <div className="flex justify-between pb-8 mx-5">
             <h2 className=" text-xs font-bold text-swift">SUGGESTED ACTIONS</h2>
-            <h2 className=" text-xs font-bold text-swift hover:underline">
-              Don't show again
-            </h2>
           </div>
           <JobsInvitationsCard />
         </div>
