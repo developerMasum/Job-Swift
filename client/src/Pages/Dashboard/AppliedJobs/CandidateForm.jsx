@@ -1,5 +1,6 @@
 // Import React and useState from the 'react' library
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 // Import icons from react-icons library
 import { AiOutlinePlus } from "react-icons/ai";
@@ -17,6 +18,7 @@ const CandidateForm = ({ closeModal }) => {
   // Define the 'handleSubmit' function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    toast.success('candidate added successfully')
 
     // Access form data using e.target
     const formData = {

@@ -24,7 +24,7 @@ const AppliedJobs = () => {
 
   const handleButtonClick = () => {
     if (!isToggled) {
-      toast.error("No Content Upload Please Wait For content");
+      toast.success("Please update here!");
     }
     setIsToggled(!isToggled);
   };
@@ -54,9 +54,8 @@ const AppliedJobs = () => {
             <BsFillQuestionCircleFill color="#107191" />
           </div>
           <Link>
-            <p className="font-thin text-[#636d77] underline">
-              Use the old view
-            </p>
+            <p className="font-semibold text-xs text-[#83a9d0] ">
+version v25.25.001            </p>
           </Link>
         </div>
       </div>
@@ -68,15 +67,15 @@ const AppliedJobs = () => {
                 <p className="text-xl md:text-3xl  font-[500] text-second">
                   {jobs?.jobTitle}
                 </p>
-                <button className="" onClick={handleButtonClick}>
+                <Link to={`/editJobs/${jobs?._id}`} className="justify-center" onClick={handleButtonClick} >
                   {isToggled ? (
-                    <MdKeyboardArrowUp color="gray" size={22} />
+                     <MdOutlineEdit color="#00756a" size={19} fontWeight={700} className="inline-block" />
                   ) : (
-                    <MdKeyboardArrowDown color="gray" size={22} />
+                    <MdOutlineEdit color="#00756a" size={19} fontWeight={700} className="inline-block" />
                   )}
-                </button>
+             
+                </Link>
               </div>
-              <MdOutlineEdit color="#00756a" size={19} fontWeight={700} />
             </div>
             <p className="text-base pt-2 text-gray-500">{jobs?.jobLocation}</p>
           </div>
@@ -93,13 +92,8 @@ const AppliedJobs = () => {
         <div className="flex justify-end">
           {isOpen && (
             <div className="absolute w-58 space-y-4 rounded-lg  shadow-lg bg-white">
-              <div className="hover:bg-yellow-500 px-3 py-1">
-                <h5 className="font-semibold text-xl  rounded-lg ">
-                  Add resume
-                </h5>
-                <p className="text-sm text-second">Add candidate with resume</p>
-              </div>
-              <div className="hover:bg-yellow-500 px-3 py-1">
+             
+              <div className="hover:bg-emerald-400 cursor-pointer hover:text-white px-3 py-1">
                 <div>
                   <AddCandidatesModal />
                 </div>
