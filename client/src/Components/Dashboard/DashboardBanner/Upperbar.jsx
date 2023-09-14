@@ -1,4 +1,4 @@
-import logo2 from "../../../assets/login/swift__1_-removebg-preview (1).png";
+
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout, GrMail } from "react-icons/gr";
 import { CgMenuGridR } from "react-icons/cg";
@@ -18,7 +18,7 @@ import useAdmin from "../../../Hooks/AdminHook/useAdmin";
 const UpperBar = () => {
   const { user, logout } = useContext(authContext);
   const [isAdmin] = useAdmin();
-  console.log('isadmin', isAdmin);
+  console.log("isadmin", isAdmin);
   // const [isAdmin,setIsAdmin] = useState(false)
 
   const name = user?.displayName || "Mr X man";
@@ -32,13 +32,13 @@ const UpperBar = () => {
     logout()
       .then(() => {
         toast.success("log out successful");
-        navigate('/')
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error);
       });
   };
-  // set Admin 
+  // set Admin
   // useEffect(() => {
   //   // Set isAdmin within the useEffect to ensure it's updated when user changes.
   //   const adminEmail = "admin@gmail.com";
@@ -93,8 +93,8 @@ const UpperBar = () => {
                 <div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
                   {/* <Logo /> */}
                   <p className="uppercase text-sm semi-bold">Admin Dashboard</p>
-                  <img src="../../../assets/logo/Job Swift.png" alt="" />
-                  <img src="../../../assets/logo/Job Swift.png" alt="" />
+                  <img src="https://i.ibb.co/LnpM61g/Job-Swift.png" alt="" />
+                  <img src="https://i.ibb.co/LnpM61g/Job-Swift.png" alt="" />
                 </div>
                 {/* <div className="flex flex-col items-center mt-6 -mx-2">
                   <Link to="/dashboard">
@@ -122,14 +122,11 @@ const UpperBar = () => {
               <div className="flex flex-col justify-between flex-1 mt-6 text-black">
                 <nav>
                   <>
-
                     {/* Menu Links */}
                     <NavLink
                       to="admin/dashboard"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive
-                          ? " text-cyan-500"
-                          : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? " text-cyan-500" : "text-gray-600"
                         }`
                       }
                     >
@@ -140,9 +137,7 @@ const UpperBar = () => {
                     <NavLink
                       to="admin/users"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive
-                          ? " text-cyan-500"
-                          : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? " text-cyan-500" : "text-gray-600"
                         }`
                       }
                     >
@@ -174,7 +169,7 @@ const UpperBar = () => {
               >
                 <GrLogout className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Logout</span>
+                <span className="mx-4 font-medium ">Logout</span>
               </button>
             </div>
           </div>
@@ -182,7 +177,7 @@ const UpperBar = () => {
       )}
 
       {!isAdmin && (
-        <div className="flex justify-between font-bold navbar rounded-xl text-black shadow-xl bg-slate-100 fixed z-10  md:flex-row  max-w-7xl mx-auto ">
+        <div className="flex justify-between font-bold navbar rounded-xl text-black shadow-xl bg-slate-100 fixed z-10  md:flex-row  mx-auto ">
           <div className="flex  lg:md:gap-10  ">
             {/* responsive Mobile view----------------------- */}
             <div className="dropdown ">
@@ -274,7 +269,7 @@ const UpperBar = () => {
             </div>
 
             <Link to={`/`}>
-              <img className="h-10 w-24  " src={logo2} alt="" />
+              <img className="h-10 w-24  " src="https://i.ibb.co/qkXhCwN/swift-1-removebg-preview-1.png" alt="" />
             </Link>
           </div>
           {/* ---------------------------------------------------- end mobile view */}
@@ -360,7 +355,7 @@ const UpperBar = () => {
 
             <div className="relative group">
               <div className="rounded-full transition duration-300 ease-in-out transform hover:scale-105 group-hover:opacity-100 opacity-80">
-                <Link>
+                <Link to="inbox-email">
                   <button className="">
                     <GrMail className=" text-3xl"></GrMail>
                   </button>
@@ -390,10 +385,10 @@ const UpperBar = () => {
               >
                 <div className="text-black">
                   <li>
-                    <Link>Workable</Link>
+                    <Link to="get-certificate">Get Certificate</Link>
                   </li>
                   <li>
-                    <Link>Workable Referrals</Link>
+                    <Link to="certification-list">Certification List</Link>
                   </li>
                 </div>
               </ul>
@@ -448,20 +443,15 @@ const UpperBar = () => {
                     </li>
 
                     <li className="mt-4">
-                      <Link to='settings/profile'>Setting</Link>
+                      <Link to="settings/profile">Setting</Link>
                     </li>
-                    <li>
-                      <Link>Help</Link>
-                    </li>
-                    <li>
-                      <Link>Add Company</Link>
-                    </li>
+
                     {user && (
                       <>
                         <div className="text-center w-14 mx-auto">
                           <li
                             onClick={handleLogOut}
-                            className="border border-red-700 rounded-md p-1 hover:bg-red-500 text-xs  mx-auto my-3 "
+                            className="border border-teal-700 cursor-pointer hover:text-white rounded-md p-1 hover:bg-red-500 text-xs  mx-auto my-3 "
                           >
                             Log-out
                           </li>

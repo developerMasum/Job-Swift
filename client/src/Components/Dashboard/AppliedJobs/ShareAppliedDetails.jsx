@@ -1,266 +1,273 @@
-import React, { useEffect, useState } from "react";
-import { FiSearch, FiInfo } from "react-icons/fi";
-import {
-  HiChat,
-  HiHand,
-  HiLocationMarker,
-  HiMail,
-  HiOutlineDotsHorizontal,
-  HiPhone,
-  HiPhoneIncoming,
-} from "react-icons/hi";
-import AppliedCandidate from "./AppliedComponents/Applied/AppliedCandidate";
-import NoContent from "./NoContent";
-import useData from "../../../Hooks/useData";
-const ShareAppliedDetails = ({ stageName }) => {
-  const [Data] = useData();
-  const [activeTab, setActiveTab] = useState("tabs1");
-  const filteredJobs = Data.filter((job) => job.stage === "applied");
-  const [isActiveTab, setIsActiveTab] = useState("profile");
-  const [candidates, setCandidates] = useState([]);
-  console.log(candidates.length);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("http://localhost:5000/all-applications");
-        const data = await response.json();
-        const firstFourData = data.slice(0, 3);
-        setCandidates(firstFourData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
+import React, { useState, useEffect } from "react";
 
-    fetchData();
-  }, []);
+
+import {
+  AiOutlineFilePdf,
+  AiOutlineMail,
+  AiOutlinePhone,
+} from "react-icons/ai";
+
+import LoaderInternal from "../../LoaderInternal/LoaderInternal";
+import NoContent from "./NoContent";
+
+
+const Table = ({ appliedCandi: candidates, isLoading }) => {
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+
+  useEffect(() => {
+    // Initialize selectedCandidate with the first candidate
+    if (candidates.length > 0) {
+      setSelectedCandidate(candidates[0]);
+    }
+  }, [candidates]);
+
+  const handleCheckbox = (e, candidateId) => {
+    if (e.target.checked) {
+      // Find the selected candidate by ID
+      const selected = candidates.find(
+        (candidate) => candidate._id === candidateId
+      );
+      setSelectedCandidate(selected);
+    } else {
+      setSelectedCandidate(null);
+    }
+  };
+
+  if (isLoading) {
+    return <LoaderInternal></LoaderInternal>;
+  }
+
   return (
-    <div>
-      {filteredJobs.length > 0 ? (
-        filteredJobs.map((job) => (
-          <div key={job.id}>
-            <div className="pt-16">
-              <div className="md:flex  gap-12">
-                <div className="md:w-1/3 w-full text-start">
-                  <div>
-                    <button
-                      style={{
-                        borderBottom:
-                          activeTab === "tabs1" ? "2px solid gray" : "none",
-                        color: activeTab === "tabs1" ? "black" : "grey",
-                      }}
-                      className="text-sm pb-2 font-medium"
-                      onClick={() => {
-                        setActiveTab("tabs1");
-                      }}
-                    >
-                      Qualified
-                    </button>
-                    <button
-                      className="text-sm ml-7 pb-2 font-medium"
-                      style={{
-                        borderBottom:
-                          activeTab === "tabs2" ? "2px solid gray" : "none",
-                        color: activeTab === "tabs2" ? "black" : "grey",
-                      }}
-                      onClick={() => {
-                        setActiveTab("tabs2");
-                      }}
-                    >
-                      Disqualified
-                    </button>
-                    <hr />
-                    <div className="pt-10 text-center">
-                      {activeTab === "tabs1" && (
-                        <div className="space-y-2">
-                          <div className="flex border border-gray-300 rounded-xl w-full px-3 py-2 items-center">
-                            <FiSearch size={20} className="text-gray-600" />
-                            <input
-                              type="search"
-                              className="flex-grow px-2 py-1 outline-none border-none focus:border-none "
-                              name="search"
-                              placeholder="Search by name, skills, tags and more…"
-                            />
-                            <FiInfo size={20} className="text-gray-600" />
-                          </div>
-                          <AppliedCandidate
-                            stageName={stageName}
-                            candidates={candidates}
+    <div className="w-full overflow-x-auto">
+      {candidates?.length === 0 ? (
+        <NoContent></NoContent>
+      ) : (
+        <div className="p-10 md:flex gap-4  ">
+          <div className="md:w-2/5">
+            <table className="w-full shadow-lg rounded-lg overflow-hidden">
+              {/* Head */}
+              <thead className="bg-gray-200 text-gray-500">
+                <tr>
+                  <th className="px-6 py-3 text-left">Select</th>
+                  <th className="px-6 py-3">Candidate Information</th>
+                  <th className="px-6 py-3">Job Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* Rows */}
+                {candidates?.map((candidate) => (
+                  <tr
+                    key={candidate._id}
+                    className="hover:bg-gray-100 transition-colors divide-y-[1px] divide-gray-400 duration-300"
+                  >
+                    <td className="px-6 py-4">
+                      <label className="flex items-center space-x-2">
+                        <input
+                          type="checkbox"
+                          className="form-checkbox text-blue-500 rounded-full focus:ring-2 focus:ring-blue-200"
+                          value={candidate._id}
+                          checked={selectedCandidate?._id === candidate._id}
+                          onChange={(e) => handleCheckbox(e, candidate._id)}
+                        />
+                      </label>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 flex-shrink-0">
+                          <img
+                            src={`http://localhost:5000/images/${candidate.image}`}
+                            alt=""
+                            className="w-full h-full object-cover rounded-full"
                           />
                         </div>
-                      )}
-
-                      {activeTab === "tabs2" && (
-                        <div className="space-y-2 pt-4">
-                          {/* <img
-                              className="w-1/3 mx-auto"
-                              src={hand}
-                              alt="Hand"
-                            /> */}
-                          <HiHand size={140} className="mx-auto" />
-                          <h4 className="font-semibold text-second text-xl">
-                            No disqualified candidates
-                          </h4>
+                        <div>
+                          <p className="font-semibold text-gray-800">
+                            {candidate.firstName} {candidate.lastName}
+                          </p>
+                          <p className="text-sm text-gray-500">
+                            {candidate.location}
+                          </p>
                         </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div>
+                        <p className="font-semibold text-gray-800">
+                          {candidate.jobTitle}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {candidate.location}
+                        </p>
+                        {candidate?.stage ? (
+                          <>
+                            <p className="text-sm text-gray-500">
+                              at{" "}
+                              <span className="font-bold">
+                                {candidate.stage}
+                              </span>{" "}
+                              Stage
+                            </p>
+                          </>
+                        ) : (
+                          <p className="text-sm text-gray-500">
+                            at <span className="font-bold">Applied</span> Stage
+                          </p>
+                        )}
+                        <p className="text-sm text-gray-500">
+                          {(() => {
+                            const timestamp = candidate.date;
+                            const dateTime = new Date(timestamp);
+
+                            const options = {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            };
+                            return dateTime.toLocaleDateString(
+                              undefined,
+                              options
+                            );
+                          })()}
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="md:w-3/5">
+            {selectedCandidate ? (
+              <div>
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                  <div className="px-6 py-8">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-20 h-20 rounded-full overflow-hidden">
+                          <img
+                            src={`http://localhost:5000/images/${selectedCandidate.image}`}
+                            alt={`${selectedCandidate.firstName} ${selectedCandidate.lastName}'s avatar`}
+                            className="object-cover w-full h-full"
+                          />
+                        </div>
+                        <div>
+                          <h2 className="text-3xl font-semibold text-gray-800">
+                            {selectedCandidate.firstName}{" "}
+                            {selectedCandidate.lastName}
+                          </h2>
+                          <p className="text-gray-600 text-lg">
+                            {selectedCandidate.jobTitle}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-gray-600 text-sm">
+                        {selectedCandidate.location}
+                      </div>
+                    </div>
+                    <div className="mt-6 text-gray-600 text-lg">
+                      {selectedCandidate.summary}
+                    </div>
+                  </div>
+
+                  <div className="px-6 py-4 border-t border-gray-200">
+                    <h3 className="text-2xl font-semibold text-gray-800">
+                      Experience
+                    </h3>
+                    <ul className="mt-4">
+                      {selectedCandidate.experienceList.map(
+                        (experience, index) => (
+                          <li
+                            key={index}
+                            className="mb-4 pb-4 border-b border-gray-200"
+                          >
+                            <h4 className="text-xl font-semibold">
+                              {experience.title}
+                            </h4>
+                            <p className="text-gray-600">
+                              {experience.company} ({experience.industry})
+                            </p>
+                            <p className="text-gray-600">
+                              {experience.jobType}
+                            </p>
+                            <p className="text-gray-600">
+                              {experience.startDate} - {experience.endDate}
+                            </p>
+                          </li>
+                        )
                       )}
+                    </ul>
+                  </div>
+
+                  <div className="px-6 py-4 border-t border-gray-200">
+                    <h3 className="text-2xl font-semibold text-gray-800">
+                      Education
+                    </h3>
+                    <ul className="mt-4">
+                      {selectedCandidate.educationList.map(
+                        (education, index) => (
+                          <li
+                            key={index}
+                            className="mb-4 pb-4 border-b border-gray-200"
+                          >
+                            <h4 className="text-xl font-semibold">
+                              {education.degree}
+                            </h4>
+                            <p className="text-gray-600">
+                              {education.school}, {education.fieldOfStudy}
+                            </p>
+                            <p className="text-gray-600">
+                              {education.startDate} - {education.endDate}
+                            </p>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+
+                  <div className="px-6 py-4 border-t border-gray-200">
+                    <div className="flex items-center space-x-4">
+                      <a
+                        href={`http://localhost:5000/images/${selectedCandidate.resume}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-2 text-gray-600 hover:text-blue-500"
+                      >
+                        <AiOutlineFilePdf className="w-6 h-6" />
+                        <span>View Resume</span>
+                      </a>
+                      <a
+                        href={`mailto:${selectedCandidate.email}`}
+                        className="flex items-center space-x-2 text-gray-600 hover:text-blue-500"
+                      >
+                        <AiOutlineMail className="w-6 h-6" />
+                        <span>Email</span>
+                      </a>
+                      <a
+                        href={`tel:${selectedCandidate.phoneNumber}`}
+                        className="flex items-center space-x-2 text-gray-600 hover:text-blue-500"
+                      >
+                        <AiOutlinePhone className="w-6 h-6" />
+                        <span>Call</span>
+                      </a>
                     </div>
                   </div>
                 </div>
-                <div className="w-2/3 ">
-                  {activeTab === "tabs1" && (
-                    <div className="space-y-2  text-start">
-                      <div className="md:flex hidden gap-5 justify-end">
-                        <HiOutlineDotsHorizontal size={25} color="gray" />
-                        <HiMail size={25} color="gray" />
-                        <HiChat size={25} color="gray" />
-                        <HiHand size={25} color="red" />
-                        <button className="bg-[#00756a] px-4 py-1 rounded-md">
-                          Move to Interview
-                        </button>
-                      </div>
-                      <div className="pt-10 bg-white">
-                        {Data.map((data) => (
-                          <div key={Data.id}>
-                            <div>
-                              <h3 className="text-3xl font-semibold">
-                                {data.name}
-                              </h3>
-                              <div className="flex items-center gap-2 text-base text-gray-800">
-                                <p>{data.education.educationName}</p> from
-                                <p>{data.education.collegeName}</p>
-                              </div>
-                              <div className="flex items-center gap-2 text-base text-gray-500">
-                                <p>{data.education.collegeName}</p>
-                                <p>{data.education.year}</p>
-                              </div>
-                              <div className="flex items-center gap-5 py-3">
-                                <div className="flex items-center gap-2 text-gray-600 text-[13px]">
-                                  <HiLocationMarker />
-                                  <p>{data.education.collegeLocation}</p>
-                                </div>
-                                <div className="flex items-center gap-2 text-gray-600 text-[13px]">
-                                  <HiPhone />
-                                  <p>{data.contact}</p>
-                                </div>
-                              </div>
-                              {/* Tags */}
-                              <div>
-                                <button className="font-medium text-gray-500">
-                                  + Add Tags
-                                </button>
-                                <p className="pt-5">
-                                  via{" "}
-                                  <span className="font-bold">
-                                    careers page
-                                  </span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div>
-                        <div className="space-x-8">
-                          <button
-                            className={
-                              isActiveTab === "profile"
-                                ? "bg-gray-700 rounded px-3 py-1 text-white"
-                                : "text-sm text-grey px-3 py-1"
-                            }
-                            onClick={() => {
-                              setIsActiveTab("profile");
-                            }}
-                          >
-                            Profile
-                          </button>
-
-                          <button
-                            className={
-                              isActiveTab === "timeline"
-                                ? "bg-gray-700 rounded px-3 py-1 text-white"
-                                : "text-sm text-grey px-3 py-1e "
-                            }
-                            onClick={() => {
-                              setIsActiveTab("timeline");
-                            }}
-                          >
-                            Timeline
-                          </button>
-                        </div>
-                        {isActiveTab === "profile" && (
-                          <div className="space-y-2 pt-5">
-                            <h5 className="font-medium text-xs text-gray-500">
-                              EDUCATION
-                            </h5>
-                            {Data.map((data) => (
-                              <div key={data.id}>
-                                <div className="flex items-center gap-10">
-                                  <p>{data.education.year}</p>
-                                  <div className="flex items-center gap-1">
-                                    <p className="font-medium">
-                                      {data.education.educationName}
-                                    </p>
-                                    in
-                                    <p className="font-medium">
-                                      {data.education.subject}
-                                    </p>
-                                    at
-                                    <p className="font-medium">
-                                      {data.education.collegeName}
-                                    </p>
-                                  </div>
-                                </div>
-                                <div>
-                                  <div>
-                                    <h5 className="font-medium pt-7 text-sm text-gray-500">
-                                      COVER LETTER
-                                    </h5>
-                                    {data?.coverLetter}
-                                  </div>
-                                  <div>
-                                    <h5 className="font-medium text-sm pt-7 text-gray-500">
-                                      SUMMARY
-                                    </h5>
-                                    {data.summary}
-                                  </div>
-                                  <div>
-                                    <h5 className="font-medium text-sm pt-7 text-gray-500">
-                                      RESUME
-                                    </h5>
-                                    {data.resume}
-                                  </div>
-                                  {/* Contact Details */}
-                                  <div>
-                                    <h5 className="font-medium text-sm pt-7 text-gray-500">
-                                      CONTACT DETAILS
-                                    </h5>
-                                    <div className=" flex gap-20 text-gray-500">
-                                      <p>Phone</p>
-                                      <p>{data.contact}</p>
-                                    </div>
-                                    <div className=" pt-2 flex gap-20 text-gray-500">
-                                      <p>Email</p>
-                                      <p>{data.email}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
               </div>
-            </div>
+            ) : (
+              <p>No candidate selected</p>
+            )}
           </div>
-        ))
-      ) : (
-        <NoContent />
+        </div>
       )}
     </div>
   );
 };
 
-export default ShareAppliedDetails;
+export default Table;
+
+
+
+
+

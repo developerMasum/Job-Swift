@@ -1,5 +1,5 @@
 import React from "react";
-import imageMedia from "../../assets/Image/mediaImage.webp";
+
 import SearchField from "../../Components/DetailsMarketPlace/SearchField";
 import Solutions from "../../Components/DetailsMarketPlace/Solutions";
 import "./DetailsMarketPlaceIntegrate.css";
@@ -27,7 +27,7 @@ const DetailsMarketPlaceIntegrate = () => {
                 streamline your work, and create a tailor-made experience.
               </p>
               <div className="mt-8">
-                <img src={imageMedia} alt="mediaImage" className="shadow-2xl" />
+                <img src="https://i.ibb.co/xzB4FRc/media-Image.webp" alt="mediaImage" className="shadow-2xl" />
               </div>
             </div>
           </div>

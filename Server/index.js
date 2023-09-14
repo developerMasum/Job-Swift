@@ -6,8 +6,14 @@ require("dotenv").config();
 const path = require("path");
 const sendMail = require("./sendMail");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
 const port = process.env.PORT || 5000;
+const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
+app.use(express.static("public/images"));
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+}
 
 // middleware
 const corsOptions = {
@@ -45,12 +51,6 @@ const verifyJWT = (req, res, next) => {
     next();
   });
 };
-
-
-
-
-
-
 
 // ATSWebsite atswebsite2023
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mq0mae1.mongodb.net/?retryWrites=true&w=majority`
@@ -93,8 +93,11 @@ async function run() {
     const applicationsPostCollection = client
       .db("JobSwiftDb")
       .collection("applications");
+    const candidatesCollection = client
+      .db("JobSwiftDb")
+      .collection("candidates");
 
-      //  jwt token 
+    //  jwt token
     app.post("/jwt", (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
@@ -120,6 +123,9 @@ async function run() {
           // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
           await applicationsPostCollection.insertOne({
             jobTitle: formData.jobTitle,
+            stage: formData.stage,
+            jobPosterEmail: formData.jobPosterEmail,
+            jobId: formData.jobId,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
@@ -131,7 +137,9 @@ async function run() {
             image: imageFilePath,
             date: currentDate,
             educationList: educationList, // Save parsed educationList
-            experienceList: experienceList, // Save parsed experienceList
+            experienceList: experienceList,
+            stage: formData.stage,
+            appliedJobId: formData.appliedJobId,
           });
 
           res
@@ -153,7 +161,58 @@ async function run() {
     //   res.send(result);
     // });
 
-    // put data as a new user 
+    // sobuj code
+    // save applicants
+
+    app.put("/users/:email", async (req, res) => {
+      const email = req.params.email;
+      const user = req.body;
+      const query = { email: email };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: user,
+      };
+      const result = await usersCollection.updateOne(query, updateDoc, options);
+      res.send(result);
+    });
+
+    // source increase by id
+
+    app.patch("/sourced/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+
+      const updateDoc = {
+        $inc: {
+          source: 1,
+        },
+      };
+
+      const result = await jobPostCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    // update two field
+
+    // all applicant post job get
+    app.get("/candidate-stage/:id", async (req, res) => {
+      const id = req.params.id;
+
+      try {
+        const result = await applicationsPostCollection
+          .find({ appliedJobId: id }) // Use the correct field name and ID
+          .toArray();
+
+        res.send(result);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("An error occurred while fetching data");
+      }
+    });
+
+    // update two elements
+
+    // put data as a new user
     app.put("/user/:email", async (req, res) => {
       const email = req.params.email;
       // console.log(email);
@@ -169,71 +228,63 @@ async function run() {
       res.send(result);
     });
 
-   
-// --------------------admin---------------
- // make admin
- app.patch("/users/admin/:id", async (req, res) => {
-  const id = req.params.id;
-  // console.log(id);
-  const filter = { _id: new ObjectId(id) };
-  const updateDoc = {
-    $set: {
-      role: "admin",
-    },
-  };
+    // --------------------admin---------------
+    // make admin
+    app.patch("/users/admin/:id", async (req, res) => {
+      const id = req.params.id;
+      // console.log(id);
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "admin",
+        },
+      };
 
-  const result = await UserCollection.updateOne(filter, updateDoc);
-  res.send(result);
-});
+      const result = await UserCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
 
-// get admin data,is it admin or not
-app.get('/users/admin/:email',verifyJWT, async (req, res) => {
-  const email = req.params.email;
+    // get admin data,is it admin or not
+    app.get("/users/admin/:email", verifyJWT, async (req, res) => {
+      const email = req.params.email;
 
-  if (req.decoded.email !== email) {
-    res.send({ admin: false })
-  }
-  // console.log(req.decoded.email);
-  const query = { email: email }
-  console.log(query);
-  const user = await UserCollection.findOne(query);
-  const result = { admin: user?.role === 'admin' }
-  res.send(result);
-})
+      if (req.decoded.email !== email) {
+        res.send({ admin: false });
+      }
+      // console.log(req.decoded.email);
+      const query = { email: email };
+      console.log(query);
+      const user = await UserCollection.findOne(query);
+      const result = { admin: user?.role === "admin" };
+      res.send(result);
+    });
 
-// verify admin 
-const verifyAdmin = async (req, res, next) => {
-  const email = req.decoded.email;
-  const query = { email: email };
-  const user = await UserCollection.findOne(query);
-  if (user?.role !== "admin") {
-    return res
-      .status(403)
-      .send({ error: true, message: "forbidden message" });
-  }
-  next();
-};
+    // verify admin
+    const verifyAdmin = async (req, res, next) => {
+      const email = req.decoded.email;
+      const query = { email: email };
+      const user = await UserCollection.findOne(query);
+      if (user?.role !== "admin") {
+        return res
+          .status(403)
+          .send({ error: true, message: "forbidden message" });
+      }
+      next();
+    };
 
+    // get users data  info
+    app.get("/users", verifyJWT, verifyAdmin, async (req, res) => {
+      const result = await UserCollection.find().toArray();
+      res.send(result);
+    });
 
- // get users data  info
- app.get("/users",verifyJWT, verifyAdmin, async (req, res) => {
-  const result = await UserCollection.find().toArray();
-  res.send(result);
-});
-
-// delete user
-app.delete("/delete/:id", async (req, res) => {
-  const id = req.params.id;
-  const query = { _id: new ObjectId(id) };
-  const result = await UserCollection.deleteOne(query);
-  res.send(result);
-});
-
-
-
-
-
-
+    // delete user
+    app.delete("/delete/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await UserCollection.deleteOne(query);
+      res.send(result);
+    });
 
     // -----------------post job ---------------
     // post a new job
@@ -262,25 +313,20 @@ app.delete("/delete/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const update = { $set: req.body };
-      const result = await jobPostCollection.updateOne(query, update)
+      const result = await jobPostCollection.updateOne(query, update);
       res.send(result);
     });
     app.delete("/all-post/:id", async (req, res) => {
       try {
-          const id = req.params.id;
-          const query = { _id: new ObjectId(id) };
-  
-          const result = await jobPostCollection.deleteOne(query);
-  
-          
-  
-  
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+
+        const result = await jobPostCollection.deleteOne(query);
       } catch (error) {
-          console.error('Error deleting the post:', error);
-          res.status(500).send({ message: 'Internal Server Error' });
+        console.error("Error deleting the post:", error);
+        res.status(500).send({ message: "Internal Server Error" });
       }
-  });
-  
+    });
 
     app.get("/all-post", async (req, res) => {
       const result = await jobPostCollection.find().sort({ _id: -1 }).toArray();
@@ -302,7 +348,7 @@ app.delete("/delete/:id", async (req, res) => {
     //   const query = { _id: new ObjectId(id) };
     //   const result = await applicationsPostCollection.findOne(query);
     //   res.send(result);
-   
+
     // });
     app.get("/all-applications/:id", async (req, res) => {
       const id = req.params.id;
@@ -311,7 +357,7 @@ app.delete("/delete/:id", async (req, res) => {
       res.send(result);
     });
 
-    // sorting get data -and get data all candidates 
+    // sorting get data -and get data all candidates
     app.get("/all-applications", async (req, res) => {
       const sortOrder = req.query.sortOrder || "newest";
 
@@ -336,23 +382,99 @@ app.delete("/delete/:id", async (req, res) => {
       }
     });
 
-    app.delete("/delete-candidates", async (req, res) => {
-      const candidatesToDelete = req.body; // An array of candidate IDs
-      console.log(candidatesToDelete);
-      try {
-        // Use the `deleteMany` method to delete candidates by their IDs
-        const result = await candidatesCollection.deleteMany({
-          _id: { $in: candidatesToDelete.map((id) => new ObjectId(id)) },
-        });
 
-        if (result.deletedCount > 0) {
-          res.status(204).send(); // Successfully deleted candidates
+    // test  get candidate by specific jobs
+    app.get('/all-candidate/:email', async (req, res) => {
+      const email = req.params.email;
+      // console.log(email);
+
+      try {
+        const result = await applicationsPostCollection
+          .find({ jobPosterEmail: email })
+          .toArray();
+
+        res.send(result);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("An error occurred while fetching data");
+      }
+    });
+    
+
+    
+
+    
+
+    // all applicant set stages-----------------------------
+    app.patch("/applicant/stage/:id", async (req, res) => {
+      const id = req.params.id;
+      const stage = req.body.stage;
+      console.log(stage);
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          stage: stage,
+        },
+      };
+
+      try {
+        const result = await applicationsPostCollection.updateOne(
+          filter,
+          updateDoc
+        );
+
+        if (result.modifiedCount === 1) {
+          res.status(200).send(`Updated ${id}'s stage to ${stage}`);
         } else {
-          res.status(404).json({ error: "No candidates found for deletion" });
+          res.status(404).send("Applicant not found");
         }
       } catch (error) {
-        res.status(500).json({ error: "Error deleting candidates" });
+        console.error("Error:", error);
+        res.status(500).send("Internal Server Error");
       }
+    });
+
+
+
+// seatch candidate option
+app.get("/candidates/:text", async (req, res) => {
+  const searchText = req.params.text;
+  
+  // Check if searchText is empty or not provided
+  if (!searchText) {
+    return res.status(400).send("Please provide a search text.");
+  }
+
+  try {
+    // Use a consistent error message for potential errors
+    const result = await applicationsPostCollection
+      .find({
+        name: {
+          $regex: searchText,
+          $options: "i",
+        },
+      })
+      .toArray();
+
+    // Return a meaningful response
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    // Handle the error more gracefully
+    res.status(500).json({ error: "An error occurred while searching for candidates." });
+  }
+});
+
+
+
+
+
+    // delete a candidate
+    app.delete("/delete-candidate/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await applicationsPostCollection.deleteOne(query);
+      res.send(result);
     });
 
     // resume app.use('/uploads', upload.array("image", "resume"));

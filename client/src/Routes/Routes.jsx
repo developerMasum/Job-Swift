@@ -56,6 +56,12 @@ import CandidiateUserDetails from "../Pages/Dashboard/Candidates/CandidiateUserD
 
 import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
 import EditJobs from "../Pages/Dashboard/Jobs/EditJobs/EditJobs";
+import Blogs from "../Components/Blogs/Blogs";
+import BlogDetails from "../Components/Blogs/BlogDetails";
+import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
+import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
+import Certification from "../Pages/Dashboard/Dashboard/Certification/Certification";
+import CertificationList from "../Pages/Dashboard/Dashboard/Certification/CertificationList";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -98,12 +104,24 @@ const router = createBrowserRouter([
         element: <LogIn />,
       },
       {
+        path: "/terms",
+        element: <TermsAndConditions />,
+      },
+      {
         path: "/login/forgotPassword",
         element: <ForgotPassword></ForgotPassword>,
       },
       {
         path: "/register",
         element: <SignIn />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
+      },
+      {
+        path: "/blogs/:id",
+        element: <BlogDetails />,
       },
       {
         path: "/contact-us",
@@ -159,10 +177,9 @@ const router = createBrowserRouter([
         path: "jobs/applied-job/:id",
         element: <AppliedJobs />,
 
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-post/${params.id}`),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/all-post/${params.id}`),
       },
-      
 
       {
         path: "jobs/findCandidates",
@@ -227,9 +244,20 @@ const router = createBrowserRouter([
       },
       {
         path: "candidate",
-        element: <Candidates />
+        element: <Candidates />,
       },
-
+      {
+        path: "inbox-email",
+        element: <EmailUs />,
+      },
+      {
+        path: "get-certificate",
+        element: <Certification />,
+      },
+      {
+        path: "certification-list",
+        element: <CertificationList />,
+      },
       {
         path: "candidate/profile/:id",
         element: <CandidiateUserDetails />,

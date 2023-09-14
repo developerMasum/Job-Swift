@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import image from '../../../assets/Image/peopleSearch.png'
+
 import { BsPinAngle } from 'react-icons/bs';
 import { RxCross2 } from 'react-icons/rx';
 
@@ -28,12 +28,12 @@ const PeopleSearch = () => {
     } = useForm();
 
     return (
-        <div className='pt-20'>
+        <div className='pt-20 lg:md:px-24 bg-white px-4'>
 
-            <Tabs className="pt-5 ">
-                <TabList className={'font-bold flex gap-7'}>
-                    <Tab className="btn btn-outline btn-sm">SEARCH</Tab>
-                    <Tab className="btn btn-outline btn-sm">PINNED SEARCHES</Tab>
+            <Tabs className="pt-3 ">
+                <TabList className={'font-bold flex gap-7 border-b-2'}>
+                    <Tab className="border-b-2 pb-2 -mb-[2px]"><button>SEARCH</button></Tab>
+                    <Tab className=" border-b-2 pb-2 -mb-[2px]"><button>PINNED SEARCHES</button></Tab>
                 </TabList>
 
                 {/* tab 1----------------------------- */}
@@ -42,15 +42,13 @@ const PeopleSearch = () => {
 
 
 
-                        <form className='p-5' onSubmit={handleSubmit((data) => console.log(data))}>
+                        <form className='pt-3 ' onSubmit={handleSubmit((data) => console.log(data))}>
 
-
-
-                            <div className='pt-10'>
+                            <div className='pt-4'>
                                 <div className='flex justify-between'>
                                     <h2>Search</h2>
 
-                                    <div className='flex gap-5'>
+                                    <div className='flex lg:md:gap-5 gap-2'>
                                         <button className='flex justify-center gap-1'>
                                             <BsPinAngle className='mt-1'></BsPinAngle>
                                             <h2>Pin this search</h2>
@@ -66,10 +64,10 @@ const PeopleSearch = () => {
 
                                 <div className='flex'>
                                     {/* Dropdown */}
-                                    <div className=' border border-[#c4cfde] rounded-l-md h-10 mt-2 lg:md:w-[10%]'>
-                                        <select className='pt-2 ps-3' onChange={handleSelect}>
+                                    <div className='rounded-l-md h-10 mt-[8px] lg:md:w-[10%]'>
+                                        <select className='pt-[6px] ps-3' onChange={handleSelect}>
                                             {options.map((option, index) => (
-                                                <option key={index} value={option.level}>
+                                                <option className='' key={index} value={option.level}>
                                                     {option.level}
                                                 </option>
                                             ))}
@@ -88,7 +86,7 @@ const PeopleSearch = () => {
 
 
                             </div>
-                            <div className='lg:md:flex justify-between'>
+                            <div className='lg:md:flex lg:md:justify-between grid justify-center '>
                                 <div className='pt-5'>
                                     <h2>Location</h2>
                                     <input className='mt-2 border border-[#c4cfde] rounded-md w-[300px] h-10 ' {...register('location', { required: true })} />
@@ -105,14 +103,14 @@ const PeopleSearch = () => {
                                     {errors.university && <p className='text-red-400 mt-1'>University name is required.</p>}
                                 </div>
                                 <div className='py-12 flex items-center '>
-                                    <input className='btn btn-outline bg-gray-400 w-[300px] ' type="submit" />
+                                    <input className='btn btn-outline  border-lime-900 bg-lime-300 bg-opacity-20 hover:bg-emerald-700 w-[300px] ' type="submit" />
                                 </div>
                             </div>
                         </form>
                     </div>
 
-                    <div className='grid justify-center py-10 bg-[#f2f4f5] px-2'>
-                        <img className='w-40 mx-auto' src={image} alt="img" />
+                    <div className='grid justify-center py-10 bg-[#f2f4f5] px-2 border-t-4 '>
+                        <img className='w-40 mx-auto' src="https://i.ibb.co/xjQYzwJ/people-Search.png" alt="img" />
                         <div className='text-center text-[#333e49]'>
                             <h2 className='text-black text-2xl my-3'>Find the right candidate with People Search</h2>
                             <p>Publish a job and receive 75 profile views

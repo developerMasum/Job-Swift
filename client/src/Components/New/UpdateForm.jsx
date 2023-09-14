@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiFillCheckCircle } from "react-icons/ai";
 import { RiDeleteBin2Line } from "react-icons/ri";
@@ -298,8 +298,13 @@ const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
 import { AiOutlineFilePdf } from "react-icons/ai";
 import axios from "axios";
 import { RiImageAddLine } from "react-icons/ri";
+import { updateData } from "../../api/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCandidates } from "../../redux/candidates/candidatesOperation";
+import { authContext } from "../../Auth/AuthProvider";
 
-const UpdateForm = ({ jobTitle }) => {
+const UpdateForm = ({ jobTitle, jobPosterEmail ,jobId}) => {
+  // console.log(jobId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -390,11 +395,19 @@ const UpdateForm = ({ jobTitle }) => {
     formState: { errors },
   } = useForm();
 
+
+
+
+
   const onSubmit = async (data) => {
+    const stage = 'sourced';
     setIsSubmitting(true);
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
     formData.append("jobTitle", jobTitle);
+    formData.append("jobId", jobId);
+    formData.append("stage", "Sourced");
+    formData.append("jobPosterEmail", jobPosterEmail);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
     formData.append("email", data.email);
@@ -407,6 +420,8 @@ const UpdateForm = ({ jobTitle }) => {
     formData.append("date", isoDateString);
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
+    // formData.append('appliedJobId', appliedJobId);
+    formData.append('stage', stage)
     console.log(data);
     setFirstName(data.firstName);
     setLastName(data.lastName);
@@ -421,9 +436,10 @@ const UpdateForm = ({ jobTitle }) => {
           },
         }
       );
-      console.log(response.data);
+      console.log('from overview',response.data);
+      updateData(appliedJobId)
     } catch (error) {
-      console.error(error);
+      console.error('from overview',error);
     }
 
     setTimeout(() => {
@@ -439,13 +455,14 @@ const UpdateForm = ({ jobTitle }) => {
     axios
       .get("http://localhost:5000/all-applications")
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setAllData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  console.log(allData);
 
   // for image
 
@@ -457,6 +474,23 @@ const UpdateForm = ({ jobTitle }) => {
       setUploadedResume("");
     }
   };
+
+
+
+// for new 
+const {user} = useContext(authContext)
+const emailCandidates = user?.email;
+const { candidates, isLoading, error } = useSelector((state) => state.candidates);
+
+ const dispatch = useDispatch();
+useEffect(() => {
+  // Dispatch the action to fetch candidates based on the selected sorting order
+  dispatch(getAllCandidates(emailCandidates));
+}, [dispatch]);
+
+
+console.log(candidates);
+console.log(email);
 
   return (
     <div>
@@ -500,12 +534,6 @@ const UpdateForm = ({ jobTitle }) => {
               className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
               encType="multipart/form-data"
             >
-              {/* <div>
-                <img
-                  src={`http://localhost:5000/images/image_1693330074312.jpg`}
-                  alt=""
-                />
-              </div> */}
               <div className="bg-neutral-100 p-2">
                 <h1 className="text-lg font-semibold text-gray-500">
                   Personal Details
@@ -831,7 +859,7 @@ const UpdateForm = ({ jobTitle }) => {
 
               <button
                 type="submit"
-                className={`bg-green-500 px-8 py-1 rounded-md font-semibold text-white w-full mt-6 mb-0 ${
+                className={`bg-teal-700 px-8 py-1 rounded-md font-semibold text-white w-full mt-6 mb-0 ${
                   isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 disabled={isSubmitting}

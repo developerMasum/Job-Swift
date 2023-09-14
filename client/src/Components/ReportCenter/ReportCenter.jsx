@@ -17,7 +17,7 @@ const ReportCenter = () => {
       </div>
       <StatusReports />
       <HistoricalReports />
-      <OthersReports />
+      {/* <OthersReports /> */}
     </div>
   );
 };
