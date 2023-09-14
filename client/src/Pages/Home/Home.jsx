@@ -22,6 +22,7 @@ import ProgramManager from "../../Components/ProgramManager/ProgramManager";
 import IntegrationMarketplace from "../../Components/Home/MarketPlaceIntegrate/MarketPlaceIntegate";
 import Evaluate from "../../Components/Home/Evaluate/Evaluate";
 import KeyFeatures from "../../Components/Home/KeyFeature/Features";
+import AtsFeature from "../../Components/AtsFeature/AtsFeature";
 
 const Home = () => {
   return (
@@ -33,10 +34,12 @@ const Home = () => {
         <BannerCompany />
       </div>
       <div className="md:px-12">
-        <EmployeeExperienceSection></EmployeeExperienceSection>
+        {/* <EmployeeExperienceSection></EmployeeExperienceSection> */}
       </div>
 
       {/* <KeyFeatures></KeyFeatures> */}
+
+      <AtsFeature></AtsFeature>
 
       <div className="mt-12">
         <ProgramManager />
