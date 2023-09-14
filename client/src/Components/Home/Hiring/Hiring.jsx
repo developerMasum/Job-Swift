@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
-import hiringImage from "../../../assets/Image/hiring.png";
+
 
 const Hiring = () => {
   return (
@@ -27,7 +27,7 @@ const Hiring = () => {
         </Link>
       </div>
       <div className="mt-6 md:mt-0">
-        <img src={hiringImage} className="w-96 h-auto rounded-2xl" alt="" />
+        <img src="https://i.ibb.co/sHkWYM4/hiring.png" className="w-96 h-auto rounded-2xl" alt="" />
       </div>
     </div>
   );
