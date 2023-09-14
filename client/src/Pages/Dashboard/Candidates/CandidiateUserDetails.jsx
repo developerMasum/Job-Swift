@@ -20,6 +20,7 @@ import {
 import toast from "react-hot-toast";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
+import { GrSend } from "react-icons/gr";
 
 import { useEffect, useState } from "react";
 import Loader from "../../../Components/Loader/Loader";
@@ -623,9 +624,10 @@ const CandidiateUserDetails = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="bg-teal-700 text-white px-4 py-2 rounded-md hover:bg-teal-500 focus:outline-none"
+                  className="flex items-center gap-2 bg-teal-700 text-white px-4 py-2 rounded-md hover:bg-teal-500 focus:outline-none"
                 >
-                  Send Email
+                  <span>Send Email</span>
+                  <GrSend />
                 </button>
               </div>
             </form>
@@ -636,7 +638,7 @@ const CandidiateUserDetails = () => {
       {/* Message Modal start*/}
       {isMessageModalOpen && (
         <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
-          <div className="modal-container bg-white md:w-1/2 lg:w-3/4 p-4 rounded-lg shadow-lg">
+          <div className="modal-container bg-white md:w-1/2 lg:w-3/4 p-4 rounded-lg shadow-lg relative">
             <div className="flex justify-between items-center mb-4"></div>
             {/* Message Box */}
             <form onSubmit={handleMessageSubmit} className="text-gray-700">
@@ -667,14 +669,12 @@ const CandidiateUserDetails = () => {
               </div>
             </form>
             {/* Quit Button */}
-            <div className="flex justify-end mt-6">
-              <button
-                onClick={closeMessageModal}
-                className="bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
-              >
-                <RiCloseLine className="text-lg" />
-              </button>
-            </div>
+            <button
+              onClick={closeMessageModal}
+              className="absolute top-4 right-4 bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
+            >
+              <RiCloseLine className="text-lg" />
+            </button>
           </div>
         </div>
       )}
@@ -711,8 +711,8 @@ const CandidiateUserDetails = () => {
       {/* Comments Modal start*/}
       {isCommentsModalOpen && (
         <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
-          <div className="modal-container bg-white md:w-1/2 lg:3/4 p-4 rounded-lg shadow-lg">
-            <div className="w-full mx-auto p-4 bg-gray-100 shadow-lg rounded-lg">
+          <div className="modal-container bg-white md:w-1/2 lg:w-3/4 p-4 rounded-lg shadow-lg relative">
+            <div className="w-full mx-auto p-4  rounded-lg">
               <form onSubmit={handleCommentSubmit} className="space-y-4">
                 <div>
                   <label
@@ -722,6 +722,7 @@ const CandidiateUserDetails = () => {
                     Your Comment:
                   </label>
                   <textarea
+                    required
                     id="comment"
                     name="comment"
                     rows="4"
@@ -743,14 +744,13 @@ const CandidiateUserDetails = () => {
               </form>
             </div>
 
-            <div className="flex justify-center mt-6">
-              <button
-                onClick={closeCommentsModal}
-                className="bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
-              >
-                <RiCloseLine className="text-lg" />
-              </button>
-            </div>
+            {/* Quit Button */}
+            <button
+              onClick={closeCommentsModal}
+              className="absolute top-4 right-4 bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
+            >
+              <RiCloseLine className="text-lg" />
+            </button>
           </div>
         </div>
       )}
