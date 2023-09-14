@@ -75,6 +75,7 @@ const CandidiateUserDetails = () => {
       if (response) {
         toast.error("This Candidate marked as Disqualified");
         setCurrentStage(itemName);
+        location.reload(true);
       } else {
         console.error("Failed to update stage.");
       }

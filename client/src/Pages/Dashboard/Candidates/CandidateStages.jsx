@@ -23,6 +23,7 @@ function CandidateStages({ id }) {
       .get(url)
       .then((response) => {
         setCurrentStage(response.data.stage);
+        
       })
       .catch((err) => {
         console.log(err);
