@@ -6,7 +6,6 @@ import {
 } from "react-icons/md";
 
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
 
 const PostJobs = ({ jobs,handleDelete }) => {
   const [isVisible, setIsVisible] = useState(false);
