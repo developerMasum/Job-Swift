@@ -44,7 +44,7 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
     return <LoaderInternal></LoaderInternal>;
   }
 
-  // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name' 
+  // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
     try {
       const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {

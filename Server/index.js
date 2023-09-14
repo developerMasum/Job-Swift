@@ -434,6 +434,41 @@ async function run() {
       }
     });
 
+
+
+// seatch candidate option
+app.get("/candidates/:text", async (req, res) => {
+  const searchText = req.params.text;
+  
+  // Check if searchText is empty or not provided
+  if (!searchText) {
+    return res.status(400).send("Please provide a search text.");
+  }
+
+  try {
+    // Use a consistent error message for potential errors
+    const result = await applicationsPostCollection
+      .find({
+        name: {
+          $regex: searchText,
+          $options: "i",
+        },
+      })
+      .toArray();
+
+    // Return a meaningful response
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    // Handle the error more gracefully
+    res.status(500).json({ error: "An error occurred while searching for candidates." });
+  }
+});
+
+
+
+
+
     // delete a candidate
     app.delete("/delete-candidate/:id", async (req, res) => {
       const id = req.params.id;

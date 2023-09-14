@@ -210,7 +210,7 @@ const mappedTitle = isJobs.map((j) => {
             boards.
           </p>
           <Link to="post-job">
-            <button className="border border-cyan-600 text-cyan-600 px-6 py-2 rounded-lg font-medium hover:bg-cyan-600 hover:text-white hover:border-cyan-800 transition-colors duration-300">
+            <button className="border border-teal-600 text-teal-600 px-6 py-2 rounded-lg font-medium hover:bg-teal-600 hover:text-white hover:border-teal-800 transition-colors duration-300">
               Post a Job
             </button>
           </Link>
