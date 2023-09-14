@@ -8,10 +8,9 @@ import { authContext } from "../../Auth/AuthProvider";
 import UpdateForm from "../New/UpdateForm";
 import SocialLink from "./SocialLink";
 
-
 // Define the Overview component
 const Overview = () => {
-  const formData = useLoaderData()
+  const formData = useLoaderData();
   // console.log('finding error',formData);
   const location = useLocation();
   const { user } = useContext(authContext);
@@ -26,7 +25,7 @@ const Overview = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const currentPath = window.location.pathname;
   // console.log(currentPath);
-  localStorage.setItem('URL', currentPath)
+  localStorage.setItem("URL", currentPath);
 
   // Modal state management
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +37,11 @@ const Overview = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const [activeTab, setActiveTab] = useState(0); // Initialize the active tab to 0 (the first tab)
 
+  const handleTabClick = (index) => {
+    setActiveTab(index); // Update the active tab when a tab is clicked
+  };
 
   return (
     <div className="container">
@@ -74,10 +77,38 @@ const Overview = () => {
       </div>
       <div className=" my-6 mx-auto max-w-4xl">
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <TabList>
+          {/* <TabList>
             <Tab>Overview</Tab>
             <Tab>Application</Tab>
-          </TabList>
+          </TabList> */}
+          <div>
+            <TabList className="flex gap-5 cursor-pointer">
+              <Tab
+                className={`${
+                  activeTab === 0
+                    ? "bg-teal-700 hover:bg-teal-600 text-white"
+                    : "border border-teal-700 text-gray-700"
+                } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
+                onClick={() => handleTabClick(0)}
+              >
+                Overview
+              </Tab>
+              <Tab
+                className={`${
+                  activeTab === 1
+                    ? "bg-teal-700 hover:bg-teal-600 text-white"
+                    : "border border-teal-700 text-gray-700"
+                } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
+                onClick={() => handleTabClick(1)}
+              >
+                Application
+              </Tab>
+            </TabList>
+
+            {/* {activeTab === 0 && <div>Overview Content</div>}
+      {activeTab === 1 && <div>Application Content</div>} */}
+          </div>
+
           <TabPanel>
             <div className="bg-gray-50 shadow-lg">
               <div className="overview-content p-4 divide-y-2 leading-7 space-y-5">
@@ -142,7 +173,11 @@ const Overview = () => {
           </TabPanel>
           <TabPanel>
             {/* <FormNew></FormNew> */}
-            <UpdateForm jobPosterEmail={jobPosterEmail} jobTitle={jobTitle} jobId={jobId} ></UpdateForm>
+            <UpdateForm
+              jobPosterEmail={jobPosterEmail}
+              jobTitle={jobTitle}
+              jobId={jobId}
+            ></UpdateForm>
           </TabPanel>
         </Tabs>
       </div>
@@ -162,7 +197,7 @@ const Overview = () => {
             {/* Add your share options/content here */}
             <div className="text-gray-700 mt-4">
               {/* Modal body */}
-              <SocialLink/>
+              <SocialLink />
             </div>
             <div className="flex justify-center mt-6">
               <button
