@@ -29,43 +29,8 @@ const Hiring = () => {
           />
         </div>
       </div>
-      <div className="bg-white py-10 md:py-16">
-        <div className="container mx-auto">
-          <h3 className="text-3xl md:text-4xl font-bold text-center text-gray-500 mb-4">
-            Discover Key ATS Features
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* ATS Feature 1 */}
-            <div className="bg-white rounded-lg border-b-[5px] border-b-[#00756a] p-6 shadow-md hover:shadow-lg cursor-pointer">
-              <h4 className="text-xl font-semibold mb-2">
-                Advanced Candidate Search
-              </h4>
-              <p className="text-gray-600 mb-4">
-                Easily find and filter candidates based on various criteria.
-              </p>
-            </div>
-
-            {/* ATS Feature 2 */}
-            <div className="bg-white rounded-lg  border-b-[5px] border-b-[#00756a] p-6 shadow-md hover:shadow-lg cursor-pointer">
-              <h4 className="text-xl font-semibold mb-2">
-                Customizable Workflows
-              </h4>
-              <p className="text-gray-600 mb-4">
-                Tailor your hiring process to match your organization's needs.
-              </p>
-            </div>
-
-            {/* ATS Feature 3 */}
-            <div className="bg-white rounded-lg  border-b-[5px] border-b-[#00756a] p-6 shadow-md hover:shadow-lg cursor-pointer">
-              <h4 className="text-xl font-semibold mb-2">
-                Collaborative Hiring
-              </h4>
-              <p className="text-gray-600 mb-4">
-                Streamline communication and feedback among your team members.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="mt-6 md:mt-0">
+        <img src="https://i.ibb.co/sHkWYM4/hiring.png" className="w-96 h-auto rounded-2xl" alt="" />
       </div>
     </div>
   );

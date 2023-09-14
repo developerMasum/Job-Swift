@@ -90,7 +90,7 @@ const PeopleDirectoryTab = () => {
       <div className="flex flex-col items-center pt-16 sm:flex-row sm:justify-center sm:items-center sm:mt-8">
         <div className="text-center">
           {/* Image */}
-          <img className="mx-auto w-48" src={images} alt="PeopleDirectory" />
+          <img className="mx-auto w-48" src="https://i.ibb.co/Q9c2nTV/people-Directory.png" alt="PeopleDirectory" />
           <h6 className="font-semibold my-4">
             Create a company directory to manage employees
           </h6>
@@ -103,7 +103,7 @@ const PeopleDirectoryTab = () => {
             <div className="flex items-center md:gap-10 gap-3 sm:flex-row sm:justify-evenly sm:items-center">
               {/* Image */}
               <img
-                src={chiringe}
+                src="https://i.ibb.co/XWQY9fz/chiringe.png"
                 alt="chiringe"
                 className="md:w-32 w-10 sm:w-auto"
               />

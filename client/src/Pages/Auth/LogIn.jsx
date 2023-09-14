@@ -12,7 +12,7 @@ import Loader from "../../Components/Loader/Loader";
 import useAdmin from "../../Hooks/AdminHook/useAdmin";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import "./LogIn.css";
-import login_keyboard from "../../assets/Image/login_keyboard.png";
+
 const LogIn = () => {
   const [isAdmin] = useAdmin();
   const [showPassword, setShowPassword] = useState(false);
@@ -79,7 +79,7 @@ const LogIn = () => {
         <div className="">
           {/* <img className="h-[380px] rounded-l-2xl" src={login} alt="" /> */}
           <img
-            src={login_keyboard}
+            src="https://i.ibb.co/xXxMCKV/login-keyboard.png"
             alt=""
             className="h-[100%] lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5"
           />

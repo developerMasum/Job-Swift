@@ -1,6 +1,6 @@
 import React from "react";
 import { FaPaperPlane, FaPlaneDeparture } from "react-icons/fa";
-import files from "../../assets/Image/files.png";
+
 
 const FilesTab = () => {
   return (
@@ -18,7 +18,7 @@ const FilesTab = () => {
       {/* Body */}
       <div className="flex flex-col items-center mt-4 sm:flex-row sm:justify-center sm:items-center sm:mt-8">
         <div className="text-center">
-          <img className="mx-auto w-32 sm:w-48" src={files} alt="Files" />{" "}
+          <img className="mx-auto w-32 sm:w-48" src="https://i.ibb.co/1sHKCLh/files.png" alt="Files" />{" "}
           {/* Adjust image width */}
           <h6 className="text-lg sm:text-2xl my-2">
             You've not uploaded any files yet

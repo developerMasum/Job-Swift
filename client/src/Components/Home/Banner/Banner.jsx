@@ -52,7 +52,7 @@
 import React from "react";
 // import { FaArrowRight } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
-import homeBanner from "../../../assets/Image/homeBanner.webp"
+
 import { Link } from 'react-router-dom';
 import { BsPlayCircleFill } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -118,7 +118,7 @@ const Banner = () => {
         <div className="md:w-1/2 md:text-right">
           <img
             className="w-full  mx-auto  lg:md:h-[500px] lg:md:-mt-8 animate-pulse		"
-            src={homeBanner}
+            src="https://i.ibb.co/t2t8JQ7/home-Banner.webp"
             alt="ATS App Screenshot"
           />
         </div>

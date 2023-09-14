@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../../public/imageHR.webp";
+
 import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const HrPlatform = () => {
   return (
     <div className="flex flex-wrap max-w-[1100px] mx-auto justify-between items-center">
       <div className=" w-full md:w-1/2">
-        <img src={image} alt="HrIamge" width={1000} />
+        <img src="https://i.ibb.co/XDgkmrv/imageHR.webp" alt="HrIamge" width={1000} />
       </div>
       <div className="w-full space-y-6 mt-6 md:mt-0 md:w-1/2">
         <h2 className="text-[#00673b] font-bold text-xl text-center md:text-start">

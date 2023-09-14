@@ -1,5 +1,5 @@
 import React from "react";
-import orgChart from "../../assets/Image/orgChart.png";
+
 import { FaPaperPlane } from "react-icons/fa";
 
 const OrgChartTab = () => {
@@ -17,7 +17,7 @@ const OrgChartTab = () => {
       {/* Body */}
 
       <div className="pt-20">
-        <img className="mx-auto sm:w-auto" src={orgChart} alt="OrgChart" />
+        <img className="mx-auto sm:w-auto" src="https://i.ibb.co/2MM237X/orgChart.png" alt="OrgChart" />
         <h6 className="font-medium my-2">
           View your company's employees in an organization chart
         </h6>
