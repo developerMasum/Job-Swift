@@ -5,6 +5,8 @@ import {
   AiOutlineMail,
   AiOutlinePhone,
 } from "react-icons/ai";
+import { BiSolidHand } from 'react-icons/bi';
+
 import { Link } from "react-router-dom";
 
 import toast from "react-hot-toast";
@@ -45,6 +47,35 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   if (isLoading) {
     return <LoaderInternal></LoaderInternal>;
   }
+
+  const handleDisQualify=(id)=>{
+// console.log('disqualified',id);
+// try {
+//   const response = fetch(
+//     `https://server-job-swift.vercel.app/applicant/stage/${id}`,
+//     {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ stage: "Disqualified" }),
+//     }
+//   );
+
+//   if (response) {
+//     toast.success("This Candidate is Disqualified");
+//     window.location.reload(true);
+//   } else {
+//     console.error("Failed to update stage.");
+//   }
+// } catch (error) {
+//   console.error("Error:", error);
+// }
+
+  }
+
+
+
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   // const handleMoveToApplied = (id) => {
@@ -200,12 +231,20 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                           <AiOutlinePhone className="w-6 h-6" />
                           <span>Call</span>
                         </a>
-                        <Link to='/get-certificate'
+                        <button onClick={()=>handleDisQualify(selectedCandidate._id)}
+                        
+                         className="  px-2 rounded-md py-1 border border-red-500"
+                       >
+                        <BiSolidHand className="inline-block mr-2" />
+                        Disqualify & Rejection Mail
+                       </button>
+                        <Link to={'/dashboard/get-certificate'}
                          
                           className=" border border-indigo-100 px-2 rounded-md py-1"
                         >
                           Sent Offer Letter
                         </Link>
+                       
                       </div>
                     </div>
                   </div>
