@@ -14,9 +14,11 @@ import AddCandidatesModal from "./AddCandidatesModal";
 const AppliedJobs = () => {
   // const [appliedJobs] = useAppliedJobs();
   const { id } = useParams();
+  console.log('job id',id);
 
   const [appliedJobs] = useAppliedJobs();
   const jobs = appliedJobs.find((job) => job._id === id);
+  // console.log(jobs);
   const [isToggled, setIsToggled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("tabs2");

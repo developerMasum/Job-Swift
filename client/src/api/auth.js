@@ -1,11 +1,11 @@
 // for application submit
 
-export const updateData = (id) => {
-  fetch(`https://server-job-swift.vercel.app/sourced/${id}`, {
-    method: "PATCH",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    });
-};
+// export const updateData = (id) => {
+//   fetch(`http://localhost:5000/sourced/${id}`, {
+//     method: "PATCH",
+//   })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data);
+//     });
+// };

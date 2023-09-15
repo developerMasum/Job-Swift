@@ -13,9 +13,9 @@ const Overview = () => {
   const formData = useLoaderData();
   // console.log('finding error',formData);
 
-  const appliedJobId = formData._id;
+  // const appliedJobId = formData._id;
 
-  console.log("id", appliedJobId);
+  // console.log("id", appliedJobId);
   const location = useLocation();
   const { user } = useContext(authContext);
   const queryParams = new URLSearchParams(location.search);
@@ -25,7 +25,7 @@ const Overview = () => {
   const jobTitle = formData?.jobTitle;
   const jobPosterEmail = formData?.userEmail;
   const jobId = formData?._id;
-  // console.log(jobPosterEmail);
+  console.log(jobId);
   const [tabIndex, setTabIndex] = useState(0);
   const currentPath = window.location.pathname;
   // console.log(currentPath);

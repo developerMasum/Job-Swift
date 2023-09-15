@@ -6,7 +6,7 @@ import { getAllCandidates } from "../../../../redux/candidates/candidatesOperati
 import { authContext } from "../../../../Auth/AuthProvider";
 import SourcedDetails from "./Applied/SourcedDetails";
 
-const Sourced = () => {
+const Sourced = ({id}) => {
   const {user} = useContext(authContext)
   const email = user?.email;
   const dispatch = useDispatch()
@@ -14,8 +14,9 @@ const Sourced = () => {
   const { candidates, isLoading, error } = useSelector((state) => state.candidates);
   // console.log('from sourced', candidates);
 
-const sourcedCandi = candidates.filter(c=>c.stage ==="Sourced")
-console.log(sourcedCandi);
+  const sourcedCandi = candidates.filter((c) => c.jobId === id && c.stage === "Sourced");
+  console.log(sourcedCandi);
+  
 
   useEffect(() => {
     // Dispatch the action to fetch candidates based on the selected sorting order

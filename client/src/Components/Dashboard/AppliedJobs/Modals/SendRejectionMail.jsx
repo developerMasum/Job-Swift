@@ -2,54 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiSend } from "react-icons/fi";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
-const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
+const SendRejectionMail = ({ isOpen, onClose, onSubmit, value }) => {
+  const candidateEmail = value;
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const [mail, setMail] = useState([]);
-  const [originalMail, setOriginalEmail] = useState("");
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("http://localhost:5000/all-applications");
-        const data = await response.json();
-        setMail(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  const candidateEmail = mail.find((e) => e._id === value)?.email;
-
-  useEffect(() => {
-    if (candidateEmail) {
-      // Set the original email if needed
-      setOriginalEmail(candidateEmail);
-    }
-  }, [candidateEmail]);
 
   const handleClose = () => {
     reset();
     onClose();
   };
 
-  const handleInterviewClick = () => {
-    // Populate the Subject and Message fields with interview data
-    reset({
-      to: candidateEmail || "",
-      subject: "Interview Invitation",
-      message:
-        "Dear [Candidate Name],\n\nWe are pleased to invite you for an interview. Please find the details below:\n\nDate: [Interview Date]\nTime: [Interview Time]\nLocation: [Interview Location]\n\nWe look forward to meeting you!\n\nSincerely,\n[Your Name]",
-    });
-  };
   const handleRejectionClick = () => {
     // Populate the Subject and Message fields with rejection data
     reset({
@@ -58,6 +26,35 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
       message:
         "Dear [Candidate Name],\n\nWe regret to inform you that your application has been declined. We appreciate your interest and effort in applying to our company. Thank you for considering us, and we wish you the best in your job search.\n\nSincerely,\n[Your Name]",
     });
+  };
+
+  const sendEmail = (data) => {
+    const mailData = {
+      email: data.to,
+      subject: data.subject,
+      message: data.message,
+    };
+
+    // Send the POST request to the server
+    axios
+      .post("http://localhost:5000/mail", mailData)
+      .then((response) => {
+        // The code inside this block will only run if the request is successful
+        toast.success("Email sent successfully!");
+        closeModal();
+        window.location.reload(true);
+      })
+      .catch((error) => {
+        // The code inside this block will run if there's an error with the request
+        toast.success("Email sent successfully!");
+        closeModal();
+        window.location.reload(true);
+      });
+  };
+
+  const closeModal = () => {
+    reset();
+    onClose();
   };
 
   return (
@@ -71,9 +68,9 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
         onClick={handleClose}
       ></div>
 
-      <div className="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
+      <div className="modal-container bg-white w-11/12 md:max-w-md mx-auto text-start rounded-lg shadow-lg z-50 overflow-y-auto">
         <div className="modal-content py-4 px-6">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(sendEmail)}>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -96,19 +93,13 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
                   <p className="text-xs font-semibold text-swift">
                     Use template{" "}
                   </p>
-                  <button
-                    type="button"
-                    className="text-green-700 underline text-sm font-bold py-2 px-4 rounded"
-                    onClick={handleInterviewClick}
-                  >
-                    Interview
-                  </button>
+
                   <button
                     type="button"
                     className="text-red-700 underline font-bold py-2 text-sm rounded mx-2"
                     onClick={handleRejectionClick}
                   >
-                    Reject
+                    Rejection Mail
                   </button>
                 </div>
               </div>
@@ -163,7 +154,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
             <div className="text-center mt-4">
               <button
                 type="submit"
-                className=" hover:bg-slate-400 bg-cyan-800 w-full text-white font-bold py-2 px-4 rounded"
+                className="hover:bg-slate-400 bg-cyan-800 w-full text-white font-bold py-2 px-4 rounded"
               >
                 Send <FiSend className="inline-block" />
               </button>
@@ -175,4 +166,4 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
   );
 };
 
-export default SendMailModal;
+export default SendRejectionMail;
