@@ -20,17 +20,154 @@ import {
 import toast from "react-hot-toast";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
+import { GrSend } from "react-icons/gr";
 
 import { useEffect, useState } from "react";
 import Loader from "../../../Components/Loader/Loader";
 import ViewPdfCandidate from "./ViewPdfCandidate";
 import { PiGraduationCapBold } from "react-icons/pi";
 import CandidateStages from "./CandidateStages";
+import { RiCloseLine } from "react-icons/ri";
+import Calendar from "react-calendar"; // Import the react-calendar component
+import Swal from "sweetalert2";
 
 const CandidiateUserDetails = () => {
   const { id } = useParams();
   // console.log("error", id);
   const [userDetails2, setUserDetails2] = useState(null);
+
+  // For Email Modal
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+
+  const openEmailModal = () => {
+    setIsEmailModalOpen(true);
+  };
+
+  const closeEmailModal = () => {
+    setIsEmailModalOpen(false);
+  };
+
+  // For Message Modal
+  const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
+
+  const openMessageModal = () => {
+    setIsMessageModalOpen(true);
+  };
+
+  const closeMessageModal = () => {
+    setIsMessageModalOpen(false);
+  };
+  // For Calender Modal
+  const [isCalenderModalOpen, setIsCalenderModalOpen] = useState(false);
+
+  const openCalenderModal = () => {
+    setIsCalenderModalOpen(true);
+  };
+
+  const closeCalenderModal = () => {
+    setIsCalenderModalOpen(false);
+  };
+
+  // For Comments Modal
+  const [isCommentsModalOpen, setIsCommentsModalOpen] = useState(false);
+
+  const openCommentsModal = () => {
+    setIsCommentsModalOpen(true);
+  };
+
+  const closeCommentsModal = () => {
+    setIsCommentsModalOpen(false);
+  };
+
+  // Email section
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [modalEmail, setModalEmail] = useState("");
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setModalEmail(e.target.value);
+  };
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+
+    // Assuming you have some logic here to send the email
+
+    // Show a success message using SweetAlert2
+    Swal.fire({
+      icon: "success",
+      title: "Success!",
+      text: "Your email has been sent successfully.",
+    });
+
+    // Clear the input fields
+    setName("");
+    setPhone("");
+    setModalEmail("");
+
+    // Close the modal
+    closeEmailModal();
+  };
+
+  // Message section
+  const [message, setMessage] = useState("");
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleMessageSubmit = (e) => {
+    e.preventDefault();
+    // Add your logic to handle the message submission here
+    console.log("Message Sent:", message);
+    Swal.fire({
+      icon: "success",
+      title: "Success!",
+      text: "Your Comment has been sent successfully.",
+    });
+    // Close the modal after submission
+    closeMessageModal();
+  };
+
+  // For comment section
+  const [comment, setComment] = useState("");
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+
+    // Assuming you have some logic here to submit the comment data
+
+    // Show a success message using SweetAlert2
+    Swal.fire({
+      icon: "success",
+      title: "Success!",
+      text: "Your comment has been submitted successfully.",
+    }).then(() => {
+      // Clear the comment input
+      setComment("");
+    });
+
+    // You can add further logic here, such as sending the comment to a server, etc.
+  };
+
+  // Calender section
+  const [nDate, setNDate] = useState(new Date()); // Initial date is today
+
+  const handleDateChange = (newDate) => {
+    setNDate(newDate);
+  };
 
   // time and date fixer
   const formatDate = (dateString) => {
@@ -113,13 +250,28 @@ const CandidiateUserDetails = () => {
               size={30}
               className="border-r-2 border-slate-400 pr-2 text-swift"
             ></BiDotsHorizontal>
-            <BiEnvelope size={25} className="text-swift" />
-            <BiMessageCheck size={25} className="text-swift" />
+
+            <BiEnvelope
+              onClick={openEmailModal}
+              size={25}
+              className="text-swift"
+            />
+            <BiMessageCheck
+              onClick={openMessageModal}
+              size={25}
+              className="text-swift"
+            />
             <BiSolidCalendar
+              onClick={openCalenderModal}
               size={35}
               className="border-r-2 border-slate-400 pr-3 text-swift "
             ></BiSolidCalendar>
-            <BiSolidChat size={25} className="text-swift" />
+            <BiSolidChat
+              onClick={openCommentsModal}
+              size={25}
+              className="text-swift"
+            />
+
             <div className="flex border-r-2 border-slate-400 pr-8 text-2xl">
               <BiSolidHandRight size={25} className="text-swift" />
               <BiSolidHandLeft size={25} className="text-swift" />
@@ -415,6 +567,202 @@ const CandidiateUserDetails = () => {
         </Tabs>
       </div>
      </div>
+      {/*Email Modal start*/}
+      {isEmailModalOpen && (
+        <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
+          <div className="modal-container bg-white md:w-1/2 lg:w-3/4 p-4 rounded-lg shadow-lg">
+            <div className="flex justify-between items-center mb-4">
+              {/* Modal title */}
+              <h2 className="mx-auto text-2xl font-bold text-gray-800">
+                Email Us
+              </h2>
+              {/* Close modal button */}
+              <button
+                onClick={closeEmailModal}
+                className="bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
+              >
+                <RiCloseLine className="text-lg" />
+              </button>
+            </div>
+            {/* Email Form */}
+            <form onSubmit={handleEmailSubmit} className="text-gray-700">
+              <div className="mb-4">
+                <label htmlFor="name" className="block mb-2 text-sm">
+                  Name:
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-400"
+                  value={name}
+                  onChange={handleNameChange}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="phone" className="block mb-2 text-sm">
+                  Phone:
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-400"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="email" className="block mb-2 text-sm">
+                  Email:
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-400"
+                  value={email}
+                  onChange={handleEmailChange}
+                  required
+                />
+              </div>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="flex items-center gap-2 bg-teal-700 text-white px-4 py-2 rounded-md hover:bg-teal-500 focus:outline-none"
+                >
+                  <span>Send Email</span>
+                  <GrSend />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      {/*Email Modal end*/}
+      
+      {/* Message Modal start*/}
+      {isMessageModalOpen && (
+        <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
+          <div className="modal-container bg-white md:w-1/2 lg:w-3/4 p-4 rounded-lg shadow-lg relative">
+            <div className="flex justify-between items-center mb-4"></div>
+            {/* Message Box */}
+            <form onSubmit={handleMessageSubmit} className="text-gray-700">
+              <div className="mb-4">
+                <label
+                  htmlFor="message"
+                  className="text-2xl font-bold text-gray-800"
+                >
+                  Your Message:
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-400 mt-4"
+                  value={message}
+                  onChange={handleMessageChange}
+                  required
+                ></textarea>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="bg-teal-700 text-white px-4 py-2 rounded-md hover:bg-teal-500 focus:outline-none"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
+            {/* Quit Button */}
+            <button
+              onClick={closeMessageModal}
+              className="absolute top-4 right-4 bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
+            >
+              <RiCloseLine className="text-lg" />
+            </button>
+          </div>
+        </div>
+      )}
+      {/* Message Modal end*/}
+      {/* Calender Modal start*/}
+      {isCalenderModalOpen && (
+        <div className="fixed inset-0 bg-gray-600 flex items-center justify-center z-50">
+          <div className="modal-container bg-white p-4 md:p-8 lg:p-12 rounded-lg shadow-lg max-w-md w-full">
+            <div className="flex justify-between items-center mb-4">
+              {/* Modal title */}
+              <h2 className="text-2xl font-bold text-gray-800">Calendar</h2>
+              {/* Close modal button */}
+              <button
+                onClick={closeCalenderModal}
+                className="bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
+              >
+                <RiCloseLine className="text-lg" />
+              </button>
+            </div>
+            {/* Add your share options/content here */}
+            <div className="text-gray-700 mt-4">
+              {/* Render the react-calendar component */}
+              <Calendar
+                onChange={handleDateChange}
+                value={nDate}
+                calendarType="US"
+                className="calendar"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Calender Modal end*/}
+      {/* Comments Modal start*/}
+      {isCommentsModalOpen && (
+        <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
+          <div className="modal-container bg-white md:w-1/2 lg:w-3/4 p-4 rounded-lg shadow-lg relative">
+            <div className="w-full mx-auto p-4  rounded-lg">
+              <form onSubmit={handleCommentSubmit} className="space-y-4">
+                <div>
+                  <label
+                    htmlFor="comment"
+                    className="text-3xl mb-2 block text-gray-600"
+                  >
+                    Your Comment:
+                  </label>
+                  <textarea
+                    required
+                    id="comment"
+                    name="comment"
+                    rows="4"
+                    cols="50"
+                    className="w-full px-3 py-2 border rounded-lg focus:ring focus:ring-blue-400"
+                    value={comment}
+                    onChange={handleCommentChange}
+                  ></textarea>
+                </div>
+                <div className="text-center">
+                  <button
+                    onSubmit={handleCommentSubmit}
+                    type="submit"
+                    className="bg-teal-700 text-white px-4 py-2 rounded-lg hover:bg-teal-500 focus:outline-none focus:ring focus:ring-blue-400"
+                  >
+                    Comment Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            {/* Quit Button */}
+            <button
+              onClick={closeCommentsModal}
+              className="absolute top-4 right-4 bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
+            >
+              <RiCloseLine className="text-lg" />
+            </button>
+          </div>
+        </div>
+      )}
+      {/* Comments Modal end*/}
     </div>
   );
 };
