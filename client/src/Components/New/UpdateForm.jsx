@@ -423,7 +423,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     setEmail(data.email);
     try {
       const response = await axios.post(
-        "https://server-job-swift.vercel.app/upload",
+        "http://localhost:5000/upload",
         formData,
         {
           headers: {

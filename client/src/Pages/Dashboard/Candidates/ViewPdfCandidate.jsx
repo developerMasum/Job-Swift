@@ -2,7 +2,7 @@ import React from "react";
 import "tailwindcss/tailwind.css";
 
 function ViewPdfCandidate({ resume }) {
-  const pdfURL = `https://server-job-swift.vercel.app/images/${resume}`;
+  const pdfURL = `http://localhost:5000/images/${resume}`;
 
   // Use Google Docs Viewer to display the PDF as an image
   const googleDocsViewerURL = `https://docs.google.com/gview?url=${encodeURIComponent(
