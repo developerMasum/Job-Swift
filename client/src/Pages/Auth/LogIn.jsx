@@ -11,7 +11,8 @@ import { toast } from "react-hot-toast";
 import Loader from "../../Components/Loader/Loader";
 import useAdmin from "../../Hooks/AdminHook/useAdmin";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-
+import "./LogIn.css";
+import login_keyboard from "../../assets/Image/login_keyboard.png";
 const LogIn = () => {
   const [isAdmin] = useAdmin();
   const [showPassword, setShowPassword] = useState(false);
@@ -32,10 +33,7 @@ const LogIn = () => {
     useContext(authContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const from =
-    location.state?.from?.pathname ||
-    (isAdmin && "/dashboard/admin/dashboard") ||
-    (!isAdmin && "/dashboard/jobs");
+  const destination = (isAdmin && "/dashboard/admin/users") || "/dashboard/jobs";
 
   // const [error, setError] = useState(null)
 
@@ -65,7 +63,7 @@ const LogIn = () => {
         // console.log(user);
 
         toast.success("Successfully LogIn");
-        navigate(from, { replace: true });
+        navigate(destination);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -77,37 +75,39 @@ const LogIn = () => {
   // }
 
   return (
-    <div className="lg:md:bg-gradient-to-r lg:md:from-indigo-900 lg:md:via-indigo-800 lg:md:to-indigo-500 lg:md:p-32 lg:md:rounded-tl-[100px] lg:md:rounded-br-[100px] mt-2">
-      <div className="card flex lg:flex-row  lg:w-2/3  mx-auto  border pb-0 rounded-2xl shadow-lg shadow-black h-[380px]">
-        <div className="lg:md:w-2/3 hidden md:block">
-          <img className="h-[380px] rounded-l-2xl" src={login} alt="" />
+    <div className=" bg-gradient-to-r from-[#00756a] to-[#677500]  lg:md:p-32">
+      {/* // <div className="login_container"> */}
+      <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 rounded-2xl shadow-lg shadow-black ">
+        <div className="">
+          {/* <img className="h-[380px] rounded-l-2xl" src={login} alt="" /> */}
+          <img src={login_keyboard} alt="" className="h-[100%] lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5" />
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="card-body my-24 lg:md:my-0 h-[380px] lg:md:w-[420px] bg-white  rounded-r-2xl "
+          className="card-body lg:md:my-0  lg:md:w-[420px] bg-white bg-opacity-40 rounded-r-2xl "
         >
           {/* <div className=' font-bold  '>
             <h1 className='text-center font-serif text-xl'>Log In Now</h1>
           </div> */}
 
           <div className="form-control">
-            <label className="label">
-              <span className="label-text font-semibold">Email</span>
+            <label className="label ">
+              <span className="label-text  text-green-100">Email</span>
             </label>
             <input
               type="email"
               ref={emailRef}
               {...register("email", { required: true })}
               placeholder="email"
-              className="rounded-md "
+              className="rounded-md bg-green-200 bg-opacity-0 border-green-800 "
             />
             {errors.email && (
-              <span className="text-red-500">This field is required</span>
+              <span className="text-orange-800">This field is required</span>
             )}
           </div>
           <div className="form-control ">
             <label className="label">
-              <span className="label-text font-semibold">Password</span>
+              <span className="label-text text-green-100">Password</span>
             </label>
             {/* <div className="flex border-2 border-gray-400">
               <input
@@ -124,7 +124,7 @@ const LogIn = () => {
             />
 
             </div> */}
-            <div className="flex rounded-md px-1 border-black border">
+            <div className="flex rounded-md px-1 border-green-800  border">
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", {
@@ -134,27 +134,27 @@ const LogIn = () => {
                     /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/,
                 })}
                 placeholder="password"
-                className="outline-none border-none focus:border-none focus:ring-0 flex-grow"
+                className="focus:border-none focus:ring-0 flex-grow bg-green-200 bg-opacity-0 border-none"
               />
               <button
                 className="cursor-pointer p-2"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                {showPassword ? <AiFillEyeInvisible className="" /> : <AiFillEye className="" />}
               </button>
             </div>
 
             {errors.password && (
-              <span className="text-red-500">This field is required</span>
+              <span className="text-orange-800">This field is required</span>
             )}
 
             {errors.password?.type === "minLength" && (
-              <span className="text-red-500">
+              <span className="text-orange-800">
                 Password Must be Six Character
               </span>
             )}
             {errors.password?.type === "pattern" && (
-              <span className="text-red-500">
+              <span className="text-orange-800">
                 At least one uppercase letter, one lowercase letter, one number
                 and one special character
               </span>
@@ -163,7 +163,7 @@ const LogIn = () => {
             <label className="label">
               <Link
                 to={"forgotPassword"}
-                className="label-text-alt link link-hover font-semibold"
+                className="label-text-alt link link-hover font-semibold text-lg"
               >
                 Forgot password?
               </Link>
@@ -172,7 +172,7 @@ const LogIn = () => {
           <small className="font-semibold">
             Are you new to Job Swift?{" "}
             <span>
-              <Link className="ml-1  text-swift underline" to="/register">
+              <Link className="ml-1  text-swift underline text-[18px]" to="/register">
                 Register Now
               </Link>
             </span>
@@ -182,11 +182,13 @@ const LogIn = () => {
               type="submit"
               placeholder=""
               value="Login"
-              className="border-2 border-cyan-500 hover:bg-cyan-500 rounded-lg py-1 font-medium hover:text-white"
+              className="border  bg-lime-800 hover:bg-lime-600    rounded-lg py-1 font-medium text-white"
             />
           </div>
 
-          <SocialLogIn></SocialLogIn>
+          <div className="ms-16 md:lg:">
+            <SocialLogIn></SocialLogIn>
+          </div>
         </form>
       </div>
     </div>

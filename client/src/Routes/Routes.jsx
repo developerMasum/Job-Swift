@@ -58,6 +58,7 @@ import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
 import EditJobs from "../Pages/Dashboard/Jobs/EditJobs/EditJobs";
 import Blogs from "../Components/Blogs/Blogs";
 import BlogDetails from "../Components/Blogs/BlogDetails";
+import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -169,6 +170,7 @@ const router = createBrowserRouter([
       {
         path: "jobs/applied-job/:id",
         element: <AppliedJobs />,
+
         loader: ({ params }) =>
           fetch(`http://localhost:5000/all-post/${params.id}`),
       },
@@ -240,7 +242,10 @@ const router = createBrowserRouter([
         path: "candidate",
         element: <Candidates />,
       },
-
+      {
+        path: "inbox-email",
+        element: <EmailUs />,
+      },
       {
         path: "candidate/profile/:id",
         element: <CandidiateUserDetails />,

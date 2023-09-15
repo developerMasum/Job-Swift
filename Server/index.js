@@ -116,6 +116,7 @@ async function run() {
             jobTitle: formData.jobTitle,
             stage: formData.stage,
             jobPosterEmail: formData.jobPosterEmail,
+            jobId: formData.jobId,
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,

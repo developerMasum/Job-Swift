@@ -3,9 +3,7 @@ import { MdKeyboardArrowDown, MdClear } from "react-icons/md";
 import { LuEdit } from "react-icons/lu";
 import triangle from "../../../assets/Image/triangles4-1.svg";
 import PostJobs from "./PostJobs";
-import icons1 from "../../../assets/Image/jobsicon1.png";
-import icons2 from "../../../assets/Image/jobsicons.png";
-import icons3 from "../../../assets/Image/josbicns3.png";
+
 import { FaEdit } from "react-icons/fa";
 
 const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
@@ -16,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "../../../redux/postJob/postSlice";
 import { authContext } from "../../../Auth/AuthProvider";
 import { getAllCandidates } from "../../../redux/candidates/candidatesOperation";
+import JobsInvitationsCard from "./JobsInvitetionsCard";
 const Jobs = () => {
   const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
@@ -34,32 +33,33 @@ useEffect(() => {
 const jobs = useSelector((state) => state.posts.jobs);
 const isJobs = jobs.filter((d) => d.userEmail === user?.email);
 const jobTitleFor = isJobs.map(j => j.jobTitle);
-const mappedTitle = jobTitleFor.map(jt => {
-  const filteredByTitle = candidates.filter(c => c.jobTitle === jt);
-  const interviewCount = filteredByTitle.filter(ft => ft.stage === "Interview").length;
-  const sourcedCount = filteredByTitle.filter(ft => ft.stage === "Sourced").length;
-  const appliedCount = filteredByTitle.filter(ft => ft.stage === "Applied").length;
-  const offerCount = filteredByTitle.filter(ft => ft.stage === "Offer").length;
-  const hiredCount = filteredByTitle.filter(ft => ft.stage === "Hired").length;
-  const assessmentCount = filteredByTitle.filter(ft => ft.stage === "Assessment").length;
+const mappedTitle = isJobs.map((j) => {
+  const filteredByTitle = candidates.filter((c) => c.jobTitle === j.jobTitle && c.jobId === j._id); 
+  const interviewCount = filteredByTitle.filter((ft) => ft.stage === "Interview").length;
+  const sourcedCount = filteredByTitle.filter((ft) => ft.stage === "Sourced").length;
+  const appliedCount = filteredByTitle.filter((ft) => ft.stage === "Applied").length;
+  const offerCount = filteredByTitle.filter((ft) => ft.stage === "Offer").length;
+  const hiredCount = filteredByTitle.filter((ft) => ft.stage === "Hired").length;
+  const assessmentCount = filteredByTitle.filter((ft) => ft.stage === "Assessment").length;
 
-  console.log(`Job Title: ${jt}`);
-  console.log(`Interview Count: ${interviewCount}`);
-  console.log(`Sourced Count: ${sourcedCount}`);
-  console.log(`Applied Count: ${appliedCount}`);
-  console.log(`Offer Count: ${offerCount}`);
-  console.log(`Hired Count: ${hiredCount}`);
-  console.log(`Assessment Count: ${assessmentCount}`);
+  // console.log(`Job Title: ${j.jobTitle}`);
+  // console.log(`Job ID: ${j._id}`); 
+  // console.log(`Interview Count: ${interviewCount}`);
+  // console.log(`Sourced Count: ${sourcedCount}`);
+  // console.log(`Applied Count: ${appliedCount}`);
+  // console.log(`Offer Count: ${offerCount}`);
+  // console.log(`Hired Count: ${hiredCount}`);
+  // console.log(`Assessment Count: ${assessmentCount}`);
 
   return {
-    jobTitleFor: jt,
+    jobTitleFor: j.jobTitle,
+    jobId: j._id,
     Interview: interviewCount,
     Sourced: sourcedCount,
     Applied: appliedCount,
     Offer: offerCount,
     Hired: hiredCount,
-    Assessment:assessmentCount
-  
+    Assessment: assessmentCount,
   };
 });
   // console.log('job title',mappedTitle);
@@ -71,16 +71,7 @@ const mappedTitle = jobTitleFor.map(jt => {
     dispatch(getAllPost());
   }, []);
 
-
   // ---------------------------------------candidates---------------------
-
-
-
-  // const filteredByTitle = candidates.filter(c =>c.jobTitle ==="Ai Dev")
-  // console.log('from jobs',filteredByTitle);
-
-
-
 
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
@@ -254,73 +245,7 @@ const mappedTitle = jobTitleFor.map(jt => {
               Don't show again
             </h2>
           </div>
-          <div className="px-5 mx-auto pb-20 grid lg:md:grid-cols-3 gap-7">
-            <div
-              className="flex px-4 py-3 rounded-lg"
-              style={{
-                boxShadow:
-                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
-              }}
-            >
-              <div className="space-y-3">
-                <h4 className="font-semibold">Work as a team</h4>
-                <p className="text-swift text-sm">
-                  Invite your team to Workable so you can share feedback and
-                  work together to hire the right people.
-                </p>
-                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
-                  Send invite{" "}
-                </button>
-              </div>
-              <div>
-                <img className="w-[200px] h-[100px]" src={icons1} alt="" />
-              </div>
-            </div>
-            <div
-              className="flex px-4 rounded-lg py-3"
-              style={{
-                boxShadow:
-                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
-              }}
-            >
-              <div className="space-y-3">
-                <h4 className="font-semibold">Show off your brand</h4>
-                <p className="text-swift text-sm">
-                  Ensure candidates see your company logo and custom description
-                  on job posts, emails and more.
-                </p>
-                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
-                  Send invite{" "}
-                </button>
-              </div>
-              <div>
-                <img className="w-[200px] h-[100px]" src={icons2} alt="" />
-              </div>
-            </div>
-            <div
-              className="flex rounded-lg px-4 py-3"
-              style={{
-                boxShadow:
-                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
-              }}
-            >
-              <div className="space-y-3">
-                <h4 className="font-semibold">
-                  Find the best features for you
-                </h4>
-                <p className="text-swift text-sm">
-                  Workable is best when it's customized for you. Check out all
-                  of our features with a personal walkthrough.
-                </p>
-                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
-                  Send invite{" "}
-                </button>
-              </div>
-              <div>
-                <img className="w-[200px] h-[100px]" src={icons3} alt="" />
-              </div>
-            </div>
-          </div>
+          <JobsInvitationsCard />
         </div>
       </div>
     </div>

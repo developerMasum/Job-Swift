@@ -7,22 +7,6 @@ import Swal from "sweetalert2";
 
 const PostJobs = ({ jobs }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const {
-    jobTitle,
-    cityName,
-    jobLocation,
-    Sourced,
-    Applied,
-    PhoneScreen,
-    Assessment,
-    Interview,
-    Offer,
-    Hired,
-    totalCandidates,
-    totalActiveCandidates,
-    lastCandidateDate,
-    _id,
-  } = jobs;
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -49,34 +33,21 @@ const PostJobs = ({ jobs }) => {
     });
   };
 
-  // stage ar kaj baj
-  // const appliedStage =
-  // const { candidates, isLoading, error } = useSelector((state) => state.candidates);
-  // const {user} = useContext(authContext)
-  // const email  = user?.email;
-  // const specificCandidate = candidates.filter(c=>c.jobPosterEmail === email)
-  // const Stage = filteredCandidates.map(candidate => candidate.stage)
-  // console.log('frp, job post',specificCandidate);
 
   return (
     <div
-      className="py-8 rounded-lg  lg:md:px-8 px-6   bg-white mt-5"
-      style={{
-        boxShadow:
-          "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset",
-      }}
+      className="py-8 rounded-lg  lg:md:px-8 px-6 shadow-slate-200 shadow-sm  bg-white mt-5"
+      
     >
       <div className="lg:md:flex justify-between ">
         <div className="flex lg:md:gap-2  items-center">
           <MdStar size={25} color="#ffca00" />
-          <Link to={`applied-job/${_id}`}>
+          <Link to={`applied-job/${jobs.jobId}`}>
             <h2 className="lg:md:text-xl lg:md:font-medium  hover:underline">
               {jobs?.jobTitleFor}
             </h2>
           </Link>
-          <p className="flex gap-1 text-gray-500">
-            <span>{cityName}</span>,<span>{jobLocation}</span>
-          </p>
+          
         </div>
         <div className="flex lg:md:gap-2 gap-6 lg:md:mt-0 mt-5">
           <button className="text-swift px-4 py-1 rounded-lg border-gray-600 border">
@@ -102,7 +73,7 @@ const PostJobs = ({ jobs }) => {
                   }}
                 >
                   <button className="space-y-2  text-start hover:bg-teal-700 hover:text-white  px-3 pt-5 py-3">
-                    <Link to={`/overview/${_id}`}>
+                    <Link to={`/overview/${jobs.jobId}`}>
                       <h6 className="font-semibold">Publish</h6>
                       <p>
                         Visible on your careers page and selected free and
@@ -115,7 +86,7 @@ const PostJobs = ({ jobs }) => {
                     disabled
                     className="py-3  hover:bg-teal-700 hover:text-white  px-3  space-y-2 text-start "
                   >
-                    <Link to={`/editJobs/${_id}`}>
+                    <Link to={`/editJobs/${jobs.jobId}`}>
                       <h6 className="font-semibold">Use Edit</h6>
                       <p>
                         Editable only by account admins and members of the
@@ -126,7 +97,7 @@ const PostJobs = ({ jobs }) => {
                   </button>
 
                   <button
-                    onClick={() => handleDelete(_id)}
+                    onClick={() => handleDelete(jobs.jobId)}
                     className="py-3  hover:bg-teal-700 hover:text-white  px-3  space-y-2 text-start "
                   >
                     <h6 className="font-semibold">Used Delete</h6>
@@ -172,9 +143,8 @@ const PostJobs = ({ jobs }) => {
           job published in career page
         </h2>
         <div className="lg:md:flex">
-          <p>Candidates:{totalCandidates}</p>
-          <p>{totalActiveCandidates} active in pipeline</p>
-          <p>last CandidateDate: {lastCandidateDate} </p>
+          {/* <p>Candidates:{jobs.length}</p> */}
+          
         </div>
       </div>
     </div>
