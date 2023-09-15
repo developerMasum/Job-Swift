@@ -20,7 +20,7 @@ const CandidateTables = ({ candidates }) => {
   // const candidates = candidates
   // console.log(candidates);
 
-  // axios.get(`http://localhost:5000/test/${email}`)
+  // axios.get(`https://server-job-swift.vercel.app/test/${email}`)
   //   .then((response) => {
   //     // Handle the successful response here
   //     console.log('test :', response.data);
@@ -64,7 +64,7 @@ const CandidateTables = ({ candidates }) => {
   async function handleDelete(id) {
     try {
       const response = await fetch(
-        `http://localhost:5000/delete-candidate/${id}`,
+        `https://server-job-swift.vercel.app/delete-candidate/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -103,7 +103,7 @@ const CandidateTables = ({ candidates }) => {
 
     // Send the POST request to the server
     axios
-      .post("http://localhost:5000/mail", mailData)
+      .post("https://server-job-swift.vercel.app/mail", mailData)
       .then((response) => {
         // The code inside this block will only run if the request is successful
         toast.success("Email sent successfully!");
@@ -166,7 +166,7 @@ const CandidateTables = ({ candidates }) => {
                 <div className="flex justify-start gap-3 items-center ">
                   <div className="w-16 h-16 rounded-full overflow-hidden">
                     <img
-                      src={`http://localhost:5000//images/${candidate.image}`}
+                      src={`https://server-job-swift.vercel.app//images/${candidate.image}`}
                       alt=""
                       className="w-full h-full object-cover"
                     />
@@ -254,7 +254,7 @@ const CandidateTables = ({ candidates }) => {
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 flex-shrink-0">
                     <img
-                      src={`http://localhost:5000/images/${candidate.image}`}
+                      src={`https://server-job-swift.vercel.app/images/${candidate.image}`}
                       alt=""
                       className="w-full h-full object-cover rounded-full"
                     />

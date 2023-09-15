@@ -423,7 +423,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     setEmail(data.email);
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "https://server-job-swift.vercel.app/upload",
         formData,
         {
           headers: {
@@ -448,7 +448,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   const [allData, setAllData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/all-applications")
+      .get("https://server-job-swift.vercel.app/all-applications")
       .then((res) => {
         console.log(res.data);
         setAllData(res.data);

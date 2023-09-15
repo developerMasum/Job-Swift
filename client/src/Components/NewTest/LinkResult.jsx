@@ -68,7 +68,7 @@
 //   const [error, setError] = useState(false);
 //   const value = localStorage.getItem("URL");
 //   console.log(value);
-//   const url = `http://localhost:5000/${value}`;
+//   const url = `https://server-job-swift.vercel.app/${value}`;
 //   console.log(url);
 //   const fetchData = async () => {
 //     try {
