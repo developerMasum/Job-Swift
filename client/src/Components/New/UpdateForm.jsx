@@ -423,7 +423,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     setEmail(data.email);
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        " http://localhost:5000/upload",
         formData,
         {
           headers: {
@@ -448,7 +448,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   const [allData, setAllData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/all-applications")
+      .get(" http://localhost:5000/all-applications")
       .then((res) => {
         console.log(res.data);
         setAllData(res.data);

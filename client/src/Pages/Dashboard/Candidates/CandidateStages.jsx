@@ -16,7 +16,7 @@ function CandidateStages({ id }) {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const url = `http://localhost:5000/all-applications/${id}`;
+  const url = ` http://localhost:5000/all-applications/${id}`;
 
   useEffect(() => {
     axios
@@ -38,7 +38,7 @@ function CandidateStages({ id }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/applicant/stage/${id}`,
+        ` http://localhost:5000/applicant/stage/${id}`,
         {
           method: "PATCH",
           headers: {
@@ -126,7 +126,7 @@ export default CandidateStages;
 //   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 //   const stages = ["sourced", "applied", "interview", "offer", "hired"];
 
-//   const url = `http://localhost:5000/all-applications/${id}`;
+//   const url = ` http://localhost:5000/all-applications/${id}`;
 
 //   useEffect(() => {
 //     axios
@@ -158,7 +158,7 @@ export default CandidateStages;
 
 //     try {
 //       const response = await fetch(
-//         `http://localhost:5000/updated-two/${id}?action=${itemName}`,
+//         ` http://localhost:5000/updated-two/${id}?action=${itemName}`,
 //         {
 //           method: "PATCH",
 //           headers: {
@@ -188,13 +188,13 @@ export default CandidateStages;
 //     try {
 //       // Create an array of promises for the two PATCH requests
 //       const promises = [
-//         fetch(`http://localhost:5000/updated-one/${id}?action=${itemName}`, {
+//         fetch(` http://localhost:5000/updated-one/${id}?action=${itemName}`, {
 //           method: "PATCH",
 //           headers: {
 //             "Content-Type": "application/json",
 //           },
 //         }),
-//         fetch(`http://localhost:5000/updated-two/${id}?action=${itemName}`, {
+//         fetch(` http://localhost:5000/updated-two/${id}?action=${itemName}`, {
 //           method: "PATCH",
 //           headers: {
 //             "Content-Type": "application/json",

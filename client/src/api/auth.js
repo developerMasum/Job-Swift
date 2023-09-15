@@ -5,7 +5,7 @@
 
 export const updateData = (id) => {
   fetch(
-    `http://localhost:5000/sourced/${id}`,
+    ` http://localhost:5000/sourced/${id}`,
     {
       method: "PATCH",
     }
