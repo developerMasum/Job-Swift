@@ -56,7 +56,7 @@ const Evaluate = () => {
   return (
     <div className=" py-16">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-semibold text-center  text-gray-600 mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center  text-teal-800 mb-12">
           More reasons companies around the <br /> world choose JobSwift
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">

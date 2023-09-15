@@ -200,8 +200,8 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                           <AiOutlinePhone className="w-6 h-6" />
                           <span>Call</span>
                         </a>
-                        <Link
-                          to=""
+                        <Link to='/get-certificate'
+                         
                           className=" border border-indigo-100 px-2 rounded-md py-1"
                         >
                           Sent Offer Letter

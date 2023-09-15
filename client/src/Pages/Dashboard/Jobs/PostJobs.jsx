@@ -12,7 +12,7 @@ const PostJobs = ({ jobs,handleDelete }) => {
 
 
   return (
-    <div className="py-8 rounded-lg  lg:md:px-8 px-6 shadow-slate-200 shadow-sm  bg-white mt-5">
+    <div className="py-8 rounded-lg  lg:md:px-8 px-6  shadow-sm border bg-white mt-5">
       <div className="lg:md:flex justify-between ">
         <div className="flex lg:md:gap-2  items-center">
           <MdStar size={25} color="#ffca00" />

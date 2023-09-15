@@ -97,7 +97,7 @@ const BannerCompany = () => {
           ))}
           </Marquee>
         </div>
-        <div className="md:flex mt-4">
+        {/* <div className="md:flex mt-4">
         <Marquee speed={60} gradient={true} pauseOnHover={true} direction="right">
         {partnerCompaniesOne.map((company, index) => (
             <div
@@ -112,7 +112,7 @@ const BannerCompany = () => {
             </div>
           ))}
           </Marquee>
-        </div>
+        </div> */}
 
        
 

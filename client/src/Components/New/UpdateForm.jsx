@@ -501,23 +501,22 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
             ,
           </p>
           <p className="text-lg text-gray-700">
-            Your aspiration to join our team has been received with delight. Our
-            discerning recruitment team is currently engrossed in evaluating
-            your application.
+            We are thrilled to have received your application. Our dedicated
+            recruitment team is currently evaluating your qualifications.
           </p>
           <p className="text-lg text-gray-700">
-            If your skills resonate with our needs, we will expediently reach
-            out to you through <span className="text-green-600">{email}</span>{" "}
-            to discuss the forthcoming stages of the application process.
+            If your skills align with our requirements, we will contact you
+            through <span className="text-green-600">{email}</span> to discuss
+            the next steps in the application process.
           </p>
           <p className="text-lg text-gray-700">
-            Meanwhile, we extend an invitation to explore our company's website.
-            Dive into the realm of our innovative projects, imbibe our ethos,
-            and fathom the impact we create.
+            In the meantime, we invite you to explore our company's website.
+            Discover our innovative projects, our values, and the impact we
+            make.
           </p>
           <p className="text-xl text-gray-800 font-semibold">
-            Anticipation builds as we envision the prospect of your addition to
-            our team. Our eagerness to connect with you soon knows no bounds!
+            We are excited about the possibility of having you join our team. We
+            look forward to connecting with you soon!
           </p>
         </div>
       ) : (

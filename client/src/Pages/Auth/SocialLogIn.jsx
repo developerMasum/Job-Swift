@@ -35,7 +35,7 @@ const SocialLogIn = () => {
         <div>
             <div className=' divider my-1'></div>
             
-                <button onClick={handleGoogle} className=' text-center border rounded-full py-2 px-5  hover:bg-lime-800 hover:text-white'>
+                <button onClick={handleGoogle} className=' text-center border rounded-full py-2 px-5  hover:bg-[#2f5c58] hover:text-white'>
                     <span className='me-3'>Log in with google</span>
                     <button onClick={handleGoogle} className="btn btn-circle btn-outline  btn-sm">                    <FaGoogle className=''></FaGoogle>
                     </button>

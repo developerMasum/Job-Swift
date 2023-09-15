@@ -118,27 +118,15 @@ const CandidateTables = ({ candidates }) => {
   };
 
   return (
-    <div className="mt-5 text-secondary">
-      {/* <div className="flex justify-between w-full items-center ">
-        <p className="w-1/2 text-secondary"> {candidates.length} Candidates</p>
-        <div className="w-52">
-          <select
-            className="block appearance-none w-full bg-gray-100 border-0 text-gray-700 py-1 px-2 rounded leading-tight focus:outline-none focus:bg-white"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-          >
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-          </select>
-        </div>
-      </div> */}
+    <div className="mt-5 text-secondary  border rounded-lg">
+    
 
-      <div className="flex justify-between w-full items-center mb-4">
+      <div className="flex justify-between  w-full items-center mb-4">
         <p className="text-xl font-bold text-gray-800">
           {candidates.length} <span className="text-gray-500">Candidates</span>
         </p>
 
-        <div className="relative w-52">
+        {/* <div className="relative w-52">
           <select className="block appearance-none w-full bg-gray-100 border border-gray-300 text-gray-800 py-2 pl-3 pr-10 rounded-lg leading-tight focus:outline-none focus:border-gray-500">
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>
@@ -146,7 +134,7 @@ const CandidateTables = ({ candidates }) => {
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
             <FaCaretDown color="#6B7280" />
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* <table className="w-full ">
@@ -237,9 +225,9 @@ const CandidateTables = ({ candidates }) => {
           ))}
         </tbody>
       </table> */}
-      <table className="w-full shadow-lg rounded-lg overflow-hidden">
+      <table className="w-full border-[1px] rounded-lg overflow-hidden">
         {/* Head */}
-        <thead className="bg-gray-200 text-gray-500">
+        <thead className="bg-[#00756a] text-white">
           <tr>
             <th className="px-6 py-3 text-left">Select</th>
             <th className="px-6 py-3">Candidate Information</th>

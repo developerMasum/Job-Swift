@@ -138,7 +138,7 @@ function AtsFeature() {
                 className="w-32 mx-auto mt-4"
               />
               <div className="p-4">
-                <h3 className="text-xl font-semibold text-gray-800">
+                <h3 className="text-xl font-semibold text-gray-700">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600 mt-2">{feature.description}</p>

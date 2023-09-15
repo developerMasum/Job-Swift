@@ -73,20 +73,20 @@ const LogIn = () => {
   };
 
   return (
-    <div className=" bg-gradient-to-r from-[#00756a] to-[#677500]  lg:md:p-32">
+    <div className="   lg:md:p-32">
       {/* // <div className="login_container"> */}
       <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 rounded-2xl shadow-lg shadow-black ">
-        <div className="">
+        <div className="rounded-md">
           {/* <img className="h-[380px] rounded-l-2xl" src={login} alt="" /> */}
           <img
-            src="https://i.ibb.co/xXxMCKV/login-keyboard.png"
+            src='https://i.ibb.co/Fqhmwhz/login01.png'
             alt=""
-            className="h-[100%] lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5"
+            className="h-[100%]  lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5"
           />
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="card-body lg:md:my-0  lg:md:w-[420px] bg-white bg-opacity-40 rounded-r-2xl "
+          className="card-body lg:md:my-0  lg:md:w-[420px] bg-[#00756a] bg-opacity-40 rounded-r-2xl "
         >
           {/* <div className=' font-bold  '>
             <h1 className='text-center font-serif text-xl'>Log In Now</h1>
@@ -94,14 +94,14 @@ const LogIn = () => {
 
           <div className="form-control">
             <label className="label ">
-              <span className="label-text  text-green-100">Email</span>
+              <span className="label-text  text-white">Email</span>
             </label>
             <input
               type="email"
               ref={emailRef}
               {...register("email", { required: true })}
               placeholder="email"
-              className="rounded-md bg-green-200 bg-opacity-0 border-green-800 "
+              className="rounded-md bg-[#2f5c58]  border-green-800 "
             />
             {errors.email && (
               <span className="text-orange-800">This field is required</span>
@@ -126,7 +126,7 @@ const LogIn = () => {
             />
 
             </div> */}
-            <div className="flex rounded-md px-1 bg-white border-green-800  border">
+            <div className="flex rounded-md px-1 bg-[#2f5c58] border-green-800  border">
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", {
@@ -180,7 +180,7 @@ const LogIn = () => {
             Are you new to Job Swift?{" "}
             <span>
               <Link
-                className="ml-1  text-blue-700 underline text-sm font-bold"
+                className="ml-1  text-[#2f5c58] underline text-sm font-bold"
                 to="/register"
               >
                 Register Now
@@ -192,7 +192,7 @@ const LogIn = () => {
               type="submit"
               placeholder=""
               value="Login"
-              className="border  bg-lime-800 hover:bg-lime-600    rounded-lg py-1 font-medium text-white"
+              className="border  bg-[#2f5c58] hover:bg-lime-600    rounded-lg py-1 font-medium text-white"
             />
           </div>
 
