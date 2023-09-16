@@ -213,7 +213,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                           Disqualify & Rejection Mail
                         </button>
                         <Link
-                          to={"/dashboard/get-certificate"}
+                          to={`/dashboard/get-certificate/${selectedCandidate._id}`}
                           className=" border border-indigo-100 px-2 rounded-md py-1"
                         >
                           Sent Offer Letter

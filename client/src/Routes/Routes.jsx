@@ -251,7 +251,7 @@ const router = createBrowserRouter([
         element: <EmailUs />,
       },
       {
-        path: "get-certificate",
+        path: "get-certificate/:id",
         element: <Certification />,
       },
       {

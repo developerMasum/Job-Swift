@@ -1,8 +1,32 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 import html2pdf from "html2pdf.js";
+import { useParams } from "react-router-dom";
 
 const Certification = () => {
+  const { id } = useParams();
+  const[certifiedData,setCertifiedData] = useState()
+
+  useEffect(() => {
+    const URL = `http://localhost:5000/all-applications/${id}`;
+    fetch(URL)
+      .then((response) => response.json())
+      .then((data) => {
+        setCertifiedData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching profile data:", error);
+      });
+  }, [id]);
+
+console.log(certifiedData);
+
+  if (certifiedData === null) {
+    return <Loader />;
+  }
+
+
+
   // State to manage form data and errors
   const [formData, setFormData] = useState({
     userName: "",
