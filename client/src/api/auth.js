@@ -1,7 +1,7 @@
 // for application submit
 
 // export const updateData = (id) => {
-//   fetch(`http://localhost:5000/sourced/${id}`, {
+//   fetch(` https://server-wheat-beta.vercel.app/sourced/${id}`, {
 //     method: "PATCH",
 //   })
 //     .then((res) => res.json())

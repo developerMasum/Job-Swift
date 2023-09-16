@@ -305,6 +305,7 @@ import { authContext } from "../../Auth/AuthProvider";
 
 const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   console.log(jobId);
+  console.log(jobTitle);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -415,15 +416,14 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     formData.append("date", isoDateString);
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
-    // formData.append('appliedJobId', appliedJobId);
-    // formData.append('stage', stage)
+   
     console.log(data);
     setFirstName(data.firstName);
     setLastName(data.lastName);
     setEmail(data.email);
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "  https://server-wheat-beta.vercel.app/upload-new",
         formData,
         {
           headers: {
@@ -439,7 +439,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
 
     setTimeout(() => {
       setIsSubmitting(false);
-      setIsSubmitted(true);
+      // setIsSubmitted(true);
     }, 4000);
   };
 
@@ -448,7 +448,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   const [allData, setAllData] = useState([]);
   useEffect(() => {
     axios
-      .get("https://server-job-swift.vercel.app/all-applications")
+      .get("  https://server-wheat-beta.vercel.app/all-applications")
       .then((res) => {
         console.log(res.data);
         setAllData(res.data);
