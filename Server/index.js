@@ -7,6 +7,7 @@ const path = require("path");
 const sendMail = require("./sendMail");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const fileUpload = require("express-fileupload");
 
 const port = process.env.PORT || 5000;
 const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
@@ -25,6 +26,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(fileUpload());
+
+const uploadDirectory = path.join(__dirname, "public", "uploads");
+app.use(express.static(uploadDirectory));
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const { log } = require("console");
@@ -107,53 +112,60 @@ async function run() {
       res.send({ token });
     });
 
+    // use express file-upload
+
+    app.post("/upload-new", async (req, res) => {
+      try {
+        if (!req.files) {
+          return res.status(400).json({ message: "No files were uploaded." });
+        }
+
+        const imageFile = req.files.image;
+        const resumeFile = req.files.resume;
+
+        const formData = req.body;
+
+        // Create an array of documents to insert
+        const documentsToInsert = {
+          jobTitle: formData.jobTitle,
+          stage: formData.stage,
+          jobPosterEmail: formData.jobPosterEmail,
+          jobId: formData.jobId,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phoneNumber: formData.phone,
+          location: formData.address,
+          summary: formData.summary,
+          coverLetter: formData.coverLetter,
+          date: new Date().toISOString(),
+          educationList: JSON.parse(formData.educationList),
+          experienceList: JSON.parse(formData.experienceList),
+          image: `/uploads/${imageFile.name}`, // Store the relative path to the image
+          resume: `/uploads/${resumeFile.name}`, // Store the relative path to the resume
+        };
+
+        // Move image and resume files to the upload directory
+        imageFile.mv(`${uploadDirectory}/${imageFile.name}`);
+        resumeFile.mv(`${uploadDirectory}/${resumeFile.name}`);
+
+        // Insert the documents into the collection
+        await applicationsPostCollection.insertOne(documentsToInsert);
+
+        return res
+          .status(201)
+          .json({ message: "Application submitted successfully" });
+      } catch (error) {
+        console.error("Error submitting application:", error);
+        return res.status(500).json({
+          message: "An error occurred while submitting the application",
+        });
+      }
+    });
+
     //  for multer image and resume
 
-    app.post(
-      "/upload",
-      upload.fields([{ name: "resume" }, { name: "image" }]),
-      async (req, res) => {
-        const formData = req.body;
-        const resumeFilePath = req.files.resume[0].filename; // Accessing resume filename
-        const imageFilePath = req.files.image[0].filename; // Accessing image filename
-        const educationList = JSON.parse(formData.educationList); // Parse educationList JSON
-        const experienceList = JSON.parse(formData.experienceList); // Parse experienceList JSON
-        const currentDate = new Date().toISOString();
-        try {
-          // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
-          await applicationsPostCollection.insertOne({
-            jobTitle: formData.jobTitle,
-            stage: formData.stage,
-            jobPosterEmail: formData.jobPosterEmail,
-            jobId: formData.jobId,
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            phoneNumber: formData.phone,
-            location: formData.address,
-            summary: formData.summary,
-            resume: resumeFilePath,
-            coverLetter: formData.coverLetter,
-            image: imageFilePath,
-            date: currentDate,
-            educationList: educationList, // Save parsed educationList
-            experienceList: experienceList,
-            // stage: formData.stage,
-            // appliedJobId: formData.appliedJobId,
-          });
-
-          res
-            .status(201)
-            .json({ message: "Application submitted successfully" });
-        } catch (error) {
-          console.error("Error submitting application:", error);
-          res.status(500).json({
-            message: "An error occurred while submitting the application",
-          });
-        }
-      }
-    );
-
+    
     // post data of a new user
     // app.post("/user", async (req, res) => {
     //   const query = req.body;
@@ -172,7 +184,7 @@ async function run() {
       const updateDoc = {
         $set: user,
       };
-      const result = await usersCollection.updateOne(query, updateDoc, options);
+      const result = await UserCollection.updateOne(query, updateDoc, options);
       res.send(result);
     });
 
@@ -382,9 +394,8 @@ async function run() {
       }
     });
 
-
     // test  get candidate by specific jobs
-    app.get('/all-candidate/:email', async (req, res) => {
+    app.get("/all-candidate/:email", async (req, res) => {
       const email = req.params.email;
       // console.log(email);
 
@@ -399,11 +410,6 @@ async function run() {
         res.status(500).send("An error occurred while fetching data");
       }
     });
-    
-
-    
-
-    
 
     // all applicant set stages-----------------------------
     app.patch("/applicant/stage/:id", async (req, res) => {
@@ -434,40 +440,36 @@ async function run() {
       }
     });
 
+    // seatch candidate option
+    app.get("/candidates/:text", async (req, res) => {
+      const searchText = req.params.text;
 
+      // Check if searchText is empty or not provided
+      if (!searchText) {
+        return res.status(400).send("Please provide a search text.");
+      }
 
-// seatch candidate option
-app.get("/candidates/:text", async (req, res) => {
-  const searchText = req.params.text;
-  
-  // Check if searchText is empty or not provided
-  if (!searchText) {
-    return res.status(400).send("Please provide a search text.");
-  }
+      try {
+        // Use a consistent error message for potential errors
+        const result = await applicationsPostCollection
+          .find({
+            name: {
+              $regex: searchText,
+              $options: "i",
+            },
+          })
+          .toArray();
 
-  try {
-    // Use a consistent error message for potential errors
-    const result = await applicationsPostCollection
-      .find({
-        name: {
-          $regex: searchText,
-          $options: "i",
-        },
-      })
-      .toArray();
-
-    // Return a meaningful response
-    res.status(200).json(result);
-  } catch (error) {
-    console.error(error);
-    // Handle the error more gracefully
-    res.status(500).json({ error: "An error occurred while searching for candidates." });
-  }
-});
-
-
-
-
+        // Return a meaningful response
+        res.status(200).json(result);
+      } catch (error) {
+        console.error(error);
+        // Handle the error more gracefully
+        res
+          .status(500)
+          .json({ error: "An error occurred while searching for candidates." });
+      }
+    });
 
     // delete a candidate
     app.delete("/delete-candidate/:id", async (req, res) => {
