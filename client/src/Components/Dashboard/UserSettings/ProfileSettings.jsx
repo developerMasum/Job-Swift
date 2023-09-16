@@ -16,7 +16,7 @@ const ProfileSettings = () => {
   } = useForm();
   const url =
     "https://api.imgbb.com/1/upload?key=10695559364aab2c6fcb1fe3df5357eb";
-  // imgBB key = 10695559364aab2c6fcb1fe3df5357eb
+  
   const onSubmit = (data) => {
     console.log(data);
     const firstName = data?.firstName;
