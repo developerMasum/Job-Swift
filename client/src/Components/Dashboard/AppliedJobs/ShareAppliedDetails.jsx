@@ -30,6 +30,8 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   }, [candidates]);
 
   const handleCheckbox = (e, candidateId) => {
+    console.log(candidates);
+    
     if (e.target.checked) {
       // Find the selected candidate by ID
       const selected = candidates.find(
@@ -47,7 +49,8 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
-    // console.log(id);
+
+    console.log(id);
     try {
       const response = fetch(` https://server-wheat-beta.vercel.app/applicant/stage/${id}`, {
         method: "PATCH",
