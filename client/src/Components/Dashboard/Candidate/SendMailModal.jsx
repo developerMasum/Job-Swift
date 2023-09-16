@@ -17,7 +17,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
     async function fetchData() {
       try {
         const response = await fetch(
-          "https://server-job-swift.vercel.app/all-applications"
+          " http://localhost:5000/all-applications"
         );
         const data = await response.json();
         setMail(data);
