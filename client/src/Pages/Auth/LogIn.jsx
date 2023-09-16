@@ -14,10 +14,10 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import "./LogIn.css";
 
 const LogIn = () => {
-  const [isAdmin] = useAdmin();
+  // const [isAdmin] = useAdmin();
   const [showPassword, setShowPassword] = useState(false);
 
-  // console.log(isAdmin);
+  // console.log('at login page',isAdmin);
 
   // const isAdmin = useAdmin();
   //   console.log(isAdmin);
@@ -33,8 +33,7 @@ const LogIn = () => {
     useContext(authContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const destination =
-    (isAdmin && "/dashboard/admin/users") || "/dashboard/jobs";
+  const destination = "/dashboard/jobs";
 
   // const [error, setError] = useState(null)
 

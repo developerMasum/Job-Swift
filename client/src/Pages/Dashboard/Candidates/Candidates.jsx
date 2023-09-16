@@ -92,7 +92,7 @@ const Candidates = () => {
      <div className="md:flex container mx-auto justify-between items-start gap-6 w-full">
       <div className="md:w-8/12">
         <div className="pt-4">
-          <CandidateTables candidates={candidatesToShow} />
+          <CandidateTables candidatesData={candidatesToShow} />
 
           {/* Pagination */}
           <div className="flex items-center  justify-center mt-4">

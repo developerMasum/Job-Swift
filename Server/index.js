@@ -436,7 +436,7 @@ async function run() {
 
 
 
-// seatch candidate option
+// search candidate option
 app.get("/candidates/:text", async (req, res) => {
   const searchText = req.params.text;
   
