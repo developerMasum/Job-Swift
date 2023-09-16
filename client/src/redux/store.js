@@ -7,8 +7,6 @@ import candidatesReducer from "./candidates/candidatesSlice";
 
 
 
-
-
 const store = configureStore({
     reducer: {
         counter: jobReducer,

@@ -7,7 +7,9 @@ const FindCandidatesLayout = () => {
     return (
         <div>
             <FindCandidatesNav></FindCandidatesNav>
+            <div className='md:px-8 px-2'>
             <Outlet></Outlet>
+            </div>
         </div>
     );
 };

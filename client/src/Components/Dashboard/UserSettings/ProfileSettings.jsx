@@ -1,19 +1,60 @@
 import { RiImageAddLine } from "react-icons/ri";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
 import TimezoneSelect from "react-timezone-select";
+import { authContext } from "../../../Auth/AuthProvider";
+import Swal from "sweetalert2";
 
 const ProfileSettings = () => {
+  const { user, updateUserProfile } = useContext(authContext);
+  console.log(user);
   const {
     handleSubmit,
     control,
     register,
     formState: { errors },
   } = useForm();
-
+  const url =
+    "https://api.imgbb.com/1/upload?key=10695559364aab2c6fcb1fe3df5357eb";
+  
   const onSubmit = (data) => {
     console.log(data);
-    // Handle form submission here
+    const firstName = data?.firstName;
+    const lastName = data?.lastName;
+    const jobTitle = data?.jobTitle;
+    const timeZone = data?.timeZone?.label;
+    const image = data.image[0];
+    const formData = new FormData();
+    formData.append("image", image);
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageResponse) => {
+        const photo = imageResponse.data.display_url;
+
+        updateUserProfile(firstName, photo)
+          .then(() => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Successfully Profile Update !!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((error) => {
+            console.log(error.message);
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: error?.message,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
+      });
   };
 
   return (

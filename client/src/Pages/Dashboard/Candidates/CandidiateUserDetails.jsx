@@ -18,6 +18,7 @@ import {
   BiCategoryAlt,
 } from "react-icons/bi";
 import toast from "react-hot-toast";
+import { HiX } from "react-icons/hi";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import { GrSend } from "react-icons/gr";

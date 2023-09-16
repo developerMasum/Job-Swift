@@ -317,11 +317,24 @@ async function run() {
       res.send(result);
     });
     app.delete("/all-post/:id", async (req, res) => {
+
       try {
-        const id = req.params.id;
+          const id = req.params.id;
         const query = { _id: new ObjectId(id) };
 
         const result = await jobPostCollection.deleteOne(query);
+      } catch (error) {
+        console.error("Error deleting the post:", error);
+        res.status(500).send({ message: "Internal Server Error" });
+      }
+    });
+    // Delete all post 
+    app.delete("/all-post", async (req, res) => {
+
+      try {
+        const query = {};
+
+        const result = await jobPostCollection.deleteMany(query);
       } catch (error) {
         console.error("Error deleting the post:", error);
         res.status(500).send({ message: "Internal Server Error" });
