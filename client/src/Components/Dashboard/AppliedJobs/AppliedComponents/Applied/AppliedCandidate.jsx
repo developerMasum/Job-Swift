@@ -99,7 +99,7 @@ const AppliedCandidate = ({ candidates, stageName }) => {
                   <div className="flex justify-start gap-3 items-center ">
                     <div className="w-16 h-16 rounded-full overflow-hidden">
                       <img
-                        src={` http://localhost:5000/${candidate.image}`}
+                        src={`  https://server-wheat-beta.vercel.app/${candidate.image}`}
                         alt=""
                         className="w-full h-full object-cover"
                       />

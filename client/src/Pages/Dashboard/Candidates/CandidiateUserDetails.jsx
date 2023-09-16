@@ -181,7 +181,7 @@ const CandidiateUserDetails = () => {
   };
 
   useEffect(() => {
-    const URL = `http://localhost:5000/all-applications/${id}`;
+    const URL = ` https://server-wheat-beta.vercel.app/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -202,7 +202,7 @@ const CandidiateUserDetails = () => {
   // handleDisQualified
   const handleDisQualified = (id) => {
     try {
-      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
+      const response = fetch(` https://server-wheat-beta.vercel.app/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -290,7 +290,7 @@ const CandidiateUserDetails = () => {
               <div>
                 <img
                   className="h-24 w-24 rounded-xl border border-sky-600"
-                  src={` http://localhost:5000/${image}`}
+                  src={`  https://server-wheat-beta.vercel.app/${image}`}
                   alt=""
                 />
               </div>
@@ -417,7 +417,7 @@ const CandidiateUserDetails = () => {
 
               <div className="border max-w-3xl border-slate-200 p-10 text-center">
                 <iframe
-                  src={` http://localhost:5000/${resume}`}
+                  src={`  https://server-wheat-beta.vercel.app/${resume}`}
                   width={100}
                   title="Uploaded Resume"
                   className="mt-2 border border-gray-400 rounded"

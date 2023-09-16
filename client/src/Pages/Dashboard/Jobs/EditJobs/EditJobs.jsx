@@ -44,7 +44,7 @@ const EditJobs = () => {
     // console.log(postData);
     // const id = data._id;
 
-    const response = await fetch(`http://localhost:5000/all-post/${id}`, {
+    const response = await fetch(` https://server-wheat-beta.vercel.app/all-post/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
