@@ -5,10 +5,10 @@ import { useParams } from "react-router-dom";
 
 const Certification = () => {
   const { id } = useParams();
-  const[certifiedData,setCertifiedData] = useState()
+  const [certifiedData, setCertifiedData] = useState();
 
   useEffect(() => {
-    const URL = ` https://server-wheat-beta.vercel.app/all-applications/${id}`;
+    const URL = ` https://server-job-swift.vercel.app/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -19,13 +19,11 @@ const Certification = () => {
       });
   }, [id]);
 
-console.log(certifiedData);
+  console.log(certifiedData);
 
   if (certifiedData === null) {
     return <Loader />;
   }
-
-
 
   // State to manage form data and errors
   const [formData, setFormData] = useState({

@@ -37,7 +37,7 @@ const SendRejectionMail = ({ isOpen, onClose, onSubmit, value }) => {
 
     // Send the POST request to the server
     axios
-      .post(" https://server-wheat-beta.vercel.app/mail", mailData)
+      .post(" https://server-job-swift.vercel.app/mail", mailData)
       .then((response) => {
         // The code inside this block will only run if the request is successful
         toast.success("Email sent successfully!");

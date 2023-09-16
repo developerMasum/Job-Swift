@@ -131,15 +131,14 @@ const router = createBrowserRouter([
         path: "/overview/:id",
         element: <Overview />,
         loader: ({ params }) =>
-          fetch(` https://server-wheat-beta.vercel.app/job_post/${params.id}`),
+          fetch(` https://server-job-swift.vercel.app/job_post/${params.id}`),
       },
       {
         path: "/editJobs/:id",
         element: <EditJobs />,
         loader: ({ params }) =>
-          fetch(` https://server-wheat-beta.vercel.app/all-post/${params.id}`),
+          fetch(` https://server-job-swift.vercel.app/all-post/${params.id}`),
       },
-      
     ],
   },
   {
@@ -179,13 +178,13 @@ const router = createBrowserRouter([
         element: <AppliedJobs />,
 
         loader: ({ params }) =>
-          fetch(` https://server-wheat-beta.vercel.app/all-post/${params.id}`),
+          fetch(` https://server-job-swift.vercel.app/all-post/${params.id}`),
       },
 
       {
         path: "jobs/findCandidates/:id",
         element: <FindCandidatesLayout></FindCandidatesLayout>,
-        
+
         children: [
           {
             path: "teamMembers",
@@ -208,7 +207,6 @@ const router = createBrowserRouter([
           {
             path: "jobDetails/:id",
             element: <JobsDetails></JobsDetails>,
-            
           },
         ],
       },
@@ -264,7 +262,7 @@ const router = createBrowserRouter([
       {
         path: "candidate/profile/:id",
         element: <CandidiateUserDetails />,
-        // loader: ({ params }) => fetch(` https://server-wheat-beta.vercel.app/users/${params.id}`),
+        // loader: ({ params }) => fetch(` https://server-job-swift.vercel.app/users/${params.id}`),
       },
       {
         path: "settings/profile",

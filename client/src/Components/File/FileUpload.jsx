@@ -39,7 +39,7 @@ function ImageForm() {
     try {
       // Make an Axios POST request with the formData
       const response = await axios.post(
-        "  https://server-wheat-beta.vercel.app/upload-file",
+        "  https://server-job-swift.vercel.app/upload-file",
         {
           image: imageData,
           resume: resumeData,
@@ -55,7 +55,7 @@ function ImageForm() {
   console.log(imageData);
 
   useEffect(() => {
-    fetch("  https://server-wheat-beta.vercel.app/get-file", {
+    fetch("  https://server-job-swift.vercel.app/get-file", {
       method: "GET",
     })
       .then((res) => res.json())

@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: " https://server-wheat-beta.vercel.app/",
+    baseURL: " https://server-job-swift.vercel.app/",
   });
 
   useEffect(() => {

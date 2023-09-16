@@ -1,3 +1,4 @@
+# Hi, We're Team  **Scripting Sorcerers!** 👋
 # Job Swift (ATS based Website)
 
 Job Swift is ATS(Applicant Tracking System) based website. It makes hiring easier for employers and recruiters. It puts job listings, resumes, and applicant tracking all in one place. It also does some of the work for you, like reading resumes and setting up interviews. This saves time and helps you hire better.
@@ -19,6 +20,13 @@ Job Swift is ATS(Applicant Tracking System) based website. It makes hiring easie
 - Company's Hr Feedback
 - Send Automated Certification to Hired person mail 
 - Admin Dashboard (graphs and charts)
+
+## Tech Stack
+
+**Client:** React, Redux, Vitest , React Routing, DaisyUI, Firebase Authentication, TailwindCSS 
+
+**Server:** Node, Express, MongoDB ,JWT,Nodemailer,dotENV
+
 
 ## Documentation
 

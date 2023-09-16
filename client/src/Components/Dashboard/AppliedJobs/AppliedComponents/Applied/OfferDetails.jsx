@@ -49,13 +49,16 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
     try {
-      const response = fetch(` https://server-wheat-beta.vercel.app/applicant/stage/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ stage: "Hired" }),
-      });
+      const response = fetch(
+        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ stage: "Hired" }),
+        }
+      );
 
       if (response) {
         toast.success("This Candidate moved to Applied");
@@ -106,7 +109,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-12 flex-shrink-0">
                           <img
-                            src={`  https://server-wheat-beta.vercel.app/${candidate.image}`}
+                            src={`  https://server-job-swift.vercel.app/${candidate.image}`}
                             alt=""
                             className="w-full h-full object-cover rounded-full"
                           />
@@ -178,7 +181,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                     <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
                       <div className="flex items-center justify-around space-x-4">
                         <a
-                          href={`  https://server-wheat-beta.vercel.app/${selectedCandidate.resume}`}
+                          href={`  https://server-job-swift.vercel.app/${selectedCandidate.resume}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center text-white  space-x-2 hover:text-blue-500"
@@ -216,7 +219,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                       <div className="flex items-center space-x-4">
                         <div className="w-20 h-20 rounded-full overflow-hidden">
                           <img
-                            src={`  https://server-wheat-beta.vercel.app/${selectedCandidate.image}`}
+                            src={`  https://server-job-swift.vercel.app/${selectedCandidate.image}`}
                             alt={`${selectedCandidate.firstName} ${selectedCandidate.lastName}'s avatar`}
                             className="object-cover w-full h-full"
                           />
@@ -308,7 +311,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
 
                     <div className="border max-w-4xl border-slate-200 p-5 text-center">
                       <iframe
-                        src={`  https://server-wheat-beta.vercel.app/${selectedCandidate?.resume}`}
+                        src={`  https://server-job-swift.vercel.app/${selectedCandidate?.resume}`}
                         width={100}
                         title="Uploaded Resume"
                         className="mt-2 border border-gray-400 rounded"
