@@ -131,14 +131,15 @@ const router = createBrowserRouter([
         path: "/overview/:id",
         element: <Overview />,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/job_post/${params.id}`),
+          fetch(`http://localhost:5000/job_post/${params.id}`),
       },
       {
         path: "/editJobs/:id",
         element: <EditJobs />,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/all-post/${params.id}`),
+          fetch(`http://localhost:5000/all-post/${params.id}`),
       },
+      
     ],
   },
   {
@@ -177,13 +178,14 @@ const router = createBrowserRouter([
         path: "jobs/applied-job/:id",
         element: <AppliedJobs />,
 
-        // loader: ({ params }) =>
-        //   fetch(` http://localhost:5000/all-post/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/all-post/${params.id}`),
       },
 
       {
-        path: "jobs/findCandidates",
+        path: "jobs/findCandidates/:id",
         element: <FindCandidatesLayout></FindCandidatesLayout>,
+        
         children: [
           {
             path: "teamMembers",
@@ -204,8 +206,9 @@ const router = createBrowserRouter([
             element: <WorkFlow></WorkFlow>,
           },
           {
-            path: "jobDetails",
+            path: "jobDetails/:id",
             element: <JobsDetails></JobsDetails>,
+            
           },
         ],
       },
@@ -251,7 +254,7 @@ const router = createBrowserRouter([
         element: <EmailUs />,
       },
       {
-        path: "get-certificate",
+        path: "get-certificate/:id",
         element: <Certification />,
       },
       {
@@ -261,7 +264,7 @@ const router = createBrowserRouter([
       {
         path: "candidate/profile/:id",
         element: <CandidiateUserDetails />,
-        // loader: ({ params }) => fetch(` http://localhost:5000/users/${params.id}`),
+        // loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
       },
       {
         path: "settings/profile",

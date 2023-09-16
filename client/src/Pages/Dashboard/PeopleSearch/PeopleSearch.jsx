@@ -6,6 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 
 import { BsPinAngle } from 'react-icons/bs';
 import { RxCross2 } from 'react-icons/rx';
+import { Link } from 'react-router-dom';
 
 
 const PeopleSearch = () => {
@@ -103,7 +104,7 @@ const PeopleSearch = () => {
                                     {errors.university && <p className='text-red-400 mt-1'>University name is required.</p>}
                                 </div>
                                 <div className='py-12 flex items-center '>
-                                    <input className='btn btn-outline  border-lime-900 bg-lime-300 bg-opacity-20 hover:bg-emerald-700 w-[300px] ' type="submit" />
+                                    <input className='py-[8px] mt-1 border-lime-900 bg-emerald-700 w-[300px] text-white rounded-md hover:bg-orange-500 hover:border-0 ' type="submit" />
                                 </div>
                             </div>
                         </form>
@@ -118,9 +119,9 @@ const PeopleSearch = () => {
                                 <span>to use on People Search, including AI Recruiter.</span>
                                 <br />
                             </p>
-                            <button className='my-5 btn bg-[#00756a] text-white hover:bg-orange-600'>Publish a job</button>
+                            <Link to="/dashboard/jobs/post-job"><button className='my-5 btn rounded-lg bg-[#00756a] text-white hover:bg-orange-600'>Publish a job</button></Link>
 
-                            <p className=' '>How to use <a className='text-[#00756a] hover:underline' href="">People Search</a>  and <a className='text-[#00756a] hover:underline' href="">AI Recruiter</a></p>
+                            <p className=''>How to use <a className='text-[#00756a] hover:underline' href="">People Search</a>  and <a className='text-[#00756a] hover:underline' href="">AI Recruiter</a></p>
                         </div>
 
                     </div>

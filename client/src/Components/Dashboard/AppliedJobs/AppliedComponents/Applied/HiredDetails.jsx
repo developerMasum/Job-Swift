@@ -53,16 +53,13 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   const handleDisQualify = (id) => {
     setIsModalOpen(true);
     try {
-      const response = fetch(
-        ` http://localhost:5000/applicant/stage/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ stage: "Applied" }),
-        }
-      );
+      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ stage: "Applied" }),
+      });
 
       if (response) {
         toast.success("This Candidate moved to Applied");
@@ -216,7 +213,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                           Disqualify & Rejection Mail
                         </button>
                         <Link
-                          to={"/dashboard/get-certificate"}
+                          to={`/dashboard/get-certificate/${selectedCandidate._id}`}
                           className=" border border-indigo-100 px-2 rounded-md py-1"
                         >
                           Sent Offer Letter

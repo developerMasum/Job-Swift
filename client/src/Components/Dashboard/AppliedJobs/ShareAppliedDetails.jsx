@@ -49,16 +49,13 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   const handleMoveToApplied = (id) => {
     // console.log(id);
     try {
-      const response = fetch(
-        ` http://localhost:5000/applicant/stage/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ stage: "Assessment" }),
-        }
-      );
+      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ stage: "Assessment" }),
+      });
 
       if (response) {
         toast.success("This Candidate moved to Assessment");

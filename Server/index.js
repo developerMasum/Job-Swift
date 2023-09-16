@@ -144,6 +144,7 @@ async function run() {
           image: `/uploads/${imageFile.name}`, // Store the relative path to the image
           resume: `/uploads/${resumeFile.name}`, // Store the relative path to the resume
         };
+        console.log(req.body);
 
         // Move image and resume files to the upload directory
         imageFile.mv(`${uploadDirectory}/${imageFile.name}`);
@@ -165,7 +166,51 @@ async function run() {
 
     //  for multer image and resume
 
-    
+    // app.post(
+    //   "/upload",
+    //   upload.fields([{ name: "resume" }, { name: "image" }]),
+    //   async (req, res) => {
+    //     const formData = req.body;
+    //     const resumeFilePath = req.files.resume[0].filename; // Accessing resume filename
+    //     const imageFilePath = req.files.image[0].filename; // Accessing image filename
+    //     const educationList = JSON.parse(formData.educationList); // Parse educationList JSON
+    //     const experienceList = JSON.parse(formData.experienceList); // Parse experienceList JSON
+    //     const currentDate = new Date().toISOString();
+    //     try {
+    //       // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
+    //       await applicationsPostCollection.insertOne({
+    //         jobTitle: formData.jobTitle,
+    //         stage: formData.stage,
+    //         jobPosterEmail: formData.jobPosterEmail,
+    //         jobId: formData.jobId,
+    //         firstName: formData.firstName,
+    //         lastName: formData.lastName,
+    //         email: formData.email,
+    //         phoneNumber: formData.phone,
+    //         location: formData.address,
+    //         summary: formData.summary,
+    //         resume: resumeFilePath,
+    //         coverLetter: formData.coverLetter,
+    //         image: imageFilePath,
+    //         date: currentDate,
+    //         educationList: educationList, // Save parsed educationList
+    //         experienceList: experienceList,
+    //         // stage: formData.stage,
+    //         // appliedJobId: formData.appliedJobId,
+    //       });
+
+    //       res
+    //         .status(201)
+    //         .json({ message: "Application submitted successfully" });
+    //     } catch (error) {
+    //       console.error("Error submitting application:", error);
+    //       res.status(500).json({
+    //         message: "An error occurred while submitting the application",
+    //       });
+    //     }
+    //   }
+    // );
+
     // post data of a new user
     // app.post("/user", async (req, res) => {
     //   const query = req.body;

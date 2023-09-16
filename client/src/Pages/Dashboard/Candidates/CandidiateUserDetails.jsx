@@ -18,6 +18,7 @@ import {
   BiCategoryAlt,
 } from "react-icons/bi";
 import toast from "react-hot-toast";
+import { HiX } from "react-icons/hi";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import { GrSend } from "react-icons/gr";
@@ -180,7 +181,7 @@ const CandidiateUserDetails = () => {
   };
 
   useEffect(() => {
-    const URL = ` http://localhost:5000/all-applications/${id}`;
+    const URL = `http://localhost:5000/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -201,16 +202,13 @@ const CandidiateUserDetails = () => {
   // handleDisQualified
   const handleDisQualified = (id) => {
     try {
-      const response = fetch(
-        ` http://localhost:5000/applicant/stage/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ stage: "Disqualified" }),
-        }
-      );
+      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ stage: "Disqualified" }),
+      });
 
       if (response) {
         toast.error("This Candidate marked as Disqualified");

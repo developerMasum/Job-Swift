@@ -1,34 +1,18 @@
 [
   {
-    "id": 1,
-    "jobName": "Software Developer",
-    "cityName": "San Francisco",
-    "addressName": "123 Tech Street, Suite 456",
-    "Sourced": 120,
-    "Applied": "18",
-    "PhoneScreen": 80,
-    "Assessment": 60,
-    "Interview": 40,
-    "Offer": 20,
-    "Hired": 10,
-    "totalCandidates": 4,
-    "totalActiveCandidates": 2,
-    "lastCandidateDate": "2023-08-15"
-  },
-  {
-    "id": 2,
-    "jobName": "Data Scientist",
-    "cityName": "New York",
-    "addressName": "789 Data Drive, Floor 10",
-    "Sourced": 100,
-    "Applied": "18",
-    "PhoneScreen": 70,
-    "Assessment": 50,
-    "Interview": 30,
-    "Offer": 15,
-    "Hired": 5,
-    "totalCandidates": 2,
-    "totalActiveCandidates": 1,
-    "lastCandidateDate": "2023-07-25"
+    "_id": "64fb43c899f5894719aa7efa",
+    "benefits": "1. Front-end Development:\n\n    Web developers often specialize in front-end or back-end development. Front-end developers focus on the user interface and user experience of a website or web application.\n    They use languages like HTML, CSS, and JavaScript to create responsive and visually appealing web pages.\n    Front-end developers work with design teams to implement the visual aspects of a website.\n\n2. Back-end Development:\n\n    Back-end developers focus on the server-side of web development.\n    They are responsible for building and maintaining the server, database, and application logic that power a website or web application.\n    Common back-end programming languages include Python, Ruby, Java, PHP, and Node.js.",
+    "experience": "Frontend",
+    "employmentType": "Master's Degree",
+    "requirements": "1. Front-end Development:\n\n    Web developers often specialize in front-end or back-end development. Front-end developers focus on the user interface and user experience of a website or web application.\n    They use languages like HTML, CSS, and JavaScript to create responsive and visually appealing web pages.\n    Front-end developers work with design teams to implement the visual aspects of a website.\n\n2. Back-end Development:\n\n    Back-end developers focus on the server-side of web development.\n    They are responsible for building and maintaining the server, database, and application logic that power a website or web application.\n    Common back-end programming languages include Python, Ruby, Java, PHP, and Node.js.",
+    "jobTitle": "Web developer",
+    "jobLocation": "Dhaka Bangladesh",
+    "jobDescriptions": "1. Front-end Development:\n\n    Web developers often specialize in front-end or back-end development. Front-end developers focus on the user interface and user experience of a website or web application.\n    They use languages like HTML, CSS, and JavaScript to create responsive and visually appealing web pages.\n    Front-end developers work with design teams to implement the visual aspects of a website.\n\n2. Back-end Development:\n\n    Back-end developers focus on the server-side of web development.\n    They are responsible for building and maintaining the server, database, and application logic that power a website or web application.\n    Common back-end programming languages include Python, Ruby, Java, PHP, and Node.js.",
+    "salaryTo": "75875",
+    "salaryFrom": "4477",
+    "salaryCurrency": "USD",
+    "responsibilities": "1. Front-end Development:\n\n    Web developers often specialize in front-end or back-end development. Front-end developers focus on the user interface and user experience of a website or web application.\n    They use languages like HTML, CSS, and JavaScript to create responsive and visually appealing web pages.\n    Front-end developers work with design teams to implement the visual aspects of a website.\n\n2. Back-end Development:\n\n    Back-end developers focus on the server-side of web development.\n    They are responsible for building and maintaining the server, database, and application logic that power a website or web application.\n    Common back-end programming languages include Python, Ruby, Java, PHP, and Node.js.",
+    "name":"farhan",
+    "userEmail": "farhan.adnan1952@gmail.com"
   }
 ]
