@@ -4,10 +4,12 @@ import { useForm, Controller } from "react-hook-form";
 import TimezoneSelect from "react-timezone-select";
 import { authContext } from "../../../Auth/AuthProvider";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const ProfileSettings = () => {
   const { user, updateUserProfile } = useContext(authContext);
   console.log(user);
+  const navigate = useNavigate()
   const {
     handleSubmit,
     control,
@@ -43,6 +45,7 @@ const ProfileSettings = () => {
               showConfirmButton: false,
               timer: 1500,
             });
+            navigate('/dashboard/jobs')
           })
           .catch((error) => {
             console.log(error.message);
@@ -53,6 +56,7 @@ const ProfileSettings = () => {
               showConfirmButton: false,
               timer: 1500,
             });
+          
           });
       });
   };

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { HiOutlineLightBulb } from "react-icons/hi";
+import { useParams } from "react-router-dom";
 const JobsDetails = () => {
+  const {id} = useParams()
+  console.log('from details',id);
+
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
     fetch("/Jobs.json")
       .then((res) => res.json())
       .then((data) => setJobs(data));
   }, []);
-  console.log(jobs);
+  // console.log(jobs);
 
   return (
     <div className="pt-56">

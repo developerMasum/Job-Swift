@@ -183,7 +183,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "jobs/findCandidates",
+        path: "jobs/findCandidates/:id",
         element: <FindCandidatesLayout></FindCandidatesLayout>,
         
         children: [
@@ -206,7 +206,7 @@ const router = createBrowserRouter([
             element: <WorkFlow></WorkFlow>,
           },
           {
-            path: "jobDetails",
+            path: "jobDetails/:id",
             element: <JobsDetails></JobsDetails>,
             
           },

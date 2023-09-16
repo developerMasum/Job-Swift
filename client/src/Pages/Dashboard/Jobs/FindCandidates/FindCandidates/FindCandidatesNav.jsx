@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BiChevronDown } from "react-icons/bi";
 import { useState } from "react";
 
-const FindCandidatesNav = () => {
+const FindCandidatesNav = ({id}) => {
   const [activeTab, setActiveTab] = useState("jobDetails");
 
   const handleTabClick = (tabName) => {
@@ -43,7 +42,7 @@ const FindCandidatesNav = () => {
 
       <div className="flex justify-evenly text-gray-500  gap-4 w-full pt-8">
         <Link
-          to="jobDetails"
+          to={`jobDetails/${id}`}
           className="tab-link"
           onClick={() => handleTabClick("jobDetails")}
           style={
