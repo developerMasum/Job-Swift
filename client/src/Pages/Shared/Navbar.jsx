@@ -194,6 +194,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { authContext } from "../../Auth/AuthProvider";
 import { Link } from "react-router-dom";
 import logo_js from "../../assets/Image/logo_js.png"
+import Calendar from "react-calendar";
+import CalendarComponent from "../../Components/Calendar/CalendarComponent";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
@@ -296,6 +298,7 @@ const Navbar = () => {
           >
             Fourth Link
           </Link>
+
         </div>
         <div className=" flex-col sm:flex-row justify-start md:lg:flex  items-center">
 
