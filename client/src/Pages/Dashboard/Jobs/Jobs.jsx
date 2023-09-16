@@ -23,56 +23,77 @@ const Jobs = () => {
   const { user } = useContext(authContext);
   const email = user?.email;
 
-  const { candidates, isLoading, error } = useSelector((state) => state.candidates);
-console.log('from jobs', candidates);
-useEffect(() => {
-  // Dispatch the action to fetch candidates based on the selected sorting order
-  dispatch(getAllCandidates(email));
-}, [dispatch]);
+  const { candidates, isLoading, error } = useSelector(
+    (state) => state.candidates
+  );
+  // console.log('from jobs', candidates);
+  useEffect(() => {
+    // Dispatch the action to fetch candidates based on the selected sorting order
+    dispatch(getAllCandidates(email));
+  }, [dispatch]);
 
-const jobs = useSelector((state) => state.posts.jobs);
-const isJobs = jobs.filter((d) => d.userEmail === user?.email);
-const jobTitleFor = isJobs.map(j => j.jobTitle);
-const mappedTitle = isJobs.map((j) => {
-  const filteredByTitle = candidates.filter((c) => c.jobTitle === j.jobTitle && c.jobId === j._id); 
-  const interviewCount = filteredByTitle.filter((ft) => ft.stage === "Interview").length;
-  const sourcedCount = filteredByTitle.filter((ft) => ft.stage === "Sourced").length;
-  const appliedCount = filteredByTitle.filter((ft) => ft.stage === "Applied").length;
-  const offerCount = filteredByTitle.filter((ft) => ft.stage === "Offer").length;
-  const hiredCount = filteredByTitle.filter((ft) => ft.stage === "Hired").length;
-  const assessmentCount = filteredByTitle.filter((ft) => ft.stage === "Assessment").length;
+  const jobs = useSelector((state) => state.posts.jobs);
+  const isJobs = jobs.filter((d) => d.userEmail === user?.email);
+  const jobTitleFor = isJobs.map((j) => j.jobTitle);
+  const mappedTitle = isJobs.map((j) => {
+    const filteredByTitle = candidates.filter(
+      (c) => c.jobTitle === j.jobTitle && c.jobId === j._id
+    );
+    const interviewCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Interview"
+    ).length;
+    const sourcedCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Sourced"
+    ).length;
+    const appliedCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Applied"
+    ).length;
+    const offerCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Offer"
+    ).length;
+    const hiredCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Hired"
+    ).length;
+    const assessmentCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Assessment"
+    ).length;
 
-  // console.log(`Job Title: ${j.jobTitle}`);
-  // console.log(`Job ID: ${j._id}`); 
-  // console.log(`Interview Count: ${interviewCount}`);
-  // console.log(`Sourced Count: ${sourcedCount}`);
-  // console.log(`Applied Count: ${appliedCount}`);
-  // console.log(`Offer Count: ${offerCount}`);
-  // console.log(`Hired Count: ${hiredCount}`);
-  // console.log(`Assessment Count: ${assessmentCount}`);
+    // console.log(`Job Title: ${j.jobTitle}`);
+    // console.log(`Job ID: ${j._id}`);
+    // console.log(`Interview Count: ${interviewCount}`);
+    // console.log(`Sourced Count: ${sourcedCount}`);
+    // console.log(`Applied Count: ${appliedCount}`);
+    // console.log(`Offer Count: ${offerCount}`);
+    // console.log(`Hired Count: ${hiredCount}`);
+    // console.log(`Assessment Count: ${assessmentCount}`);
 
-  return {
-    jobTitleFor: j.jobTitle,
-    jobId: j._id,
-    Interview: interviewCount,
-    Sourced: sourcedCount,
-    Applied: appliedCount,
-    Offer: offerCount,
-    Hired: hiredCount,
-    Assessment: assessmentCount,
-  };
-});
+    return {
+      jobTitleFor: j.jobTitle,
+      jobId: j._id,
+      Interview: interviewCount,
+      Sourced: sourcedCount,
+      Applied: appliedCount,
+      Offer: offerCount,
+      Hired: hiredCount,
+      Assessment: assessmentCount,
+    };
+  });
   // console.log('job title',mappedTitle);
   // const resilt = jobTitle.filter(job=>job.jobTitle===)
   // console.log('isjobs',resilt);
-  
 
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
 
   // ---------------------------------------candidates---------------------
-
+  // All job Delete
+  const deleteAllPosts = async () => {
+    const response = await fetch("http://localhost:5000/all-post", {
+      method: "DELETE",
+    });
+    console.log(response);
+  };
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       <div className="bg-white rounded-lg border-[1px] p-4 mb-6">
@@ -194,7 +215,12 @@ const mappedTitle = isJobs.map((j) => {
       <div className="pt-10 px-2 lg:md:px-0">
         <div className="flex items-center justify-between">
           <p className="text-xs font-bold text-swift ">SAMPLE JOBS</p>
-          <p className="text-xs font-bold text-swift ">Delete sample data</p>
+          <button
+            onClick={deleteAllPosts}
+            className="text-xs font-bold text-swift "
+          >
+            Delete sample data
+          </button>
         </div>
         <div className="">
           {mappedTitle.map((jobs) => (

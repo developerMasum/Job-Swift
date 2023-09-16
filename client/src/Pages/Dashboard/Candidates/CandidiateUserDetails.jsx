@@ -18,6 +18,7 @@ import {
   BiCategoryAlt,
 } from "react-icons/bi";
 import toast from "react-hot-toast";
+import { HiX } from "react-icons/hi";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 
@@ -31,7 +32,22 @@ const CandidiateUserDetails = () => {
   const { id } = useParams();
   // console.log("error", id);
   const [userDetails2, setUserDetails2] = useState(null);
-
+  const [isEmailModal, setIsEmailModal] = useState(false);
+  const [isCommentModal, setIsCommentModal] = useState(false);
+  const [isMessageModal, setIsMessageModal] = useState(false);
+  const [activeModal, setActiveModal] = useState("");
+  const toggleEmailModal = () => {
+    if (activeModal === "email") setActiveModal("");
+    else setActiveModal("email");
+  };
+  const toggleCommentModal = () => {
+    if (activeModal === "comment") setActiveModal("");
+    else setActiveModal("comment");
+  };
+  const toggleMessageModal = () => {
+    if (activeModal === "message") setActiveModal("");
+    else setActiveModal("message");
+  };
   // time and date fixer
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -104,17 +120,25 @@ const CandidiateUserDetails = () => {
       <div className="bg-image  bg-opacity-40 border border-slate-300 shadow-lg   ">
         <div className="flex lg:md:justify-end  p-4">
           <div className="flex justify-around gap-8 cursor-pointer bg-white px-4 items-center border border-slate-400 rounded-lg p-2">
-            <BiDotsHorizontal
+            {/* <BiDotsHorizontal
               size={30}
               className="border-r-2 border-slate-400 pr-2 text-swift"
-            ></BiDotsHorizontal>
-            <BiEnvelope size={25} className="text-swift" />
-            <BiMessageCheck size={25} className="text-swift" />
+            ></BiDotsHorizontal> */}
+            {/* Email popup */}
+            <button onClick={toggleEmailModal}>
+              <BiEnvelope size={25} className="text-swift" />
+            </button>
+
+            <button onClick={toggleCommentModal}>
+              <BiMessageCheck size={25} className="text-swift" />
+            </button>
             <BiSolidCalendar
               size={35}
               className="border-r-2 border-slate-400 pr-3 text-swift "
             ></BiSolidCalendar>
-            <BiSolidChat size={25} className="text-swift" />
+            <button onClick={toggleMessageModal}>
+              <BiSolidChat size={25} className="text-swift" />
+            </button>
             <div className="flex border-r-2 border-slate-400 pr-8 text-2xl">
               <BiSolidHandRight size={25} className="text-swift" />
               <BiSolidHandLeft size={25} className="text-swift" />
@@ -128,6 +152,116 @@ const CandidiateUserDetails = () => {
             <CandidateStages id={id} />
           </div>
         </div>
+      </div>
+      <div>
+      {activeModal === "email" && (
+        <div className={`emailModal ${isEmailModal ? "open" : ""}`}>
+          <div className="flex p-5 justify-between">
+            <h2 className="font-semibold">New message</h2>
+            <button
+              onClick={toggleEmailModal}
+              className="hover:bg-gray-200 p-2"
+            >
+              <HiX className="" />
+            </button>
+          </div>
+          <div className="px-5 pb-5">
+            <div className="space-x-2 flex items-center">
+              <label className="font-medium" htmlFor="">To</label>
+              <input
+                type="email"
+                placeholder="email"
+                name=""
+                className="border-none w-full focus:outline-none  focus:border-none outline-none"
+                id=""
+              />
+            </div>
+            <input
+              type="email"
+              placeholder="Subject"
+              name=""
+              className="border-none focus:border-none py-3 outline-none"
+              id=""
+            />
+            <div>
+              <textarea
+                name=""
+                id=""
+                placeholder="your message here"
+                className="border-none w-full focus:border-none outline-none"
+                cols="30"
+                rows="10"
+              ></textarea>
+            </div>
+            <div className="flex justify-end pt-5">
+            <button className="bg-cyan-500  px-6 py-2 rounded-md font-medium hover:bg-cyan-700 hover:text-gray-200 transition-colors 3s ease-in-out">
+             Send
+            </button>
+            </div>
+          </div>
+        </div>
+      )}
+            {activeModal === "comment" && (
+        <div className={`emailModal ${isCommentModal ? "open" : ""}`}>
+          <div className="flex p-5 justify-between">
+            <h2 className="font-semibold">Your Comment</h2>
+            <button
+              onClick={toggleCommentModal}
+              className="hover:bg-gray-200 p-2"
+            >
+              <HiX className="" />
+            </button>
+          </div>
+          <div className="px-5 pb-5">
+            <div>
+              <textarea
+                name=""
+                id=""
+                placeholder="your Comment here"
+                className="border-none w-full focus:border-none outline-none"
+                cols="30"
+                rows="10"
+              ></textarea>
+            </div>
+            <div className="flex justify-end pt-5">
+            <button className="bg-cyan-500  px-6 py-2 rounded-md font-medium hover:bg-cyan-700 hover:text-gray-200 transition-colors 3s ease-in-out">
+             OK
+            </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {activeModal === "message" && (
+        <div className={`emailModal ${isMessageModal ? "open" : ""}`}>
+          <div className="flex p-5 justify-between">
+            <h2 className="font-semibold">Your Message</h2>
+            
+            <button
+              onClick={toggleMessageModal}
+              className="hover:bg-gray-200 p-2"
+            >
+              <HiX className="" />
+            </button>
+          </div>
+          <div className="px-5 pb-5">
+            <div>
+              <textarea
+                name=""
+                id=""
+                placeholder="your Message"
+                className="border-none w-full focus:border-none outline-none"
+                cols="30"
+                rows="10"
+              ></textarea>
+            </div>
+            <div className="flex justify-end pt-5">
+            <button className="bg-cyan-500  px-6 py-2 rounded-md font-medium hover:bg-cyan-700 hover:text-gray-200 transition-colors 3s ease-in-out">
+             Send
+            </button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
       <div>
         <div className="shadow-2xl flex justify-between">

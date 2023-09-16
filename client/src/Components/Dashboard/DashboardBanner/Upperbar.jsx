@@ -18,7 +18,7 @@ import useAdmin from "../../../Hooks/AdminHook/useAdmin";
 const UpperBar = () => {
   const { user, logout } = useContext(authContext);
   const [isAdmin] = useAdmin();
-  console.log('isadmin', isAdmin);
+  // console.log('isadmin', isAdmin);
   // const [isAdmin,setIsAdmin] = useState(false)
 
   const name = user?.displayName || "Mr X man";

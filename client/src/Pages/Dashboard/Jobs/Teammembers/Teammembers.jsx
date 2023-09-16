@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { HiMiniQuestionMarkCircle, HiUserCircle } from "react-icons/hi2";
+import { authContext } from "../../../../Auth/AuthProvider";
 const Teammembers = () => {
+  const { user } = useContext(authContext);
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
     fetch("/Jobs.json")
@@ -20,22 +22,32 @@ const Teammembers = () => {
         {jobs.map((job) => (
           <div key={job._id} className="flex  items-center justify-between">
             <div className="flex gap-2 items-center">
-              <HiUserCircle className="w-6 h-6"/>
+              {user?.photoURL ? (
+                <img src={user.photoURL} alt="User's photo" />
+              ) : (
+                <HiUserCircle size={26}/>
+              )}
+
               <p className="font-semibold">{job?.name}</p>
             </div>
             <p>{job?.userEmail}</p>
             <p className="text-gray-500">You're a Super Admin for this job</p>
-            <FaTrash className="w-5 h-5 cursor-pointer" color="gray "/>
           </div>
         ))}
       </div>
-      <div className="pb-4">
-     <h6 className="text-gray-500 font-semibold text-sm">OTHER MEMBERS</h6>
-     <p className="text-gray-500 text-sm">You can add other account members to your team or invite people to join Workable to collaborate on this job.</p>
+      <div className="pb-4 space-y-2">
+        <h6 className="text-gray-500 font-semibold text-sm">OTHER MEMBERS</h6>
+        <p className="text-gray-500 text-sm">
+          You can add other account members to your team or invite people to
+          join Workable to collaborate on this job.
+        </p>
       </div>
-<div className="flex justify-end">
-<button className="border border-cyan-500 px-5 py-2 rounded-md text-second hover:text-switch font-medium ">Invite a new member</button>
-</div>    </div>
+      <div className="flex justify-end">
+        <button className="border border-cyan-500 px-5 hover:bg-cyan-600 hover:border-cyan-500 hover:text-white py-2 rounded-md text-second hover:text-switch font-medium ">
+          Invite a new member
+        </button>
+      </div>{" "}
+    </div>
   );
 };
 
