@@ -1,5 +1,5 @@
 import React from "react";
-import payroll1 from "../../assets/Image/paryroll1.png";
+
 import "./Payroll.css";
 import Title from "../../Components/Title/Title";
 import Payroll from "../../assets/Image/payroll.svg";
@@ -8,9 +8,7 @@ import Time from "../../assets/Image/Time.svg";
 import strimeLine from "../../assets/Image/StrimeLine.svg";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
-import payroll2 from "../../assets/Image/paryroll2.jpg";
-import payroll3 from "../../assets/Image/paryroll3.png";
-import payroll4 from "../../assets/Image/paryroll4.png";
+
 
 const PayrollTimeBenefits = () => {
   return (
@@ -23,7 +21,7 @@ const PayrollTimeBenefits = () => {
       </div>
       <div className="md:flex md:flex-row-reverse  mx-auto justify-between items-center mt-8 gap-5 md:mt-16  md:0">
         <div className="w-full md:w-1/2">
-          <img src={payroll1} alt="" />
+          <img src="https://i.ibb.co/Wvr5dLb/paryroll1-1.jpg" alt="" />
         </div>
         <div className="w-full  mt-6  md:pl-10 md:mt-0 md:w-1/2">
           <h2 className="text-swift md:text-2xl font-bold text-xl text-center md:text-start mb-5">
@@ -121,7 +119,7 @@ const PayrollTimeBenefits = () => {
       </div>
       <div className="md:flex items-center  gap-10">
         <div className="md:w-1/2">
-          <img src={payroll2} alt="" />
+          <img src="https://i.ibb.co/JjbfTJz/paryroll2.jpg" alt="" />
         </div>
         <div className="md:w-1/2 space-y-7">
           <h2 className="text-2xl text-gray-700 font-semibold text-second">
@@ -154,7 +152,7 @@ const PayrollTimeBenefits = () => {
         </div>
         <div className="md:flex gap-36 pt-16">
           <div className="space-y-5">
-            <img src={payroll3} alt="" />
+            <img src="https://i.ibb.co/tsj1fBy/paryroll3.jpg" alt="" />
             <h2 className="font-semibold text-swift text-2xl">
               Simplified Payroll and Time Tracking with Job Swift
             </h2>
@@ -169,7 +167,7 @@ const PayrollTimeBenefits = () => {
             </p>
           </div>
           <div className="space-y-5">
-            <img src={payroll4} alt="" />
+            <img src="https://i.ibb.co/5YqvXVR/paryroll4.png" alt="" />
             <h2 className="font-semibold text-swift text-2xl">
               Simplified Payroll and Time Tracking with Job Swift
             </h2>

@@ -1,9 +1,6 @@
 import { AiOutlineRight } from "react-icons/ai";
 
-import img1 from "../../assets/Image/programManager1.png";
-import img2 from "../../assets/Image/programManager2.png";
-import img3 from "../../assets/Image/programManager3.png";
-import img4 from "../../assets/Image/programManager4.png";
+
 import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -20,7 +17,7 @@ const ProgramManager = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 my-5">
         {/* card 01 */}
         <div className=" transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
-          <img className="mx-auto px-4 md:h-[300px]" src={img1} alt="" />
+          <img className="mx-auto px-4 md:h-[300px]" src="https://i.ibb.co/s67bcD0/program-Manager1.png" alt="" />
           <div className="text-center mt-12">
             <h4 className="text-xl text-red-400 font-bold mb-2">
               SOURCE & ATTRACT
@@ -45,7 +42,7 @@ const ProgramManager = () => {
         </div>
         {/* card 02 */}
         <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
-          <img className="mx-auto px-4 md:h-[300px]" src={img2} alt="" />
+          <img className="mx-auto px-4 md:h-[300px]" src="https://i.ibb.co/x307w1M/program-Manager2.png" alt="" />
           <div className="text-center mt-12">
             <h4 className="text-xl text-blue-400 font-bold mb-2">
               EVALUATE & COLLABORATE
@@ -71,7 +68,7 @@ const ProgramManager = () => {
         </div>
         {/* card 03 */}
         <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
-          <img className="mx-auto px-4 md:h-[300px]" src={img3} alt="" />
+          <img className="mx-auto px-4 md:h-[300px]" src="https://i.ibb.co/0ycFcC6/program-Manager3.png" alt="" />
           <div className="text-center mt-12">
             <h4 className="text-xl text-indigo-500 font-bold mb-2">
               AUTOMATE & HIRE
@@ -93,7 +90,7 @@ const ProgramManager = () => {
         </div>
         {/* card 04 */}
         <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
-          <img className="mx-auto px-4 md:h-[300px]" src={img4} alt="" />
+          <img className="mx-auto px-4 md:h-[300px]" src="https://i.ibb.co/6nGbtsF/program-Manager4.png" alt="" />
           <div className="text-center mt-12">
             <h4 className="text-xl text-teal-400 font-bold mb-2">
               ONBOARD & MANAGE

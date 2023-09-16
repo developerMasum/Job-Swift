@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCandidates } from "../../../../redux/candidates/candidatesOperation";
 import OfferDetails from "./Applied/OfferDetails";
 
-const Applied = () => {
+const Applied = ({id}) => {
   const {user} = useContext(authContext)
   const email = user?.email;
   console.log(email);
@@ -13,7 +13,8 @@ const Applied = () => {
   const { candidates, isLoading, error } = useSelector((state) => state.candidates);
   // console.log('from sourced', candidates);
 
-const appliedCandi = candidates.filter(c=>c.stage ==="Offer")
+
+const appliedCandi = candidates.filter((c) => c.jobId === id && c.stage === "Offer");
 console.log(appliedCandi);
 
   useEffect(() => {

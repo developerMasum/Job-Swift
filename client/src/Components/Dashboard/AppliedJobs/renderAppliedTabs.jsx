@@ -7,6 +7,7 @@ import PhoneScreen from "./AppliedComponents/PhoneScreen";
 import Sourced from "./AppliedComponents/Sourced";
 
 export const renderAppliedTabs = (activeTab, id) => {
+
   switch (activeTab) {
     // case "tabs1":
     //   return <Assessment id={id} />;

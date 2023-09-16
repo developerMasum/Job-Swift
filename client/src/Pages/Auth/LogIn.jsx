@@ -12,7 +12,7 @@ import Loader from "../../Components/Loader/Loader";
 import useAdmin from "../../Hooks/AdminHook/useAdmin";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import "./LogIn.css";
-import login_keyboard from "../../assets/Image/login_keyboard.png";
+
 const LogIn = () => {
   const [isAdmin] = useAdmin();
   const [showPassword, setShowPassword] = useState(false);
@@ -73,7 +73,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="   lg:md:p-32">
+    <div className="   lg:md:p-40 bg-gradient-to-r from-indigo-700 from-10% via-sky-800 via-30% to-emerald-500 to-90% ">
       {/* // <div className="login_container"> */}
       <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 rounded-2xl shadow-lg shadow-black ">
         <div className="rounded-md">
@@ -126,7 +126,7 @@ const LogIn = () => {
             />
 
             </div> */}
-            <div className="flex rounded-md px-1 bg-[#2f5c58] border-green-800  border">
+            <div className="flex rounded-md  px-1 bg-white border-green-800  border">
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", {
@@ -141,7 +141,7 @@ const LogIn = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="p-2"
+                className=" bg-white"
               >
                 {showPassword ? (
                   <AiFillEyeInvisible className="" />
@@ -170,17 +170,17 @@ const LogIn = () => {
             <label className="label">
               <Link
                 to={"forgotPassword"}
-                className="underline font-semibold text-sm"
+                className="underline font-semibold text-sm text-gray-100"
               >
                 Forgot password?
               </Link>
             </label>
           </div>
-          <small className="font-semibold">
+          <small className="font-semibold text-gray-100">
             Are you new to Job Swift?{" "}
             <span>
               <Link
-                className="ml-1  text-[#2f5c58] underline text-sm font-bold"
+                className="ml-1  text-cyan-200 underline text-sm font-bold"
                 to="/register"
               >
                 Register Now

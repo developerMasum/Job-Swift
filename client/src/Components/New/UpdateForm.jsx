@@ -298,13 +298,13 @@ const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
 import { AiOutlineFilePdf } from "react-icons/ai";
 import axios from "axios";
 import { RiImageAddLine } from "react-icons/ri";
-import { updateData } from "../../api/auth";
+// import { updateData } from "../../api/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCandidates } from "../../redux/candidates/candidatesOperation";
 import { authContext } from "../../Auth/AuthProvider";
 
 const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
-  // console.log(jobId);
+  console.log(jobId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -416,14 +416,14 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
     // formData.append('appliedJobId', appliedJobId);
-
+    // formData.append('stage', stage)
     console.log(data);
     setFirstName(data.firstName);
     setLastName(data.lastName);
     setEmail(data.email);
     try {
       const response = await axios.post(
-        " http://localhost:5000/upload",
+        "https://server-job-swift.vercel.app/upload",
         formData,
         {
           headers: {
@@ -432,7 +432,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
         }
       );
       console.log("from overview", response.data);
-      updateData(appliedJobId);
+      // updateData(appliedJobId);
     } catch (error) {
       console.error("from overview", error);
     }
@@ -448,7 +448,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   const [allData, setAllData] = useState([]);
   useEffect(() => {
     axios
-      .get(" http://localhost:5000/all-applications")
+      .get("https://server-job-swift.vercel.app/all-applications")
       .then((res) => {
         console.log(res.data);
         setAllData(res.data);

@@ -1,13 +1,13 @@
-import logo3 from "../../assets/login/swift__1_-removebg-preview (1).png";
+
 import { FaFacebook, FaGithub, FaYoutube, FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
-    <div> 
+    <div>
       <footer className="footer px-10 py-4 border-2 text-base-content border-sky-200">
         <div className="items-center grid-flow-col">
           <img
             className="h-12 border-2 border-sky-200 rounded-xl"
-            src={logo3}
+            src="https://i.ibb.co/qkXhCwN/swift-1-removebg-preview-1.png"
             alt=""
           />
           <p>
@@ -58,7 +58,7 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </div>
       </footer>
-      
+
 
     </div>
   );

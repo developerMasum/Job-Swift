@@ -8,9 +8,7 @@ import {
   RiTwitterFill,
   RiLinksFill,
 } from "react-icons/ri";
-import bdjobs from "../../assets/Image/bdjobs.png"
-import glassdoor from "../../assets/Image/glassdoor.png"
-import monster from "../../assets/Image/monster.png"
+
 
 const SocialLink = () => {
   return (
@@ -102,7 +100,7 @@ const SocialLink = () => {
         <div className="flex flex-col items-center">
           {/* You can replace the icon with an appropriate BD Jobs icon */}
           <img
-            src={bdjobs}
+            src="https://i.ibb.co/Y3n09CW/bdjobs.png"
             alt="BD Jobs"
             className=" rounded-full text-2xl"
             style={{ width: "50px", height: "50px" }}
@@ -131,7 +129,7 @@ const SocialLink = () => {
       >
         <div className="flex flex-col items-center">
           <img
-            src={monster}
+            src="https://i.ibb.co/Zx44dsy/monster.png"
             alt="Monster"
             className=" rounded-full text-2xl"
             style={{ width: "50px", height: "50px" }}
@@ -139,7 +137,7 @@ const SocialLink = () => {
           <p>Find Jobs on Monster</p>
         </div>
       </a>
-       {/* Glassdoor */}
+      {/* Glassdoor */}
       <a
         href="https://www.glassdoor.com"
         target="_blank"
@@ -149,7 +147,7 @@ const SocialLink = () => {
         <div className="flex flex-col items-center">
           {/* You can replace the icon with an appropriate Glassdoor icon */}
           <img
-            src={glassdoor}
+            src="https://i.ibb.co/HBc6pCz/glassdoor.png"
             alt="Glassdoor"
             className=" rounded-full text-2xl"
             style={{ width: "50px", height: "50px" }}

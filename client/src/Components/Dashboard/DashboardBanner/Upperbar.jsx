@@ -1,4 +1,4 @@
-import logo2 from "../../../assets/login/swift__1_-removebg-preview (1).png";
+import logo2 from "../../../assets/Image/logo_js.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout, GrMail } from "react-icons/gr";
 import { CgMenuGridR } from "react-icons/cg";
@@ -83,19 +83,19 @@ const UpperBar = () => {
           </div>
           {/* Sidebar */}
           <div
-            className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-44 space-y-6 px-2  py-4 absolute inset-y-0 left-0 transform ${
-              isActive && "-translate-x-full"
-            }  md:translate-x-0  transition duration-200 ease-in-out`}
+            className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-44 space-y-6 px-2  py-4 absolute inset-y-0 left-0 transform ${isActive && "-translate-x-full"
+              }  md:translate-x-0  transition duration-200 ease-in-out`}
           >
             <div>
               {/* Branding & Profile Info */}
 
               <div>
-                <div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
+                <div className="mx-auto text-center">
                   {/* <Logo /> */}
-                  <p className="uppercase text-sm semi-bold">Admin Dashboard</p>
-                  <img src="../../../assets/logo/Job Swift.png" alt="" />
-                  <img src="../../../assets/logo/Job Swift.png" alt="" />
+                  <img src='https://i.ibb.co/FJ9Y0FF/logo-js.png' alt=""  className="w-8 inline-block"/>
+                  <p className="uppercase text-sm semi-bold mt-5">Admin Dashboard</p>
+              
+                
                 </div>
                 {/* <div className="flex flex-col items-center mt-6 -mx-2">
                   <Link to="/dashboard">
@@ -127,8 +127,7 @@ const UpperBar = () => {
                     <NavLink
                       to="admin/dashboard"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                          isActive ? " text-cyan-500" : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? " text-cyan-500" : "text-gray-600"
                         }`
                       }
                     >
@@ -139,8 +138,7 @@ const UpperBar = () => {
                     <NavLink
                       to="admin/users"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                          isActive ? " text-cyan-500" : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? " text-cyan-500" : "text-gray-600"
                         }`
                       }
                     >
@@ -155,18 +153,17 @@ const UpperBar = () => {
 
             <div>
               <hr />
-              <NavLink
+              {/* <NavLink 
                 to="/dashboard/profile"
                 className={({ isActive }) =>
-                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
                   }`
                 }
               >
                 <FcSettings className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Profile</span>
-              </NavLink>
+                <span className="mx-4 font-medium cursor-not-allowed">Profile</span>
+              </NavLink> */}
               <button
                 onClick={handleLogOut}
                 className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
@@ -181,7 +178,7 @@ const UpperBar = () => {
       )}
 
       {!isAdmin && (
-        <div className="flex justify-between font-bold navbar rounded-xl text-black shadow-xl bg-slate-100 fixed z-10  md:flex-row  mx-auto ">
+        <div className="flex justify-between font-bold navbar rounded-sm text-black shadow-md bg-slate-100  fixed z-10  md:flex-row  mx-auto ">
           <div className="flex  lg:md:gap-10  ">
             {/* responsive Mobile view----------------------- */}
             <div className="dropdown ">
@@ -273,7 +270,8 @@ const UpperBar = () => {
             </div>
 
             <Link to={`/`}>
-              <img className="h-10 w-24  " src={logo2} alt="" />
+              <img className="h-10 w-10  " src={logo2} alt="" />
+           
             </Link>
           </div>
           {/* ---------------------------------------------------- end mobile view */}

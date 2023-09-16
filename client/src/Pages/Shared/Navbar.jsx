@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { authContext } from "../../Auth/AuthProvider";
 import { Link, useLocation } from "react-router-dom";
-import logo_js from "../../assets/Image/logo_js.png";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +41,7 @@ const Navbar = () => {
     >
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
         <img
-          src={logo_js}
+          src="https://i.ibb.co/FJ9Y0FF/logo-js.png"
           className={`w-12 h-12 mr-2  p-2 rounded-full 
           ${scrolling ? "bg-white bg-opacity-80 lg:md:bg-opacity-0 " : "bg-white bg-opacity-80"}`}
           alt="Logo"
@@ -76,66 +76,60 @@ const Navbar = () => {
           }`}
       >
         <div className="text-[13px] lg:flex-grow py-2  lg:md:bg-opacity-0 w-40 lg:md:w-100 ">
-        <Link
+          <Link
             to="/"
-            className={`block mt-4 sm:w-11 lg:inline-block font-bold lg:mt-0 mr-4 ${
-              activeLink === 40 ? "active-link" : ""
-            }`}
+            className={`block mt-4 sm:w-11 lg:inline-block font-bold lg:mt-0 mr-4 ${activeLink === 40 ? "active-link" : ""
+              }`}
             style={{ color: scrolling ? "#00756A" : "white" }} // Fix the style property syntax
             onClick={() => handleLinkClick(40)} // Set activeLink to 0 on click
           >
-          Home
+            Home
           </Link>
-        <Link
+          <Link
             to="/details-marketplace"
-            className={`block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${
-              activeLink === 0 ? "active-link" : ""
-            }`}
+            className={`block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${activeLink === 0 ? "active-link" : ""
+              }`}
             style={{ color: scrolling ? "#00756A" : "white" }} // Fix the style property syntax
             onClick={() => handleLinkClick(0)} // Set activeLink to 0 on click
           >
-           Market Place
+            Market Place
           </Link>
           <Link
             to="/single-pay"
-            className={`block mt-4 sm:w-14 lg:inline-block font-bold lg:mt-0 mr-4 ${
-              activeLink === 8 ? "active-link" : ""
-            }`}
+            className={`block mt-4 sm:w-14 lg:inline-block font-bold lg:mt-0 mr-4 ${activeLink === 8 ? "active-link" : ""
+              }`}
             style={{ color: scrolling ? "#00756A" : "white" }} // Fix the style property syntax
             onClick={() => handleLinkClick(8)} // Set activeLink to 0 on click
           >
-           Benefits
+            Benefits
           </Link>
 
           <Link
-           to="/hiring"
-            className={`block mt-4 sm:w-28 lg:inline-block font-bold lg:mt-0 mr-4 ${
-              activeLink === 2 ? "active-link" : ""
-            }`}
+            to="/hiring"
+            className={`block mt-4 sm:w-28 lg:inline-block font-bold lg:mt-0 mr-4 ${activeLink === 2 ? "active-link" : ""
+              }`}
             style={{ color: scrolling ? "#00756A" : "white" }}
             onClick={() => handleLinkClick(2)} // Set activeLink to 1 on click
           >
             Hiring & Board
           </Link>
           <Link to='/hr-data'
-            
-            className={`block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${
-              activeLink === 1 ? "active-link" : ""
-            }`}
+
+            className={`block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${activeLink === 1 ? "active-link" : ""
+              }`}
             style={{ color: scrolling ? "#00756A" : "white" }}
             onClick={() => handleLinkClick(1)} // Set activeLink to 1 on click
           >
-           Hr Reporting
+            Hr Reporting
           </Link>
           <Link
             to="blogs"
-            className={`block mt-4 sm:w-12 lg:inline-block font-bold lg:mt-0 mr-4 ${
-              activeLink === 3 ? "active-link" : ""
-            }`}
+            className={`block mt-4 sm:w-12 lg:inline-block font-bold lg:mt-0 mr-4 ${activeLink === 3 ? "active-link" : ""
+              }`}
             style={{ color: scrolling ? "#00756A" : "white" }}
-            onClick={() => handleLinkClick(3)} 
-              > Blogs
-                </Link>
+            onClick={() => handleLinkClick(3)}
+          > Blogs
+          </Link>
 
         </div>
         <div className=" flex-col sm:flex-row justify-start md:lg:flex  items-center">
@@ -162,7 +156,7 @@ const Navbar = () => {
               </div>
             </>) :
             <div className="flex justify-between  gap-2 items-center">
-             <Link
+              <Link
                 className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block"
                 to={"/login"}
               >

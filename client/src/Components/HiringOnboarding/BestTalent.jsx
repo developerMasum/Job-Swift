@@ -1,5 +1,5 @@
 import React from "react";
-import hiringImage from "../../assets/Image/hiring.png";
+
 
 const BestTalent = () => {
   return (
@@ -23,7 +23,7 @@ const BestTalent = () => {
       </div>
       <div className="mt-6 md:mt-0">
         <img
-          src={hiringImage}
+          src="https://i.ibb.co/sHkWYM4/hiring.png"
           className="w-full md:w-2/3 h-auto rounded-2xl"
           alt=""
         />

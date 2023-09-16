@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import image from '../../../assets/Image/peopleSearch.png'
+
 import { BsPinAngle } from 'react-icons/bs';
 import { RxCross2 } from 'react-icons/rx';
 
@@ -110,7 +110,7 @@ const PeopleSearch = () => {
                     </div>
 
                     <div className='grid justify-center py-10 bg-[#f2f4f5] px-2 border-t-4 '>
-                        <img className='w-40 mx-auto' src={image} alt="img" />
+                        <img className='w-40 mx-auto' src="https://i.ibb.co/xjQYzwJ/people-Search.png" alt="img" />
                         <div className='text-center text-[#333e49]'>
                             <h2 className='text-black text-2xl my-3'>Find the right candidate with People Search</h2>
                             <p>Publish a job and receive 75 profile views

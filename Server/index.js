@@ -138,8 +138,8 @@ async function run() {
             date: currentDate,
             educationList: educationList, // Save parsed educationList
             experienceList: experienceList,
-            stage: formData.stage,
-            appliedJobId: formData.appliedJobId,
+            // stage: formData.stage,
+            // appliedJobId: formData.appliedJobId,
           });
 
           res

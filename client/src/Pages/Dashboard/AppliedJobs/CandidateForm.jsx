@@ -19,6 +19,7 @@ const CandidateForm = ({ closeModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     toast.success('candidate added successfully')
+    closeModal();
 
     // Access form data using e.target
     const formData = {

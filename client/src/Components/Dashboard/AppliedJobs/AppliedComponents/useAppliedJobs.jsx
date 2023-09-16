@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useAppliedJobs = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);
   useEffect(() => {
-    fetch(" http://localhost:5000/all-post")
+    fetch("https://server-job-swift.vercel.app/all-post")
       .then((res) => res.json())
       .then((data) => {
         setAppliedJobs(data);

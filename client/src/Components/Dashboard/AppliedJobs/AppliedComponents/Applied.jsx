@@ -3,7 +3,7 @@ import ShareAppliedDetails from "../ShareAppliedDetails";
 import { authContext } from "../../../../Auth/AuthProvider";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCandidates } from "../../../../redux/candidates/candidatesOperation";
-const Applied = () => {
+const Applied = ({id}) => {
   const {user} = useContext(authContext)
   const email = user?.email;
   const dispatch = useDispatch()
@@ -11,8 +11,8 @@ const Applied = () => {
   const { candidates, isLoading, error } = useSelector((state) => state.candidates);
   // console.log('from sourced', candidates);
 
-const appliedCandi = candidates.filter(c=>c.stage ==="Applied")
-console.log(appliedCandi);
+  const appliedCandi = candidates.filter((c) => c.jobId === id && c.stage === "Applied");
+  console.log(appliedCandi);
 
   useEffect(() => {
     // Dispatch the action to fetch candidates based on the selected sorting order

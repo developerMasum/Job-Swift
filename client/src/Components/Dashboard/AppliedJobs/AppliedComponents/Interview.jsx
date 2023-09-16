@@ -9,7 +9,7 @@ import InterviewDetails from "./Applied/InterviewDetails";
 
 
 
-const Sourced = () => {
+const Sourced = ({id}) => {
   const {user} = useContext(authContext)
   const email = user?.email;
   const dispatch = useDispatch()
@@ -17,8 +17,8 @@ const Sourced = () => {
   const { candidates, isLoading, error } = useSelector((state) => state.candidates);
   // console.log('from sourced', candidates);
 
-const interviewCandi = candidates.filter(c=>c.stage ==="Interview")
-console.log(interviewCandi);
+  const interviewCandi = candidates.filter((c) => c.jobId === id && c.stage === "Interview");
+  console.log(interviewCandi);
 
   useEffect(() => {
     // Dispatch the action to fetch candidates based on the selected sorting order

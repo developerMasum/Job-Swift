@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import icons1 from "../../../assets/Image/jobsicon1.png";
-import icons2 from "../../../assets/Image/jobsicons.png";
-import icons3 from "../../../assets/Image/josbicns3.png";
+
 
 const JobsInvitationsCard = () => {
   // Create an array to store the disabled state for each button and clicked state
@@ -59,9 +57,8 @@ const JobsInvitationsCard = () => {
             together to hire the right people.
           </p>
           <button
-            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${
-              buttonClicked[0] ? "opacity-30 cursor-not-allowed" : ""
-            }`}
+            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${buttonClicked[0] ? "opacity-30 cursor-not-allowed" : ""
+              }`}
             onClick={() => handleSendInvite(0)} // Pass the index 0
             disabled={buttonDisabled[0]} // Use the disabled state for this button
           >
@@ -70,7 +67,7 @@ const JobsInvitationsCard = () => {
         </div>
         {/* Image */}
         <div>
-          <img className="w-[200px] h-[100px]" src={icons1} alt="" />
+          <img className="w-[200px] h-[100px]" src="https://i.ibb.co/YNYL05P/jobsicon1.png" alt="" />
         </div>
       </div>
 
@@ -91,15 +88,14 @@ const JobsInvitationsCard = () => {
           <button
             onClick={() => handleSendInvite(1)} // Pass the index 1
             disabled={buttonDisabled[1]} // Use the disabled state for this button
-            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${
-              buttonClicked[1] ? "opacity-30 cursor-not-allowed" : ""
-            }`}
+            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${buttonClicked[1] ? "opacity-30 cursor-not-allowed" : ""
+              }`}
           >
             Send invite
           </button>
         </div>
         <div>
-          <img className="w-[200px] h-[100px]" src={icons2} alt="" />
+          <img className="w-[200px] h-[100px]" src="https://i.ibb.co/DDtWBmv/jobsicons.png" alt="" />
         </div>
       </div>
       {/* 3rd card */}
@@ -119,15 +115,14 @@ const JobsInvitationsCard = () => {
           <button
             onClick={() => handleSendInvite(2)} // Pass the index 2
             disabled={buttonDisabled[2]} // Use the disabled state for this button
-            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${
-              buttonClicked[2] ? "opacity-30 cursor-not-allowed" : ""
-            }`}
+            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${buttonClicked[2] ? "opacity-30 cursor-not-allowed" : ""
+              }`}
           >
             Send invite
           </button>
         </div>
         <div>
-          <img className="w-[200px] h-[100px]" src={icons3} alt="" />
+          <img className="w-[200px] h-[100px]" src="https://i.ibb.co/s6vzB0J/josbicns3.png " alt="" />
         </div>
       </div>
     </div>
