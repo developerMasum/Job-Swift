@@ -6,7 +6,7 @@ export const getAllPost = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        " https://server-job-swift.vercel.app/all-post"
+        " http://localhost:5000/all-post"
       );
       // console.log(response.data);
       return response.data;

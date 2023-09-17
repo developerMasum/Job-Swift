@@ -23,7 +23,7 @@ const Teammembers = () => {
           <div key={job._id} className="flex  items-center justify-between">
             <div className="flex gap-2 items-center">
               {user?.photoURL ? (
-                <img src={user.photoURL} alt="User's photo" />
+                <img src={user.photoURL} className="w-10 h-10 rounded-full" alt="User's photo" />
               ) : (
                 <HiUserCircle size={26}/>
               )}

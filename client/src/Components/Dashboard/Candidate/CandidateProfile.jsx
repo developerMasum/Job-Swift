@@ -8,7 +8,7 @@ const CandidateProfile = () => {
 
   useEffect(() => {
     // Fetch candidate profile data from the server based on the 'id' parameter
-    const URL = ` https://server-job-swift.vercel.app/all-applications/${id}`;
+    const URL = ` http://localhost:5000/all-applications/${id}`;
     console.log(URL);
     fetch(URL)
       .then((response) => response.json())

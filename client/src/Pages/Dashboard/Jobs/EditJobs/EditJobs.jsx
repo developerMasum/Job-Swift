@@ -45,7 +45,7 @@ const EditJobs = () => {
     // const id = data._id;
 
     const response = await fetch(
-      ` https://server-job-swift.vercel.app/all-post/${id}`,
+      ` http://localhost:5000/all-post/${id}`,
       {
         method: "PATCH",
         headers: {
