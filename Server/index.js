@@ -29,13 +29,13 @@ app.use(express.static("public"));
 app.use(fileUpload());
 
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://job-swift-git-masum-developermasum.vercel.app');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'https://job-swift-git-masum-developermasum.vercel.app'); 
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   next();
+// });
 
 const uploadDirectory = path.join(__dirname, "public", "uploads");
 app.use(express.static(uploadDirectory));
@@ -355,6 +355,12 @@ async function run() {
     // -----------------post job ---------------
     // post a new job
     app.post("/job_post", async (req, res) => {
+      const query = req.body;
+      const result = await jobPostCollection.insertOne(query);
+      res.send(result);
+    });
+    // --------------------use test -------
+    app.post("/new", async (req, res) => {
       const query = req.body;
       const result = await jobPostCollection.insertOne(query);
       res.send(result);
