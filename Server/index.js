@@ -539,6 +539,23 @@ async function run() {
       res.send(result);
     });
 
+
+    //Done by Md Arifur rahman
+
+    app.get("/all-applications2", async (req, res) => {
+      // const id = req.params.id;
+      const search = req.query.search;
+      // console.log(search);
+      // const query = { _id: new ObjectId(id) };
+      const query = { location: { $regex: search, $options: "i" } }
+      const query2 = { jobTitle: { $regex: search, $options: "i" } }
+      const query3 = { firstName: { $regex: search, $options: "i" } }
+
+      const application = applicationsPostCollection.find(query, query2, query3);
+      const result = await application.toArray()
+      res.send(result);
+    });
+
     // resume app.use('/uploads', upload.array("image", "resume"));
 
     // Send a ping to confirm a successful connection
