@@ -36,18 +36,7 @@ const PeopleSearch = () => {
         formState: { errors }
     } = useForm();
 
-    // const result = useSelector((state) => state)
-    // console.log(result);
 
-    // const dispatch = useDispatch()
-
-    // useEffect(() => {
-    //     dispatch(getAllApplications())
-    // }, [])
-
-    // fetch('http://localhost:5000/all-applications')
-    //     .then(res => res.json())
-    //     .then(data => console.log("from people search", data));
 
     useEffect(() => {
         const URL = `http://localhost:5000/all-applications2?search=${search}`;
