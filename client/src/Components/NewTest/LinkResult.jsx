@@ -68,7 +68,7 @@
 //   const [error, setError] = useState(false);
 //   const value = localStorage.getItem("URL");
 //   console.log(value);
-//   const url = ` https://server-wheat-beta.vercel.app/${value}`;
+//   const url = ` https://server-job-swift.vercel.app/${value}`;
 //   console.log(url);
 //   const fetchData = async () => {
 //     try {
