@@ -29,13 +29,13 @@ app.use(express.static("public"));
 app.use(fileUpload());
 
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://job-swift-git-masum-developermasum.vercel.app');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'https://job-swift-git-masum-developermasum.vercel.app');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   next();
+// });
 
 const uploadDirectory = path.join(__dirname, "public", "uploads");
 app.use(express.static(uploadDirectory));
@@ -530,6 +530,23 @@ async function run() {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await applicationsPostCollection.deleteOne(query);
+      res.send(result);
+    });
+
+
+    //Done by Md Arifur rahman
+
+    app.get("/all-applications2", async (req, res) => {
+      // const id = req.params.id;
+      const search = req.query.search;
+      // console.log(search);
+      // const query = { _id: new ObjectId(id) };
+      const query = { location: { $regex: search, $options: "i" } }
+      const query2 = { jobTitle: { $regex: search, $options: "i" } }
+      const query3 = { firstName: { $regex: search, $options: "i" } }
+
+      const application = applicationsPostCollection.find(query, query2, query3);
+      const result = await application.toArray()
       res.send(result);
     });
 
