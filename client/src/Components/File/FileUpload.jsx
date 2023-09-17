@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function ImageForm() {
+function FileUpload() {
   const [imageData, setImageData] = useState(null);
   const [resumeData, setResumeData] = useState(null);
   const [allFiles, setAllFiles] = useState([]);
@@ -121,4 +121,4 @@ function ImageForm() {
   );
 }
 
-export default ImageForm;
+export default FileUpload;

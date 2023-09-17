@@ -24,6 +24,8 @@ import Evaluate from "../../Components/Home/Evaluate/Evaluate";
 import KeyFeatures from "../../Components/Home/KeyFeature/Features";
 import AtsFeature from "../../Components/AtsFeature/AtsFeature";
 import ApplicationForm from "../../Components/ResumeParsing/ResumeParsing";
+import FileUpload from "../../Components/File/FileUpload";
+import ResumeForm from "../../Components/New/ResumeForm";
 
 const Home = () => {
   return (
@@ -35,8 +37,11 @@ const Home = () => {
         <BannerCompany />
       </div>
 
+
+      {/* <FileUpload></FileUpload> */}
+
       
-     <ApplicationForm></ApplicationForm>
+   {/* <ResumeForm></ResumeForm> */}
 
       {/* <KeyFeatures></KeyFeatures> */}
 

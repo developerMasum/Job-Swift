@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import pdfjs from 'pdfjs-dist';
+import React, { useState } from "react";
+import pdfjs from "pdfjs-dist";
 
 const YourForm = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    summary: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    summary: "",
   });
 
-  const [resumeText, setResumeText] = useState('');
+  const [resumeText, setResumeText] = useState("");
   const [resumeFile, setResumeFile] = useState(null);
 
   const handleFileChange = async (e) => {
@@ -25,14 +25,16 @@ const YourForm = () => {
 
         loadingTask.promise
           .then((pdf) => {
-            let text = '';
+            let text = "";
 
             const numPages = pdf.numPages;
             for (let i = 1; i <= numPages; i++) {
               pdf.getPage(i).then((page) => {
                 page.getTextContent().then((textContent) => {
-                  const pageText = textContent.items.map((item) => item.str).join(' ');
-                  text += pageText + ' ';
+                  const pageText = textContent.items
+                    .map((item) => item.str)
+                    .join(" ");
+                  text += pageText + " ";
                 });
               });
             }
@@ -40,7 +42,7 @@ const YourForm = () => {
             setResumeText(text);
           })
           .catch((error) => {
-            console.error('Error parsing PDF:', error);
+            console.error("Error parsing PDF:", error);
           });
       };
 
@@ -50,23 +52,51 @@ const YourForm = () => {
   };
 
   const handleResumeParse = () => {
-    // Resume Parser: Extract summary text after a keyword
-    const keyword = 'Summary:';
-    const startIndex = resumeText.indexOf(keyword);
-    const summary = startIndex !== -1 ? resumeText.substring(startIndex + keyword.length) : '';
+    const nameRegex = /([A-Z][a-z]+ [A-Z][a-z]+)/g;
+    const names = resumeText.match(nameRegex);
 
-    // Update the form data with parsed data
-    setFormData({
-      ...formData,
-      summary,
-    });
+    if (names) {
+      const [firstName, lastName] = names[0].split(" ");
+      setFormData({
+        ...formData,
+        firstName,
+        lastName,
+      });
+    }
+
+    // Extract Emails
+    const emailRegex = /[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}/g;
+    const emails = resumeText.match(emailRegex);
+
+    if (emails) {
+      setFormData({
+        ...formData,
+        email: emails[0],
+      });
+    }
+
+    // Extract Summary (Assuming it's after a "Summary:" keyword)
+    const summaryKeyword = "Summary:";
+    const summaryIndex = resumeText.indexOf(summaryKeyword);
+
+    if (summaryIndex !== -1) {
+      const summary = resumeText
+        .substring(summaryIndex + summaryKeyword.length)
+        .trim();
+      setFormData({
+        ...formData,
+        summary,
+      });
+    }
+
+    // You can add more parsing logic for phone numbers, addresses, etc. here
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission with the updated formData
     // (e.g., send it to the server)
-    console.log('Form data:', formData);
+    console.log("Form data:", formData);
   };
 
   return (
@@ -76,13 +106,17 @@ const YourForm = () => {
           type="text"
           placeholder="First Name"
           value={formData.firstName}
-          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, firstName: e.target.value })
+          }
         />
         <input
           type="text"
           placeholder="Last Name"
           value={formData.lastName}
-          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, lastName: e.target.value })
+          }
         />
         <input
           type="email"
@@ -102,22 +136,24 @@ const YourForm = () => {
         <textarea
           placeholder="Summary"
           value={formData.summary}
-          onChange={(e) => setFormData({ ...formData, summary: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, summary: e.target.value })
+          }
         />
         <button type="submit">Submit</button>
       </form>
-      
+
       <div>
         <button onClick={handleResumeParse}>Parse Resume</button>
       </div>
-      
+
       {resumeFile && (
         <div>
           <h3>Uploaded Resume:</h3>
           <p>{resumeFile.name}</p>
         </div>
       )}
-      
+
       <div>
         <h3>Resume Text:</h3>
         <pre>{resumeText}</pre>
