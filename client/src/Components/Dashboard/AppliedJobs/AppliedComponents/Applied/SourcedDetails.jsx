@@ -48,19 +48,21 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
-    console.log("nove to applied", id);
+    console.log("Move to applied", id);
     try {
-      const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
+      const response = fetch(`https://server-job-swift.vercel.app/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ stage: "Applied" }),
+        body: JSON.stringify({stage:"Applied"}),
       });
 
       if (response) {
         toast.success("This Candidate moved to Applied");
-        window.location.reload(true);
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1500);
       } else {
         console.error("Failed to update stage.");
       }

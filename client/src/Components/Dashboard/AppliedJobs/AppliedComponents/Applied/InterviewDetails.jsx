@@ -59,7 +59,9 @@ const Table = ({ interviewCandi: candidates, isLoading }) => {
 
       if (response) {
         toast.success("This Candidate moved to Applied");
-        window.location.reload(true);
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1000);
       } else {
         console.error("Failed to update stage.");
       }

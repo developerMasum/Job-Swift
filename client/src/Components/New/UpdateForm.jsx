@@ -399,16 +399,37 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   } = useForm();
 
   // For base64
+
+  const ImgKey = 'adec725a3a47593eb0b73dad5f618470';
+  const ImgHostingURL = `https://api.imgbb.com/1/upload?key=${ImgKey}`;
+  const [imgUrl,setImgUrl] = useState()
+  
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageData(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    const formData = new FormData();
+    formData.append('image', event.target.files[0]); // Use append correctly
+  
+    console.log(event.target.files[0]); // Log the selected file
+  
+    fetch(ImgHostingURL, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgRes) => {
+        if (imgRes.success) {
+          const imageURL = imgRes.data.display_url;
+          setImgUrl(imageURL)
+          // Do something with the imageURL
+        }
+      })
+      .catch((error) => {
+        console.error("Error uploading image:", error);
+      });
   };
+  // console.log('url',imgUrl);
+  
+
+
 
   const handleResumeChange = (event) => {
     const file = event.target.files[0];
@@ -421,8 +442,8 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     }
   };
   const onSubmit = async (data) => {
-    if (!imageData || !resumeData) {
-      console.error("Image and/or resume data is missing.");
+    if (!resumeData) {
+      console.error("resume data is missing.");
       return;
     }
 
@@ -447,7 +468,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     formData.append("experienceList", JSON.stringify(experienceList));
 
     // Append image and resume base64 data
-    formData.append("imageData", imageData);
+    formData.append("imageData", imgUrl);
     formData.append("resumeData", resumeData);
 
     // Display form data (including image and resume data) for debugging
