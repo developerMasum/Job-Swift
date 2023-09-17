@@ -324,6 +324,8 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [uploadedResume, setUploadedResume] = useState("");
+  const [imageData, setImageData] = useState(null);
+  const [resumeData, setResumeData] = useState(null);
 
   const handleAddEducation = () => {
     setEditingEducationIndex(null);
@@ -396,10 +398,39 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     formState: { errors },
   } = useForm();
 
+  // For base64
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImageData(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleResumeChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setResumeData(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   const onSubmit = async (data) => {
+    if (!imageData || !resumeData) {
+      console.error("Image and/or resume data is missing.");
+      return;
+    }
+
     setIsSubmitting(true);
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
+
+    // Append other form fields
     formData.append("jobTitle", jobTitle);
     formData.append("jobId", jobId);
     formData.append("stage", "Sourced");
@@ -409,21 +440,28 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     formData.append("email", data.email);
     formData.append("phone", data.phone);
     formData.append("address", data.address);
-    formData.append("image", data.image[0]);
-    formData.append("resume", data.resume[0]);
     formData.append("coverLetter", data.coverLetter);
     formData.append("summary", data.summary);
     formData.append("date", isoDateString);
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
 
-    console.log(data);
+    // Append image and resume base64 data
+    formData.append("imageData", imageData);
+    formData.append("resumeData", resumeData);
+
+    // Display form data (including image and resume data) for debugging
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+
     setFirstName(data.firstName);
     setLastName(data.lastName);
     setEmail(data.email);
+
     try {
       const response = await axios.post(
-        " http://localhost:5000/upload-new",
+        "https://server-job-swift.vercel.app/upload-new",
         formData,
         {
           headers: {
@@ -431,24 +469,80 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
           },
         }
       );
+
       console.log("from overview", response.data);
       // updateData(appliedJobId);
     } catch (error) {
       console.error("from overview", error);
     }
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      // setIsSubmitted(true);
-    }, 4000);
+    setIsSubmitting(false);
   };
 
   // for get data
 
+  // const onSubmit = async (data) => {
+  //   setIsSubmitting(true);
+  //   const isoDateString = new Date().toISOString();
+  //   const formData = new FormData();
+  //   formData.append("jobTitle", jobTitle);
+  //   formData.append("jobId", jobId);
+  //   formData.append("stage", "Sourced");
+  //   formData.append("jobPosterEmail", jobPosterEmail);
+  //   formData.append("firstName", data.firstName);
+  //   formData.append("lastName", data.lastName);
+  //   formData.append("email", data.email);
+  //   formData.append("phone", data.phone);
+  //   formData.append("address", data.address);
+  //   formData.append("coverLetter", data.coverLetter);
+  //   formData.append("summary", data.summary);
+  //   formData.append("date", isoDateString);
+  //   formData.append("educationList", JSON.stringify(educationList));
+  //   formData.append("experienceList", JSON.stringify(experienceList));
+
+  //   // Convert and append image to base64
+  //   const imageFile = data.image[0];
+  //   const imageBase64 = await convertFileToBase64(imageFile);
+  //   formData.append("imageBase64", imageBase64);
+
+  //   // Convert and append resume to base64
+  //   const resumeFile = data.resume[0];
+  //   const resumeBase64 = await convertFileToBase64(resumeFile);
+  //   formData.append("resumeBase64", resumeBase64);
+
+  //   console.log('formDat', formData);
+  //   setFirstName(data.firstName);
+  //   setLastName(data.lastName);
+  //   setEmail(data.email);
+
+  //   try {
+  //     const response = await axios.post(
+  //       "https://server-job-swift.vercel.app/upload-new",
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+  //     console.log("from overview", response.data);
+  //     // updateData(appliedJobId);
+  //   } catch (error) {
+  //     console.error("from overview", error);
+  //   }
+
+  //   setTimeout(() => {
+  //     setIsSubmitting(false);
+  //     // setIsSubmitted(true);
+  //   }, 4000);
+  // };
+
+  // Function to convert a file to base64
+
   const [allData, setAllData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/all-applications")
+      .get("  https://server-job-swift.vercel.app/all-applications")
       .then((res) => {
         console.log(res.data);
         setAllData(res.data);
@@ -662,7 +756,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
                       id="image"
                       name="image"
                       accept=".jpg, .png"
-                      {...register("image")}
+                      onChange={handleImageChange}
                     />
 
                     <label
@@ -811,26 +905,23 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
                   Upload Your Resume (PDF)
                 </label>
                 <div className="flex flex-col items-center border-dashed p-8 border-[1px] border-gray-500 rounded-lg shadow-md">
-                  <input
-                    type="file"
-                    id="resume"
-                    name="resume"
-                    accept=".pdf"
-                    className="sr-only"
-                    {...register("resume")}
-                    onChange={handleResumeUpload}
-                  />
-                  <label
-                    htmlFor="resume"
-                    className="cursor-pointer border-[2px] border-dashed border-gray-400 flex items-center h-20 space-x-2 p-2  text-gray-500 rounded-md hover:shadow-xl"
-                  >
-                    <AiOutlineFilePdf className="text-2xl" />
-                    <span>
-                      {uploadedResume
-                        ? `Resume Uploaded: ${uploadedResume}`
-                        : "Choose a PDF file"}
-                    </span>
-                  </label>
+                  <div className="flex items-center border-[2px] border-dashed hover:shadow-xl rounded-md border-gray-400 h-20 px-2">
+                    <input
+                      type="file"
+                      id="resume"
+                      name="resume"
+                      accept=".pdf"
+                      onChange={handleResumeChange}
+                    />
+
+                    <label
+                      htmlFor="image"
+                      className="cursor-pointer flex items-center space-x-2 p-2 text-gray-500 rounded-md border-[1px]"
+                    >
+                      <RiImageAddLine className="text-2xl" />{" "}
+                      <span>Choose PDF, DOC</span>
+                    </label>
+                  </div>
                 </div>
               </div>
 

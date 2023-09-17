@@ -11,7 +11,7 @@ const fileUpload = require("express-fileupload");
 
 const port = process.env.PORT || 5000;
 const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
-app.use(express.static("public/images"));
+
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
 }

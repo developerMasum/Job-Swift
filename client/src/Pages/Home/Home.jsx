@@ -23,6 +23,9 @@ import IntegrationMarketplace from "../../Components/Home/MarketPlaceIntegrate/M
 import Evaluate from "../../Components/Home/Evaluate/Evaluate";
 import KeyFeatures from "../../Components/Home/KeyFeature/Features";
 import AtsFeature from "../../Components/AtsFeature/AtsFeature";
+import ApplicationForm from "../../Components/ResumeParsing/ResumeParsing";
+import FileUpload from "../../Components/File/FileUpload";
+import ResumeForm from "../../Components/New/ResumeForm";
 
 const Home = () => {
   return (
@@ -33,9 +36,12 @@ const Home = () => {
       <div>
         <BannerCompany />
       </div>
-      <div className="md:px-12">
-        {/* <EmployeeExperienceSection></EmployeeExperienceSection> */}
-      </div>
+
+
+      {/* <FileUpload></FileUpload> */}
+
+      
+   {/* <ResumeForm></ResumeForm> */}
 
       {/* <KeyFeatures></KeyFeatures> */}
 
