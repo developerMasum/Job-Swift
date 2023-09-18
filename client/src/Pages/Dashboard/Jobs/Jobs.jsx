@@ -3,10 +3,6 @@ import { MdKeyboardArrowDown, MdClear } from "react-icons/md";
 import { LuEdit } from "react-icons/lu";
 import triangle from "../../../assets/Image/triangles4-1.svg";
 import PostJobs from "./PostJobs";
-import icons1 from "../../../assets/Image/jobsicon1.png";
-import icons2 from "../../../assets/Image/jobsicons.png";
-import icons3 from "../../../assets/Image/josbicns3.png";
-import { FaEdit } from "react-icons/fa";
 
 const countries = ["USA", "Canada", "UK", "Australia", "Germany"];
 
@@ -15,35 +11,127 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPost } from "../../../redux/postJob/postSlice";
 import { authContext } from "../../../Auth/AuthProvider";
+import { getAllCandidates } from "../../../redux/candidates/candidatesOperation";
+import JobsInvitationsCard from "./JobsInvitetionsCard";
+import Swal from "sweetalert2";
+import LoaderInternal from "../../../Components/LoaderInternal/LoaderInternal";
 const Jobs = () => {
   const dispatch = useDispatch();
   const [isFirstOpen, setFirstOpen] = useState(false);
   const [isSecondOpen, setSecondOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { user } = useContext(authContext);
+  const email = user?.email;
+  const nameOrMail = user?.displayName;
+
+  const { candidates, isLoading, error } = useSelector(
+    (state) => state.candidates
+  );
+  // console.log('from jobs', candidates);
+  useEffect(() => {
+    // Dispatch the action to fetch candidates based on the selected sorting order
+    dispatch(getAllCandidates(email));
+  }, [dispatch]);
 
   const jobs = useSelector((state) => state.posts.jobs);
   const isJobs = jobs.filter((d) => d.userEmail === user?.email);
-  const postId = useSelector((state) => state.posts.jobs).map(
-    (post) => post._id
-  );
+  const jobTitleFor = isJobs.map((j) => j.jobTitle);
+  const mappedTitle = isJobs.map((j) => {
+    const filteredByTitle = candidates.filter(
+      (c) => c.jobTitle === j.jobTitle && c.jobId === j._id
+    );
+    const interviewCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Interview"
+    ).length;
+    const sourcedCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Sourced"
+    ).length;
+    const appliedCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Applied"
+    ).length;
+    const offerCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Offer"
+    ).length;
+    const hiredCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Hired"
+    ).length;
+    const assessmentCount = filteredByTitle.filter(
+      (ft) => ft.stage === "Assessment"
+    ).length;
+
+    console.log(`Job Title: ${j.jobTitle}`);
+    console.log(`Job ID: ${j._id}`);
+    console.log(`Interview Count: ${interviewCount}`);
+    console.log(`Sourced Count: ${sourcedCount}`);
+    console.log(`Applied Count: ${appliedCount}`);
+    console.log(`Offer Count: ${offerCount}`);
+    console.log(`Hired Count: ${hiredCount}`);
+    console.log(`Assessment Count: ${assessmentCount}`);
+
+    return {
+      jobTitleFor: j.jobTitle,
+      jobId: j._id,
+      Interview: interviewCount,
+      Sourced: sourcedCount,
+      Applied: appliedCount,
+      Offer: offerCount,
+      Hired: hiredCount,
+      Assessment: assessmentCount,
+    };
+  });
+  // console.log('job title',mappedTitle);
+  // const resilt = jobTitle.filter(job=>job.jobTitle===)
+  // console.log('isjobs',resilt);
 
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
+  console.log(isJobs);
+
+  // ---------------------------------------job delete ---------------------
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(` http://localhost:5000/all-post/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your order has been deleted.", "success");
+
+              //   const remaining = jobs.filter((job) => job.jobId !== id);
+              // setMappedTitle(remaining)
+            }
+          });
+      }
+    });
+  };
+
+  if (isLoading) {
+    return <LoaderInternal></LoaderInternal>;
+  }
 
   return (
     <div className="pt-[70px] max-w-7xl mx-auto">
       <div className="bg-white rounded-lg border-[1px] p-4 mb-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
-            <h2 className="text-xl font-bold text-gray-600">MD MASUM</h2>
-            <button className="text-gray-600 hover:text-cylog transition-colors duration-300">
+            <h2 className="text-xl font-bold text-gray-600">{nameOrMail} </h2>
+            {/* <button className="text-gray-600 hover:text-cylog transition-colors duration-300">
               <FaEdit className="w-5 h-5" />
-            </button>
+            </button> */}
           </div>
           <Link to="post-job">
-            <button className="bg-cyan-700 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
+            <button className="bg-teal-700 hover:bg-teal-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-300">
               Create a New Job
             </button>
           </Link>
@@ -51,7 +139,7 @@ const Jobs = () => {
       </div>
 
       {/* Dropdown */}
-      <div className="flex justify-end pr-16 ">
+      {/* <div className="flex justify-end pr-16 ">
         <div className="relative z-50">
           <button
             onClick={() => {
@@ -125,7 +213,7 @@ const Jobs = () => {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
 
       <div className="mx-2 lg:md:mx-0 flex gap-8 border-[1px] rounded-md   border-gray-300 p-6 items-center bg-white justify-between">
         <div className="flex flex-col space-y-3">
@@ -138,7 +226,7 @@ const Jobs = () => {
             boards.
           </p>
           <Link to="post-job">
-            <button className="border border-cyan-600 text-cyan-600 px-6 py-2 rounded-lg font-medium hover:bg-cyan-600 hover:text-white hover:border-cyan-800 transition-colors duration-300">
+            <button className="border border-teal-600 text-teal-600 px-6 py-2 rounded-lg font-medium hover:bg-teal-600 hover:text-white hover:border-teal-800 transition-colors duration-300">
               Post a Job
             </button>
           </Link>
@@ -152,14 +240,21 @@ const Jobs = () => {
 
       <div className="pt-10 px-2 lg:md:px-0">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-bold text-swift ">SAMPLE JOBS</p>
-          <p className="text-xs font-bold text-swift ">Delete sample data</p>
+          <p className="text-xs font-bold text-swift ">ALL POSTED JOBS</p>
+          <p className="text-xs font-bold text-swift uppercase ">
+            Showing with candidates Stages
+          </p>
         </div>
         <div className="">
-          {isJobs.map((jobs) => (
-            <PostJobs jobs={jobs} key={jobs._id} />
+          {mappedTitle.map((jobs, index) => (
+            <PostJobs handleDelete={handleDelete} jobs={jobs} key={index} />
           ))}
         </div>
+        {/* <div className="">
+          {mappedTitle.map((jobs) => (
+            <PostJobs jobs={jobs} key={jobs._id} />
+          ))}
+        </div> */}
         <div className="pt-8 pb-6">
           <h2 className="pb-4 text-xs font-bold text-swift">TALENT POOL</h2>
 
@@ -171,23 +266,7 @@ const Jobs = () => {
               <h4 className="text-lg font-semibold">Talent Pool</h4>
               <p>
                 Add candidates by email: send resumes to{" "}
-                <span className="hover:underline">
-                  md-masum@jobs.workablemail.com
-                </span>
-              </p>
-            </div>
-            <div className="flex gap-3 items-center">
-              <p
-                className="group-hover:block hidden text-swift hover:underline font-medium
-              "
-              >
-                Upload Resume
-              </p>
-              <p
-                className="group-hover:block hidden text-swift hover:underline font-medium
-              "
-              >
-                Refer Candidate
+                <span className="hover:underline">md-masum@jobs.swift.com</span>
               </p>
             </div>
           </div>
@@ -195,77 +274,8 @@ const Jobs = () => {
         <div>
           <div className="flex justify-between pb-8 mx-5">
             <h2 className=" text-xs font-bold text-swift">SUGGESTED ACTIONS</h2>
-            <h2 className=" text-xs font-bold text-swift hover:underline">
-              Don't show again
-            </h2>
           </div>
-          <div className="px-5 mx-auto pb-20 grid lg:md:grid-cols-3 gap-7">
-            <div
-              className="flex px-4 py-3 rounded-lg"
-              style={{
-                boxShadow:
-                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
-              }}
-            >
-              <div className="space-y-3">
-                <h4 className="font-semibold">Work as a team</h4>
-                <p className="text-swift text-sm">
-                  Invite your team to Workable so you can share feedback and
-                  work together to hire the right people.
-                </p>
-                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
-                  Send invite{" "}
-                </button>
-              </div>
-              <div>
-                <img className="w-[200px] h-[100px]" src={icons1} alt="" />
-              </div>
-            </div>
-            <div
-              className="flex px-4 rounded-lg py-3"
-              style={{
-                boxShadow:
-                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
-              }}
-            >
-              <div className="space-y-3">
-                <h4 className="font-semibold">Show off your brand</h4>
-                <p className="text-swift text-sm">
-                  Ensure candidates see your company logo and custom description
-                  on job posts, emails and more.
-                </p>
-                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
-                  Send invite{" "}
-                </button>
-              </div>
-              <div>
-                <img className="w-[200px] h-[100px]" src={icons2} alt="" />
-              </div>
-            </div>
-            <div
-              className="flex rounded-lg px-4 py-3"
-              style={{
-                boxShadow:
-                  "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
-              }}
-            >
-              <div className="space-y-3">
-                <h4 className="font-semibold">
-                  Find the best features for you
-                </h4>
-                <p className="text-swift text-sm">
-                  Workable is best when it's customized for you. Check out all
-                  of our features with a personal walkthrough.
-                </p>
-                <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
-                  Send invite{" "}
-                </button>
-              </div>
-              <div>
-                <img className="w-[200px] h-[100px]" src={icons3} alt="" />
-              </div>
-            </div>
-          </div>
+          <JobsInvitationsCard />
         </div>
       </div>
     </div>

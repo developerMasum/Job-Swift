@@ -56,6 +56,12 @@ import CandidiateUserDetails from "../Pages/Dashboard/Candidates/CandidiateUserD
 
 import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
 import EditJobs from "../Pages/Dashboard/Jobs/EditJobs/EditJobs";
+import Blogs from "../Components/Blogs/Blogs";
+import BlogDetails from "../Components/Blogs/BlogDetails";
+import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
+import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
+import Certification from "../Pages/Dashboard/Dashboard/Certification/Certification";
+import CertificationList from "../Pages/Dashboard/Dashboard/Certification/CertificationList";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -98,12 +104,24 @@ const router = createBrowserRouter([
         element: <LogIn />,
       },
       {
+        path: "/terms",
+        element: <TermsAndConditions />,
+      },
+      {
         path: "/login/forgotPassword",
         element: <ForgotPassword></ForgotPassword>,
       },
       {
         path: "/register",
         element: <SignIn />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
+      },
+      {
+        path: "/blogs/:id",
+        element: <BlogDetails />,
       },
       {
         path: "/contact-us",
@@ -113,13 +131,13 @@ const router = createBrowserRouter([
         path: "/overview/:id",
         element: <Overview />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/job_post/${params.id}`),
+          fetch(` http://localhost:5000/job_post/${params.id}`),
       },
       {
         path: "/editJobs/:id",
         element: <EditJobs />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-post/${params.id}`),
+          fetch(` http://localhost:5000/all-post/${params.id}`),
       },
     ],
   },
@@ -160,12 +178,13 @@ const router = createBrowserRouter([
         element: <AppliedJobs />,
 
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-post/${params.id}`),
+          fetch(` http://localhost:5000/all-post/${params.id}`),
       },
 
       {
-        path: "jobs/findCandidates",
+        path: "jobs/findCandidates/:id",
         element: <FindCandidatesLayout></FindCandidatesLayout>,
+
         children: [
           {
             path: "teamMembers",
@@ -186,7 +205,7 @@ const router = createBrowserRouter([
             element: <WorkFlow></WorkFlow>,
           },
           {
-            path: "jobDetails",
+            path: "jobDetails/:id",
             element: <JobsDetails></JobsDetails>,
           },
         ],
@@ -228,11 +247,22 @@ const router = createBrowserRouter([
         path: "candidate",
         element: <Candidates />,
       },
-
+      {
+        path: "inbox-email",
+        element: <EmailUs />,
+      },
+      {
+        path: "get-certificate/:id",
+        element: <Certification />,
+      },
+      {
+        path: "certification-list",
+        element: <CertificationList />,
+      },
       {
         path: "candidate/profile/:id",
         element: <CandidiateUserDetails />,
-        // loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`),
+        // loader: ({ params }) => fetch(` http://localhost:5000/users/${params.id}`),
       },
       {
         path: "settings/profile",

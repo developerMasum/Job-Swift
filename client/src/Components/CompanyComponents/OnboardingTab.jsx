@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaPaperPlane, FaPlaneDeparture } from "react-icons/fa";
-import files from "../../assets/Image/files.png";
+
 
 const OnboardingTab = () => {
   const [activeTab, setActiveTab] = useState("tabs1");
@@ -86,7 +86,7 @@ const OnboardingTab = () => {
         <div className="pt-7 text-center">
           {activeTab === "tabs1" && (
             <div className="space-y-2 text-center">
-              <img className="text-center mx-auto" src={files} alt="" />
+              <img className="text-center mx-auto" src="https://i.ibb.co/1sHKCLh/files.png" alt="" />
               <h5 className="font-medium text-xl">
                 Assign onboarding to new employees
               </h5>
@@ -101,7 +101,7 @@ const OnboardingTab = () => {
           )}
           {activeTab === "tabs2" && (
             <div className="space-y-2 text-center">
-              <img className="text-center mx-auto" src={files} alt="" />
+              <img className="text-center mx-auto" src="https://i.ibb.co/1sHKCLh/files.png" alt="" />
               <h5 className="font-medium text-xl">
                 Assign onboarding to new employees
               </h5>
@@ -116,7 +116,7 @@ const OnboardingTab = () => {
           )}
           {activeTab === "tabs3" && (
             <div className="space-y-2 text-center">
-              <img className="text-center mx-auto" src={files} alt="" />
+              <img className="text-center mx-auto" src="https://i.ibb.co/1sHKCLh/files.png" alt="" />
               <h5 className="font-medium text-xl">
                 See employee onboarding in progress
               </h5>
@@ -131,7 +131,7 @@ const OnboardingTab = () => {
           )}
           {activeTab === "tabs4" && (
             <div className="space-y-2 text-center">
-              <img className="text-center mx-auto" src={files} alt="" />
+              <img className="text-center mx-auto" src="https://i.ibb.co/1sHKCLh/files.png" alt="" />
               <h5 className="font-medium text-xl">
                 Review completed onboarding
               </h5>
@@ -143,7 +143,7 @@ const OnboardingTab = () => {
           )}
           {activeTab === "tabs5" && (
             <div className="space-y-2 text-center">
-              <img className="text-center mx-auto" src={files} alt="" />
+              <img className="text-center mx-auto" src="https://i.ibb.co/1sHKCLh/files.png" alt="" />
               <h5 className="font-medium text-xl">
                 Review incomplete onboarding
               </h5>

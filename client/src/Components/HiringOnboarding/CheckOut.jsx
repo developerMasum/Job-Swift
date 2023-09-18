@@ -1,8 +1,7 @@
 import React from "react";
-import OnboardingImage from "../../assets/Image/onboardingTask.png";
-import ats from "../../assets/Image/ats.png";
-import employee from "../../assets/Image/employee.png";
+
 import { FaChevronRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CheckOut = () => {
   return (
@@ -21,7 +20,7 @@ const CheckOut = () => {
         {/* Onboarding Task */}
         <div className=" bg-base-100 shadow-xl px-4 py-4">
           <figure>
-            <img src={OnboardingImage} alt="OnboardingImage" />
+            <img src="https://i.ibb.co/tYzc1bJ/onboarding-Task.png" alt="OnboardingImage" />
           </figure>
           <div className="">
             <h2 className=" font-bold text-xl mt-2 mb-5">
@@ -45,7 +44,7 @@ const CheckOut = () => {
         {/* ATS Case Study */}
         <div className=" bg-base-100 shadow-xl px-4 py-4">
           <figure>
-            <img src={ats} alt="ats" />
+            <img src="https://i.ibb.co/HXtYnFz/ats.png" alt="ats" />
           </figure>
           <div className="">
             <h2 className=" font-bold text-xl mt-2 ">
@@ -69,7 +68,7 @@ const CheckOut = () => {
         {/* Definitive Guide */}
         <div className=" bg-base-100 shadow-xl px-4 py-4">
           <figure>
-            <img src={employee} alt="employee" />
+            <img src="https://i.ibb.co/3kDQVKQ/employee.png" alt="employee" />
           </figure>
           <div className="">
             <h2 className=" font-bold text-xl mt-2">
@@ -96,12 +95,14 @@ const CheckOut = () => {
         <p className="text-swift font-semibold my-2 ">
           There's no substitute for hands-on experience. Try it yourself.
         </p>
-        <h3 className=" mt-5 font-bold text-base text-center md:text-center text-blue-500">
-          Try It Free
-          <span className="ml-2">
-            <FaChevronRight className="inline-block" />
-          </span>
-        </h3>
+        <Link to="/login">
+          <h3 className=" mt-5 font-bold text-base text-center md:text-center text-blue-500">
+            Try It Free
+            <span className="ml-2">
+              <FaChevronRight className="inline-block" />
+            </span>
+          </h3>
+        </Link>
       </div>
     </div>
   );

@@ -36,9 +36,7 @@ const Solutions = () => {
           </div>
         ))}
       </div>
-      <button className="mt-8 px-6 py-3 text-white bg-[#219438] rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring focus:border-[#17842B]">
-        View All Integrations
-      </button>
+      
     </div>
   );
 };

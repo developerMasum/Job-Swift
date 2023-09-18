@@ -38,13 +38,13 @@ const ProgressCards = () => {
         <div key={index}>
           <div className="flex  items-center justify-between gap-6 shadow-lg p-4">
             <div>
-              <p className="text-4xl text-swift"> {singleData.icon} </p>
+              <p className="text-4xl text-cyan-700"> {singleData.icon} </p>
               {/* //   <FaUserAlt  size={40}/> */}
               <p className="text-xl text-slate-700  font-bold">
                 {" "}
                 {singleData.number}
               </p>
-              <p className="text-lg text-swift font-semibold">
+              <p className="text-lg text-cyan-700 font-semibold">
                 {" "}
                 {singleData.name}
               </p>

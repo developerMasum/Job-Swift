@@ -1,5 +1,5 @@
 import React from "react";
-import recruiting from "../../assets/Image/recruiting.png";
+
 import { RiUserSearchLine } from "react-icons/ri";
 import { BsPersonAdd } from "react-icons/bs";
 import { AiOutlineClear } from "react-icons/ai";
@@ -84,7 +84,7 @@ const ExploreHiring = () => {
         </div>
 
         <img
-          src={recruiting}
+          src="https://i.ibb.co/fttD6sw/recruiting.png"
           alt=""
           className="w-full h-auto md:w-1/2 md:ml-8"
         />

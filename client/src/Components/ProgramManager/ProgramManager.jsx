@@ -1,9 +1,6 @@
 import { AiOutlineRight } from "react-icons/ai";
 
-import img1 from "../../assets/Image/programManager1.png";
-import img2 from "../../assets/Image/programManager2.png";
-import img3 from "../../assets/Image/programManager3.png";
-import img4 from "../../assets/Image/programManager4.png";
+
 import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -20,12 +17,12 @@ const ProgramManager = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 my-5">
         {/* card 01 */}
         <div className=" transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
-          <img className="mx-auto px-4 md:h-[300px]" src={img1} alt="" />
+          <img className="mx-auto px-4 md:h-[300px]" src="https://i.ibb.co/s67bcD0/program-Manager1.png" alt="" />
           <div className="text-center mt-12">
             <h4 className="text-xl text-red-400 font-bold mb-2">
               SOURCE & ATTRACT
             </h4>
-            <h4 className="text-lg font-semibold">
+            <h4 className="text-lg font-semibold text-swift">
               Find and attract candidates
             </h4>
             <p className="text-second font-semibold my-6">
@@ -34,7 +31,7 @@ const ProgramManager = () => {
             </p>
             <Link
               to={"/hr-data"}
-              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-gray-700 font-bold"
+              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-teal-700 font-bold"
             >
               Learn More
               <span>
@@ -45,7 +42,7 @@ const ProgramManager = () => {
         </div>
         {/* card 02 */}
         <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
-          <img className="mx-auto px-4 md:h-[300px]" src={img2} alt="" />
+          <img className="mx-auto px-4 md:h-[300px]" src="https://i.ibb.co/x307w1M/program-Manager2.png" alt="" />
           <div className="text-center mt-12">
             <h4 className="text-xl text-blue-400 font-bold mb-2">
               EVALUATE & COLLABORATE
@@ -60,7 +57,7 @@ const ProgramManager = () => {
             </p>
             <Link
               to={"/single-pay"}
-              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-gray-700 font-bold"
+              className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-teal-700 font-bold"
             >
               Learn More
               <span>
@@ -71,7 +68,7 @@ const ProgramManager = () => {
         </div>
         {/* card 03 */}
         <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
-          <img className="mx-auto px-4 md:h-[300px]" src={img3} alt="" />
+          <img className="mx-auto px-4 md:h-[300px]" src="https://i.ibb.co/0ycFcC6/program-Manager3.png" alt="" />
           <div className="text-center mt-12">
             <h4 className="text-xl text-indigo-500 font-bold mb-2">
               AUTOMATE & HIRE
@@ -83,7 +80,7 @@ const ProgramManager = () => {
               Fill your pipeline quickly with one-click job posting to <br />{" "}
               200+ sites, AI-powered sourcing, employee referrals and more.
             </p>
-            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-gray-700 font-bold">
+            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-teal-700 font-bold">
               Learn More
               <span>
                 <FaChevronRight className="inline-block"></FaChevronRight>
@@ -93,7 +90,7 @@ const ProgramManager = () => {
         </div>
         {/* card 04 */}
         <div className="transition duration-1000 ease-in-out transform hover:scale-105 ps-4 h-[600px]">
-          <img className="mx-auto px-4 md:h-[300px]" src={img4} alt="" />
+          <img className="mx-auto px-4 md:h-[300px]" src="https://i.ibb.co/6nGbtsF/program-Manager4.png" alt="" />
           <div className="text-center mt-12">
             <h4 className="text-xl text-teal-400 font-bold mb-2">
               ONBOARD & MANAGE
@@ -105,7 +102,7 @@ const ProgramManager = () => {
               Create custom onboarding experiences, have new hires e-sign <br />
               documents, and store all employee info in one place.
             </p>
-            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-gray-700 font-bold">
+            <p className=" md:mt-8 mt-2 md:text-start text-center flex items-center justify-center gap-2 text-teal-700 font-bold">
               Learn More
               <span>
                 <FaChevronRight className="inline-block"></FaChevronRight>

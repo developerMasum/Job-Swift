@@ -18,36 +18,41 @@ import BannerCompany from "../../Components/Home/Banner/BannerCompany";
 
 // import Company from "../../Components/Company/Company";
 import ProgramManager from "../../Components/ProgramManager/ProgramManager";
-import FileUpload from "../../Components/File/FileUpload";
+
 import IntegrationMarketplace from "../../Components/Home/MarketPlaceIntegrate/MarketPlaceIntegate";
 import Evaluate from "../../Components/Home/Evaluate/Evaluate";
 import KeyFeatures from "../../Components/Home/KeyFeature/Features";
-
+import AtsFeature from "../../Components/AtsFeature/AtsFeature";
+import ApplicationForm from "../../Components/ResumeParsing/ResumeParsing";
+import FileUpload from "../../Components/File/FileUpload";
+import ResumeForm from "../../Components/New/ResumeForm";
 
 const Home = () => {
   return (
     <div className="">
-      <Slide>
-        {/* <HeadlineBar /> */}
-      </Slide>
-      <Banner />
     
+      <Banner />
 
       <div>
         <BannerCompany />
       </div>
-      <div className="md:px-12">
-        <EmployeeExperienceSection></EmployeeExperienceSection>
-      </div>
+
+
       {/* <FileUpload></FileUpload> */}
-      <KeyFeatures></KeyFeatures>
+
+      
+   {/* <ResumeForm></ResumeForm> */}
+
+      {/* <KeyFeatures></KeyFeatures> */}
+
+      <AtsFeature></AtsFeature>
 
       <div className="mt-12">
         <ProgramManager />
       </div>
-      <Fade>
+      {/* <Fade>
         <HrPlatform />
-      </Fade>
+      </Fade> */}
       {/* <NewBanner></NewBanner> */}
       {/* <HRPlatform></HRPlatform> */}
 
@@ -63,16 +68,12 @@ const Home = () => {
           <PaySection />
 
         </div> */}
-       
-          
-            <Hiring />
-          
-      
+        {/* <Hiring /> */}
 
         <div className="mt-16 mb-5">
           <Slide direction="right">
             {" "}
-            <EmployeeExperience />
+            {/* <EmployeeExperience /> */}
           </Slide>
 
           {/* <div className="mt-12 mb-12">
@@ -82,13 +83,14 @@ const Home = () => {
             </Zoom>
           </div> */}
 
-          <IntegrationMarketplace></IntegrationMarketplace>
+          {/* <IntegrationMarketplace></IntegrationMarketplace> */}
           <Evaluate></Evaluate>
 
           {/* slider */}
           <div className="mt-12">
-            <h2 className="md:text-4xl text-2xl mb-12 md:mb-0 font-bold text-center text-gray-800 font-sans ">
+            <h2 className="md:text-4xl text-2xl mb-12 md:mb-0 font-bold text-center text-teal-700 italic font-sans ">
               Why People Love JobSwift
+              <p className="text-sm font-bold text-slate-700 pt-3">best companies employers feedback</p>
             </h2>
             <Slider />
           </div>

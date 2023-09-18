@@ -2,7 +2,7 @@
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
 
-// const apiUrl = 'http://localhost:5000/all-application';
+// const apiUrl = ' http://localhost:5000/all-application';
 
 // const useShowState = () => {
 //   const [data, setData] = useState([]);
@@ -13,7 +13,7 @@
 //       try {
 //         const response = await axios.get(apiUrl);
 //         const responseData = response.data;
-//         const stages = responseData.map((item) => item.stage); 
+//         const stages = responseData.map((item) => item.stage);
 //         console.log(stages);
 
 //         setData(stages);

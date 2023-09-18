@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCloudUpload, AiFillCheckCircle } from "react-icons/ai";
 import { RiDeleteBin2Line } from "react-icons/ri";
@@ -298,9 +298,14 @@ const ExperienceForm = ({ onSave, onCancel, initialValues }) => {
 import { AiOutlineFilePdf } from "react-icons/ai";
 import axios from "axios";
 import { RiImageAddLine } from "react-icons/ri";
+// import { updateData } from "../../api/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCandidates } from "../../redux/candidates/candidatesOperation";
+import { authContext } from "../../Auth/AuthProvider";
 
-const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
-  console.log(jobPosterEmail);
+const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
+  console.log(jobId);
+  console.log(jobTitle);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -319,6 +324,8 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [uploadedResume, setUploadedResume] = useState("");
+  const [imageData, setImageData] = useState(null);
+  const [resumeData, setResumeData] = useState(null);
 
   const handleAddEducation = () => {
     setEditingEducationIndex(null);
@@ -391,31 +398,88 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
     formState: { errors },
   } = useForm();
 
+  // For base64
+
+  const ImgKey = "adec725a3a47593eb0b73dad5f618470";
+  const ImgHostingURL = `https://api.imgbb.com/1/upload?key=${ImgKey}`;
+  const [imgUrl, setImgUrl] = useState();
+
+  const handleImageChange = (event) => {
+    const formData = new FormData();
+    formData.append("image", event.target.files[0]); // Use append correctly
+
+    console.log(event.target.files[0]); // Log the selected file
+
+    fetch(ImgHostingURL, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgRes) => {
+        if (imgRes.success) {
+          const imageURL = imgRes.data.display_url;
+          setImgUrl(imageURL);
+          // Do something with the imageURL
+        }
+      })
+      .catch((error) => {
+        console.error("Error uploading image:", error);
+      });
+  };
+  // console.log('url',imgUrl);
+
+  const handleResumeChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setResumeData(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   const onSubmit = async (data) => {
+    if (!resumeData) {
+      console.error("resume data is missing.");
+      return;
+    }
+
     setIsSubmitting(true);
     const isoDateString = new Date().toISOString();
     const formData = new FormData();
+
+    // Append other form fields
     formData.append("jobTitle", jobTitle);
+    formData.append("jobId", jobId);
+    formData.append("stage", "Sourced");
     formData.append("jobPosterEmail", jobPosterEmail);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
     formData.append("email", data.email);
     formData.append("phone", data.phone);
     formData.append("address", data.address);
-    formData.append("image", data.image[0]);
-    formData.append("resume", data.resume[0]);
     formData.append("coverLetter", data.coverLetter);
     formData.append("summary", data.summary);
     formData.append("date", isoDateString);
     formData.append("educationList", JSON.stringify(educationList));
     formData.append("experienceList", JSON.stringify(experienceList));
-    console.log(data);
+
+    // Append image and resume base64 data
+    formData.append("imageData", imgUrl);
+    formData.append("resumeData", resumeData);
+
+    // Display form data (including image and resume data) for debugging
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+
     setFirstName(data.firstName);
     setLastName(data.lastName);
     setEmail(data.email);
+
     try {
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "http://localhost:5000/upload-new",
         formData,
         {
           headers: {
@@ -423,31 +487,89 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
           },
         }
       );
-      console.log(response.data);
+
+      console.log("from overview", response.data);
+      // updateData(appliedJobId);
     } catch (error) {
-      console.error(error);
+      console.error("from overview", error);
     }
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 4000);
+    setIsSubmitting(false);
   };
 
   // for get data
 
+  // const onSubmit = async (data) => {
+  //   setIsSubmitting(true);
+  //   const isoDateString = new Date().toISOString();
+  //   const formData = new FormData();
+  //   formData.append("jobTitle", jobTitle);
+  //   formData.append("jobId", jobId);
+  //   formData.append("stage", "Sourced");
+  //   formData.append("jobPosterEmail", jobPosterEmail);
+  //   formData.append("firstName", data.firstName);
+  //   formData.append("lastName", data.lastName);
+  //   formData.append("email", data.email);
+  //   formData.append("phone", data.phone);
+  //   formData.append("address", data.address);
+  //   formData.append("coverLetter", data.coverLetter);
+  //   formData.append("summary", data.summary);
+  //   formData.append("date", isoDateString);
+  //   formData.append("educationList", JSON.stringify(educationList));
+  //   formData.append("experienceList", JSON.stringify(experienceList));
+
+  //   // Convert and append image to base64
+  //   const imageFile = data.image[0];
+  //   const imageBase64 = await convertFileToBase64(imageFile);
+  //   formData.append("imageBase64", imageBase64);
+
+  //   // Convert and append resume to base64
+  //   const resumeFile = data.resume[0];
+  //   const resumeBase64 = await convertFileToBase64(resumeFile);
+  //   formData.append("resumeBase64", resumeBase64);
+
+  //   console.log('formDat', formData);
+  //   setFirstName(data.firstName);
+  //   setLastName(data.lastName);
+  //   setEmail(data.email);
+
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:5000/upload-new",
+  //       formData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+  //     console.log("from overview", response.data);
+  //     // updateData(appliedJobId);
+  //   } catch (error) {
+  //     console.error("from overview", error);
+  //   }
+
+  //   setTimeout(() => {
+  //     setIsSubmitting(false);
+  //     // setIsSubmitted(true);
+  //   }, 4000);
+  // };
+
+  // Function to convert a file to base64
+
   const [allData, setAllData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/all-applications")
+      .get("  http://localhost:5000/all-applications")
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setAllData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  console.log(allData);
 
   // for image
 
@@ -459,6 +581,22 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
       setUploadedResume("");
     }
   };
+
+  // for new
+  const { user } = useContext(authContext);
+  const emailCandidates = user?.email;
+  const { candidates, isLoading, error } = useSelector(
+    (state) => state.candidates
+  );
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // Dispatch the action to fetch candidates based on the selected sorting order
+    dispatch(getAllCandidates(emailCandidates));
+  }, [dispatch]);
+
+  console.log(candidates);
+  console.log(email);
 
   return (
     <div>
@@ -475,23 +613,22 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
             ,
           </p>
           <p className="text-lg text-gray-700">
-            Your aspiration to join our team has been received with delight. Our
-            discerning recruitment team is currently engrossed in evaluating
-            your application.
+            We are thrilled to have received your application. Our dedicated
+            recruitment team is currently evaluating your qualifications.
           </p>
           <p className="text-lg text-gray-700">
-            If your skills resonate with our needs, we will expediently reach
-            out to you through <span className="text-green-600">{email}</span>{" "}
-            to discuss the forthcoming stages of the application process.
+            If your skills align with our requirements, we will contact you
+            through <span className="text-green-600">{email}</span> to discuss
+            the next steps in the application process.
           </p>
           <p className="text-lg text-gray-700">
-            Meanwhile, we extend an invitation to explore our company's website.
-            Dive into the realm of our innovative projects, imbibe our ethos,
-            and fathom the impact we create.
+            In the meantime, we invite you to explore our company's website.
+            Discover our innovative projects, our values, and the impact we
+            make.
           </p>
           <p className="text-xl text-gray-800 font-semibold">
-            Anticipation builds as we envision the prospect of your addition to
-            our team. Our eagerness to connect with you soon knows no bounds!
+            We are excited about the possibility of having you join our team. We
+            look forward to connecting with you soon!
           </p>
         </div>
       ) : (
@@ -502,12 +639,6 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
               className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
               encType="multipart/form-data"
             >
-              {/* <div>
-                <img
-                  src={`http://localhost:5000/images/image_1693330074312.jpg`}
-                  alt=""
-                />
-              </div> */}
               <div className="bg-neutral-100 p-2">
                 <h1 className="text-lg font-semibold text-gray-500">
                   Personal Details
@@ -643,7 +774,7 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
                       id="image"
                       name="image"
                       accept=".jpg, .png"
-                      {...register("image")}
+                      onChange={handleImageChange}
                     />
 
                     <label
@@ -792,26 +923,23 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
                   Upload Your Resume (PDF)
                 </label>
                 <div className="flex flex-col items-center border-dashed p-8 border-[1px] border-gray-500 rounded-lg shadow-md">
-                  <input
-                    type="file"
-                    id="resume"
-                    name="resume"
-                    accept=".pdf"
-                    className="sr-only"
-                    {...register("resume")}
-                    onChange={handleResumeUpload}
-                  />
-                  <label
-                    htmlFor="resume"
-                    className="cursor-pointer border-[2px] border-dashed border-gray-400 flex items-center h-20 space-x-2 p-2  text-gray-500 rounded-md hover:shadow-xl"
-                  >
-                    <AiOutlineFilePdf className="text-2xl" />
-                    <span>
-                      {uploadedResume
-                        ? `Resume Uploaded: ${uploadedResume}`
-                        : "Choose a PDF file"}
-                    </span>
-                  </label>
+                  <div className="flex items-center border-[2px] border-dashed hover:shadow-xl rounded-md border-gray-400 h-20 px-2">
+                    <input
+                      type="file"
+                      id="resume"
+                      name="resume"
+                      accept=".pdf"
+                      onChange={handleResumeChange}
+                    />
+
+                    <label
+                      htmlFor="image"
+                      className="cursor-pointer flex items-center space-x-2 p-2 text-gray-500 rounded-md border-[1px]"
+                    >
+                      <RiImageAddLine className="text-2xl" />{" "}
+                      <span>Choose PDF, DOC</span>
+                    </label>
+                  </div>
                 </div>
               </div>
 
@@ -833,7 +961,7 @@ const UpdateForm = ({ jobTitle ,jobPosterEmail}) => {
 
               <button
                 type="submit"
-                className={`bg-green-500 px-8 py-1 rounded-md font-semibold text-white w-full mt-6 mb-0 ${
+                className={`bg-teal-700 px-8 py-1 rounded-md font-semibold text-white w-full mt-6 mb-0 ${
                   isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 disabled={isSubmitting}

@@ -52,7 +52,7 @@
 import React from "react";
 // import { FaArrowRight } from "react-icons/fa";
 import { TypeAnimation } from "react-type-animation";
-import homeBanner from "../../../assets/Image/homeBanner.webp"
+
 import { Link } from 'react-router-dom';
 import { BsPlayCircleFill } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -105,12 +105,12 @@ const Banner = () => {
               <div className="flex items-center">
                 <div><BsPlayCircleFill className="text-sky-300"></BsPlayCircleFill></div>
                 <div>
-                  <Link className="text-sm ms-2 hover:underline">SEE WORKABLE IN ACTION</Link> <span className="mx-4">or</span>
+                  <a href="https://youtube.com/shorts/fokJetG3Z0c?si=zNo9EKkG7OoqQ99F" className="text-sm ms-2 hover:underline italic">SEE JOB SWIFT IN ACTION</a> <span className="mx-4">or</span>
                 </div>
               </div>
 
               <div className="lg:md:my-0 my-2">
-                <Link><button className=" border py-2 px-4 rounded-lg hover:text-green-900 hover:bg-white flex items-center ">Get stared <MdKeyboardArrowRight className="text-sky-300"></MdKeyboardArrowRight></button></Link>
+                <Link to='/register'><button className=" border py-2 px-4 rounded-lg hover:text-green-900 hover:bg-white flex items-center ">Get stared <MdKeyboardArrowRight className="text-sky-300"></MdKeyboardArrowRight></button></Link>
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@ const Banner = () => {
         <div className="md:w-1/2 md:text-right">
           <img
             className="w-full  mx-auto  lg:md:h-[500px] lg:md:-mt-8 animate-pulse		"
-            src={homeBanner}
+            src="https://i.ibb.co/t2t8JQ7/home-Banner.webp"
             alt="ATS App Screenshot"
           />
         </div>

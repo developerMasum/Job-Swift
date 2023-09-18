@@ -99,7 +99,7 @@ const AppliedCandidate = ({ candidates, stageName }) => {
                   <div className="flex justify-start gap-3 items-center ">
                     <div className="w-16 h-16 rounded-full overflow-hidden">
                       <img
-                        src={`http://localhost:5000/images/${candidate.image}`}
+                        src={`  http://localhost:5000/${candidate.image}`}
                         alt=""
                         className="w-full h-full object-cover"
                       />
@@ -110,12 +110,9 @@ const AppliedCandidate = ({ candidates, stageName }) => {
                       </p>
                       {candidate.educationList ? (
                         <>
-                          {" "}
                           <p>
-                            {" "}
                             {candidate.educationList?.map((edu) => (
                               <span className="text-sm">
-                                {" "}
                                 {edu?.degree ? edu?.degree : ""} from{" "}
                                 {edu?.institution ? edu?.institution : " "}{" "}
                               </span>
@@ -144,7 +141,6 @@ const AppliedCandidate = ({ candidates, stageName }) => {
           " "
         ) : (
           <>
-            {" "}
             <div className="mt-5 mb-3 fixed bottom-0 left-0 right-0 bg-orange-200 py-3">
               <div className="space-y-2 pt-4 text-start">
                 <div className="flex gap-5 justify-around items-center">

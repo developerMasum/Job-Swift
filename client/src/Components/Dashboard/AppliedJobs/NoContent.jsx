@@ -1,10 +1,10 @@
 import React from "react";
-import applied from "../../../assets/Image/applied.png";
+
 
 const NoContent = () => {
   return (
     <div className="pt-10">
-      <img className="mx-auto" src={applied} alt="" />
+      <img className="mx-auto" src="https://i.ibb.co/Jp5jrt5/applied.png" alt="" />
       <h6 className="text-swift text-base pt-3 font-medium">
         No candidates exist in this stage
       </h6>

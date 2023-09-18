@@ -12,12 +12,12 @@ import Loader from "../../Components/Loader/Loader";
 import useAdmin from "../../Hooks/AdminHook/useAdmin";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import "./LogIn.css";
-import login_keyboard from "../../assets/Image/login_keyboard.png";
+
 const LogIn = () => {
-  const [isAdmin] = useAdmin();
+  // const [isAdmin] = useAdmin();
   const [showPassword, setShowPassword] = useState(false);
 
-  // console.log(isAdmin);
+  // console.log('at login page',isAdmin);
 
   // const isAdmin = useAdmin();
   //   console.log(isAdmin);
@@ -33,10 +33,7 @@ const LogIn = () => {
     useContext(authContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const from =
-    location.state?.from?.pathname ||
-    (isAdmin && "/dashboard/admin/dashboard") ||
-    (!isAdmin && "/dashboard/jobs");
+  const destination = "/dashboard/jobs";
 
   // const [error, setError] = useState(null)
 
@@ -66,28 +63,29 @@ const LogIn = () => {
         // console.log(user);
 
         toast.success("Successfully LogIn");
-        navigate(from, { replace: true });
+        navigate(destination);
       })
       .catch((error) => {
         const errorMessage = error.message;
         toast.error(errorMessage);
       });
   };
-  // if (loading) {
-  //   return <Loader />
-  // }
 
   return (
-    <div className=" bg-gradient-to-r from-[#00756a] to-[#677500]  lg:md:p-32">
+    <div className="   lg:md:p-40 bg-gradient-to-r from-indigo-700 from-10% via-sky-800 via-30% to-emerald-500 to-90% ">
       {/* // <div className="login_container"> */}
       <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 rounded-2xl shadow-lg shadow-black ">
-        <div className="">
+        <div className="rounded-md">
           {/* <img className="h-[380px] rounded-l-2xl" src={login} alt="" /> */}
-          <img src={login_keyboard} alt="" className="h-[100%] lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5" />
+          <img
+            src='https://i.ibb.co/Fqhmwhz/login01.png'
+            alt=""
+            className="h-[100%]  lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5"
+          />
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="card-body lg:md:my-0  lg:md:w-[420px] bg-white bg-opacity-40 rounded-r-2xl "
+          className="card-body lg:md:my-0  lg:md:w-[420px] bg-[#00756a] bg-opacity-40 rounded-r-2xl "
         >
           {/* <div className=' font-bold  '>
             <h1 className='text-center font-serif text-xl'>Log In Now</h1>
@@ -95,14 +93,14 @@ const LogIn = () => {
 
           <div className="form-control">
             <label className="label ">
-              <span className="label-text  text-green-100">Email</span>
+              <span className="label-text  text-white">Email</span>
             </label>
             <input
               type="email"
               ref={emailRef}
               {...register("email", { required: true })}
               placeholder="email"
-              className="rounded-md bg-green-200 bg-opacity-0 border-green-800 "
+              className="rounded-md bg-[#2f5c58]  border-green-800 "
             />
             {errors.email && (
               <span className="text-orange-800">This field is required</span>
@@ -127,7 +125,7 @@ const LogIn = () => {
             />
 
             </div> */}
-            <div className="flex rounded-md px-1 border-green-800  border">
+            <div className="flex rounded-md  px-1 bg-white border-green-800  border">
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", {
@@ -140,10 +138,15 @@ const LogIn = () => {
                 className="focus:border-none focus:ring-0 flex-grow bg-green-200 bg-opacity-0 border-none"
               />
               <button
-                className="cursor-pointer p-2"
+                type="button"
                 onClick={() => setShowPassword(!showPassword)}
+                className=" bg-white"
               >
-                {showPassword ? <AiFillEyeInvisible className="" /> : <AiFillEye className="" />}
+                {showPassword ? (
+                  <AiFillEyeInvisible className="" />
+                ) : (
+                  <AiFillEye className="" />
+                )}
               </button>
             </div>
 
@@ -166,16 +169,19 @@ const LogIn = () => {
             <label className="label">
               <Link
                 to={"forgotPassword"}
-                className="label-text-alt link link-hover font-semibold text-lg"
+                className="underline font-semibold text-sm text-gray-100"
               >
                 Forgot password?
               </Link>
             </label>
           </div>
-          <small className="font-semibold">
+          <small className="font-semibold text-gray-100">
             Are you new to Job Swift?{" "}
             <span>
-              <Link className="ml-1  text-swift underline text-[18px]" to="/register">
+              <Link
+                className="ml-1  text-cyan-200 underline text-sm font-bold"
+                to="/register"
+              >
                 Register Now
               </Link>
             </span>
@@ -185,7 +191,7 @@ const LogIn = () => {
               type="submit"
               placeholder=""
               value="Login"
-              className="border  bg-lime-800 hover:bg-lime-600    rounded-lg py-1 font-medium text-white"
+              className="border  bg-[#2f5c58] hover:bg-lime-600    rounded-lg py-1 font-medium text-white"
             />
           </div>
 

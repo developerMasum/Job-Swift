@@ -1,5 +1,6 @@
 // Import React and useState from the 'react' library
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 // Import icons from react-icons library
 import { AiOutlinePlus } from "react-icons/ai";
@@ -17,6 +18,8 @@ const CandidateForm = ({ closeModal }) => {
   // Define the 'handleSubmit' function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    toast.success('candidate added successfully')
+    closeModal();
 
     // Access form data using e.target
     const formData = {
@@ -31,9 +34,8 @@ const CandidateForm = ({ closeModal }) => {
     console.log("Form Data:", formData);
 
     // Handle form submission here, e.g., send data to a server or update state
-
+ e.target.reset();
     // Close the modal
-    
   };
 
   // Define the 'handleCancel' function to close the modal when the "Cancel" button is clicked
