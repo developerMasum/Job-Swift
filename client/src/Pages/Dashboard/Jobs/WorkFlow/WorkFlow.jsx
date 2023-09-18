@@ -59,7 +59,7 @@ const WorkFlow = () => {
                             </div>
                             <h2 className='text-black text-xl pt-3'>Interview kits</h2>
                             <p className='text-sm my-3'>Add interview kits from templates or existing jobs to use during interviews for evaluations.</p>
-                            <button
+                            <button disabled
                                 className='btn btn-outline border-sky-600 hover:border-sky-600 hover:bg-sky-100 hover:text-sky-600 text-sky-600'>
                                 Add interview kit
                             </button>
@@ -71,7 +71,7 @@ const WorkFlow = () => {
                             </div>
                             <h2 className='text-black text-xl pt-3'>Video interview</h2>
                             <p className='text-sm my-3'>Create and apply a structured video interview evaluation process.</p>
-                            <button
+                            <button disabled
                                 className='btn btn-outline border-sky-600 hover:border-sky-600 hover:bg-sky-100 hover:text-sky-600 text-sky-600'>
                                 Add video interview
                             </button>
@@ -83,7 +83,7 @@ const WorkFlow = () => {
                             </div>
                             <h2 className='text-black text-xl pt-3'>Assessments</h2>
                             <p className='text-sm my-3'>Evaluate candidates’ suitability for the job and make unbiased hiring decisions based on data.</p>
-                            <button
+                            <button disabled
                                 className='btn btn-outline border-sky-600 hover:border-sky-600 hover:bg-sky-100 hover:text-sky-600 text-sky-600'>
                                 Add Assessments
                             </button>

@@ -139,7 +139,6 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(` https://server-job-swift.vercel.app/all-post/${params.id}`),
       },
-      
     ],
   },
   {
@@ -185,7 +184,7 @@ const router = createBrowserRouter([
       {
         path: "jobs/findCandidates/:id",
         element: <FindCandidatesLayout></FindCandidatesLayout>,
-        
+
         children: [
           {
             path: "teamMembers",
@@ -208,7 +207,6 @@ const router = createBrowserRouter([
           {
             path: "jobDetails/:id",
             element: <JobsDetails></JobsDetails>,
-            
           },
         ],
       },

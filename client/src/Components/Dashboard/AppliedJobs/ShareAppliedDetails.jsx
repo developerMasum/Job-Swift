@@ -31,7 +31,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
 
   const handleCheckbox = (e, candidateId) => {
     console.log(candidates);
-    
+
     if (e.target.checked) {
       // Find the selected candidate by ID
       const selected = candidates.find(
@@ -49,20 +49,24 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
-
     console.log(id);
     try {
-      const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ stage: "Assessment" }),
-      });
+      const response = fetch(
+        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ stage: "Assessment" }),
+        }
+      );
 
       if (response) {
         toast.success("This Candidate moved to Assessment");
-        window.location.reload(true);
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1000);
       } else {
         console.error("Failed to update stage.");
       }
@@ -311,7 +315,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
 
                     <div className="border max-w-4xl border-slate-200 p-5 text-center">
                       <iframe
-                       src={selectedCandidate.resume}
+                        src={selectedCandidate.resume}
                         width={100}
                         title="Uploaded Resume"
                         className="mt-2 border border-gray-400 rounded"

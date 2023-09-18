@@ -61,6 +61,8 @@ const ProfileSettings = () => {
       });
   };
 
+
+  
   return (
     <>
       <div className="shadow-md h-20 flex items-center justify-center mb-6">
@@ -172,7 +174,7 @@ const ProfileSettings = () => {
                       type="file"
                       id="image"
                       name="image"
-                      accept=".jpg, .png"
+                      accept=".jpg, .png .pdf"
                       {...register("image")}
                     />
 

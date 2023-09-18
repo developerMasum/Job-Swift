@@ -28,6 +28,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(fileUpload());
 
+
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'https://job-swift-git-masum-developermasum.vercel.app'); 
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   next();
+// });
+
 const uploadDirectory = path.join(__dirname, "public", "uploads");
 app.use(express.static(uploadDirectory));
 
@@ -114,10 +123,28 @@ async function run() {
 
     // use express file-upload
 
+<<<<<<< HEAD
     // app.post("/upload-new", async (req, res) => {
     //   try {
         
 
+=======
+
+    // app.post("/upload-new", async (req, res) => {
+    //   try {
+    //     if (!req.files) {
+    //       return res.status(400).json({ message: "No files were uploaded." });
+    //     }
+    
+    //     const imageFile = req.files.image;
+    //     const resumeFile = req.files.resume;
+    //     const formData = req.body;
+    
+    //     // Read image and resume files as base64
+    //     const imageBase64 = imageFile.data.toString("base64");
+    //     const resumeBase64 = resumeFile.data.toString("base64");
+    
+>>>>>>> c101470a588ce7ba7c8be0dce6101c69295c6898
     //     // Create an array of documents to insert
     //     const documentsToInsert = {
     //       jobTitle: formData.jobTitle,
@@ -134,6 +161,7 @@ async function run() {
     //       date: new Date().toISOString(),
     //       educationList: JSON.parse(formData.educationList),
     //       experienceList: JSON.parse(formData.experienceList),
+<<<<<<< HEAD
     //       image: formData.imageData,
     //       resume: formData.resumeData,
     //     };
@@ -144,6 +172,17 @@ async function run() {
     //     return res
     //       .status(201)
     //       .json({ message: "Application submitted successfully" });
+=======
+    //       image: `data:image/jpeg;base64,${imageBase64}`, // Store the image as a data URL
+    //       resume: `data:application/pdf;base64,${resumeBase64}`, // Store the resume as a data URL
+    //     };
+    //     console.log(req.body);
+    
+    //     // Insert the documents into the collection
+    //     await applicationsPostCollection.insertOne(documentsToInsert);
+    
+    //     return res.status(201).json({ message: "Application submitted successfully" });
+>>>>>>> c101470a588ce7ba7c8be0dce6101c69295c6898
     //   } catch (error) {
     //     console.error("Error submitting application:", error);
     //     return res.status(500).json({
@@ -151,6 +190,7 @@ async function run() {
     //     });
     //   }
     // });
+<<<<<<< HEAD
 app.post("/upload-new", async (req, res) => {
   try {
     // Extract data from the request body
@@ -194,6 +234,48 @@ app.post("/upload-new", async (req, res) => {
 
     // Insert the document into your MongoDB collection
     await applicationsPostCollection.insertOne(documentToInsert);
+=======
+    app.post("/upload-new", async (req, res) => {
+      try {
+        // Extract data from the request body
+        const {
+          jobTitle,
+          stage,
+          jobPosterEmail,
+          jobId,
+          firstName,
+          lastName,
+          email,
+          phone,
+          address,
+          summary,
+          coverLetter,
+          educationList,
+          experienceList,
+          imageData, // Base64-encoded image data
+          resumeData, // Base64-encoded resume data
+        } = req.body;
+    
+        // Create a document to insert into your MongoDB collection
+        const documentToInsert = {
+          jobTitle,
+          stage,
+          jobPosterEmail,
+          jobId,
+          firstName,
+          lastName,
+          email,
+          phoneNumber: phone, // Rename phone to phoneNumber
+          location: address, // Rename address to location
+          summary,
+          coverLetter,
+          date: new Date().toISOString(),
+          educationList: JSON.parse(educationList),
+          experienceList: JSON.parse(experienceList),
+          image: imageData, // Store base64-encoded image data as a string
+          resume: resumeData, // Store base64-encoded resume data as a string
+        };await applicationsPostCollection.insertOne(documentToInsert);
+>>>>>>> c101470a588ce7ba7c8be0dce6101c69295c6898
 
     return res
       .status(201)
@@ -392,6 +474,12 @@ app.post("/upload-new", async (req, res) => {
       const result = await jobPostCollection.insertOne(query);
       res.send(result);
     });
+    // --------------------use test -------
+    app.post("/new", async (req, res) => {
+      const query = req.body;
+      const result = await jobPostCollection.insertOne(query);
+      res.send(result);
+    });
     app.get("/job_post/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -563,6 +651,23 @@ app.post("/upload-new", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await applicationsPostCollection.deleteOne(query);
+      res.send(result);
+    });
+
+
+    //Done by Md Arifur rahman
+
+    app.get("/all-applications2", async (req, res) => {
+      // const id = req.params.id;
+      const search = req.query.search;
+      // console.log(search);
+      // const query = { _id: new ObjectId(id) };
+      const query = { location: { $regex: search, $options: "i" } }
+      const query2 = { jobTitle: { $regex: search, $options: "i" } }
+      const query3 = { firstName: { $regex: search, $options: "i" } }
+
+      const application = applicationsPostCollection.find(query, query2, query3);
+      const result = await application.toArray()
       res.send(result);
     });
 
