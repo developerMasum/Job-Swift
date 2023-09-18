@@ -39,7 +39,7 @@ function FileUpload() {
     try {
       // Make an Axios POST request with the formData
       const response = await axios.post(
-        "  https://server-job-swift.vercel.app/upload-file",
+        "  localhost:5000/upload-file",
         {
           image: imageData,
           resume: resumeData,
@@ -55,7 +55,7 @@ function FileUpload() {
   console.log(imageData);
 
   useEffect(() => {
-    fetch("  https://server-job-swift.vercel.app/get-file", {
+    fetch("  localhost:5000/get-file", {
       method: "GET",
     })
       .then((res) => res.json())

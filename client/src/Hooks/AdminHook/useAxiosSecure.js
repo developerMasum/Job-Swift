@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: " https://server-job-swift.vercel.app/",
+    baseURL: " localhost:5000/",
   });
 
   useEffect(() => {

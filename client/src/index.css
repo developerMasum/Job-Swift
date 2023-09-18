@@ -122,3 +122,9 @@ body{
   transform: translate(-50%, -60%);
 }
 
+/* Global Styles for Dark Theme */
+.dark-theme {
+  background-color: #1a202c; /* Dark background color */
+  color: #ffffff; /* White text color */
+}
+

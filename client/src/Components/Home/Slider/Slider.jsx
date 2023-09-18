@@ -10,7 +10,7 @@ const Slider = () => {
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    fetch("comments.json")
+    fetch("http://localhost:5000/all-feedback")
       .then((response) => response.json())
       .then((data) => {
         setTestimonials(data);

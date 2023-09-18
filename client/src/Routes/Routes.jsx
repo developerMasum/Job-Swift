@@ -62,6 +62,7 @@ import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
 import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
 import Certification from "../Pages/Dashboard/Dashboard/Certification/Certification";
 import CertificationList from "../Pages/Dashboard/Dashboard/Certification/CertificationList";
+import Feedback from "../Components/Feedback/Feedback";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -131,13 +132,13 @@ const router = createBrowserRouter([
         path: "/overview/:id",
         element: <Overview />,
         loader: ({ params }) =>
-          fetch(` https://server-job-swift.vercel.app/job_post/${params.id}`),
+          fetch(` localhost:5000/job_post/${params.id}`),
       },
       {
         path: "/editJobs/:id",
         element: <EditJobs />,
         loader: ({ params }) =>
-          fetch(` https://server-job-swift.vercel.app/all-post/${params.id}`),
+          fetch(` localhost:5000/all-post/${params.id}`),
       },
     ],
   },
@@ -152,6 +153,10 @@ const router = createBrowserRouter([
       {
         path: "jobs",
         element: <Jobs />,
+      },
+      {
+     path:'feedback',
+     element:<Feedback></Feedback>
       },
       {
         path: "admin/dashboard",
@@ -178,7 +183,7 @@ const router = createBrowserRouter([
         element: <AppliedJobs />,
 
         loader: ({ params }) =>
-          fetch(` https://server-job-swift.vercel.app/all-post/${params.id}`),
+          fetch(` localhost:5000/all-post/${params.id}`),
       },
 
       {
@@ -262,7 +267,7 @@ const router = createBrowserRouter([
       {
         path: "candidate/profile/:id",
         element: <CandidiateUserDetails />,
-        // loader: ({ params }) => fetch(` https://server-job-swift.vercel.app/users/${params.id}`),
+        // loader: ({ params }) => fetch(` localhost:5000/users/${params.id}`),
       },
       {
         path: "settings/profile",

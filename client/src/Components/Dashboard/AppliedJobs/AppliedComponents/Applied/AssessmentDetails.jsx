@@ -50,7 +50,7 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
   const handleMoveToApplied = (id) => {
     try {
       const response = fetch(
-        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        ` localhost:5000/applicant/stage/${id}`,
         {
           method: "PATCH",
           headers: {
