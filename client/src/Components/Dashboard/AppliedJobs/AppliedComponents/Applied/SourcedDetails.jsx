@@ -50,12 +50,12 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
   const handleMoveToApplied = (id) => {
     console.log("Move to applied", id);
     try {
-      const response = fetch(`https://server-job-swift.vercel.app/applicant/stage/${id}`, {
+      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({stage:"Applied"}),
+        body: JSON.stringify({ stage: "Applied" }),
       });
 
       if (response) {
@@ -181,7 +181,7 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
                     <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
                       <div className="flex items-center justify-around space-x-4">
                         <a
-                        href={selectedCandidate.resume}
+                          href={selectedCandidate.resume}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center text-white  space-x-2 hover:text-blue-500"
@@ -219,7 +219,7 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
                       <div className="flex items-center space-x-4">
                         <div className="w-20 h-20 rounded-full overflow-hidden">
                           <img
-                             src={selectedCandidate.image}
+                            src={selectedCandidate.image}
                             alt={`${selectedCandidate.firstName} ${selectedCandidate.lastName}'s avatar`}
                             className="object-cover w-full h-full"
                           />

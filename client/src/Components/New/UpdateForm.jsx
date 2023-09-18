@@ -400,16 +400,16 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
 
   // For base64
 
-  const ImgKey = 'adec725a3a47593eb0b73dad5f618470';
+  const ImgKey = "adec725a3a47593eb0b73dad5f618470";
   const ImgHostingURL = `https://api.imgbb.com/1/upload?key=${ImgKey}`;
-  const [imgUrl,setImgUrl] = useState()
-  
+  const [imgUrl, setImgUrl] = useState();
+
   const handleImageChange = (event) => {
     const formData = new FormData();
-    formData.append('image', event.target.files[0]); // Use append correctly
-  
+    formData.append("image", event.target.files[0]); // Use append correctly
+
     console.log(event.target.files[0]); // Log the selected file
-  
+
     fetch(ImgHostingURL, {
       method: "POST",
       body: formData,
@@ -418,7 +418,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
       .then((imgRes) => {
         if (imgRes.success) {
           const imageURL = imgRes.data.display_url;
-          setImgUrl(imageURL)
+          setImgUrl(imageURL);
           // Do something with the imageURL
         }
       })
@@ -427,9 +427,6 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
       });
   };
   // console.log('url',imgUrl);
-  
-
-
 
   const handleResumeChange = (event) => {
     const file = event.target.files[0];
@@ -482,7 +479,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
 
     try {
       const response = await axios.post(
-        "https://server-job-swift.vercel.app/upload-new",
+        "http://localhost:5000/upload-new",
         formData,
         {
           headers: {
@@ -538,7 +535,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
 
   //   try {
   //     const response = await axios.post(
-  //       "https://server-job-swift.vercel.app/upload-new",
+  //       "http://localhost:5000/upload-new",
   //       formData,
   //       {
   //         headers: {
@@ -563,7 +560,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   const [allData, setAllData] = useState([]);
   useEffect(() => {
     axios
-      .get("  https://server-job-swift.vercel.app/all-applications")
+      .get("  http://localhost:5000/all-applications")
       .then((res) => {
         console.log(res.data);
         setAllData(res.data);

@@ -53,7 +53,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   const handleDisQualify = (id) => {
     setIsModalOpen(true);
     try {
-      const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
+      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -181,7 +181,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                     <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
                       <div className="flex items-center justify-around space-x-4">
                         <a
-                        href={selectedCandidate.resume}
+                          href={selectedCandidate.resume}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center text-white  space-x-2 hover:text-blue-500"

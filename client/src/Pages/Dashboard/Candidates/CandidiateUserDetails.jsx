@@ -181,7 +181,7 @@ const CandidiateUserDetails = () => {
   };
 
   useEffect(() => {
-    const URL = ` https://server-job-swift.vercel.app/all-applications/${id}`;
+    const URL = ` http://localhost:5000/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -202,7 +202,7 @@ const CandidiateUserDetails = () => {
   // handleDisQualified
   const handleDisQualified = (id) => {
     try {
-      const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
+      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
