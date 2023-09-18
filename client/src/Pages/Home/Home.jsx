@@ -41,7 +41,7 @@ const Home = () => {
       {/* <FileUpload></FileUpload> */}
 
       
-   {/* <ResumeForm></ResumeForm> */}
+   <ResumeForm></ResumeForm>
 
       {/* <KeyFeatures></KeyFeatures> */}
 

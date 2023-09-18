@@ -11,7 +11,7 @@ const fileUpload = require("express-fileupload");
 
 const port = process.env.PORT || 5000;
 const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
-
+app.use(express.static("public/images"));
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
 }
@@ -114,55 +114,97 @@ async function run() {
 
     // use express file-upload
 
-    app.post("/upload-new", async (req, res) => {
-      try {
-        if (!req.files) {
-          return res.status(400).json({ message: "No files were uploaded." });
-        }
+    // app.post("/upload-new", async (req, res) => {
+    //   try {
+        
 
-        const imageFile = req.files.image;
-        const resumeFile = req.files.resume;
+    //     // Create an array of documents to insert
+    //     const documentsToInsert = {
+    //       jobTitle: formData.jobTitle,
+    //       stage: formData.stage,
+    //       jobPosterEmail: formData.jobPosterEmail,
+    //       jobId: formData.jobId,
+    //       firstName: formData.firstName,
+    //       lastName: formData.lastName,
+    //       email: formData.email,
+    //       phoneNumber: formData.phone,
+    //       location: formData.address,
+    //       summary: formData.summary,
+    //       coverLetter: formData.coverLetter,
+    //       date: new Date().toISOString(),
+    //       educationList: JSON.parse(formData.educationList),
+    //       experienceList: JSON.parse(formData.experienceList),
+    //       image: formData.imageData,
+    //       resume: formData.resumeData,
+    //     };
+    //     console.log(req.body);
 
-        const formData = req.body;
+    //     await applicationsPostCollection.insertOne(documentsToInsert);
 
-        // Create an array of documents to insert
-        const documentsToInsert = {
-          jobTitle: formData.jobTitle,
-          stage: formData.stage,
-          jobPosterEmail: formData.jobPosterEmail,
-          jobId: formData.jobId,
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phoneNumber: formData.phone,
-          location: formData.address,
-          summary: formData.summary,
-          coverLetter: formData.coverLetter,
-          date: new Date().toISOString(),
-          educationList: JSON.parse(formData.educationList),
-          experienceList: JSON.parse(formData.experienceList),
-          image: `/uploads/${imageFile.name}`, // Store the relative path to the image
-          resume: `/uploads/${resumeFile.name}`, // Store the relative path to the resume
-        };
-        console.log(req.body);
+    //     return res
+    //       .status(201)
+    //       .json({ message: "Application submitted successfully" });
+    //   } catch (error) {
+    //     console.error("Error submitting application:", error);
+    //     return res.status(500).json({
+    //       message: "An error occurred while submitting the application",
+    //     });
+    //   }
+    // });
+app.post("/upload-new", async (req, res) => {
+  try {
+    // Extract data from the request body
+    const {
+      jobTitle,
+      stage,
+      jobPosterEmail,
+      jobId,
+      firstName,
+      lastName,
+      email,
+      phone,
+      address,
+      summary,
+      coverLetter,
+      educationList,
+      experienceList,
+      imageData, // Base64-encoded image data
+      resumeData, // Base64-encoded resume data
+    } = req.body;
 
-        // Move image and resume files to the upload directory
-        imageFile.mv(`${uploadDirectory}/${imageFile.name}`);
-        resumeFile.mv(`${uploadDirectory}/${resumeFile.name}`);
+    // Create a document to insert into your MongoDB collection
+    const documentToInsert = {
+      jobTitle,
+      stage,
+      jobPosterEmail,
+      jobId,
+      firstName,
+      lastName,
+      email,
+      phoneNumber: phone, // Rename phone to phoneNumber
+      location: address, // Rename address to location
+      summary,
+      coverLetter,
+      date: new Date().toISOString(),
+      educationList: JSON.parse(educationList),
+      experienceList: JSON.parse(experienceList),
+      image: imageData, // Store base64-encoded image data as a string
+      resume: resumeData, // Store base64-encoded resume data as a string
+    };
 
-        // Insert the documents into the collection
-        await applicationsPostCollection.insertOne(documentsToInsert);
+    // Insert the document into your MongoDB collection
+    await applicationsPostCollection.insertOne(documentToInsert);
 
-        return res
-          .status(201)
-          .json({ message: "Application submitted successfully" });
-      } catch (error) {
-        console.error("Error submitting application:", error);
-        return res.status(500).json({
-          message: "An error occurred while submitting the application",
-        });
-      }
+    return res
+      .status(201)
+      .json({ message: "Application submitted successfully" });
+  } catch (error) {
+    console.error("Error submitting application:", error);
+    return res.status(500).json({
+      message: "An error occurred while submitting the application",
     });
+  }
+});
 
     //  for multer image and resume
 
