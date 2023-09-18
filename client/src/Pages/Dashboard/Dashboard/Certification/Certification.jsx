@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 const Certification = () => {
   const { id } = useParams();
   const [certifiedData, setCertifiedData] = useState();
-
+  console.log(certifiedData);
   useEffect(() => {
     const URL = ` http://localhost:5000/all-applications/${id}`;
     fetch(URL)
@@ -26,26 +26,19 @@ const Certification = () => {
   }
 
   // State to manage form data and errors
+  // State to manage form data and errors
   const [formData, setFormData] = useState({
-    userName: "",
+    // userName: "",
     company: "",
-    title: "",
+    // title: "",
     startDate: "",
     logo: "",
     signature: "", // The signature image URL will be stored here
     signatureDetails: "",
   });
 
-  // State to manage form validation errors
-  const [formErrors, setFormErrors] = useState({
-    userName: "",
-    company: "",
-    title: "",
-    startDate: "",
-    logo: "",
-    signature: "",
-    signatureDetails: "",
-  });
+  // State to manage form errors
+  const [formErrors, setFormErrors] = useState({});
 
   // Function to handle input changes
   const handleInputChange = (e) => {
@@ -141,14 +134,14 @@ const Certification = () => {
   };
 
   return (
-    <div className="pt-8 min-h-screen flex items-center justify-center">
+    <div className="pt-20 min-h-screen flex items-center justify-center">
       <div className="rounded-lg shadow-2xl p-4 md:p-8 w-full md:w-1/2">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
           Certification Form
         </h2>
         <form onSubmit={handleSubmit}>
           {/* User Name input */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label
               htmlFor="userName"
               className="text-sm md:text-base font-semibold"
@@ -168,7 +161,7 @@ const Certification = () => {
             {formErrors.userName && (
               <p className="text-red-500 text-sm mt-1">{formErrors.userName}</p>
             )}
-          </div>
+          </div> */}
           {/* Company Name input */}
           <div className="mb-4">
             <label
@@ -192,7 +185,7 @@ const Certification = () => {
             )}
           </div>
           {/* Job Title input */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label
               htmlFor="title"
               className="text-sm md:text-base font-semibold"
@@ -212,7 +205,7 @@ const Certification = () => {
             {formErrors.title && (
               <p className="text-red-500 text-sm mt-1">{formErrors.title}</p>
             )}
-          </div>
+          </div> */}
           {/* Hiring Date input */}
           <div className="mb-4">
             <label
@@ -325,6 +318,7 @@ const Certification = () => {
         onRequestClose={closeModal}
         contentLabel="Certificate Modal"
         ariaHideApp={false}
+        certifiedData={certifiedData}
       >
         <div className="pt-8 min-h-screen flex items-center justify-center">
           <div className="bg-white rounded-lg shadow-xl p-4 md:p-8 w-1/2">
@@ -348,7 +342,12 @@ const Certification = () => {
                 </div>
                 <div className="mb-4">
                   <p className="text-xl font-semibold">
-                    Dear {formData.userName},
+                    Dear
+                    {/* {formData.userName} */}
+                    {certifiedData?.firstName && (
+                      <span className="mx-1 font-bold">{certifiedData.firstName}</span>
+                    )}
+                    ,
                   </p>
                   <p className="text-2xl font-bold text-green-700">
                     Congratulations!
@@ -357,7 +356,8 @@ const Certification = () => {
                 <p className="mb-6 text-lg">
                   We are pleased to offer you the position of
                   <span className="text-2xl font-semibold mx-1 text-blue-700">
-                    {formData.title}
+                    {/* {formData.title} */}
+                    {certifiedData?.jobTitle && <span>{certifiedData.jobTitle}</span>}
                   </span>
                   at <span className="font-bold">{formData.company}</span>.
                 </p>
@@ -378,7 +378,8 @@ const Certification = () => {
 
                 <div className="flex items-center justify-between">
                   <h2 className="text-3xl font-bold text-blue-700">
-                    {formData.title}
+                    {/* {formData.title} */}
+                    {certifiedData?.jobTitle && <span>{certifiedData.jobTitle}</span>}
                   </h2>
                   <div>
                     <img
