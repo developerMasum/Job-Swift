@@ -2,7 +2,7 @@
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
 
-// const apiUrl = ' localhost:5000/all-application';
+// const apiUrl = ' https://server-job-swift.vercel.app/all-application';
 
 // const useShowState = () => {
 //   const [data, setData] = useState([]);

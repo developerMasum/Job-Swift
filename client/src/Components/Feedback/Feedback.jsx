@@ -36,7 +36,7 @@ console.log('email:', user?.email);
     const data = {rating, feedback,email,name,image, status }
     console.log(data);
 
-    axios.post('http://localhost:5000/feedback', data)
+    axios.post('http://https://server-job-swift.vercel.app/feedback', data)
     .then((response) => {
       // Handle the success response here
       console.log('Feedback sent successfully:', response.data);

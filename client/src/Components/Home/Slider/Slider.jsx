@@ -10,7 +10,7 @@ const Slider = () => {
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/all-feedback")
+    fetch("https://server-job-swift.vercel.app/all-feedback")
       .then((response) => response.json())
       .then((data) => {
         setTestimonials(data);

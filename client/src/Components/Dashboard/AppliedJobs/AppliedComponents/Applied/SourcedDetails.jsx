@@ -6,10 +6,12 @@ import {
   AiOutlinePhone,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import toast from "react-hot-toast";
 import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
 import NoContent from "../../NoContent";
+import { createSetStage } from "../../../../../redux/stage/api";
 
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
@@ -22,9 +24,18 @@ const formatDate = (dateString) => {
 
 const Table = ({ sourcedCandi: candidates, isLoading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.stage);
+  useEffect(() => {
+    if (data.isToast) {
+      toast.success("This Applicant has been moved to Applied");
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 1000);
+    }
+  }, [data.isToast]);
 
   useEffect(() => {
-    // Initialize selectedCandidate with the first candidate
     if (candidates.length > 0) {
       setSelectedCandidate(candidates[0]);
     }
@@ -48,30 +59,11 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
-    console.log("Move to applied", id);
-    try {
-      const response = fetch(
-        `localhost:5000/applicant/stage/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ stage: "Applied" }),
-        }
-      );
+    const data = {
+      stage: "Applied",
+    };
 
-      if (response) {
-        toast.success("This Candidate moved to Applied");
-        setTimeout(() => {
-          window.location.reload(true);
-        }, 1500);
-      } else {
-        console.error("Failed to update stage.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    dispatch(createSetStage({ id: id, data: data }));
   };
 
   return (

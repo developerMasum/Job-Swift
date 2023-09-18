@@ -2,7 +2,7 @@ import logo2 from "../../../assets/Image/logo_js.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout, GrMail } from "react-icons/gr";
 import { CgMenuGridR } from "react-icons/cg";
-import { FaToolbox, FaUserAlt, FaUserPlus } from "react-icons/fa";
+import { FaToolbox, FaUserAlt, FaUserPlus, FaUserCircle } from "react-icons/fa";
 import { BiSolidCalendar } from "react-icons/bi";
 import { RiUserSearchFill } from "react-icons/ri";
 import { BsPieChart, BsGraphUp, BsFillHouseAddFill, BsSearch } from "react-icons/bs";
@@ -14,6 +14,8 @@ import { toast } from "react-hot-toast";
 import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars, AiOutlineHome } from "react-icons/ai";
 import useAdmin from "../../../Hooks/AdminHook/useAdmin";
+import { useRef } from 'react';
+import axios from "axios";
 
 const UpperBar = () => {
   const { user, logout } = useContext(authContext);
@@ -60,6 +62,40 @@ const UpperBar = () => {
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+  // search candidates_________________
+
+  const [searchData, setSearchData] = useState('');
+  const [search, setSearch] = useState([]);
+  const inputRef = useRef(null);
+
+  function handleClick() {
+    console.log(inputRef.current.value);
+    setSearch(inputRef.current.value);
+    // inputRef.current.focus();
+  }
+
+  // useEffect(()=> {
+  //   const fetchUsers = async () => {
+  //     const res = await axios.get('http://https://server-job-swift.vercel.app/all-applications');
+  //     setSearch(res.data);
+  //   }
+  //   fetchUsers();
+  // },[])
+
+  useEffect(() => {
+    fetch(`http://https://server-job-swift.vercel.app/allApplications?search=${search}`)
+      .then(res => res.json())
+      .then(data => setSearchData(data));
+  }, [search])
+
+
+
+  console.log(searchData);
+  console.log(search);
+  // _________________________________
+
+
 
   return (
     <>
@@ -242,30 +278,8 @@ const UpperBar = () => {
                     </Link>
                   </li>
                 </div>
-                {/* search field mobile*/}
-                <div className="input-group my-3 ml-6 text-black">
-                  <input
-                    type="text"
-                    placeholder="Search…"
-                    className="input input-bordered input-sm px-[-10px]"
-                  />
-                  <button className="btn btn-square btn-sm">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </button>
-                </div>
+
+
               </ul>
             </div>
 
@@ -323,36 +337,62 @@ const UpperBar = () => {
           </div>
 
           {/* large screen right side-------------- */}
-          <div className=" flex justify-between gap-4  lg:md:gap-2">
+          <div className=" flex justify-between gap-1 lg:md:gap-3">
             <div className="form-control">
               <div className="flex gap-12">
-                {/* input */}
-                <div className=" flex justify-center items-center">
-                  <input
-                    type="text"
-                    placeholder="Search for candidates..."
-                    className="rounded-lg input-sm  hidden lg:block   pe-16  bg-slate-500 bg-opacity-0 border-[0.1] hover:border-2"
-                  />
-                  
-                    <button><BsSearch className="-mx-7"></BsSearch></button>
-                  
-                  {/* <button className="btn btn-outline btn-sm hidden lg:block border-2 border-cyan-800">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-6  "
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+
+
+                {/* search dropdown____________________________ */}
+
+                <div className="dropdown relative group">
+                  <label
+                    tabIndex={0}
+                    className="rounded-full transition duration-300 ease-in-out transform hover:scale-125 group-hover:opacity-100 opacity-70"
+                  >
+                    <div className=" flex justify-center items-center">
+                      <input
+                        type="text"
+                        ref={inputRef}
+                        placeholder="Search for candidates..."
+                        className="w-24 lg:md:w-full rounded-lg input-sm   lg:md:pe-16 pe-4  bg-slate-500 bg-opacity-0 border-[0.1] hover:border-2"
                       />
-                    </svg>
-                  </button> */}
+                      {/* <button onChange={(e) => setQuery(e.target.value)}><BsSearch className="-mx-7"></BsSearch></button> */}
+                      <button onClick={handleClick}><BsSearch className="lg:md:-mx-7 -mx-4 hover:text-emerald-600 hover:text-xl "></BsSearch></button>
+                    </div>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="-ms-20 menu menu-sm dropdown-content mt-7  p-1 shadow-xl bg-white rounded-lg w-max"
+                  >
+                    <div className="text-black">
+                      <h2 className="p-2">Search Candidate</h2>
+                      <div>
+
+                        {
+                          searchData ?
+                            <>
+                              {searchData.map((singleData) => (
+                                <div className="flex gap-4 items-center rounded-lg p-2 mb-1 bg-slate-200 md:lg:w-96 w-60 overflow-hidden">
+                                  <img className=" bg-slate-100 h-8 w-8 rounded-full" src={singleData.image ? singleData.image : <FaUserCircle></FaUserCircle>} alt="" />
+                                  <div>
+                                    <h2>{'Name:' + ' ' + singleData.firstName}</h2>
+                                    <h2>{'Job:' + ' ' + singleData.jobTitle}</h2>
+
+                                  </div>
+                                </div>
+                              ))}
+
+                            </> :
+                            <h2 className="flex justify-center"><span className="loading loading-spinner loading-md "></span> </h2>
+                        }
+                      </div>
+
+                    </div>
+                  </ul>
                 </div>
+                {/* _____________________________ */}
+
+
               </div>
             </div>
 
@@ -382,7 +422,7 @@ const UpperBar = () => {
                 tabIndex={0}
                 className="rounded-full transition duration-300 ease-in-out transform hover:scale-125 group-hover:opacity-100 opacity-70"
               >
-                <CgMenuGridR className="text-3xl"></CgMenuGridR>
+                <CgMenuGridR className="text-3xl "></CgMenuGridR>
               </label>
               <ul
                 tabIndex={0}
