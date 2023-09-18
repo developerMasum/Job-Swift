@@ -6,10 +6,10 @@ export const createApplicationPost = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/application-post",
+        " https://server-job-swift.vercel.app/application-post",
         data
       );
-      console.log(response.data);
+      // console.log(response.data);
       return response.data; // Return the data received from the server if needed
     } catch (error) {
       // Return the error payload using rejectWithValue
@@ -24,7 +24,7 @@ export const getAllApplications = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/all-applications"
+        " https://server-job-swift.vercel.app/all-applications"
       );
       console.log(response.data);
       return response.data; // Return the data received from the server if needed

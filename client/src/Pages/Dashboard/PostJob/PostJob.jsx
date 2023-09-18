@@ -18,7 +18,7 @@ import { createJobPost } from "../../../redux/jobSlice";
 import { toast } from "react-hot-toast";
 import Tips from "../../../Components/Dashboard/PostJob/Tips";
 
-import { getAllPost } from "../../../redux/postJob/api";
+// import { getAllPost } from "../../../redux/postJob/api";
 import { useDispatch, useSelector } from "react-redux";
 import { authContext } from "../../../Auth/AuthProvider";
 // import CustomModal from "./CustomModal";
@@ -36,17 +36,43 @@ export const PostJob = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const source = 0;
+
+    const applied = 0;
+    const phoneScreen = 0;
+    
+    const assessment = 0;
+    const interview = 0;
+    const offer = 0;
+    const hired = 0;
+
     // console.log("data lagbe" ,data);
     const postData = {
-      data: data,
+      benefits: data.benefits,
+      experience: data.experience,
+      employmentType: data.employmentType,
+      requirements: data.requirements,
+      jobTitle: data.jobTitle,
+      jobLocation: data.jobLocation,
+      jobDescriptions: data.jobDescriptions,
+      salaryTo: data.salaryTo,
+      salaryFrom: data.salaryFrom,
+      salaryCurrency: data.salaryCurrency,
+      responsibilities: data.responsibilities,
       userEmail: user?.email,
+      source,phoneScreen,
+      applied,
+      assessment,
+      interview,
+      offer,
+      hired
     };
-    console.log(postData);
+    // console.log('new',postData);
     try {
       await dispatch(createJobPost(postData));
 
-      const serializedData = encodeURIComponent(JSON.stringify(data));
-      navigate(`/overview?data=${serializedData}`);
+      // const serializedData = encodeURIComponent(JSON.stringify(data));
+      navigate("/dashboard/jobs");
       toast.success("Successfully post your job !");
     } catch (error) {
       console.error("Error submitting form:", error);

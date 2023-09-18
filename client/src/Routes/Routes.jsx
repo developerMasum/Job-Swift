@@ -32,7 +32,6 @@ import CandidateSource from "../Pages/Dashboard/Report/CandidateSource";
 import HiringVelocity from "../Pages/Dashboard/Report/HiringVelocity";
 import ProductivityReport from "../Pages/Dashboard/Report/ProductivityReport";
 import HistoricPipeline from "../Pages/Dashboard/Report/HistoricPipeline";
-import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
 import TimeToHire from "../Pages/Dashboard/Report/TimeToHire";
 
 import Overview from "../Components/Overview/Overview";
@@ -50,6 +49,19 @@ import AppliedJobs from "../Pages/Dashboard/AppliedJobs/AppliedJobs";
 import ContactUs from "../Components/ContactUs/ContactUs";
 import HomeAdmin from "../Components/AdminDashBoard/HomeAdmin";
 import UsersAdmin from "../Components/AdminDashBoard/UsersAdmin";
+import CandidateProfile from "../Components/Dashboard/Candidate/CandidateProfile";
+import AdminRoute from "./AdminRoute";
+import ProfileSettings from "../Components/Dashboard/UserSettings/ProfileSettings";
+import CandidiateUserDetails from "../Pages/Dashboard/Candidates/CandidiateUserDetails";
+
+import CandidiateFlow from "../Pages/Dashboard/Report/CandidiateFlow";
+import EditJobs from "../Pages/Dashboard/Jobs/EditJobs/EditJobs";
+import Blogs from "../Components/Blogs/Blogs";
+import BlogDetails from "../Components/Blogs/BlogDetails";
+import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
+import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
+import Certification from "../Pages/Dashboard/Dashboard/Certification/Certification";
+import CertificationList from "../Pages/Dashboard/Dashboard/Certification/CertificationList";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -63,7 +75,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "demo-page",
+        path: "/demo-page",
         element: <DemoPage></DemoPage>,
       },
 
@@ -72,7 +84,7 @@ const router = createBrowserRouter([
         element: <DetailsMarketPlaceIntegrate />,
       },
       {
-        path: "employee-experience",
+        path: "/employee-experience",
         element: <EmployeePerformance></EmployeePerformance>,
       },
       {
@@ -92,7 +104,11 @@ const router = createBrowserRouter([
         element: <LogIn />,
       },
       {
-        path: "login/forgotPassword",
+        path: "/terms",
+        element: <TermsAndConditions />,
+      },
+      {
+        path: "/login/forgotPassword",
         element: <ForgotPassword></ForgotPassword>,
       },
       {
@@ -100,12 +116,28 @@ const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
+        path: "/blogs",
+        element: <Blogs />,
+      },
+      {
+        path: "/blogs/:id",
+        element: <BlogDetails />,
+      },
+      {
         path: "/contact-us",
         element: <ContactUs />,
       },
       {
-        path: "/overview",
+        path: "/overview/:id",
         element: <Overview />,
+        loader: ({ params }) =>
+          fetch(` https://server-job-swift.vercel.app/job_post/${params.id}`),
+      },
+      {
+        path: "/editJobs/:id",
+        element: <EditJobs />,
+        loader: ({ params }) =>
+          fetch(` https://server-job-swift.vercel.app/all-post/${params.id}`),
       },
     ],
   },
@@ -123,24 +155,36 @@ const router = createBrowserRouter([
       },
       {
         path: "admin/dashboard",
-        element: <HomeAdmin />,
+        element: (
+          <AdminRoute>
+            <HomeAdmin />
+          </AdminRoute>
+        ),
       },
       {
         path: "admin/users",
-        element: <UsersAdmin />,
+        element: (
+          <AdminRoute>
+            <UsersAdmin />
+          </AdminRoute>
+        ),
       },
       {
         path: "jobs/post-job",
         element: <PostJob />,
       },
       {
-        path: "jobs/applied-job",
+        path: "jobs/applied-job/:id",
         element: <AppliedJobs />,
+
+        loader: ({ params }) =>
+          fetch(` https://server-job-swift.vercel.app/all-post/${params.id}`),
       },
 
       {
-        path: "jobs/findCandidates",
+        path: "jobs/findCandidates/:id",
         element: <FindCandidatesLayout></FindCandidatesLayout>,
+
         children: [
           {
             path: "teamMembers",
@@ -150,6 +194,7 @@ const router = createBrowserRouter([
             path: "candidates",
             element: <FindCandidates></FindCandidates>,
           },
+
           {
             path: "applicationForm",
             element: <ApplicationForm></ApplicationForm>,
@@ -160,7 +205,7 @@ const router = createBrowserRouter([
             element: <WorkFlow></WorkFlow>,
           },
           {
-            path: "jobDetails",
+            path: "jobDetails/:id",
             element: <JobsDetails></JobsDetails>,
           },
         ],
@@ -203,35 +248,51 @@ const router = createBrowserRouter([
         element: <Candidates />,
       },
       {
-        path: 'report-center/candidiate-flow',
-        element: <CandidiateFlow></CandidiateFlow>
-
+        path: "inbox-email",
+        element: <EmailUs />,
+      },
+      {
+        path: "get-certificate/:id",
+        element: <Certification />,
+      },
+      {
+        path: "certification-list",
+        element: <CertificationList />,
+      },
+      {
+        path: "candidate/profile/:id",
+        element: <CandidiateUserDetails />,
+        // loader: ({ params }) => fetch(` https://server-job-swift.vercel.app/users/${params.id}`),
+      },
+      {
+        path: "settings/profile",
+        element: <ProfileSettings />,
       },
 
       {
-        path: 'report-center/candidiate-source',
-        element: <CandidateSource></CandidateSource>
+        path: "report-center/candidiate-flow",
+        element: <CandidiateFlow></CandidiateFlow>,
+      },
 
+      {
+        path: "report-center/candidiate-source",
+        element: <CandidateSource></CandidateSource>,
       },
       {
-        path: 'report-center/hiring-velocity',
-        element: <HiringVelocity></HiringVelocity>
-
+        path: "report-center/hiring-velocity",
+        element: <HiringVelocity></HiringVelocity>,
       },
       {
-        path: 'report-center/time-to-hire',
-        element: <TimeToHire></TimeToHire>
-
+        path: "report-center/time-to-hire",
+        element: <TimeToHire></TimeToHire>,
       },
       {
-        path: 'report-center/productivity-report',
-        element: <ProductivityReport></ProductivityReport>
-
+        path: "report-center/productivity-report",
+        element: <ProductivityReport></ProductivityReport>,
       },
       {
-        path: 'report-center/historic-pipeline',
-        element: <HistoricPipeline></HistoricPipeline>
-
+        path: "report-center/historic-pipeline",
+        element: <HistoricPipeline></HistoricPipeline>,
       },
     ],
   },

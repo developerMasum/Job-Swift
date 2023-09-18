@@ -27,7 +27,7 @@
 //   return (
 //     <div className="w-full md:max-w-[500px] border-[1px] bg-neutral-50 rounded-t-lg  mx-auto md:p-6">
 //       <form className="space-y-4 p-6">
-//         <h1 className="text-primary font-[900] text-2xl text-center">
+//         <h1 className="text-swift font-[900] text-2xl text-center">
 //           See Job Swift in Action
 //         </h1>
 //         <div className="md:flex space-y-4 md:space-y-0 md:space-x-2">
@@ -153,7 +153,7 @@ const DemoForm = () => {
   return (
     <div className="w-full md:max-w-[500px] border-[1px] bg-neutral-50 rounded-t-lg mx-auto md:p-6">
       <form className="space-y-4 p-6" onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="text-primary font-[900] text-2xl text-center">
+        <h1 className="text-swift font-[900] text-2xl text-center">
           See Job Swift in Action
         </h1>
         <div className="md:flex space-y-4 md:space-y-0 md:space-x-2">

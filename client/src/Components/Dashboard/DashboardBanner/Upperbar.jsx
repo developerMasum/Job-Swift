@@ -1,11 +1,11 @@
-import logo2 from "../../../assets/login/swift__1_-removebg-preview (1).png";
+import logo2 from "../../../assets/Image/logo_js.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout, GrMail } from "react-icons/gr";
 import { CgMenuGridR } from "react-icons/cg";
 import { FaToolbox, FaUserAlt, FaUserPlus } from "react-icons/fa";
 import { BiSolidCalendar } from "react-icons/bi";
 import { RiUserSearchFill } from "react-icons/ri";
-import { BsPieChart, BsGraphUp, BsFillHouseAddFill } from "react-icons/bs";
+import { BsPieChart, BsGraphUp, BsFillHouseAddFill, BsSearch } from "react-icons/bs";
 import userBackupImage from "../../../assets/Image/userImage.jpeg";
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../../../Auth/AuthProvider";
@@ -13,10 +13,13 @@ import { toast } from "react-hot-toast";
 // import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars, AiOutlineHome } from "react-icons/ai";
+import useAdmin from "../../../Hooks/AdminHook/useAdmin";
 
 const UpperBar = () => {
   const { user, logout } = useContext(authContext);
-  const [isAdmin,setIsAdmin] = useState(false)
+  const [isAdmin] = useAdmin();
+  console.log("isadmin", isAdmin);
+  // const [isAdmin,setIsAdmin] = useState(false)
 
   const name = user?.displayName || "Mr X man";
   const userEmail = user?.email || "mm123";
@@ -29,29 +32,30 @@ const UpperBar = () => {
     logout()
       .then(() => {
         toast.success("log out successful");
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error);
       });
   };
-// set Admin 
-useEffect(() => {
-  // Set isAdmin within the useEffect to ensure it's updated when user changes.
-  const adminEmail = "admin@gmail.com";
-  const originEmail = user?.email;
+  // set Admin
+  // useEffect(() => {
+  //   // Set isAdmin within the useEffect to ensure it's updated when user changes.
+  //   const adminEmail = "admin@gmail.com";
+  //   const originEmail = user?.email;
 
-  if (adminEmail === originEmail) {
-    setIsAdmin(true);
-  } else {
-    setIsAdmin(false);
-  }
-}, [user]);
-// console.log(origin);
+  //   if (adminEmail === originEmail) {
+  //     setIsAdmin(true);
+  //   } else {
+  //     setIsAdmin(false);
+  //   }
+  // }, [user]);
+  // console.log(origin);
   // const isAdmin = true;
   const [toggle, setToggle] = useState(false);
 
   const [isActive, setActive] = useState("false");
-  
+
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
@@ -62,9 +66,9 @@ useEffect(() => {
       {isAdmin && (
         <>
           {/* Small Screen Navbar */}
-          <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
+          <div className="bg-gray-200  flex justify-between md:hidden">
             <div>
-              <div className="block cursor-pointer p-4 font-bold">
+              <div className="block cursor-pointer p-4 font-semibold">
                 {/* <Logo /> */}
                 <p>Admin Dashboard</p>
               </div>
@@ -79,19 +83,19 @@ useEffect(() => {
           </div>
           {/* Sidebar */}
           <div
-            className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-44 space-y-6 px-2  py-4 absolute inset-y-0 left-0 transform ${
-              isActive && "-translate-x-full"
-            }  md:translate-x-0  transition duration-200 ease-in-out`}
+            className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-44 space-y-6 px-2  py-4 absolute inset-y-0 left-0 transform ${isActive && "-translate-x-full"
+              }  md:translate-x-0  transition duration-200 ease-in-out`}
           >
             <div>
               {/* Branding & Profile Info */}
-              
+
               <div>
-                <div className="w-full hidden md:flex py-2 justify-center items-center bg-rose-100 mx-auto">
+                <div className="mx-auto text-center">
                   {/* <Logo /> */}
-                  <p className="uppercase text-sm font-bold">Admin Dashboard</p>
-                  <img src="../../../assets/logo/Job Swift.png" alt="" />
-                  <img src="../../../assets/logo/Job Swift.png" alt="" />
+                  <img src='https://i.ibb.co/FJ9Y0FF/logo-js.png' alt=""  className="w-8 inline-block"/>
+                  <p className="uppercase text-sm semi-bold mt-5">Admin Dashboard</p>
+              
+                
                 </div>
                 {/* <div className="flex flex-col items-center mt-6 -mx-2">
                   <Link to="/dashboard">
@@ -116,18 +120,14 @@ useEffect(() => {
               </div>
 
               {/* Nav Items */}
-              <div className="flex flex-col justify-between flex-1 mt-6">
+              <div className="flex flex-col justify-between flex-1 mt-6 text-black">
                 <nav>
                   <>
-                  
                     {/* Menu Links */}
                     <NavLink
                       to="admin/dashboard"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                          isActive
-                            ? " text-cyan-500"
-                            : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? " text-cyan-500" : "text-gray-600"
                         }`
                       }
                     >
@@ -138,10 +138,7 @@ useEffect(() => {
                     <NavLink
                       to="admin/users"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                          isActive
-                            ? " text-cyan-500"
-                            : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? " text-cyan-500" : "text-gray-600"
                         }`
                       }
                     >
@@ -156,25 +153,24 @@ useEffect(() => {
 
             <div>
               <hr />
-              <NavLink
+              {/* <NavLink 
                 to="/dashboard/profile"
                 className={({ isActive }) =>
-                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
                   }`
                 }
               >
                 <FcSettings className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Profile</span>
-              </NavLink>
+                <span className="mx-4 font-medium cursor-not-allowed">Profile</span>
+              </NavLink> */}
               <button
                 onClick={handleLogOut}
                 className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
               >
                 <GrLogout className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">Logout</span>
+                <span className="mx-4 font-medium ">Logout</span>
               </button>
             </div>
           </div>
@@ -182,7 +178,7 @@ useEffect(() => {
       )}
 
       {!isAdmin && (
-        <div className="flex justify-between navbar rounded-xl shadow-xl bg-slate-100 fixed z-10  md:flex-row  max-w-7xl mx-auto ">
+        <div className="flex justify-between font-bold navbar rounded-sm text-black shadow-md bg-slate-100  fixed z-10  md:flex-row  mx-auto ">
           <div className="flex  lg:md:gap-10  ">
             {/* responsive Mobile view----------------------- */}
             <div className="dropdown ">
@@ -274,14 +270,15 @@ useEffect(() => {
             </div>
 
             <Link to={`/`}>
-              <img className="h-10 w-24  " src={logo2} alt="" />
+              <img className="h-10 w-10  " src={logo2} alt="" />
+           
             </Link>
           </div>
           {/* ---------------------------------------------------- end mobile view */}
 
           {/* large screen view start------------------------------------- */}
 
-          <div className="font-bold hidden lg:md:flex ">
+          <div className="hidden lg:md:flex ">
             <ul className="menu menu-horizontal  ">
               <li>
                 <Link to={"jobs"}>JOBS</Link>
@@ -330,13 +327,16 @@ useEffect(() => {
             <div className="form-control">
               <div className="flex gap-12">
                 {/* input */}
-                <div className="input-group ">
+                <div className=" flex justify-center items-center">
                   <input
                     type="text"
                     placeholder="Search for candidates..."
-                    className="input  input-sm px-[-30px] hidden lg:block text-white border-2 border-cyan-800"
+                    className="rounded-lg input-sm  hidden lg:block   pe-16  bg-slate-500 bg-opacity-0 border-[0.1] hover:border-2"
                   />
-                  <button className="btn btn-outline btn-sm hidden lg:block border-2 border-cyan-800">
+                  
+                    <button><BsSearch className="-mx-7"></BsSearch></button>
+                  
+                  {/* <button className="btn btn-outline btn-sm hidden lg:block border-2 border-cyan-800">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-6  "
@@ -351,7 +351,7 @@ useEffect(() => {
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                       />
                     </svg>
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -360,7 +360,7 @@ useEffect(() => {
 
             <div className="relative group">
               <div className="rounded-full transition duration-300 ease-in-out transform hover:scale-105 group-hover:opacity-100 opacity-80">
-                <Link>
+                <Link to="inbox-email">
                   <button className="">
                     <GrMail className=" text-3xl"></GrMail>
                   </button>
@@ -390,10 +390,10 @@ useEffect(() => {
               >
                 <div className="text-black">
                   <li>
-                    <Link>Workable</Link>
+                    <Link to="get-certificate/:id">Get Certificate</Link>
                   </li>
                   <li>
-                    <Link>Workable Referrals</Link>
+                    <Link to="certification-list">Certification List</Link>
                   </li>
                 </div>
               </ul>
@@ -434,7 +434,7 @@ useEffect(() => {
                             />
                           </Link>
                           <h2>
-                            <span className="font-bold">{name}</span>
+                            <span className="semi-bold">{name}</span>
                             <br />
                             {/* <span className="text-[10px]">{userEmail}</span> */}
                           </h2>
@@ -448,20 +448,15 @@ useEffect(() => {
                     </li>
 
                     <li className="mt-4">
-                      <Link>Setting</Link>
+                      <Link to="settings/profile">Setting</Link>
                     </li>
-                    <li>
-                      <Link>Help</Link>
-                    </li>
-                    <li>
-                      <Link>Add Company</Link>
-                    </li>
+
                     {user && (
                       <>
-                        <div className="text-center">
+                        <div className="text-center w-14 mx-auto">
                           <li
                             onClick={handleLogOut}
-                            className="btn btn-outline btn-xs text-xs btn-error mx-auto my-3 "
+                            className="border border-teal-700 cursor-pointer hover:text-white rounded-md p-1 hover:bg-red-500 text-xs  mx-auto my-3 "
                           >
                             Log-out
                           </li>

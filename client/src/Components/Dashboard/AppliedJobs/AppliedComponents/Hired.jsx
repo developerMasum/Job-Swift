@@ -1,19 +1,34 @@
-import React from 'react';
-import NoContent from '../NoContent';
-import useAppliedJobs from './useAppliedJobs';
+import React, { useContext, useEffect, useState } from "react";
 
-const Hired = () => {
-    const [appliedJobs] = useAppliedJobs()
-    const filteredJobs = appliedJobs.filter((job) => job.stage === "hired");
-    return (
-        <div>
-            {filteredJobs.length > 0 ? (
-        filteredJobs.map((job) => <div key={job.id}>{job.name}</div>)
-      ) : (
-        <NoContent />
-      )}
-        </div>
-    );
+
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCandidates } from "../../../../redux/candidates/candidatesOperation";
+import { authContext } from "../../../../Auth/AuthProvider";
+import HiredDetails from "./Applied/HiredDetails";
+
+const Applied = ({id}) => {
+  const {user} = useContext(authContext)
+  const email = user?.email;
+  const dispatch = useDispatch()
+  // console.log(id);
+  const { candidates, isLoading, error } = useSelector((state) => state.candidates);
+  // console.log('from sourced', candidates);
+
+  const appliedCandi = candidates.filter((c) => c.jobId === id && c.stage === "Hired");
+  console.log(appliedCandi);
+
+  useEffect(() => {
+    // Dispatch the action to fetch candidates based on the selected sorting order
+    dispatch(getAllCandidates(email));
+  }, [dispatch]);
+
+
+  return (
+    <div>
+      <HiredDetails appliedCandi={appliedCandi}  stageName={appliedCandi.length} />
+      
+    </div>
+  );
 };
 
-export default Hired;
+export default Applied;

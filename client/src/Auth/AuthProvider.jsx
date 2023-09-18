@@ -1,87 +1,120 @@
-import { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, updatePassword } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+  updatePassword,
+} from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
-import { app } from './firebase.config';
+import { app } from "./firebase.config";
+import axios from "axios";
 
-export const authContext = createContext(null)
-const auth = getAuth(app)
+export const authContext = createContext(null);
+const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
+  const googleProvider = new GoogleAuthProvider();
 
-    const googleProvider = new GoogleAuthProvider();
+  const createAuthUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-    const createAuthUser = (email, password) => {
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
+  const logIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-    const logIn = (email, password) => {
-        setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password)
-    }
+  const logout = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+  const updateUserProfile = (name, photo) => {
+    setLoading(true);
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
 
-  
+  const googleSignIn = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
 
-    const logout = () => {
-        setLoading(true)
-        return signOut(auth)
-    }
-    const updateUserProfile = (name, photo) => {
-        setLoading(true)
-        return updateProfile(auth.currentUser, {
-            displayName: name, photoURL: photo
-        })
-    }
+  const resetPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
 
-    const googleSignIn = () => {
-        setLoading(true)
-        return signInWithPopup(auth, googleProvider)
-    }
+  const userUpdatePassword = () => {
+    setLoading(true);
+    const user = auth.currentUser;
+    const newPassword = getASecureRandomPassword();
 
-    const resetPassword = (email) => {
-        setLoading(true)
-        return sendPasswordResetEmail(auth, email)
-    }
+    return updatePassword(user, newPassword);
+  };
 
-    const userUpdatePassword = () => {
+  // useEffect(() => {
+  //     const unsubscribed = onAuthStateChanged(auth, currentUser => {
+  //         setUser(currentUser)
+  //         // console.log("CurentUser:-", currentUser);
 
-        setLoading(true)
-        const user = auth.currentUser;
-        const newPassword = getASecureRandomPassword();
+  //         setLoading(false)
+  //     })
+  //     return () => {
+  //         return unsubscribed;
+  //     }
+  // }, [])
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      // console.log("current user", currentUser);
 
-        return updatePassword(user, newPassword)
-    }
+      // get and set token
+      if (currentUser) {
+        axios
+          .post(" https://server-job-swift.vercel.app/jwt", {
+            email: currentUser?.email,
+          })
+          .then((data) => {
+            localStorage.setItem("access-token", data.data.token);
+            setLoading(false);
+          })
+          .catch((error) => {
+            console.error("Axios Error:", error);
+            setLoading(false);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
+    });
+    return () => {
+      return unsubscribe();
+    };
+  }, []);
 
-    useEffect(() => {
-        const unsubscribed = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser)
-            // console.log("CurentUser:-", currentUser);
-
-            setLoading(false)
-        })
-        return () => {
-            return unsubscribed;
-        }
-    }, [])
-
-    const authInfo = {
-        user,
-        loading,
-        createAuthUser,
-        logIn,
-        logout,
-        updateUserProfile,
-        googleSignIn,
-        resetPassword,
-        userUpdatePassword,
-    }
-    return (
-        <authContext.Provider value={authInfo}>
-            {children}
-        </authContext.Provider>
-    );
+  const authInfo = {
+    user,
+    loading,
+    createAuthUser,
+    logIn,
+    logout,
+    updateUserProfile,
+    googleSignIn,
+    resetPassword,
+    userUpdatePassword,
+  };
+  return (
+    <authContext.Provider value={authInfo}>{children}</authContext.Provider>
+  );
 };
 
 export default AuthProvider;

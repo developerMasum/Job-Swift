@@ -70,11 +70,11 @@ const EmployeeExperienceSection = () => {
   };
 
   return (
-    <section className="bg-gray-100 py-5">
+    <section className=" py-5">
       <div className="container mx-auto text-center">
        
         <div className="flex my-10 overflow-hidden">
-          <Marquee speed={60} gradient={false} pauseOnHover={true}>
+          <Marquee speed={60} gradient={true} pauseOnHover={true}>
             {cards.map((card, index) => {
               const uniqueColors = generateUniqueColors();
               return (

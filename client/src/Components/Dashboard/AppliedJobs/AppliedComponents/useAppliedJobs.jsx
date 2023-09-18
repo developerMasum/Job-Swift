@@ -1,18 +1,18 @@
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const useAppliedJobs = () => {
-const [appliedJobs, setAppliedJobs] = useState([])
-useEffect(() =>{
-    fetch("/appliedJobs.json")
-    .then(res => res.json())
-    .then(data => {
+  const [appliedJobs, setAppliedJobs] = useState([]);
+  useEffect(() => {
+    fetch(" https://server-job-swift.vercel.app/all-post")
+      .then((res) => res.json())
+      .then((data) => {
         setAppliedJobs(data);
-    })
-    .catch((error) =>
+      })
+      .catch((error) =>
         console.error("Error fetching testimonial data:", error)
       );
-},[])
-return [appliedJobs];
+  }, []);
+  return [appliedJobs];
 };
 
 export default useAppliedJobs;
