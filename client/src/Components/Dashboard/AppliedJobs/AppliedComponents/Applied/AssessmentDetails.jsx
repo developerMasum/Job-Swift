@@ -49,13 +49,16 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
     try {
-      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ stage: "Interview" }),
-      });
+      const response = fetch(
+        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ stage: "Interview" }),
+        }
+      );
 
       if (response) {
         toast.success("This Candidate moved to Applied");

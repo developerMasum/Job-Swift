@@ -8,7 +8,7 @@ const Certification = () => {
   const [certifiedData, setCertifiedData] = useState();
   console.log(certifiedData);
   useEffect(() => {
-    const URL = ` http://localhost:5000/all-applications/${id}`;
+    const URL = ` https://server-job-swift.vercel.app/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -345,7 +345,9 @@ const Certification = () => {
                     Dear
                     {/* {formData.userName} */}
                     {certifiedData?.firstName && (
-                      <span className="mx-1 font-bold">{certifiedData.firstName}</span>
+                      <span className="mx-1 font-bold">
+                        {certifiedData.firstName}
+                      </span>
                     )}
                     ,
                   </p>
@@ -357,7 +359,9 @@ const Certification = () => {
                   We are pleased to offer you the position of
                   <span className="text-2xl font-semibold mx-1 text-blue-700">
                     {/* {formData.title} */}
-                    {certifiedData?.jobTitle && <span>{certifiedData.jobTitle}</span>}
+                    {certifiedData?.jobTitle && (
+                      <span>{certifiedData.jobTitle}</span>
+                    )}
                   </span>
                   at <span className="font-bold">{formData.company}</span>.
                 </p>
@@ -379,7 +383,9 @@ const Certification = () => {
                 <div className="flex items-center justify-between">
                   <h2 className="text-3xl font-bold text-blue-700">
                     {/* {formData.title} */}
-                    {certifiedData?.jobTitle && <span>{certifiedData.jobTitle}</span>}
+                    {certifiedData?.jobTitle && (
+                      <span>{certifiedData.jobTitle}</span>
+                    )}
                   </h2>
                   <div>
                     <img

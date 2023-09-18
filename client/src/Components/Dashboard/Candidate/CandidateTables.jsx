@@ -41,7 +41,7 @@ const CandidateTables = ({ candidatesData }) => {
   async function handleDelete(id) {
     try {
       const response = await fetch(
-        ` http://localhost:5000/delete-candidate/${id}`,
+        ` https://server-job-swift.vercel.app/delete-candidate/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -83,7 +83,7 @@ const CandidateTables = ({ candidatesData }) => {
 
     // Send the POST request to the server
     axios
-      .post(" http://localhost:5000/mail", mailData)
+      .post(" https://server-job-swift.vercel.app/mail", mailData)
       .then((response) => {
         // The code inside this block will only run if the request is successful
         toast.success("Email sent successfully!");

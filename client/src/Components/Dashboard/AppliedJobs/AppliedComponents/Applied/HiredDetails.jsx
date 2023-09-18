@@ -53,13 +53,16 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   const handleDisQualify = (id) => {
     setIsModalOpen(true);
     try {
-      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ stage: "Applied" }),
-      });
+      const response = fetch(
+        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ stage: "Applied" }),
+        }
+      );
 
       if (response) {
         toast.success("This Candidate moved to Applied");
