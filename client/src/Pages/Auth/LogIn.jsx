@@ -49,10 +49,13 @@ const LogIn = () => {
     try {
       // setLoading(true);
       const { user } = await logIn(email, password);
-     const {data:dataToken} =  await axios.post(" http://localhost:5000/jwt",{
-      email:email,
-     })
-    //  console.log(dataToken.token);
+      const { data: dataToken } = await axios.post(
+        " http://localhost:5000/jwt",
+        {
+          email: email,
+        }
+      );
+      //  console.log(dataToken.token);
       console.log("from error", user);
       const { data } = await axios.get(
         `http://localhost:5000/users/admin/${user?.email}`,
