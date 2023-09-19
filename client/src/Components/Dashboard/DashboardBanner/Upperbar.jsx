@@ -84,7 +84,7 @@ const UpperBar = () => {
   // },[])
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allApplications?search=${search}`)
+    fetch(`http://localhost:5000/candidateSearch?search=${search}`)
       .then(res => res.json())
       .then(data => setSearchData(data));
   }, [search])

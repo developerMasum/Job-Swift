@@ -20,10 +20,10 @@ const Teammembers = () => {
       {/* Team member */}
       <div className="py-7">
         {jobs.map((job) => (
-          <div key={job._id} className="flex  items-center justify-between">
+          <div key={job._id} className="lg:md:flex  items-center justify-between">
             <div className="flex gap-2 items-center">
               {user?.photoURL ? (
-                <img src={user.photoURL} className="w-10 h-10 rounded-full" alt="User's photo" />
+                <img src={user.photoURL} className="lg:md:w-10 w-6 lg:md:h-10 h-6 rounded-full" alt="User's photo" />
               ) : (
                 <HiUserCircle size={26}/>
               )}
