@@ -480,28 +480,16 @@ async function run() {
 
     // sorting get data -and get data all candidates
     app.get("/all-applications", async (req, res) => {
-      const sortOrder = req.query.sortOrder || "newest";
-
-      const sortOptions = {};
-
-      if (sortOrder === "newest") {
-        sortOptions.date = -1; // Sort by date in descending order (newest first)
-      } else if (sortOrder === "oldest") {
-        sortOptions.date = 1; // Sort by date in ascending order (oldest first)
-      }
-
       try {
-        const result = await applicationsPostCollection
-          .find()
-          .sort(sortOptions) // Apply the sorting options
-          .toArray();
-
+        const result = await applicationsPostCollection.find().toArray();
+    
         res.send(result);
       } catch (error) {
         console.error("Error fetching data:", error);
         res.status(500).json({ error: "Internal server error" });
       }
     });
+    
 
     // test  get candidate by specific jobs
     app.get("/all-candidate/:email", async (req, res) => {
