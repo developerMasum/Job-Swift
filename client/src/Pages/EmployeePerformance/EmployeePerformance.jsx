@@ -1,6 +1,7 @@
 import React from "react";
 import EmployeeExplore from "../../Components/EmployeePerformance/EmployeeExplore";
 import EmployeeResource from "../../Components/EmployeePerformance/EmployeeResource";
+import { Link } from "react-router-dom";
 
 const EmployeePerformance = () => {
   return (
@@ -27,12 +28,12 @@ const EmployeePerformance = () => {
               setting the stage for growth and a great employee experience.
             </p>
             <div className="flex space-x-2">
-              <button
+              <Link to={"/demo-page"}
                 className="bg-[#e6ad5e] px-6 py-2 text-lg font-bold text-white rounded-full hover:bg-[#b28442] transition"
                 title=" Get My Free Demo"
               >
                 Get My Free Demo
-              </button>
+              </Link>
               <button
                 className=" border-[2px] border-[#b28442] px-4 py-1 rounded-full text-[#b28442] font-bold hover:bg-[#f0d1a7] transition"
                 title="Try It Free"

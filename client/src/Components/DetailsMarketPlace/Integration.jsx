@@ -37,7 +37,7 @@ const Integration = () => {
             <p className="text-gray-600">{info.description}</p>
             <div className="mt-4">
               <Link
-                to="/"
+                to="/blogs"
                 className="text-swift font-medium hover:underline transition duration-300 transform hover:translate-x-1"
               >
                 {info.link}{" "}
