@@ -28,9 +28,10 @@ Job Swift is ATS(Applicant Tracking System) based website. It makes hiring easie
 **Server:** Node, Express, MongoDB ,JWT,Nodemailer,dotENV
 
 
+
 ## Documentation
 
-[Documentation]([https://linktodocumentation](https://docs.google.com/document/d/1vvYQJEbQbKmTHxe71I1QQMW093QfnWhPQjWXGLbRyZg/edit?usp=sharing))
+[Documentation](https://docs.google.com/document/d/1vvYQJEbQbKmTHxe71I1QQMW093QfnWhPQjWXGLbRyZg/edit?usp=sharing)
 
 ## Screenshots
 - Homepage 
