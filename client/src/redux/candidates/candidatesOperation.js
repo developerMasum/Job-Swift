@@ -7,7 +7,7 @@ export const getAllCandidates = createAsyncThunk(
     // Pass sortOrder as an argument
     try {
       const response = await axios.get(
-        ` https://server-job-swift.vercel.app/all-candidate/${email}`
+        ` http://localhost:5000/all-candidate/${email}`
       );
       // console.log(response.data);
       return response.data; // Return the data received from the server if needed
@@ -24,7 +24,7 @@ export const getAllCandidatesById = createAsyncThunk(
     // Pass sortOrder as an argument
     try {
       const response = await axios.get(
-        ` https://server-job-swift.vercel.app/candidate-stage/${id}`
+        ` http://localhost:5000/candidate-stage/${id}`
       );
       // console.log(response.data);
       return response.data; // Return the data received from the server if needed

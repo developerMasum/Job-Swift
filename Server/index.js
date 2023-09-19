@@ -25,6 +25,7 @@ const { log } = require("console");
 
 const verifyJWT = (req, res, next) => {
   const authorization = req.headers.authorization;
+  // console.log(req.headers);
   if (!authorization) {
     return res
       .status(401)
@@ -34,6 +35,7 @@ const verifyJWT = (req, res, next) => {
   const token = authorization.split(" ")[1];
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    // console.log(err);
     if (err) {
       return res
         .status(401)

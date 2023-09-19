@@ -82,16 +82,14 @@ const UpperBar = () => {
 
   // useEffect(()=> {
   //   const fetchUsers = async () => {
-  //     const res = await axios.get('https://server-job-swift.vercel.app/all-applications');
+  //     const res = await axios.get('http://localhost:5000/all-applications');
   //     setSearch(res.data);
   //   }
   //   fetchUsers();
   // },[])
 
   useEffect(() => {
-    fetch(
-      `https://server-job-swift.vercel.app/allApplications?search=${search}`
-    )
+    fetch(`http://localhost:5000/candidateSearch?search=${search}`)
       .then((res) => res.json())
       .then((data) => setSearchData(data));
   }, [search]);
@@ -377,25 +375,33 @@ const UpperBar = () => {
                         {searchData ? (
                           <>
                             {searchData.map((singleData) => (
-                              <div className="flex gap-4 items-center rounded-lg p-2 mb-1 bg-slate-200 md:lg:w-96 w-60 overflow-hidden">
-                                <img
-                                  className=" bg-slate-100 h-8 w-8 rounded-full"
-                                  src={
-                                    singleData.image ? (
-                                      singleData.image
-                                    ) : (
-                                      <FaUserCircle></FaUserCircle>
-                                    )
-                                  }
-                                  alt=""
-                                />
-                                <div>
-                                  <h2>
-                                    {"Name:" + " " + singleData.firstName}
-                                  </h2>
-                                  <h2>{"Job:" + " " + singleData.jobTitle}</h2>
+                              <Link
+                                to={`candidate/profile/${singleData?._id}`}
+                                key={singleData?._id}
+                              >
+                                {" "}
+                                <div className="flex gap-4 items-center rounded-lg p-2 mb-1 bg-slate-200 md:lg:w-96 w-60 overflow-hidden">
+                                  <img
+                                    className=" bg-slate-100 h-8 w-8 rounded-full"
+                                    src={
+                                      singleData.image ? (
+                                        singleData.image
+                                      ) : (
+                                        <FaUserCircle></FaUserCircle>
+                                      )
+                                    }
+                                    alt=""
+                                  />
+                                  <div>
+                                    <h2>
+                                      {"Name:" + " " + singleData.firstName}
+                                    </h2>
+                                    <h2>
+                                      {"Job:" + " " + singleData.jobTitle}
+                                    </h2>
+                                  </div>
                                 </div>
-                              </div>
+                              </Link>
                             ))}
                           </>
                         ) : (

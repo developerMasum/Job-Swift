@@ -43,7 +43,7 @@ const CandidateTables = ({ candidatesData }) => {
   async function handleDelete(id) {
     try {
       const response = await fetch(
-        ` https://server-job-swift.vercel.app/delete-candidate/${id}`,
+        ` http://localhost:5000/delete-candidate/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -71,13 +71,13 @@ const CandidateTables = ({ candidatesData }) => {
   const openModal = () => {
     setIsModalOpen(true);
   };
-  
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
   const openMessageModal = () => {
-    setMessageModalOpen(true)
+    setMessageModalOpen(true);
   };
 
   const closeMessageModal = () => {
@@ -93,7 +93,7 @@ const CandidateTables = ({ candidatesData }) => {
 
     // Send the POST request to the server
     axios
-      .post(" https://server-job-swift.vercel.app/mail", mailData)
+      .post(" http://localhost:5000/mail", mailData)
       .then((response) => {
         // The code inside this block will only run if the request is successful
         toast.success("Email sent successfully!");
@@ -266,11 +266,13 @@ const CandidateTables = ({ candidatesData }) => {
             onSubmit={onSubmit}
           />
           <SendMessageModal
-           value={emailId}
-           isOpen={messageModalOpen}
-           onClose={closeMessageModal}
-           onSubmit={onSubmit}
-          > </SendMessageModal>
+            value={emailId}
+            isOpen={messageModalOpen}
+            onClose={closeMessageModal}
+            onSubmit={onSubmit}
+          >
+            {" "}
+          </SendMessageModal>
         </>
       )}
     </div>
