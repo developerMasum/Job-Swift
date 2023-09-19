@@ -30,7 +30,7 @@ Job Swift is ATS(Applicant Tracking System) based website. It makes hiring easie
 
 ## Documentation
 
-[Documentation](https://linktodocumentation)
+[Documentation]([https://linktodocumentation](https://docs.google.com/document/d/1vvYQJEbQbKmTHxe71I1QQMW093QfnWhPQjWXGLbRyZg/edit?usp=sharing))
 
 ## Screenshots
 - Homepage 
