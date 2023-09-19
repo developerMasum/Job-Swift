@@ -605,6 +605,19 @@ async function run() {
       res.send(result);
     });
 
+    // candidateSearch
+    app.get("/candidateSearch", async (req, res) => {
+      const search = req.query.search;
+      
+      const query = { firstName: { $regex: search, $options: "i" } }
+
+      const application = applicationsPostCollection.find(query);
+      const result = await application.toArray()
+      res.send(result);
+    });
+
+    // search candidates
+
     // resume app.use('/uploads', upload.array("image", "resume"));
 
     // Send a ping to confirm a successful connection
