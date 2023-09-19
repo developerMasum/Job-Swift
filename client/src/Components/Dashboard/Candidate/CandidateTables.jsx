@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import { HiChat, HiHand, HiMail } from "react-icons/hi";
 import SendMailModal from "./SendMailModal";
+import SendMessageModal from "./SendMessageModal";
 
 const CandidateTables = ({ candidatesData }) => {
   // console.log(candidates);
@@ -14,6 +15,7 @@ const CandidateTables = ({ candidatesData }) => {
 
   const [isChecked, setIsChecked] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [messageModalOpen, setMessageModalOpen] = useState(false);
   const [emailId, setEmailId] = useState("");
   const [deleteId, setDeleteId] = useState("");
 
@@ -69,9 +71,17 @@ const CandidateTables = ({ candidatesData }) => {
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+  
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const openMessageModal = () => {
+    setMessageModalOpen(true)
+  };
+
+  const closeMessageModal = () => {
+    setMessageModalOpen(false);
   };
 
   const onSubmit = (data) => {
@@ -226,9 +236,10 @@ const CandidateTables = ({ candidatesData }) => {
                     onClick={openModal}
                     size={25}
                     className="text-sky-800 hover:text-lime-800 cursor-pointer"
-                    title="Send Mail "
+                    title="Send Mail"
                   />
                   <HiChat
+                    onClick={openMessageModal}
                     size={25}
                     title="Message"
                     className="text-sky-800 cursor-pointer"
@@ -239,9 +250,11 @@ const CandidateTables = ({ candidatesData }) => {
                     title="Disqualify"
                     className="cursor-pointer"
                   />
-                  <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">
-                    Move to Next Step
-                  </button>
+                  <Link to={`profile/${deleteId}`}>
+                    <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">
+                      Move to Next Step
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -252,6 +265,12 @@ const CandidateTables = ({ candidatesData }) => {
             onClose={closeModal}
             onSubmit={onSubmit}
           />
+          <SendMessageModal
+           value={emailId}
+           isOpen={messageModalOpen}
+           onClose={closeMessageModal}
+           onSubmit={onSubmit}
+          > </SendMessageModal>
         </>
       )}
     </div>

@@ -17,7 +17,7 @@ const JobsDetails = () => {
   console.log(job);
 
   return (
-    <div className="pt-56">
+    <div className="pt-56 ">
       <div className="bg-[#fff6df] rounded-md border-2 border-[#ffe6ae] px-4 py-4">
         <p className="font-medium tex-xs ">
           STATUS: This job cannot be published on job boards, as it doesn’t meet
@@ -32,7 +32,7 @@ const JobsDetails = () => {
           company's website domain, or appear on the contact page
         </li>
       </div>
-      <div>
+      <div >
         <div>
           <h4 className="pt-8 font-semibold text-xl">
             Job title and Department details
@@ -115,7 +115,7 @@ const JobsDetails = () => {
               {/* sallery */}
               <div className="pt-7">
                 <p className="font-semibold  pb-6">Annual salary</p>
-                <div className="flex justify-between">
+                <div className="lg:md:flex justify-between">
                   <div className="space-y-2">
                     <p>From</p>
                     <input
