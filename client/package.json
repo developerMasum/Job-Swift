@@ -64,7 +64,7 @@
     "smart-webcomponents-react": "^16.0.1",
     "sort-by": "^1.2.0",
     "styled-components": "^6.0.7",
-    "sweetalert2": "^11.7.27",
+    "sweetalert2": "^11.7.28",
     "swiper": "^10.1.0"
   },
   "devDependencies": {
