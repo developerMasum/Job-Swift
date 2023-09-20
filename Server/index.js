@@ -8,11 +8,11 @@ const fs = require("fs");
 const fileUpload = require("express-fileupload");
 
 const port = process.env.PORT || 5000;
-const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
+// const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
 
-if (!fs.existsSync(uploadPath)) {
-  fs.mkdirSync(uploadPath, { recursive: true });
-}
+// if (!fs.existsSync(uploadPath)) {
+//   fs.mkdirSync(uploadPath, { recursive: true });
+// }
 
 // middleware
 const corsOptions = {
@@ -35,8 +35,8 @@ app.use(fileUpload());
 //   next();
 // });
 
-const uploadDirectory = path.join(__dirname, "public", "uploads");
-app.use(express.static(uploadDirectory));
+// const uploadDirectory = path.join(__dirname, "public", "uploads");
+// app.use(express.static(uploadDirectory));
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const { log } = require("console");
