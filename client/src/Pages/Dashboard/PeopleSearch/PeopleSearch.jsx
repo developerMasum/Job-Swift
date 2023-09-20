@@ -8,20 +8,22 @@ import Swal from 'sweetalert2'
 import {BsBookmarkHeart, BsBookmarkHeartFill, BsCheckLg, BsPinAngle} from "react-icons/bs";
 import {RxCross2} from "react-icons/rx";
 import {Link} from "react-router-dom";
+import PinedSearch from "./PinedSearch";
 
 const PeopleSearch = () => {
     const [application, setApplication] = useState(null);
     const [search, setSearch] = useState(null);
 
+
     const ref = useRef(null);
-    console.log("Get application", application);
-    // console.log("dfghsdjg", search);
+    // console.log("Get application", application);
+    // console.log("dfghsdjg", bookMark);
 
     const options = [];
 
     // Here we can handle bookMark
 
-    const handleBookMark = (id, location, image, jobTitle, summary, stage) => {
+    const handleBookMark = (id, location, image, jobTitle, summary, email, stage) => {
 
         const singleApplication = {
             id,
@@ -29,8 +31,9 @@ const PeopleSearch = () => {
             image,
             jobTitle,
             summary,
-            stage,
-            bookMarks: true
+            email,
+            stage
+
 
         }
         let bookMark = []
@@ -40,17 +43,53 @@ const PeopleSearch = () => {
 
         if (previousBookmark) {
             console.log("Have previousBookmark")
-            const isMarked = previousBookmark ?. find(pd => pd ?. _id == id)
+            const isMarked = previousBookmark ?. find(pd => pd ?. id == id)
             // console.log(isMarked)
             if (isMarked) {
-                Swal.fire({icon: 'error', title: 'Oops...', text: 'Something went wrong!', footer: '<a href="">Why do I have this issue?</a>'})
+                Swal.fire({icon: 'error', title: 'Oops...', text: 'This job is already bookmark!'})
+
+            } else {
+                bookMark.push(... previousBookmark, singleApplication)
+                localStorage.setItem("bookMark", JSON.stringify(bookMark))
 
             }
+
 
         } else {
             bookMark.push(singleApplication)
             localStorage.setItem("bookMark", JSON.stringify(bookMark))
         }
+
+
+    }
+
+    const handleRemoveBookMark = (id) => {
+        console.log("working", id)
+        const previousBookmark = JSON.parse(localStorage.getItem("bookMark"))
+
+        const restOfThem = previousBookmark ?. filter(pd => pd.id != id)
+        localStorage.setItem("bookMark", JSON.stringify(restOfThem))
+
+
+    }
+
+    // const handleAllBookMark = () => {
+    //     localStorage.removeItem("bookMark")
+    // }
+
+    const checkBookMark = (id) => {
+        console.log(id)
+        const previousBookmark = JSON.parse(localStorage.getItem("bookMark"))
+
+        const isBookMark = previousBookmark ?. find(pd => pd.id == id)
+
+        if (isBookMark) {
+            return true;
+        } else {
+            return false
+
+        }
+
     }
 
     const [value, setValue] = useState();
@@ -103,11 +142,17 @@ const PeopleSearch = () => {
                                     <div className="flex lg:md:gap-5 gap-2">
                                         <button className="flex justify-center gap-1">
                                             <BsPinAngle className="mt-1"></BsPinAngle>
-                                            <h2>Pin this search</h2>
+                                            <Link to={`/dashboard/pinSearch`}
+                                                className='text-primary'>
+
+                                                Pin this search
+
+                                            </Link>
+
                                         </button>
                                         <button className="flex justify-center gap-1">
                                             <RxCross2 className="mt-1 bg-slate-500 rounded-full text-white"></RxCross2>
-                                            <h2>Clear all</h2>
+                                            <h2 className="text-error hover:bg-red-300">Clear all</h2>
                                         </button>
                                     </div>
                                 </div>
@@ -186,23 +231,27 @@ const PeopleSearch = () => {
                             <div className="grid grid-cols-1 lg:md:grid-cols-3 gap-4">
                                 {
                                 application ?. map((data, index) => {
+                                    const BookMark = checkBookMark(data ?. _id)
                                     return (
                                         <div key={index}
                                             className="card w-full h-full bg-green-100 shadow-xl border border-slate-200">
                                             <div className="flex justify-end px-6 py-3">
-                                                <BsBookmarkHeart className="text-xl hover:bg-lime-500"
+                                                {
+                                                BookMark ? <BsBookmarkHeartFill onClick={
+                                                        () => handleRemoveBookMark(data ?. _id)
+                                                    }
+                                                    className="text-xl"></BsBookmarkHeartFill> : <BsBookmarkHeart className="text-xl hover:bg-lime-500"
+
                                                     onClick={
                                                         () => handleBookMark(data ?. _id, data.location, data.image, data ?. jobTitle, data ?. summary, data ?. email, data ?. stage)
                                                 }></BsBookmarkHeart>
-                                                <BsBookmarkHeartFill className="text-xl"></BsBookmarkHeartFill>
-
-                                            </div>
-                                            <figure className="px-10 ">
+                                            } </div>
+                                            <figure className="px-6 ">
                                                 <img src={
                                                         data ?. image
                                                     }
                                                     alt="Not Found"
-                                                    className="rounded-xl h-72"/>
+                                                    className="rounded-xl h-64"/>
                                             </figure>
                                             <div className="card-body  ">
                                                 <h2 className=" text-center text-xl font-bold">
@@ -210,11 +259,17 @@ const PeopleSearch = () => {
                                                     data ?. jobTitle
                                                 }</h2>
                                                 <p>{
-                                                    data ?. summary
-                                                }</p>
+                                                    data ?. summary ?. slice(0, 200)
+                                                }.....</p>
                                                 {/* <div className="card-actions">
                                                     <button className="btn btn-primary">Buy Now</button>
                                                 </div> */}
+                                                <div>
+                                                    <h2 className="font-semibold">
+                                                        Name : {
+                                                        data.firstName
+                                                    } </h2>
+                                                </div>
                                                 <div className=" mr-8 my-5">
 
                                                     <div>
@@ -287,10 +342,18 @@ const PeopleSearch = () => {
                 <TabPanel>
                     <div className="bg-[#f2f4f5] mt-2">
                         <div className="grid justify-center text-center text-[#333e49] pb-40">
-                            <BsPinAngle className="text-5xl mx-auto my-10 mt-20 text-[#88929e]"></BsPinAngle>
-                            <h2 className="text-2xl">No pinned searches yet!</h2>
-                            <p className="my-5 text-sm">Pin a search to reuse it later.</p>
-                        </div>
+                            {
+                            JSON.parse(localStorage.getItem("bookMark")) ? <>
+
+                                <PinedSearch></PinedSearch>
+                            </> : <>
+                                <div>
+                                    <BsPinAngle className="text-5xl mx-auto my-10 mt-20 text-[#88929e]"></BsPinAngle>
+                                    <h2 className="text-2xl">No pinned searches yet!</h2>
+                                    <p className="my-5 text-sm">Pin a search to reuse it later.</p>
+                                </div>
+                            </>
+                        } </div>
                     </div>
                 </TabPanel>
             </Tabs>

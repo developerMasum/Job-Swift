@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home/Home";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
@@ -12,7 +12,7 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import LogIn from "../Pages/Auth/LogIn";
 import SignIn from "../Pages/Auth/SignIn";
 import Jobs from "../Pages/Dashboard/Jobs/Jobs";
-import { PostJob } from "../Pages/Dashboard/PostJob/PostJob";
+import {PostJob} from "../Pages/Dashboard/PostJob/PostJob";
 import ReportCenter from "../Components/ReportCenter/ReportCenter";
 import PrivateRoute from "./PrivateRoute";
 import PeopleSearch from "../Pages/Dashboard/PeopleSearch/PeopleSearch";
@@ -62,240 +62,188 @@ import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
 import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
 import Certification from "../Pages/Dashboard/Dashboard/Certification/Certification";
 import CertificationList from "../Pages/Dashboard/Dashboard/Certification/CertificationList";
+import PinedSearch from "../Pages/Dashboard/PeopleSearch/PinedSearch";
+
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
+    {
         path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/demo-page",
-        element: <DemoPage></DemoPage>,
-      },
-
-      {
-        path: "/details-marketplace",
-        element: <DetailsMarketPlaceIntegrate />,
-      },
-      {
-        path: "/employee-experience",
-        element: <EmployeePerformance></EmployeePerformance>,
-      },
-      {
-        path: "/hr-data",
-        element: <LearnMoreHrDataReporting></LearnMoreHrDataReporting>,
-      },
-      {
-        path: "/single-pay",
-        element: <PayrollTimeBenefits />,
-      },
-      {
-        path: "/hiring",
-        element: <HiringOnboarding></HiringOnboarding>,
-      },
-      {
-        path: "/login",
-        element: <LogIn />,
-      },
-      {
-        path: "/terms",
-        element: <TermsAndConditions />,
-      },
-      {
-        path: "/login/forgotPassword",
-        element: <ForgotPassword></ForgotPassword>,
-      },
-      {
-        path: "/register",
-        element: <SignIn />,
-      },
-      {
-        path: "/blogs",
-        element: <Blogs />,
-      },
-      {
-        path: "/blogs/:id",
-        element: <BlogDetails />,
-      },
-      {
-        path: "/contact-us",
-        element: <ContactUs />,
-      },
-      {
-        path: "/overview/:id",
-        element: <Overview />,
-        loader: ({ params }) =>
-          fetch(` http://localhost:5000/job_post/${params.id}`),
-      },
-      {
-        path: "/editJobs/:id",
-        element: <EditJobs />,
-        loader: ({ params }) =>
-          fetch(` http://localhost:5000/all-post/${params.id}`),
-      },
-    ],
-  },
-  {
-    path: "dashboard",
-    element: (
-      <PrivateRoute>
-        <DashboardLayout />
-      </PrivateRoute>
-    ),
-    children: [
-      {
-        path: "jobs",
-        element: <Jobs />,
-      },
-      {
-        path: "admin/dashboard",
-        element: (
-          <AdminRoute>
-            <HomeAdmin />
-          </AdminRoute>
-        ),
-      },
-      {
-        path: "admin/users",
-        element: (
-          <AdminRoute>
-            <UsersAdmin />
-          </AdminRoute>
-        ),
-      },
-      {
-        path: "jobs/post-job",
-        element: <PostJob />,
-      },
-      {
-        path: "jobs/applied-job/:id",
-        element: <AppliedJobs />,
-
-        loader: ({ params }) =>
-          fetch(` http://localhost:5000/all-post/${params.id}`),
-      },
-
-      {
-        path: "jobs/findCandidates/:id",
-        element: <FindCandidatesLayout></FindCandidatesLayout>,
-
+        element: <MainLayout/>,
+        errorElement: <ErrorPage/>,
         children: [
-          {
-            path: "teamMembers",
-            element: <Teammembers></Teammembers>,
-          },
-          {
-            path: "candidates",
-            element: <FindCandidates></FindCandidates>,
-          },
+            {
+                path: "/",
+                element: <Home/>},
+            {
+                path: "/demo-page",
+                element: <DemoPage></DemoPage>
+            },
 
-          {
-            path: "applicationForm",
-            element: <ApplicationForm></ApplicationForm>,
-          },
+            {
+                path: "/details-marketplace",
+                element: <DetailsMarketPlaceIntegrate/>},
+            {
+                path: "/employee-experience",
+                element: <EmployeePerformance></EmployeePerformance>
+            }, {
+                path: "/hr-data",
+                element: <LearnMoreHrDataReporting></LearnMoreHrDataReporting>
+            }, {
+                path: "/single-pay",
+                element: <PayrollTimeBenefits/>}, {
+                path: "/hiring",
+                element: <HiringOnboarding></HiringOnboarding>
+            }, {
+                path: "/login",
+                element: <LogIn/>}, {
+                path: "/terms",
+                element: <TermsAndConditions/>}, {
+                path: "/login/forgotPassword",
+                element: <ForgotPassword></ForgotPassword>
+            }, {
+                path: "/register",
+                element: <SignIn/>}, {
+                path: "/blogs",
+                element: <Blogs/>}, {
+                path: "/blogs/:id",
+                element: <BlogDetails/>}, {
+                path: "/contact-us",
+                element: <ContactUs/>}, {
+                path: "/overview/:id",
+                element: <Overview/>,
+                loader: ({params}) => fetch(` http://localhost:5000/job_post/${
+                    params.id
+                }`)
+            }, {
+                path: "/editJobs/:id",
+                element: <EditJobs/>,
+                loader: ({params}) => fetch(` http://localhost:5000/all-post/${
+                    params.id
+                }`)
+            },
+        ]
+    }, {
+        path: "dashboard",
+        element: (
+            <PrivateRoute>
+                <DashboardLayout/>
+            </PrivateRoute>
+        ),
+        children: [
+            {
+                path: "jobs",
+                element: <Jobs/>},
+            {
+                path: "admin/dashboard",
+                element: (
+                    <AdminRoute>
+                        <HomeAdmin/>
+                    </AdminRoute>
+                )
+            },
+            {
+                path: "admin/users",
+                element: (
+                    <AdminRoute>
+                        <UsersAdmin/>
+                    </AdminRoute>
+                )
+            },
+            {
+                path: "jobs/post-job",
+                element: <PostJob/>}, {
+                path: "jobs/applied-job/:id",
+                element: <AppliedJobs/>,
 
-          {
-            path: "workFlow",
-            element: <WorkFlow></WorkFlow>,
-          },
-          {
-            path: "jobDetails/:id",
-            element: <JobsDetails></JobsDetails>,
-          },
-        ],
-      },
-      {
-        path: "report-center",
-        element: <ReportCenter />,
-      },
+                loader: ({params}) => fetch(` http://localhost:5000/all-post/${
+                    params.id
+                }`)
+            }, {
+                path: "jobs/findCandidates/:id",
+                element: <FindCandidatesLayout></FindCandidatesLayout>,
 
-      {
-        path: "report-center/current-pipeline",
-        element: <CurrentPipelineReport></CurrentPipelineReport>,
-      },
-      {
-        path: "report-center/candidiate-breakdown",
-        element: <CandidiateBreakdownReport></CandidiateBreakdownReport>,
-      },
-      {
-        path: "report-center/activity-report",
-        element: <ActivityReport></ActivityReport>,
-      },
-      {
-        path: "peopleSearch",
-        element: <PeopleSearch></PeopleSearch>,
-      },
-      {
-        path: "agenda",
-        element: <Agenda />,
-      },
-      {
-        path: "company",
-        element: <Company />,
-      },
-      {
-        path: "OrgChartTab",
-        element: <OrgChartTab />,
-      },
-      {
-        path: "candidate",
-        element: <Candidates />,
-      },
-      {
-        path: "inbox-email",
-        element: <EmailUs />,
-      },
-      {
-        path: "get-certificate/:id",
-        element: <Certification />,
-      },
-      {
-        path: "certification-list",
-        element: <CertificationList />,
-      },
-      {
-        path: "candidate/profile/:id",
-        element: <CandidiateUserDetails />,
-        // loader: ({ params }) => fetch(` http://localhost:5000/users/${params.id}`),
-      },
-      {
-        path: "settings/profile",
-        element: <ProfileSettings />,
-      },
+                children: [
+                    {
+                        path: "teamMembers",
+                        element: <Teammembers></Teammembers>
+                    },
+                    {
+                        path: "candidates",
+                        element: <FindCandidates></FindCandidates>
+                    },
 
-      {
-        path: "report-center/candidiate-flow",
-        element: <CandidiateFlow></CandidiateFlow>,
-      },
+                    {
+                        path: "applicationForm",
+                        element: <ApplicationForm></ApplicationForm>
+                    },
 
-      {
-        path: "report-center/candidiate-source",
-        element: <CandidateSource></CandidateSource>,
-      },
-      {
-        path: "report-center/hiring-velocity",
-        element: <HiringVelocity></HiringVelocity>,
-      },
-      {
-        path: "report-center/time-to-hire",
-        element: <TimeToHire></TimeToHire>,
-      },
-      {
-        path: "report-center/productivity-report",
-        element: <ProductivityReport></ProductivityReport>,
-      },
-      {
-        path: "report-center/historic-pipeline",
-        element: <HistoricPipeline></HistoricPipeline>,
-      },
-    ],
-  },
+                    {
+                        path: "workFlow",
+                        element: <WorkFlow></WorkFlow>
+                    }, {
+                        path: "jobDetails/:id",
+                        element: <JobsDetails></JobsDetails>
+                    },
+                ]
+            }, {
+                path: "report-center",
+                element: <ReportCenter/>}, {
+                path: "report-center/current-pipeline",
+                element: <CurrentPipelineReport></CurrentPipelineReport>
+            }, {
+                path: "report-center/candidiate-breakdown",
+                element: <CandidiateBreakdownReport></CandidiateBreakdownReport>
+            }, {
+                path: "report-center/activity-report",
+                element: <ActivityReport></ActivityReport>
+            }, {
+                path: "peopleSearch",
+                element: <PeopleSearch></PeopleSearch>
+            }, {
+                path: "pinSearch",
+                element: <PinedSearch></PinedSearch>
+            }, {
+                path: "agenda",
+                element: <Agenda/>}, {
+                path: "company",
+                element: <Company/>}, {
+                path: "OrgChartTab",
+                element: <OrgChartTab/>}, {
+                path: "candidate",
+                element: <Candidates/>}, {
+                path: "inbox-email",
+                element: <EmailUs/>}, {
+                path: "get-certificate/:id",
+                element: <Certification/>}, {
+                path: "certification-list",
+                element: <CertificationList/>}, {
+                path: "candidate/profile/:id",
+                element: <CandidiateUserDetails/>,
+                // loader: ({ params }) => fetch(` http://localhost:5000/users/${params.id}`),
+            }, {
+                path: "settings/profile",
+                element: <ProfileSettings/>}, {
+                path: "report-center/candidiate-flow",
+                element: <CandidiateFlow></CandidiateFlow>
+            }, {
+                path: "report-center/candidiate-source",
+                element: <CandidateSource></CandidateSource>
+            }, {
+                path: "report-center/hiring-velocity",
+                element: <HiringVelocity></HiringVelocity>
+            }, {
+                path: "report-center/time-to-hire",
+                element: <TimeToHire></TimeToHire>
+            }, {
+                path: "report-center/productivity-report",
+                element: <ProductivityReport></ProductivityReport>
+            }, {
+                path: "report-center/historic-pipeline",
+                element: <HistoricPipeline></HistoricPipeline>
+            },
+        ]
+    },
 ]);
 
 export default router;
