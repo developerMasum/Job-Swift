@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useAppliedJobs = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);
   useEffect(() => {
-    fetch("  https://server-wheat-beta.vercel.app/all-post")
+    fetch("  https://server-hazel-nine.vercel.app/all-post")
       .then((res) => res.json())
       .then((data) => {
         setAppliedJobs(data);

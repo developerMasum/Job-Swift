@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import { HiChat, HiHand, HiMail } from "react-icons/hi";
 import SendMailModal from "./SendMailModal";
+import SendMessageModal from "./SendMessageModal";
 
 const CandidateTables = ({ candidatesData }) => {
   // console.log(candidates);
@@ -14,6 +15,7 @@ const CandidateTables = ({ candidatesData }) => {
 
   const [isChecked, setIsChecked] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [messageModalOpen, setMessageModalOpen] = useState(false);
   const [emailId, setEmailId] = useState("");
   const [deleteId, setDeleteId] = useState("");
 
@@ -41,7 +43,7 @@ const CandidateTables = ({ candidatesData }) => {
   async function handleDelete(id) {
     try {
       const response = await fetch(
-        `  https://server-wheat-beta.vercel.app/delete-candidate/${id}`,
+        `  https://server-hazel-nine.vercel.app/delete-candidate/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -74,6 +76,14 @@ const CandidateTables = ({ candidatesData }) => {
     setIsModalOpen(false);
   };
 
+  const openMessageModal = () => {
+    setMessageModalOpen(true);
+  };
+
+  const closeMessageModal = () => {
+    setMessageModalOpen(false);
+  };
+
   const onSubmit = (data) => {
     const mailData = {
       email: data.to,
@@ -83,7 +93,7 @@ const CandidateTables = ({ candidatesData }) => {
 
     // Send the POST request to the server
     axios
-      .post("  https://server-wheat-beta.vercel.app/mail", mailData)
+      .post("  https://server-hazel-nine.vercel.app/mail", mailData)
       .then((response) => {
         // The code inside this block will only run if the request is successful
         toast.success("Email sent successfully!");
@@ -226,9 +236,10 @@ const CandidateTables = ({ candidatesData }) => {
                     onClick={openModal}
                     size={25}
                     className="text-sky-800 hover:text-lime-800 cursor-pointer"
-                    title="Send Mail "
+                    title="Send Mail"
                   />
                   <HiChat
+                    onClick={openMessageModal}
                     size={25}
                     title="Message"
                     className="text-sky-800 cursor-pointer"
@@ -239,9 +250,11 @@ const CandidateTables = ({ candidatesData }) => {
                     title="Disqualify"
                     className="cursor-pointer"
                   />
-                  <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">
-                    Move to Next Step
-                  </button>
+                  <Link to={`profile/${deleteId}`}>
+                    <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">
+                      Move to Next Step
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -252,6 +265,14 @@ const CandidateTables = ({ candidatesData }) => {
             onClose={closeModal}
             onSubmit={onSubmit}
           />
+          <SendMessageModal
+            value={emailId}
+            isOpen={messageModalOpen}
+            onClose={closeMessageModal}
+            onSubmit={onSubmit}
+          >
+            {" "}
+          </SendMessageModal>
         </>
       )}
     </div>

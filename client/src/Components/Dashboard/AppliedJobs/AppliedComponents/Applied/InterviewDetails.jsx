@@ -175,7 +175,7 @@ const Table = ({ interviewCandi: candidates, isLoading }) => {
                     <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
                       <div className="flex items-center justify-around space-x-4">
                         <a
-                          href={`   https://server-wheat-beta.vercel.app/${selectedCandidate.resume}`}
+                          href={`   https://server-hazel-nine.vercel.app/${selectedCandidate.resume}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center text-white  space-x-2 hover:text-blue-500"

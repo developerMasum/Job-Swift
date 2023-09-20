@@ -12,7 +12,7 @@ const SliderNew = () => {
 
   useEffect(() => {
     axios
-      .get("https://server-wheat-beta.vercel.app/all-feedback")
+      .get("https://server-hazel-nine.vercel.app/all-feedback")
       .then((response) => {
         setAllData(response.data);
       })

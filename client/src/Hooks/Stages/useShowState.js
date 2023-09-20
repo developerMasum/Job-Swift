@@ -2,7 +2,7 @@
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
 
-// const apiUrl = '  https://server-wheat-beta.vercel.app/all-application';
+// const apiUrl = '  https://server-hazel-nine.vercel.app/all-application';
 
 // const useShowState = () => {
 //   const [data, setData] = useState([]);

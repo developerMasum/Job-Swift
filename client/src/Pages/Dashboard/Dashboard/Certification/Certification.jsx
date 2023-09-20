@@ -8,7 +8,7 @@ const Certification = () => {
   const [certifiedData, setCertifiedData] = useState();
   console.log(certifiedData);
   useEffect(() => {
-    const URL = `  https://server-wheat-beta.vercel.app/all-applications/${id}`;
+    const URL = `  https://server-hazel-nine.vercel.app/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {

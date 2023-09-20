@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { FiSend } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 
-const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
+const SendMessageModal = ({ isOpen, onClose, onSubmit, value }) => {
   const {
     register,
     handleSubmit,
@@ -17,7 +17,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
     async function fetchData() {
       try {
         const response = await fetch(
-          "  https://server-hazel-nine.vercel.app/all-applications"
+          " https://server-job-swift.vercel.app/all-applications"
         );
         const data = await response.json();
         setMail(data);
@@ -76,7 +76,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
       <div className="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto">
         <div className="modal-content py-4 px-6">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="to"
@@ -119,8 +119,8 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
                   This field is required.
                 </p>
               )}
-            </div>
-            <div className="mb-4">
+            </div> */}
+            {/* <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="subject"
@@ -140,7 +140,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
                   This field is required.
                 </p>
               )}
-            </div>
+            </div> */}
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -177,4 +177,4 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
   );
 };
 
-export default SendMailModal;
+export default SendMessageModal;

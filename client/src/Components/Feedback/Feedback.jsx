@@ -38,7 +38,7 @@ const Feedback = () => {
     const data = { rating, feedback, email, name, image, status };
 
     axios
-      .post(" https://server-wheat-beta.vercel.app/feedback", data)
+      .post(" https://server-hazel-nine.vercel.app/feedback", data)
       .then((response) => {
         // Handle the success response here
         console.log("Feedback sent successfully:", response.data);

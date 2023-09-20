@@ -6,7 +6,7 @@ export const getAllPost = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "  https://server-wheat-beta.vercel.app/all-post"
+        "  https://server-hazel-nine.vercel.app/all-post"
       );
       // console.log(response.data);
       return response.data;

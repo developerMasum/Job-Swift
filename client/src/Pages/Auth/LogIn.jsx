@@ -12,14 +12,17 @@ import Loader from "../../Components/Loader/Loader";
 import useAdmin from "../../Hooks/AdminHook/useAdmin";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import "./LogIn.css";
+import axios from "axios";
+import useAxiosSecure from "../../Hooks/AdminHook/useAxiosSecure";
 
 const LogIn = () => {
-  // const [isAdmin] = useAdmin();
+  // const [isAdmin, isAdminLoading] = useAdmin();
+  // console.log("isadmin", isAdmin);
   const [showPassword, setShowPassword] = useState(false);
 
   // console.log('at login page',isAdmin);
 
-  // const isAdmin = useAdmin();
+  // const [isAdmin] = useAdmin();
   //   console.log(isAdmin);
   const emailRef = useRef();
 
@@ -31,44 +34,46 @@ const LogIn = () => {
   } = useForm();
   const { logIn, resetPassword, loading, userUpdatePassword } =
     useContext(authContext);
-  const location = useLocation();
   const navigate = useNavigate();
-  const destination = "/dashboard/jobs";
+  // const destination = isAdmin
+  //   ? "/dashboard/admin/dashboard"
+  //   : "/dashboard/jobs";
+  const [axiosSecure] = useAxiosSecure();
 
   // const [error, setError] = useState(null)
 
-  const onSubmit = (data) => {
-    // console.log(data)
-    // console.log(data.password)
-    const email = data.email;
-    const password = data.password;
-    // console.log(email, password);
-    //forget password reset
-    resetPassword(email)
-      .then(() => {
-        // Password reset email sent!
-        // ..
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState(null)
 
-    logIn(email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-        // console.log(user);
-
-        toast.success("Successfully LogIn");
-        navigate(destination);
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        toast.error(errorMessage);
-      });
+  const onSubmit = async ({ email, password }) => {
+    try {
+      // setLoading(true);
+      const { user } = await logIn(email, password);
+      const { data: dataToken } = await axios.post(
+        " https://server-job-swift.vercel.app/jwt",
+        {
+          email: email,
+        }
+      );
+      //  console.log(dataToken.token);
+      console.log("from error", user);
+      const { data } = await axios.get(
+        `https://server-job-swift.vercel.app/users/admin/${user?.email}`,
+        { headers: { Authorization: `Bearer ${dataToken.token}` } }
+      );
+      //  console.log('isadmin error',isAdmin);
+      toast.success("Successfully LogIn");
+      //  setLoading(false);
+      if (data.admin) {
+        navigate("/dashboard/admin/dashboard");
+      } else {
+        navigate("/dashboard/jobs");
+      }
+    } catch (error) {
+      //  setLoading(false);
+      console.error(error);
+      // toast.error(errorMessage);
+    }
   };
 
   return (
@@ -78,7 +83,7 @@ const LogIn = () => {
         <div className="rounded-md">
           {/* <img className="h-[380px] rounded-l-2xl" src={login} alt="" /> */}
           <img
-            src='https://i.ibb.co/Fqhmwhz/login01.png'
+            src="https://i.ibb.co/Fqhmwhz/login01.png"
             alt=""
             className="h-[100%]  lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5"
           />

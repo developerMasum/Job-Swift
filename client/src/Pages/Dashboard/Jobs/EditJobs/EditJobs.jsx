@@ -45,7 +45,7 @@ const EditJobs = () => {
     // const id = data._id;
 
     const response = await fetch(
-      `  https://server-wheat-beta.vercel.app/all-post/${id}`,
+      `  https://server-hazel-nine.vercel.app/all-post/${id}`,
       {
         method: "PATCH",
         headers: {
