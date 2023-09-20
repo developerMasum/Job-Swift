@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-
 import {
   AiOutlineFilePdf,
   AiOutlineMail,
-  AiOutlinePhone,
+  // AiOutlinePhone,
 } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { BiSolidHand } from "react-icons/bi";
 
 import toast from "react-hot-toast";
 import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
 import NoContent from "../../NoContent";
 
+import CalendarComponent from "../../../../Calendar/CalendarComponent";
+import SendRejectionMail from "../../Modals/SendRejectionMail";
+// import SendRejectionMail from "../../Modals/SendRejectionMail";
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = new Date(dateString).toLocaleDateString(
@@ -49,7 +51,7 @@ const Table = ({ interviewCandi: candidates, isLoading }) => {
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
     try {
-      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
+      const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -69,6 +71,34 @@ const Table = ({ interviewCandi: candidates, isLoading }) => {
       console.error("Error:", error);
     }
   };
+
+// ____________________________________________________
+// const [isModalOpen, setIsModalOpen] = useState(false);
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+//   };
+//   const handleDisQualify = (id) => {
+//     setIsModalOpen(true);
+//     try {
+//       const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
+//         method: "PATCH",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ stage: "Applied" }),
+//       });
+
+//       if (response) {
+//         toast.success("This Candidate moved to Applied");
+//       } else {
+//         console.error("Failed to update stage.");
+//       }
+//     } catch (error) {
+//       console.error("Error:", error);
+//     }
+//   };
+//____________________________________________
 
   return (
     <div className="w-full overflow-x-auto">
@@ -178,9 +208,9 @@ const Table = ({ interviewCandi: candidates, isLoading }) => {
                 <div className="bg-white shadow-lg border mt-5 md:mt-0 rounded-lg overflow-hidden">
                   <div>
                     <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
-                      <div className="flex items-center justify-around space-x-4">
+                      <div className="flex items-center justify-around space-x-1">
                         <a
-                          href={`  http://localhost:5000/${selectedCandidate.resume}`}
+                          href={`  https://server-job-swift.vercel.app/${selectedCandidate.resume}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center text-white  space-x-2 hover:text-blue-500"
@@ -195,18 +225,36 @@ const Table = ({ interviewCandi: candidates, isLoading }) => {
                           <AiOutlineMail className="w-6 h-6" />
                           <span>Email</span>
                         </a>
-                        <a
+
+                        {/* <a
                           href={`tel:${selectedCandidate.phoneNumber}`}
                           className="flex items-center space-x-2 hover:text-blue-500 text-white "
                         >
                           <AiOutlinePhone className="w-6 h-6" />
                           <span>Call</span>
+                        </a> */}
+
+                        <a>
+                          <CalendarComponent></CalendarComponent>
                         </a>
+
+{/* _____________________________________________________________________________ */}
+                          <button
+                          // onClick={() =>
+                          //   handleDisQualify(selectedCandidate._id)
+                          // }
+                          className="  px-2 rounded-md py-1  bg-red-900 hover:bg-red-500"
+                        >
+                          <BiSolidHand className="inline-block mr-2" />
+                          Disqualify & Rejection Mail
+                        </button>
+{/* _____________________________________________________________________________ */}
+                    
                         <button
                           onClick={() =>
                             handleMoveToApplied(selectedCandidate?._id)
                           }
-                          className="border border-indigo-100 px-4 rounded-md py-1"
+                          className=" px-4 rounded-md py-1 bg-green-700 hover:bg-green-500"
                         >
                           move to Offer
                         </button>
@@ -246,6 +294,15 @@ const Table = ({ interviewCandi: candidates, isLoading }) => {
                       </p>
                     </div>
                   </div>
+
+{/* ___________________________ */}
+{/* <SendRejectionMail
+                    value={selectedCandidate?.email}
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                  // onSubmit={onSubmit}
+                  />   */}
+  {/* ___________________________ */}
 
                   <div className="px-6 py-4 border-t border-gray-200 text-start">
                     <h3 className="mb-5  text-teal-700 font-bold text-sm">

@@ -131,13 +131,13 @@ const router = createBrowserRouter([
         path: "/overview/:id",
         element: <Overview />,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/job_post/${params.id}`),
+          fetch(` https://server-job-swift.vercel.app/job_post/${params.id}`),
       },
       {
         path: "/editJobs/:id",
         element: <EditJobs />,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/all-post/${params.id}`),
+          fetch(` https://server-job-swift.vercel.app/all-post/${params.id}`),
       },
     ],
   },
@@ -178,7 +178,7 @@ const router = createBrowserRouter([
         element: <AppliedJobs />,
 
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/all-post/${params.id}`),
+          fetch(` https://server-job-swift.vercel.app/all-post/${params.id}`),
       },
 
       {
@@ -262,7 +262,7 @@ const router = createBrowserRouter([
       {
         path: "candidate/profile/:id",
         element: <CandidiateUserDetails />,
-        // loader: ({ params }) => fetch(` http://localhost:5000/users/${params.id}`),
+        // loader: ({ params }) => fetch(` https://server-job-swift.vercel.app/users/${params.id}`),
       },
       {
         path: "settings/profile",

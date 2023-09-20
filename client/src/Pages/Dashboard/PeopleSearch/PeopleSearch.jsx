@@ -39,7 +39,7 @@ const PeopleSearch = () => {
 
 
     useEffect(() => {
-        const URL = `http://localhost:5000/all-applications2?search=${search}`;
+        const URL = `https://server-job-swift.vercel.app/all-applications2?search=${search}`;
         fetch(URL)
             .then((response) => response.json())
             .then((data) => {

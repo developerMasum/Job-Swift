@@ -51,7 +51,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   const handleMoveToApplied = (id) => {
     console.log(id);
     try {
-      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
+      const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-
+import { toast } from "react-hot-toast";
 import {
   AiOutlineFilePdf,
   AiOutlineMail,
   AiOutlinePhone,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { BiSolidHand } from "react-icons/bi";
+import SendRejectionMail from "../../Modals/SendRejectionMail";
 
-import toast from "react-hot-toast";
 import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
 import NoContent from "../../NoContent";
 
@@ -50,7 +51,7 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
   const handleMoveToApplied = (id) => {
     console.log("Move to applied", id);
     try {
-      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
+      const response = fetch(`https://server-job-swift.vercel.app/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -70,6 +71,36 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
       console.error("Error:", error);
     }
   };
+
+
+// ____________________________________________________
+// const [isModalOpen, setIsModalOpen] = useState(false);
+
+// const closeModal = () => {
+//   setIsModalOpen(false);
+// };
+// const handleDisQualify = (id) => {
+//   setIsModalOpen(true);
+//   try {
+//     const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ stage: "Applied" }),
+//     });
+
+//     if (response) {
+//       toast.success("This Candidate moved to Applied");
+//     } else {
+//       console.error("Failed to update stage.");
+//     }
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// };
+//____________________________________________
+
 
   return (
     <div className="w-full overflow-x-auto">
@@ -203,6 +234,18 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
                           <AiOutlinePhone className="w-6 h-6" />
                           <span>Call</span>
                         </a>
+
+{/* _____________________________________________________________________________ */}
+                      <button
+                          // onClick={() =>
+                          //   handleDisQualify(selectedCandidate._id)
+                          // }
+                          className="  px-2 rounded-md py-1 border border-red-500"
+                        >
+                          <BiSolidHand className="inline-block mr-2" />
+                          Disqualify & Rejection Mail
+                        </button>
+{/* _____________________________________________________________________________ */}
                         <button
                           onClick={() =>
                             handleMoveToApplied(selectedCandidate?._id)
@@ -247,6 +290,15 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
                       </p>
                     </div>
                   </div>
+
+{/* ___________________________ */}
+                  {/* <SendRejectionMail
+                    value={selectedCandidate?.email}
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                  // onSubmit={onSubmit}
+                  /> */}
+  {/* ___________________________ */}
 
                   <div className="px-6 py-4 border-t border-gray-200 text-start">
                     <h3 className="mb-5  text-teal-700 font-bold text-sm">
