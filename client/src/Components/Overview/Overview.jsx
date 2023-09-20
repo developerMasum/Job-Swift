@@ -114,8 +114,8 @@ const Overview = () => {
 
       <div className=" my-6 mx-auto max-w-4xl">
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <div>
-            <TabList className="flex gap-5 cursor-pointer">
+          <div className="pb-5">
+            <TabList className="flex gap-5 justify-center cursor-pointer">
               <Tab
                 className={`${
                   activeTab === 0
@@ -129,7 +129,7 @@ const Overview = () => {
               <Tab
                 className={`${
                   activeTab === 1
-                    ? "bg-teal-700 hover:bg-teal-600 text-white"
+                    ? "bg-teal-700  hover:bg-teal-600 text-white"
                     : "border border-teal-700 text-gray-700"
                 } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
                 onClick={() => handleTabClick(1)}
@@ -140,7 +140,7 @@ const Overview = () => {
           </div>
 
           <TabPanel>
-            <div className="bg-[#ffff]50 border-[1px] px-2 rounded-sm">
+            <div className="bg-[#ffff]50 border-2 rounded-xl border-gray-500 px-2">
               <div className="overview-content p-4 divide-y-2 leading-7 space-y-5">
                 {/* Job description */}
                 <div>
