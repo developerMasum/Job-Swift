@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-
 
 const JobsInvitationsCard = () => {
   // Create an array to store the disabled state for each button and clicked state
@@ -12,6 +12,7 @@ const JobsInvitationsCard = () => {
     const updatedButtonDisabled = [...buttonDisabled];
     updatedButtonDisabled[index] = true;
     setButtonDisabled(updatedButtonDisabled);
+    
 
     const updatedButtonClicked = [...buttonClicked];
     updatedButtonClicked[index] = true;
@@ -57,8 +58,9 @@ const JobsInvitationsCard = () => {
             together to hire the right people.
           </p>
           <button
-            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${buttonClicked[0] ? "opacity-30 cursor-not-allowed" : ""
-              }`}
+            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${
+              buttonClicked[0] ? "opacity-30 cursor-not-allowed" : ""
+            }`}
             onClick={() => handleSendInvite(0)} // Pass the index 0
             disabled={buttonDisabled[0]} // Use the disabled state for this button
           >
@@ -67,7 +69,11 @@ const JobsInvitationsCard = () => {
         </div>
         {/* Image */}
         <div>
-          <img className="w-[200px] h-[100px]" src="https://i.ibb.co/YNYL05P/jobsicon1.png" alt="" />
+          <img
+            className="w-[200px] h-[100px]"
+            src="https://i.ibb.co/YNYL05P/jobsicon1.png"
+            alt=""
+          />
         </div>
       </div>
 
@@ -88,14 +94,19 @@ const JobsInvitationsCard = () => {
           <button
             onClick={() => handleSendInvite(1)} // Pass the index 1
             disabled={buttonDisabled[1]} // Use the disabled state for this button
-            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${buttonClicked[1] ? "opacity-30 cursor-not-allowed" : ""
-              }`}
+            className={`px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md ${
+              buttonClicked[1] ? "opacity-30 cursor-not-allowed" : ""
+            }`}
           >
             Send invite
           </button>
         </div>
         <div>
-          <img className="w-[200px] h-[100px]" src="https://i.ibb.co/DDtWBmv/jobsicons.png" alt="" />
+          <img
+            className="w-[200px] h-[100px]"
+            src="https://i.ibb.co/DDtWBmv/jobsicons.png"
+            alt=""
+          />
         </div>
       </div>
       {/* 3rd card */}
@@ -106,7 +117,7 @@ const JobsInvitationsCard = () => {
             "rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px",
         }}
       >
-        <div className="space-y-3">
+        {/* <div className="space-y-3">
           <h4 className="font-semibold">Find the best features for you</h4>
           <p className="text-gray-500 text-sm">
             JobSwift is best when it's customized for you. Check out all of our
@@ -120,9 +131,30 @@ const JobsInvitationsCard = () => {
           >
             Send invite
           </button>
+        </div> */}
+
+        <div className="space-y-3">
+          <h4 className="font-semibold">Find the best features for you</h4>
+          <p className="text-gray-500 text-sm">
+            JobSwift is best when it's customized for you. Check out all of our
+            features with a personal walkthrough.
+          </p>
+          <Link to='/dashboard/feedback'>
+          
+          
+          <button className="px-4 py-1 text-swift font-semibold border border-[#00673B] rounded-md">
+            sent Feedback
+          </button>
+          
+          </Link>
         </div>
+
         <div>
-          <img className="w-[200px] h-[100px]" src="https://i.ibb.co/s6vzB0J/josbicns3.png " alt="" />
+          <img
+            className="w-[200px] h-[100px]"
+            src="https://i.ibb.co/s6vzB0J/josbicns3.png "
+            alt=""
+          />
         </div>
       </div>
     </div>

@@ -63,59 +63,18 @@ function FileUpload() {
   }, []);
   console.log(allFiles);
 
+const FileUpload = () => {
   return (
-    <div className="max-w-md mx-auto p-6">
-      <h1 className="text-2xl font-semibold mb-4">
-        Upload Image and Resume (base64)
-      </h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="image" className="block text-gray-700">
-            Image
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            className="border rounded w-full p-2"
-            onChange={handleImageChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="resume" className="block text-gray-700">
-            Resume
-          </label>
-          <input
-            type="file"
-            accept=".pdf,.doc,.docx"
-            className="border rounded w-full p-2"
-            onChange={handleResumeChange}
-          />
-        </div>
-        <div className="mb-4">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
-          >
-            Upload
-          </button>
-        </div>
+    <div className='container mx-auto'>
+      <form>
+       <fieldset className='border rounded-md'>
+        <legend>Personal Details</legend>
+       <label htmlFor="name">name</label>
+        <input type="text" />
+       </fieldset>
       </form>
-      <div>
-        {allFiles?.map((file) => (
-          <>
-            <img width={100} src={file.image} alt="" />
-            <iframe
-              src={file.resume}
-              width={100}
-              title="Uploaded Resume"
-              className="mt-2 border border-gray-400 rounded"
-              style={{ width: "100%", height: "400px" }}
-            />
-          </>
-        ))}
-      </div>
     </div>
   );
-}
+};
 
 export default FileUpload;

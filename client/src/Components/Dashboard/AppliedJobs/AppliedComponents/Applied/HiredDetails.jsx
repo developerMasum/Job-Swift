@@ -62,6 +62,8 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
       });
 
       if (response) {
+
+        // closeModal()
         toast.success("This Candidate moved to Applied");
       } else {
         console.error("Failed to update stage.");

@@ -62,6 +62,7 @@ import EmailUs from "../Pages/Dashboard/EmailUs/EmailUs";
 import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
 import Certification from "../Pages/Dashboard/Dashboard/Certification/Certification";
 import CertificationList from "../Pages/Dashboard/Dashboard/Certification/CertificationList";
+import Feedback from "../Components/Feedback/Feedback";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -152,6 +153,10 @@ const router = createBrowserRouter([
       {
         path: "jobs",
         element: <Jobs />,
+      },
+      {
+     path:'feedback',
+     element:<Feedback></Feedback>
       },
       {
         path: "admin/dashboard",

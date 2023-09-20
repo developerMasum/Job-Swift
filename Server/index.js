@@ -87,6 +87,7 @@ async function run() {
   try {
     const UserCollection = client.db("JobSwiftDb").collection("users");
     const jobPostCollection = client.db("JobSwiftDb").collection("posts");
+    const feedbackCollection = client.db("JobSwiftDb").collection("feedbacks");
     const applicationsPostCollection = client
       .db("JobSwiftDb")
       .collection("applications");
@@ -153,6 +154,26 @@ async function run() {
     //     });
     //   }
     // });
+
+
+    // feedback post api
+
+    app.post('/feedback',async(req,res)=>{
+      const data = req.body;
+      const result = await feedbackCollection.insertOne(data);
+      res.send(result);
+    })
+
+    // feedback get api
+
+    app.get('/all-feedbacks',async(req,res)=>{
+      const result = await feedbackCollection.find({}).toArray();
+      res.send(result)
+    })
+ 
+     
+
+
     app.post("/upload-new", async (req, res) => {
       try {
         // Extract data from the request body

@@ -82,9 +82,9 @@ text-second */
   /* background-attachment: fixed; */
 }
 
-body{
+/* body{
   @apply bg-[#fffafa]
-}
+} */
 
 
 .custom-shape-divider-bottom-1694422255 {
@@ -120,5 +120,11 @@ body{
   opacity: 1;
   border-radius: 7px;
   transform: translate(-50%, -60%);
+}
+
+/* Global Styles for Dark Theme */
+.dark-theme {
+  background-color: #1a202c; /* Dark background color */
+  color: #ffffff; /* White text color */
 }
 

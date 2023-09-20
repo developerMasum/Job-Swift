@@ -42,6 +42,8 @@ const Overview = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  
   const [activeTab, setActiveTab] = useState(0); // Initialize the active tab to 0 (the first tab)
 
   const handleTabClick = (index) => {
@@ -256,31 +258,58 @@ const Overview = () => {
       </div>
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
-          <div className="modal-container bg-white md:w-1/2 lg:3/4 p-4 rounded-lg shadow-lg">
-            <div className="flex justify-between items-center mb-2">
-              {/* Modal title */}
-              <h2 className="text-2xl font-bold">Share this job</h2>
-              {/* Close modal button */}
-              <button onClick={closeModal} className="text-gray-500">
-                <RiCloseLine className="text-lg" />
-              </button>
-            </div>
-            {/* Add your share options/content here */}
-            <div className="text-gray-700 mt-4">
-              {/* Modal body */}
-              <SocialLink />
-            </div>
-            <div className="flex justify-center mt-6">
-              <button
-                onClick={closeModal}
-                className="bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
-              >
-                Quit
-              </button>
-            </div>
+        // <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
+        //   <div className="modal-container bg-white md:w-1/2 lg:3/4 p-4 rounded-lg shadow-lg">
+        //     <div className="flex justify-between items-center mb-2">
+        //       {/* Modal title */}
+        //       <h2 className="text-2xl font-bold">Share this job</h2>
+        //       {/* Close modal button */}
+        //       <button onClick={closeModal} className="text-gray-500">
+        //         <RiCloseLine className="text-lg" />
+        //       </button>
+        //     </div>
+        //     {/* Add your share options/content here */}
+        //     <div className="text-gray-700 mt-4">
+        //       {/* Modal body */}
+        //       <SocialLink />
+        //     </div>
+        //     <div className="flex justify-center mt-6">
+        //       <button
+        //         onClick={closeModal}
+        //         className="bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
+        //       >
+        //         Quit
+        //       </button>
+        //     </div>
+        //   </div>
+        // </div>
+
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-black">
+        <div className="modal-container bg-white w-full md:w-[400px] p-4 rounded-lg shadow-lg">
+          <div className="flex justify-between items-center mb-4">
+            {/* Modal title */}
+            <h2 className="text-2xl font-bold text-gray-800 text-center">Share this job</h2>
+            {/* Close modal button */}
+            <button onClick={closeModal} className="text-gray-500">
+              <RiCloseLine className="text-lg" />
+            </button>
+          </div>
+          {/* Modal body */}
+          <div className="text-gray-700">
+            <SocialLink />
+          </div>
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={closeModal}
+              className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-700 focus:outline-none"
+            >
+              Quit
+            </button>
           </div>
         </div>
+      </div>
+
+
       )}
     </div>
   );
