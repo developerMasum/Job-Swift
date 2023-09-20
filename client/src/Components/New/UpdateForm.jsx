@@ -488,10 +488,10 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
         }
       );
 
-      console.log("from overview", response.data);
+      // console.log("from overview", response.data);
       // updateData(appliedJobId);
     } catch (error) {
-      console.error("from overview", error);
+      // console.error("from overview", error);
     }
 
     setIsSubmitting(false);

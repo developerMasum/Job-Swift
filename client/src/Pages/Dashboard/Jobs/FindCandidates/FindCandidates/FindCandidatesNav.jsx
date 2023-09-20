@@ -11,30 +11,30 @@ const FindCandidatesNav = ({id}) => {
 
   return (
 
-    <div className="w-full">
+    <div className="w-full ">
       <div className="bg-white fixed md:top-[68px] top-[62px] border-[1px] border-gray-300 shadow w-full mx-auto px-4 py-2">
-      <div className="flex justify-between items-center w-full">
-        <h2 className="text-3xl font-semibold text-gray-600">Web Developer</h2>
-        <div className="space-x-4 flex items-center">
+      <div className="flex justify-between items-center w-full mt-2">
+        <h2 className="lg:md:text-3xl font-semibold text-gray-600">Web Developer</h2>
+        <div className="lg:md:space-x-4 space-x-2 flex items-center">
           {/* Dropdown for View Candidates */}
 
           <Link to={"../candidate"}>
             {" "}
-            <button className=" font-medium bg-cyan-500 text-white py-1 px-4 rounded-full hover:bg-cyan-700 transition duration-300 ease-in-out">
+            <button className=" lg:md:text-lg text-[10px] bg-cyan-500 text-white p-1 lg:md:px-4  rounded-full hover:bg-cyan-700 transition duration-300 ease-in-out">
               View Candidates
             </button>
           </Link>
 
           <Link
             to="../jobs"
-            className="bg-transparent border border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white py-1 px-4 rounded-full transition duration-300 ease-in-out"
+            className="lg:md:text-lg text-[10px] bg-transparent border border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white py-1 px-4 rounded-full transition duration-300 ease-in-out"
           >
             View Jobs
           </Link>
 
           {/* Dropdown for Published (Career Page Only) */}
 
-          <button className="bg-red-600 text-white py-1 px-4 rounded-full hover:bg-red-700 transition duration-300 ease-in-out">
+          <button className="lg:md:text-lg text-[10px] bg-red-600 text-white py-1 px-4 rounded-full hover:bg-red-700 transition duration-300 ease-in-out">
             Publish
           </button>
         </div>

@@ -697,7 +697,7 @@ const CandidiateUserDetails = () => {
       )}
       {/* Message Modal end*/}
       {/* Calender Modal start*/}
-   
+
       {/* Calender Modal end*/}
       {/* Comments Modal start*/}
       {isCommentsModalOpen && (
