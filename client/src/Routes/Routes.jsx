@@ -63,6 +63,7 @@ import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
 import Certification from "../Pages/Dashboard/Dashboard/Certification/Certification";
 import CertificationList from "../Pages/Dashboard/Dashboard/Certification/CertificationList";
 import Feedback from "../Components/Feedback/Feedback";
+import PinedSearch from "../Pages/Dashboard/PeopleSearch/PinedSearch";
 // import Company from "../Components/Company/Company";
 
 const router = createBrowserRouter([
@@ -236,6 +237,10 @@ const router = createBrowserRouter([
         path: "peopleSearch",
         element: <PeopleSearch></PeopleSearch>,
       },
+      {
+        path: "pinSearch",
+        element: <PinedSearch></PinedSearch>
+    },
       {
         path: "agenda",
         element: <Agenda />,
