@@ -21,20 +21,23 @@ const GeographyChart = () => {
   };
 
   return (
-    <div className="w-3/4 h-96 my-8 ml-20">
-      <div>
-        <p className="uppercase text-sm font-bold text-cyan-700 pb-3">
-          Geography Based User Traffic
-        </p>
-      </div>
+    <div className="w-3/4 my-8 ml-20">
+    <div>
+      <p className="uppercase text-sm font-bold text-cyan-700 pb-3">
+        Geography Based User Traffic
+      </p>
+    </div>
+    <div className="relative" style={{ maxHeight: "400px" }}>
       <Chart
         chartType="GeoChart"
         width="100%"
-        height="300px"
+        height="100%"
         data={countryData}
         options={chartOptions} // Pass the chart options here
       />
     </div>
+  </div>
+  
   );
 };
 

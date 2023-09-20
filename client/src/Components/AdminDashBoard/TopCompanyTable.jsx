@@ -74,34 +74,36 @@ const TopCompanyTable = () => {
     },
   ];
   return (
-    <div className=" pl-12 ">
-      <div>
-        <p className="text-cyan-700 uppercase text-sm font-bold pb-6">
-          Top companies with the number of hired candidates
-        </p>
-      </div>
-      <div
-        style={{ maxHeight: "330px", overflowY: "scroll", overflowX: "hidden" }}
-      >
-        <table className="min-w-full">
-          <tbody>
-            {companyData.map((company, index) => (
-              <tr key={index}>
-                <td className="border-b px-4 py-6">{company.companyName}</td>
-                <td className="border-b px-4 py-2">
-                  {company.months},{company.year}
-                </td>
-                <td className="border-b px-4 py-2 text-sm font-bold">
-                  <button className="bg-cyan-600 px-1 text-stone-50 py-1 rounded-lg ">
-                    {company.totalHired} candidate{" "}
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+<div className="pl-12">
+  <div>
+    <p className="text-cyan-700 uppercase text-sm font-bold pb-6">
+      Top companies with the number of hired candidates
+    </p>
+  </div>
+  <div
+    className="max-h-80 overflow-x-auto"
+    style={{ maxHeight: "330px" }}
+  >
+    <table className="min-w-full text-gray-700">
+      <tbody>
+        {companyData.map((company, index) => (
+          <tr key={index}>
+            <td className="border-b px-4 py-6">{company.companyName}</td>
+            <td className="border-b px-4 py-2">
+              {company.months},{company.year}
+            </td>
+            <td className="border-b px-4 py-2 text-sm font-bold">
+              <button className="bg-cyan-600 px-1 text-stone-50 py-1 rounded-lg">
+                {company.totalHired} candidate
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
   );
 };
 
