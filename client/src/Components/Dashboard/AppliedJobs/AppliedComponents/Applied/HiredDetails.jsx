@@ -54,7 +54,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
     setIsModalOpen(true);
     try {
       const response = fetch(
-        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        `  https://server-wheat-beta.vercel.app/applicant/stage/${id}`,
         {
           method: "PATCH",
           headers: {

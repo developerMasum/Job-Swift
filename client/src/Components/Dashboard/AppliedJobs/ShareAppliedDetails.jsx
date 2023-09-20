@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import LoaderInternal from "../../LoaderInternal/LoaderInternal";
 import NoContent from "./NoContent";
+import { useDispatch, useSelector } from "react-redux";
+import { createSetStage } from "../../../redux/stage/api";
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = new Date(dateString).toLocaleDateString(
@@ -21,17 +23,24 @@ const formatDate = (dateString) => {
 
 const Table = ({ appliedCandi: candidates, isLoading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.stage);
+  useEffect(() => {
+    if (data.isToast) {
+      toast.success("This Applicant has been moved to Assessment");
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 1000);
+    }
+  }, [data.isToast]);
 
   useEffect(() => {
-    // Initialize selectedCandidate with the first candidate
     if (candidates.length > 0) {
       setSelectedCandidate(candidates[0]);
     }
   }, [candidates]);
 
   const handleCheckbox = (e, candidateId) => {
-    console.log(candidates);
-
     if (e.target.checked) {
       // Find the selected candidate by ID
       const selected = candidates.find(
@@ -49,30 +58,11 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
-    console.log(id);
-    try {
-      const response = fetch(
-        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ stage: "Assessment" }),
-        }
-      );
+    const data = {
+      stage: "Assessment",
+    };
 
-      if (response) {
-        toast.success("This Candidate moved to Assessment");
-        setTimeout(() => {
-          window.location.reload(true);
-        }, 1000);
-      } else {
-        console.error("Failed to update stage.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    dispatch(createSetStage({ id: id, data: data }));
   };
 
   return (

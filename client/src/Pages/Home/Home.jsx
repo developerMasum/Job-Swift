@@ -5,7 +5,7 @@ import HeadlineBar from "../Shared/HeadlineBar";
 import MarketPlaceIntegrate from "../../Components/Home/MarketPlaceIntegrate/MarketPlaceIntegate";
 import Hiring from "../../Components/Home/Hiring/Hiring";
 import Banner from "../../Components/Home/Banner/Banner";
-import Slider from "../../Components/Home/Slider/Slider";
+
 // import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
 
 import { Fade, Slide, Zoom } from "react-awesome-reveal";
@@ -26,6 +26,7 @@ import AtsFeature from "../../Components/AtsFeature/AtsFeature";
 import ApplicationForm from "../../Components/ResumeParsing/ResumeParsing";
 import FileUpload from "../../Components/File/FileUpload";
 import ResumeForm from "../../Components/New/ResumeForm";
+import SliderNew from "../../Components/Home/Slider/Slider";
 
 const Home = () => {
   return (
@@ -38,7 +39,7 @@ const Home = () => {
       </div>
 
 
-      {/* <FileUpload></FileUpload> */}
+      <FileUpload></FileUpload>
 
       
    {/* <ResumeForm></ResumeForm> */}
@@ -88,11 +89,11 @@ const Home = () => {
 
           {/* slider */}
           <div className="mt-12">
-            <h2 className="md:text-4xl text-2xl mb-12 md:mb-0 font-bold text-center text-teal-700 italic font-sans ">
+            <h2 className="md:text-4xl text-2xl mb-12 md:mb-0 font-bold text-center text-teal-700  font-sans ">
               Why People Love JobSwift
               <p className="text-sm font-bold text-slate-700 pt-3">best companies employers feedback</p>
             </h2>
-            <Slider />
+           <SliderNew></SliderNew>
           </div>
 
           {/* Company */}

@@ -181,7 +181,7 @@ const CandidiateUserDetails = () => {
   };
 
   useEffect(() => {
-    const URL = ` https://server-job-swift.vercel.app/all-applications/${id}`;
+    const URL = `  https://server-wheat-beta.vercel.app/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -203,7 +203,7 @@ const CandidiateUserDetails = () => {
   const handleDisQualified = (id) => {
     try {
       const response = fetch(
-        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        `  https://server-wheat-beta.vercel.app/applicant/stage/${id}`,
         {
           method: "PATCH",
           headers: {

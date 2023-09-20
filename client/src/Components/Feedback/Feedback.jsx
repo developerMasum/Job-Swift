@@ -1,23 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { FaStar } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
-import { authContext } from '../../Auth/AuthProvider';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import { FaStar } from "react-icons/fa";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
+import { authContext } from "../../Auth/AuthProvider";
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
-  const [feedback, setFeedback] = useState('');
-  const [allUsers, setAllUsers] = useState([]);
-const {user} = useContext(authContext)
-const navigate = useNavigate()
+  const [feedback, setFeedback] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-const name = user?.displayName;
-const email = user?.email;
-const image = user?.photoURL;
-const status = 'pending'
+  const { user } = useContext(authContext);
+  const navigate = useNavigate();
 
-console.log('email:', user?.email);
+  const name = user?.displayName;
+  const email = user?.email;
+  const image = user?.photoURL;
+  const status = "pending";
+
   const handleRatingChange = (value) => {
     setRating(value);
   };
@@ -29,38 +30,36 @@ console.log('email:', user?.email);
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    
-    console.log('Rating:', rating);
-    console.log('Feedback:', feedback);
+    // Check if a submission is already in progress
+    if (isLoading) return;
 
-    const data = {rating, feedback,email,name,image, status }
-    console.log(data);
+    setIsLoading(true); // Show loading indicator
 
-    axios.post('http://https://server-job-swift.vercel.app/feedback', data)
-    .then((response) => {
-      // Handle the success response here
-      console.log('Feedback sent successfully:', response.data);
-    })
-    .catch((error) => {
-      // Handle any errors that occurred during the request
-      console.error('Error sending feedback:', error);
-    });
+    const data = { rating, feedback, email, name, image, status };
 
-    navigate('/')
-
-    // Clear the form fields
-    setRating(0);
-    setFeedback('');
+    axios
+      .post(" https://server-wheat-beta.vercel.app/feedback", data)
+      .then((response) => {
+        // Handle the success response here
+        console.log("Feedback sent successfully:", response.data);
+        navigate("/");
+        toast.success("Feedback added successfully");
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the request
+        console.error("Error sending feedback:", error);
+        toast.error("Error adding feedback. Please try again later.");
+      })
+      .finally(() => {
+        // Clear the form fields and hide loading indicator
+        setIsLoading(false);
+        setRating(0);
+        setFeedback("");
+      });
   };
 
-
-
-
-
-
-
   return (
-    <div className="max-w-md mx-auto pt-10 bg-white">
+    <div className="max-w-md mx-auto pt-10 bg-white p-12 rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Feedback</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -72,7 +71,7 @@ console.log('email:', user?.email);
               <FaStar
                 key={value}
                 className={`cursor-pointer text-xl ${
-                  value <= rating ? 'text-yellow-500' : 'text-gray-300'
+                  value <= rating ? "text-yellow-500" : "text-gray-300"
                 }`}
                 onClick={() => handleRatingChange(value)}
               />
@@ -90,16 +89,16 @@ console.log('email:', user?.email);
             rows="4"
             value={feedback}
             onChange={handleFeedbackChange}
+            placeholder="Share your feedback..."
             className="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             required
           ></textarea>
         </div>
         <button
-
           type="submit"
           className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
         >
-          Submit
+          {isLoading ? "Submitting....." : "Submit"}
         </button>
       </form>
     </div>

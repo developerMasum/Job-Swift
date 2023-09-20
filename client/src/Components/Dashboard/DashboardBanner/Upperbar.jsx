@@ -5,7 +5,12 @@ import { CgMenuGridR } from "react-icons/cg";
 import { FaToolbox, FaUserAlt, FaUserPlus, FaUserCircle } from "react-icons/fa";
 import { BiSolidCalendar } from "react-icons/bi";
 import { RiUserSearchFill } from "react-icons/ri";
-import { BsPieChart, BsGraphUp, BsFillHouseAddFill, BsSearch } from "react-icons/bs";
+import {
+  BsPieChart,
+  BsGraphUp,
+  BsFillHouseAddFill,
+  BsSearch,
+} from "react-icons/bs";
 import userBackupImage from "../../../assets/Image/userImage.jpeg";
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../../../Auth/AuthProvider";
@@ -14,7 +19,7 @@ import { toast } from "react-hot-toast";
 import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars, AiOutlineHome } from "react-icons/ai";
 import useAdmin from "../../../Hooks/AdminHook/useAdmin";
-import { useRef } from 'react';
+import { useRef } from "react";
 import axios from "axios";
 
 const UpperBar = () => {
@@ -65,7 +70,7 @@ const UpperBar = () => {
 
   // search candidates_________________
 
-  const [searchData, setSearchData] = useState('');
+  const [searchData, setSearchData] = useState("");
   const [search, setSearch] = useState([]);
   const inputRef = useRef(null);
 
@@ -77,25 +82,23 @@ const UpperBar = () => {
 
   // useEffect(()=> {
   //   const fetchUsers = async () => {
-  //     const res = await axios.get('http://https://server-job-swift.vercel.app/all-applications');
+  //     const res = await axios.get(' https://server-wheat-beta.vercel.app/all-applications');
   //     setSearch(res.data);
   //   }
   //   fetchUsers();
   // },[])
 
   useEffect(() => {
-    fetch(`http://https://server-job-swift.vercel.app/allApplications?search=${search}`)
-      .then(res => res.json())
-      .then(data => setSearchData(data));
-  }, [search])
-
-
+    fetch(
+      ` https://server-wheat-beta.vercel.app/allApplications?search=${search}`
+    )
+      .then((res) => res.json())
+      .then((data) => setSearchData(data));
+  }, [search]);
 
   console.log(searchData);
   console.log(search);
   // _________________________________
-
-
 
   return (
     <>
@@ -119,8 +122,9 @@ const UpperBar = () => {
           </div>
           {/* Sidebar */}
           <div
-            className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-44 space-y-6 px-2  py-4 absolute inset-y-0 left-0 transform ${isActive && "-translate-x-full"
-              }  md:translate-x-0  transition duration-200 ease-in-out`}
+            className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-44 space-y-6 px-2  py-4 absolute inset-y-0 left-0 transform ${
+              isActive && "-translate-x-full"
+            }  md:translate-x-0  transition duration-200 ease-in-out`}
           >
             <div>
               {/* Branding & Profile Info */}
@@ -128,10 +132,14 @@ const UpperBar = () => {
               <div>
                 <div className="mx-auto text-center">
                   {/* <Logo /> */}
-                  <img src='https://i.ibb.co/FJ9Y0FF/logo-js.png' alt=""  className="w-8 inline-block"/>
-                  <p className="uppercase text-sm semi-bold mt-5">Admin Dashboard</p>
-              
-                
+                  <img
+                    src="https://i.ibb.co/FJ9Y0FF/logo-js.png"
+                    alt=""
+                    className="w-8 inline-block"
+                  />
+                  <p className="uppercase text-sm semi-bold mt-5">
+                    Admin Dashboard
+                  </p>
                 </div>
                 {/* <div className="flex flex-col items-center mt-6 -mx-2">
                   <Link to="/dashboard">
@@ -163,7 +171,8 @@ const UpperBar = () => {
                     <NavLink
                       to="admin/dashboard"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? " text-cyan-500" : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                          isActive ? " text-cyan-500" : "text-gray-600"
                         }`
                       }
                     >
@@ -174,7 +183,8 @@ const UpperBar = () => {
                     <NavLink
                       to="admin/users"
                       className={({ isActive }) =>
-                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? " text-cyan-500" : "text-gray-600"
+                        `flex items-center jus px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                          isActive ? " text-cyan-500" : "text-gray-600"
                         }`
                       }
                     >
@@ -278,14 +288,11 @@ const UpperBar = () => {
                     </Link>
                   </li>
                 </div>
-
-
               </ul>
             </div>
 
             <Link to={`/`}>
               <img className="h-10 w-10  " src={logo2} alt="" />
-           
             </Link>
           </div>
           {/* ---------------------------------------------------- end mobile view */}
@@ -340,8 +347,6 @@ const UpperBar = () => {
           <div className=" flex justify-between gap-1 lg:md:gap-3">
             <div className="form-control">
               <div className="flex gap-12">
-
-
                 {/* search dropdown____________________________ */}
 
                 <div className="dropdown relative group">
@@ -357,7 +362,9 @@ const UpperBar = () => {
                         className="w-24 lg:md:w-full rounded-lg input-sm   lg:md:pe-16 pe-4  bg-slate-500 bg-opacity-0 border-[0.1] hover:border-2"
                       />
                       {/* <button onChange={(e) => setQuery(e.target.value)}><BsSearch className="-mx-7"></BsSearch></button> */}
-                      <button onClick={handleClick}><BsSearch className="lg:md:-mx-7 -mx-4 hover:text-emerald-600 hover:text-xl "></BsSearch></button>
+                      <button onClick={handleClick}>
+                        <BsSearch className="lg:md:-mx-7 -mx-4 hover:text-emerald-600 hover:text-xl "></BsSearch>
+                      </button>
                     </div>
                   </label>
                   <ul
@@ -367,32 +374,40 @@ const UpperBar = () => {
                     <div className="text-black">
                       <h2 className="p-2">Search Candidate</h2>
                       <div>
-
-                        {
-                          searchData ?
-                            <>
-                              {searchData.map((singleData) => (
-                                <div className="flex gap-4 items-center rounded-lg p-2 mb-1 bg-slate-200 md:lg:w-96 w-60 overflow-hidden">
-                                  <img className=" bg-slate-100 h-8 w-8 rounded-full" src={singleData.image ? singleData.image : <FaUserCircle></FaUserCircle>} alt="" />
-                                  <div>
-                                    <h2>{'Name:' + ' ' + singleData.firstName}</h2>
-                                    <h2>{'Job:' + ' ' + singleData.jobTitle}</h2>
-
-                                  </div>
+                        {searchData ? (
+                          <>
+                            {searchData.map((singleData) => (
+                              <div className="flex gap-4 items-center rounded-lg p-2 mb-1 bg-slate-200 md:lg:w-96 w-60 overflow-hidden">
+                                <img
+                                  className=" bg-slate-100 h-8 w-8 rounded-full"
+                                  src={
+                                    singleData.image ? (
+                                      singleData.image
+                                    ) : (
+                                      <FaUserCircle></FaUserCircle>
+                                    )
+                                  }
+                                  alt=""
+                                />
+                                <div>
+                                  <h2>
+                                    {"Name:" + " " + singleData.firstName}
+                                  </h2>
+                                  <h2>{"Job:" + " " + singleData.jobTitle}</h2>
                                 </div>
-                              ))}
-
-                            </> :
-                            <h2 className="flex justify-center"><span className="loading loading-spinner loading-md "></span> </h2>
-                        }
+                              </div>
+                            ))}
+                          </>
+                        ) : (
+                          <h2 className="flex justify-center">
+                            <span className="loading loading-spinner loading-md "></span>{" "}
+                          </h2>
+                        )}
                       </div>
-
                     </div>
                   </ul>
                 </div>
                 {/* _____________________________ */}
-
-
               </div>
             </div>
 

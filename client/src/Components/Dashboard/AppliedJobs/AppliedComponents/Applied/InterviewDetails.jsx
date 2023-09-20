@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
 import NoContent from "../../NoContent";
+import { createSetStage } from "../../../../../redux/stage/api";
+import { useDispatch, useSelector } from "react-redux";
 
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
@@ -22,9 +24,18 @@ const formatDate = (dateString) => {
 
 const Table = ({ interviewCandi: candidates, isLoading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.stage);
+  useEffect(() => {
+    if (data.isToast) {
+      toast.success("This Applicant has been moved to Offer");
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 1000);
+    }
+  }, [data.isToast]);
 
   useEffect(() => {
-    // Initialize selectedCandidate with the first candidate
     if (candidates.length > 0) {
       setSelectedCandidate(candidates[0]);
     }
@@ -48,31 +59,12 @@ const Table = ({ interviewCandi: candidates, isLoading }) => {
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
-    try {
-      const response = fetch(
-        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ stage: "Offer" }),
-        }
-      );
+    const data = {
+      stage: "Offer",
+    };
 
-      if (response) {
-        toast.success("This Candidate moved to Applied");
-        setTimeout(() => {
-          window.location.reload(true);
-        }, 1000);
-      } else {
-        console.error("Failed to update stage.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    dispatch(createSetStage({ id: id, data: data }));
   };
-
   return (
     <div className="w-full overflow-x-auto">
       {candidates?.length === 0 ? (
@@ -183,7 +175,7 @@ const Table = ({ interviewCandi: candidates, isLoading }) => {
                     <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
                       <div className="flex items-center justify-around space-x-4">
                         <a
-                          href={`  https://server-job-swift.vercel.app/${selectedCandidate.resume}`}
+                          href={`   https://server-wheat-beta.vercel.app/${selectedCandidate.resume}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center text-white  space-x-2 hover:text-blue-500"
