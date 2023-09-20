@@ -58,13 +58,12 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ stage: "Applied" }),
+        body: JSON.stringify({ stage: "Disqualified" }),
       });
 
       if (response) {
-
         // closeModal()
-        toast.success("This Candidate moved to Applied");
+        toast.success("This Candidate is Disqualified");
       } else {
         console.error("Failed to update stage.");
       }

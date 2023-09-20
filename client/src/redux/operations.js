@@ -22,9 +22,7 @@ export const getUsers = createAsyncThunk(
   "getUsers",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "  http://localhost:5000/users"
-      );
+      const response = await axios.get("  http://localhost:5000/users");
       return response.data; // Return the data received from the server if needed
     } catch (error) {
       // Return the error payload using rejectWithValue
@@ -34,7 +32,6 @@ export const getUsers = createAsyncThunk(
 );
 
 // post a job
-
 
 export const createJobPost = createAsyncThunk(
   "createJobPost",

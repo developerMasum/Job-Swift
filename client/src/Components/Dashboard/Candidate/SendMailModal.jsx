@@ -29,7 +29,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
   }, []);
 
   const candidateEmail = mail.find((e) => e._id === value)?.email;
-  console.log('candidateEmail',candidateEmail);
+  console.log("candidateEmail", candidateEmail);
 
   useEffect(() => {
     if (candidateEmail) {

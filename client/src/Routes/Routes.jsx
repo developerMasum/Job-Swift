@@ -155,8 +155,8 @@ const router = createBrowserRouter([
         element: <Jobs />,
       },
       {
-     path:'feedback',
-     element:<Feedback></Feedback>
+        path: "feedback",
+        element: <Feedback></Feedback>,
       },
       {
         path: "admin/dashboard",
