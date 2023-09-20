@@ -227,28 +227,28 @@ const Overview = () => {
         </Tabs>
       </div>
       <div className="space-y-4">
-        <div className="bg-neutral-100 text-center flex gap-7 justify-center  py-2">
-          <Link to="/" className="hover:underline text-gray-600">
+        <div className=" text-center flex gap-7 justify-center  py-2">
+          <Link to="/" className="hover:underline text-teal-700 font-semibold">
             View website
           </Link>
           <Link
             to="../dashboard/jobs"
-            className="hover:underline text-gray-600"
+            className="hover:underline text-teal-700 font-semibold"
           >
             View all jobs
           </Link>
           <Link
             to="../dashboard/inbox-email"
-            className="hover:underline inline text-gray-600"
+            className="hover:underline inline text-teal-700 font-semibold"
           >
          Inbox   <BiMessage size={20} className="inline"/>
           </Link>
         </div>
         <div className="bg-neutral-100 flex gap-7 justify-center text-center py-2">
-          <p className="text-gray-700">Power By <span className="font-semibold">JobSwift ATS</span></p>
+          <p className="text-gray-700">PoweredBy <span className="font-semibold text-teal-700 underline">JobSwift ATS</span></p>
           <Link
             to="../dashboard/report-center"
-            className="hover:underline text-gray-600"
+            className="hover:underline font-semibold text-gray-700"
           >
             Report
           </Link>
