@@ -1,6 +1,11 @@
 
 import { FaFacebook, FaGithub, FaYoutube, FaLinkedin } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 const Footer = () => {
+  const location = useLocation();
+   if (location.pathname.startsWith("/overview")) {
+    return null;
+  }
   return (
     <div>
       <footer className="footer px-10 py-4 border-2 text-base-content border-sky-200">

@@ -33,6 +33,9 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [location.pathname]);
+  if (location.pathname.startsWith("/overview")) {
+    return null;
+  }
 
   return (
     <nav
