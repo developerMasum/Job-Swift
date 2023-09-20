@@ -8,7 +8,7 @@ const Certification = () => {
   const [certifiedData, setCertifiedData] = useState();
   console.log(certifiedData);
   useEffect(() => {
-    const URL = `http://localhost:5000/all-applications/${id}`;
+    const URL = ` http://localhost:5000/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -400,8 +400,9 @@ const Certification = () => {
                 </p>
 
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-teal-700">
-                    Hiring Date: {formData.startDate}
+                  <h2 className="text-3xl font-bold text-blue-700">
+                    {/* {formData.title} */}
+                    {certifiedData?.jobTitle && <span>{certifiedData.jobTitle}</span>}
                   </h2>
                   <div>
                     <img

@@ -18,14 +18,14 @@ import {
   BiCategoryAlt,
 } from "react-icons/bi";
 import toast from "react-hot-toast";
-import { HiX } from "react-icons/hi";
+// import { HiX } from "react-icons/hi";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import { GrSend } from "react-icons/gr";
 
 import { useEffect, useState } from "react";
 import Loader from "../../../Components/Loader/Loader";
-import ViewPdfCandidate from "./ViewPdfCandidate";
+// import ViewPdfCandidate from "./ViewPdfCandidate";
 import { PiGraduationCapBold } from "react-icons/pi";
 import CandidateStages from "./CandidateStages";
 import { RiCloseLine } from "react-icons/ri";
@@ -59,15 +59,15 @@ const CandidiateUserDetails = () => {
     setIsMessageModalOpen(false);
   };
   // For Calender Modal
-  const [isCalenderModalOpen, setIsCalenderModalOpen] = useState(false);
+  // const [isCalenderModalOpen, setIsCalenderModalOpen] = useState(false);
 
-  const openCalenderModal = () => {
-    setIsCalenderModalOpen(true);
-  };
+  // const openCalenderModal = () => {
+  //   setIsCalenderModalOpen(true);
+  // };
 
-  const closeCalenderModal = () => {
-    setIsCalenderModalOpen(false);
-  };
+  // const closeCalenderModal = () => {
+  //   setIsCalenderModalOpen(false);
+  // };
 
   // For Comments Modal
   const [isCommentsModalOpen, setIsCommentsModalOpen] = useState(false);
@@ -181,7 +181,7 @@ const CandidiateUserDetails = () => {
   };
 
   useEffect(() => {
-    const URL = `http://localhost:5000/all-applications/${id}`;
+    const URL = ` http://localhost:5000/all-applications/${id}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -202,7 +202,7 @@ const CandidiateUserDetails = () => {
   // handleDisQualified
   const handleDisQualified = (id) => {
     try {
-      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
+      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -259,11 +259,17 @@ const CandidiateUserDetails = () => {
                 size={25}
                 className="text-swift"
               />
-              <BiSolidCalendar
-                onClick={openCalenderModal}
-                size={35}
-                className="border-r-2 border-slate-400 pr-3 text-swift "
-              ></BiSolidCalendar>
+              <a
+                href="https://calendar.google.com/calendar/u/2/r"
+                target="_blank"
+              >
+                <BiSolidCalendar
+                  // onClick={openCalenderModal}
+                  size={35}
+                  className="border-r-2 border-slate-400 pr-3 text-swift"
+                ></BiSolidCalendar>
+              </a>
+
               <BiSolidChat
                 onClick={openCommentsModal}
                 size={25}
@@ -290,7 +296,7 @@ const CandidiateUserDetails = () => {
               <div>
                 <img
                   className="h-24 w-24 rounded-xl border border-sky-600"
-                  src={`http://localhost:5000/images/${image}`}
+                  src={image}
                   alt=""
                 />
               </div>
@@ -417,7 +423,7 @@ const CandidiateUserDetails = () => {
 
               <div className="border max-w-3xl border-slate-200 p-10 text-center">
                 <iframe
-                  src={`http://localhost:5000/images/${resume}`}
+                  src={resume}
                   width={100}
                   title="Uploaded Resume"
                   className="mt-2 border border-gray-400 rounded"
@@ -688,33 +694,7 @@ const CandidiateUserDetails = () => {
       )}
       {/* Message Modal end*/}
       {/* Calender Modal start*/}
-      {isCalenderModalOpen && (
-        <div className="fixed inset-0 bg-gray-600 flex items-center justify-center z-50">
-          <div className="modal-container bg-white p-4 md:p-8 lg:p-12 rounded-lg shadow-lg max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              {/* Modal title */}
-              <h2 className="text-2xl font-bold text-gray-800">Calendar</h2>
-              {/* Close modal button */}
-              <button
-                onClick={closeCalenderModal}
-                className="bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
-              >
-                <RiCloseLine className="text-lg" />
-              </button>
-            </div>
-            {/* Add your share options/content here */}
-            <div className="text-gray-700 mt-4">
-              {/* Render the react-calendar component */}
-              <Calendar
-                onChange={handleDateChange}
-                value={nDate}
-                calendarType="US"
-                className="calendar"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+
       {/* Calender Modal end*/}
       {/* Comments Modal start*/}
       {isCommentsModalOpen && (

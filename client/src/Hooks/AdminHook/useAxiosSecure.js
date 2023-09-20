@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000/",
+    baseURL: " http://localhost:5000/",
   });
 
   useEffect(() => {
@@ -18,6 +18,7 @@ const useAxiosSecure = () => {
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
+      config.headers["Access-Control-Allow-Origin"] = "*";
       return config;
     });
 

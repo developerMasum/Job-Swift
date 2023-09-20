@@ -49,7 +49,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
     try {
-      const response = fetch(`http://localhost:5000/applicant/stage/${id}`, {
+      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,9 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
 
       if (response) {
         toast.success("This Candidate moved to Applied");
-        window.location.reload(true);
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1000);
       } else {
         console.error("Failed to update stage.");
       }
@@ -106,7 +108,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                       <div className="flex items-center space-x-4">
                         <div className="w-12 h-12 flex-shrink-0">
                           <img
-                            src={`http://localhost:5000/images/${candidate.image}`}
+                            src={candidate.image}
                             alt=""
                             className="w-full h-full object-cover rounded-full"
                           />
@@ -178,7 +180,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                     <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
                       <div className="flex items-center justify-around space-x-4">
                         <a
-                          href={`http://localhost:5000/images/${selectedCandidate.resume}`}
+                          href={selectedCandidate.resume}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center text-white  space-x-2 hover:text-blue-500"
@@ -216,7 +218,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                       <div className="flex items-center space-x-4">
                         <div className="w-20 h-20 rounded-full overflow-hidden">
                           <img
-                            src={`http://localhost:5000/images/${selectedCandidate.image}`}
+                            src={selectedCandidate.image}
                             alt={`${selectedCandidate.firstName} ${selectedCandidate.lastName}'s avatar`}
                             className="object-cover w-full h-full"
                           />
@@ -308,7 +310,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
 
                     <div className="border max-w-4xl border-slate-200 p-5 text-center">
                       <iframe
-                        src={`http://localhost:5000/images/${selectedCandidate?.resume}`}
+                        src={selectedCandidate?.resume}
                         width={100}
                         title="Uploaded Resume"
                         className="mt-2 border border-gray-400 rounded"

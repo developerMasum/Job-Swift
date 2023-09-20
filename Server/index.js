@@ -1,19 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const multer = require("multer");
 require("dotenv").config();
-const path = require("path");
 const sendMail = require("./sendMail");
 const jwt = require("jsonwebtoken");
-const fs = require("fs");
-
 const port = process.env.PORT || 5000;
-const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
-app.use(express.static("public/images"));
-if (!fs.existsSync(uploadPath)) {
-  fs.mkdirSync(uploadPath, { recursive: true });
-}
+
 
 // middleware
 const corsOptions = {
@@ -24,7 +16,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const { log } = require("console");
@@ -33,6 +25,7 @@ const { log } = require("console");
 
 const verifyJWT = (req, res, next) => {
   const authorization = req.headers.authorization;
+  // console.log(req.headers);
   if (!authorization) {
     return res
       .status(401)
@@ -42,6 +35,7 @@ const verifyJWT = (req, res, next) => {
   const token = authorization.split(" ")[1];
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    // console.log(err);
     if (err) {
       return res
         .status(401)
@@ -52,28 +46,11 @@ const verifyJWT = (req, res, next) => {
   });
 };
 
-// ATSWebsite atswebsite2023
-// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mq0mae1.mongodb.net/?retryWrites=true&w=majority`
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/images");
-  },
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
 
-const upload = multer({ storage });
 
 // node mailer --mailing section --
 app.post("/mail", sendMail);
-// app.get('/show-mail', async(req,res)=>{
-//   const result = await UserCollection.find().toArray();
-//   res.send(result);
-// })
+
 
 const uri =
   "mongodb+srv://ATSWebsite:atswebsite2023@cluster0.3besjfn.mongodb.net/?retryWrites=true&w=majority";
@@ -107,62 +84,58 @@ async function run() {
       res.send({ token });
     });
 
-    //  for multer image and resume
+   
+    app.post("/upload-new", async (req, res) => {
+      try {
+     
+        const {
+          jobTitle,
+          stage,
+          jobPosterEmail,
+          jobId,
+          firstName,
+          lastName,
+          email,
+          phone,
+          address,
+          summary,
+          coverLetter,
+          educationList,
+          experienceList,
+          imageData, 
+          resumeData,
+        } = req.body;
+    
+        // Create a document to insert into your MongoDB collection
+        const documentToInsert = {
+          jobTitle,
+          stage,
+          jobPosterEmail,
+          jobId,
+          firstName,
+          lastName,
+          email,
+          phoneNumber: phone, 
+          location: address, 
+          summary,
+          coverLetter,
+          date: new Date().toISOString(),
+          educationList: JSON.parse(educationList),
+          experienceList: JSON.parse(experienceList),
+          image: imageData, 
+          resume: resumeData, 
+        };await applicationsPostCollection.insertOne(documentToInsert);
 
-    app.post(
-      "/upload",
-      upload.fields([{ name: "resume" }, { name: "image" }]),
-      async (req, res) => {
-        const formData = req.body;
-        const resumeFilePath = req.files.resume[0].filename; // Accessing resume filename
-        const imageFilePath = req.files.image[0].filename; // Accessing image filename
-        const educationList = JSON.parse(formData.educationList); // Parse educationList JSON
-        const experienceList = JSON.parse(formData.experienceList); // Parse experienceList JSON
-        const currentDate = new Date().toISOString();
-        try {
-          // Assuming you have a MongoDB connection named "db" and a collection named "applicationsPostCollection"
-          await applicationsPostCollection.insertOne({
-            jobTitle: formData.jobTitle,
-            stage: formData.stage,
-            jobPosterEmail: formData.jobPosterEmail,
-            jobId: formData.jobId,
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            phoneNumber: formData.phone,
-            location: formData.address,
-            summary: formData.summary,
-            resume: resumeFilePath,
-            coverLetter: formData.coverLetter,
-            image: imageFilePath,
-            date: currentDate,
-            educationList: educationList, // Save parsed educationList
-            experienceList: experienceList,
-            // stage: formData.stage,
-            // appliedJobId: formData.appliedJobId,
-          });
-
-          res
-            .status(201)
-            .json({ message: "Application submitted successfully" });
-        } catch (error) {
-          console.error("Error submitting application:", error);
-          res.status(500).json({
-            message: "An error occurred while submitting the application",
-          });
-        }
+        return res
+          .status(201)
+          .json({ message: "Application submitted successfully" });
+      } catch (error) {
+        console.error("Error submitting application:", error);
+        return res.status(500).json({
+          message: "An error occurred while submitting the application",
+        });
       }
-    );
-
-    // post data of a new user
-    // app.post("/user", async (req, res) => {
-    //   const query = req.body;
-    //   const result = await UserCollection.insertOne(query);
-    //   res.send(result);
-    // });
-
-    // sobuj code
-    // save applicants
+    });
 
     app.put("/users/:email", async (req, res) => {
       const email = req.params.email;
@@ -172,7 +145,7 @@ async function run() {
       const updateDoc = {
         $set: user,
       };
-      const result = await usersCollection.updateOne(query, updateDoc, options);
+      const result = await UserCollection.updateOne(query, updateDoc, options);
       res.send(result);
     });
 
@@ -293,6 +266,12 @@ async function run() {
       const result = await jobPostCollection.insertOne(query);
       res.send(result);
     });
+    // --------------------use test -------
+    app.post("/new", async (req, res) => {
+      const query = req.body;
+      const result = await jobPostCollection.insertOne(query);
+      res.send(result);
+    });
     app.get("/job_post/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -317,24 +296,11 @@ async function run() {
       res.send(result);
     });
     app.delete("/all-post/:id", async (req, res) => {
-
       try {
-          const id = req.params.id;
+        const id = req.params.id;
         const query = { _id: new ObjectId(id) };
 
         const result = await jobPostCollection.deleteOne(query);
-      } catch (error) {
-        console.error("Error deleting the post:", error);
-        res.status(500).send({ message: "Internal Server Error" });
-      }
-    });
-    // Delete all post 
-    app.delete("/all-post", async (req, res) => {
-
-      try {
-        const query = {};
-
-        const result = await jobPostCollection.deleteMany(query);
       } catch (error) {
         console.error("Error deleting the post:", error);
         res.status(500).send({ message: "Internal Server Error" });
@@ -354,15 +320,6 @@ async function run() {
       res.send(result);
     });
 
-    // get all application
-
-    // app.get("/all-applications/:id", async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: new ObjectId(id) };
-    //   const result = await applicationsPostCollection.findOne(query);
-    //   res.send(result);
-
-    // });
     app.get("/all-applications/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -395,9 +352,8 @@ async function run() {
       }
     });
 
-
     // test  get candidate by specific jobs
-    app.get('/all-candidate/:email', async (req, res) => {
+    app.get("/all-candidate/:email", async (req, res) => {
       const email = req.params.email;
       // console.log(email);
 
@@ -412,11 +368,6 @@ async function run() {
         res.status(500).send("An error occurred while fetching data");
       }
     });
-    
-
-    
-
-    
 
     // all applicant set stages-----------------------------
     app.patch("/applicant/stage/:id", async (req, res) => {
@@ -447,40 +398,36 @@ async function run() {
       }
     });
 
+    // seatch candidate option
+    app.get("/candidates/:text", async (req, res) => {
+      const searchText = req.params.text;
 
+      // Check if searchText is empty or not provided
+      if (!searchText) {
+        return res.status(400).send("Please provide a search text.");
+      }
 
-// search candidate option
-app.get("/candidates/:text", async (req, res) => {
-  const searchText = req.params.text;
-  
-  // Check if searchText is empty or not provided
-  if (!searchText) {
-    return res.status(400).send("Please provide a search text.");
-  }
+      try {
+        // Use a consistent error message for potential errors
+        const result = await applicationsPostCollection
+          .find({
+            name: {
+              $regex: searchText,
+              $options: "i",
+            },
+          })
+          .toArray();
 
-  try {
-    // Use a consistent error message for potential errors
-    const result = await applicationsPostCollection
-      .find({
-        name: {
-          $regex: searchText,
-          $options: "i",
-        },
-      })
-      .toArray();
-
-    // Return a meaningful response
-    res.status(200).json(result);
-  } catch (error) {
-    console.error(error);
-    // Handle the error more gracefully
-    res.status(500).json({ error: "An error occurred while searching for candidates." });
-  }
-});
-
-
-
-
+        // Return a meaningful response
+        res.status(200).json(result);
+      } catch (error) {
+        console.error(error);
+        // Handle the error more gracefully
+        res
+          .status(500)
+          .json({ error: "An error occurred while searching for candidates." });
+      }
+    });
 
     // delete a candidate
     app.delete("/delete-candidate/:id", async (req, res) => {
@@ -489,6 +436,36 @@ app.get("/candidates/:text", async (req, res) => {
       const result = await applicationsPostCollection.deleteOne(query);
       res.send(result);
     });
+
+
+    //Done by Md Arifur rahman
+
+    app.get("/all-applications2", async (req, res) => {
+      // const id = req.params.id;
+      const search = req.query.search;
+      // console.log(search);
+      // const query = { _id: new ObjectId(id) };
+      const query = { location: { $regex: search, $options: "i" } }
+      const query2 = { jobTitle: { $regex: search, $options: "i" } }
+      const query3 = { firstName: { $regex: search, $options: "i" } }
+
+      const application = applicationsPostCollection.find(query, query2, query3);
+      const result = await application.toArray()
+      res.send(result);
+    });
+
+    // candidateSearch
+    app.get("/candidateSearch", async (req, res) => {
+      const search = req.query.search;
+      
+      const query = { firstName: { $regex: search, $options: "i" } }
+
+      const application = applicationsPostCollection.find(query);
+      const result = await application.toArray()
+      res.send(result);
+    });
+
+    // search candidates
 
     // resume app.use('/uploads', upload.array("image", "resume"));
 

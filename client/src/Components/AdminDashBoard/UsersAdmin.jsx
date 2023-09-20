@@ -15,7 +15,7 @@ const UsersAdmin = () => {
 
   const makeAdmin = (user) => {
     console.log("make admin", user);
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(` http://localhost:5000/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -45,7 +45,7 @@ const UsersAdmin = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/delete/${id}`, {
+        fetch(` http://localhost:5000/delete/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -63,7 +63,7 @@ const UsersAdmin = () => {
   };
 
   return (
-    <div className="pl-48">
+    <div className="pl-4 md:pl-48">
       <div className="pt-12 pb-8">
         <p className="font-bold">
           Users : <span className="">{users.length}</span>

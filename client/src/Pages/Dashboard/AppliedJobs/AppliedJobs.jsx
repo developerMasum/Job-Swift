@@ -14,7 +14,7 @@ import AddCandidatesModal from "./AddCandidatesModal";
 const AppliedJobs = () => {
   // const [appliedJobs] = useAppliedJobs();
   const { id } = useParams();
-  console.log('job id',id);
+  console.log("job id", id);
 
   const [appliedJobs] = useAppliedJobs();
   const jobs = appliedJobs.find((job) => job._id === id);
@@ -57,7 +57,8 @@ const AppliedJobs = () => {
           </div>
           <Link>
             <p className="font-semibold text-xs text-[#83a9d0] ">
-version v25.25.001            </p>
+              version v25.25.001{" "}
+            </p>
           </Link>
         </div>
       </div>
@@ -69,13 +70,26 @@ version v25.25.001            </p>
                 <p className="text-xl md:text-3xl  font-[500] text-second">
                   {jobs?.jobTitle}
                 </p>
-                <Link to={`/editJobs/${jobs?._id}`} className="justify-center" onClick={handleButtonClick} >
+                <Link
+                  to={`/editJobs/${jobs?._id}`}
+                  className="justify-center"
+                  onClick={handleButtonClick}
+                >
                   {isToggled ? (
-                     <MdOutlineEdit color="#00756a" size={19} fontWeight={700} className="inline-block" />
+                    <MdOutlineEdit
+                      color="#00756a"
+                      size={19}
+                      fontWeight={700}
+                      className="inline-block"
+                    />
                   ) : (
-                    <MdOutlineEdit color="#00756a" size={19} fontWeight={700} className="inline-block" />
+                    <MdOutlineEdit
+                      color="#00756a"
+                      size={19}
+                      fontWeight={700}
+                      className="inline-block"
+                    />
                   )}
-             
                 </Link>
               </div>
             </div>
@@ -94,7 +108,6 @@ version v25.25.001            </p>
         <div className="flex justify-end">
           {isOpen && (
             <div className="absolute w-58 space-y-4 rounded-lg  shadow-lg bg-white">
-             
               <div className="hover:bg-emerald-400 cursor-pointer hover:text-white px-3 py-1">
                 <div>
                   <AddCandidatesModal />
@@ -184,7 +197,7 @@ version v25.25.001            </p>
           </div>
         </div>
       </div>
-      <div className="text-center">{renderAppliedTabs(activeTab,id)}</div>
+      <div className="text-center">{renderAppliedTabs(activeTab, id)}</div>
     </section>
   );
 };
