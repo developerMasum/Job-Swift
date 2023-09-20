@@ -43,7 +43,7 @@ const CandidateTables = ({ candidatesData }) => {
   async function handleDelete(id) {
     try {
       const response = await fetch(
-        `  https://server-hazel-nine.vercel.app/delete-candidate/${id}`,
+        `  http://localhost:5000/delete-candidate/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -93,7 +93,7 @@ const CandidateTables = ({ candidatesData }) => {
 
     // Send the POST request to the server
     axios
-      .post("  https://server-hazel-nine.vercel.app/mail", mailData)
+      .post("  http://localhost:5000/mail", mailData)
       .then((response) => {
         // The code inside this block will only run if the request is successful
         toast.success("Email sent successfully!");

@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 import { authContext } from "../../Auth/AuthProvider";
+import { useDispatch } from "react-redux";
+import { createFeedback } from "../../redux/feedback/feedbackAPI";
+import { useNavigate } from "react-router-dom";
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
@@ -27,35 +27,22 @@ const Feedback = () => {
     setFeedback(event.target.value);
   };
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Check if a submission is already in progress
     if (isLoading) return;
 
-    setIsLoading(true); // Show loading indicator
+    setIsLoading(true);
 
     const data = { rating, feedback, email, name, image, status };
 
-    axios
-      .post(" https://server-hazel-nine.vercel.app/feedback", data)
-      .then((response) => {
-        // Handle the success response here
-        console.log("Feedback sent successfully:", response.data);
-        navigate("/");
-        toast.success("Feedback added successfully");
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the request
-        console.error("Error sending feedback:", error);
-        toast.error("Error adding feedback. Please try again later.");
-      })
-      .finally(() => {
-        // Clear the form fields and hide loading indicator
-        setIsLoading(false);
-        setRating(0);
-        setFeedback("");
-      });
+    dispatch(createFeedback(data));
+
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
   };
 
   return (
@@ -96,9 +83,9 @@ const Feedback = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
+          className="bg-teal-500 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition duration-300"
         >
-          {isLoading ? "Submitting....." : "Submit"}
+          {isLoading ? "Please waite....." : "Submit"}
         </button>
       </form>
     </div>

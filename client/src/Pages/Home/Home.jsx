@@ -39,7 +39,7 @@ const Home = () => {
       </div>
 
 
-      <FileUpload></FileUpload>
+      {/* <FileUpload></FileUpload> */}
 
       
    {/* <ResumeForm></ResumeForm> */}

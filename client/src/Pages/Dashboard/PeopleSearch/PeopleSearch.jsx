@@ -31,7 +31,7 @@ const PeopleSearch = () => {
   } = useForm();
 
   useEffect(() => {
-    const URL = ` https://server-hazel-nine.vercel.app/all-applications2?search=${search}`;
+    const URL = ` http://localhost:5000/all-applications2?search=${search}`;
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {

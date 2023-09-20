@@ -428,55 +428,16 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   };
   // console.log('url',imgUrl);
 
-  // const handleResumeChange = async(event) => {
-  //   const files = event.target.files;
-  //   const data = new FormData();
-  //   data.append('file', files[0])
-  //   data.append('upload_preset', 'fcyezv7e')
-   
-  //   const res = await fetch('https://api.cloudinary.com/v1_1/dgfdl45ue/image/upload',{
-  //     method:'POST',
-  //     body:data
-  //   })
-
-  //   const file = await res.json()
-
-  //   setResumeData(file.secure_url)
-    
-  // };
-
-  const handleResumeChange = async (event) => {
-    const files = event.target.files;
-    const data = new FormData();
-    data.append('file', files[0]);
-    data.append('upload_preset', 'fcyezv7e');
-  
-    try {
-      const res = await fetch('https://api.cloudinary.com/v1_1/dgfdl45ue/image/upload', {
-        method: 'POST',
-        headers: {
-          // Set Content-Type to 'application/pdf' for PDF files
-          'Content-Type': 'application/pdf',
-        },
-        body: data,
-      });
-  
-      if (res.ok) {
-        const file = await res.json();
-        setResumeData(file.secure_url);
-        console.log('Uploaded PDF URL:', file.secure_url);
-      } else {
-        console.error('Failed to upload PDF to Cloudinary');
-      }
-    } catch (error) {
-      console.error('Error uploading PDF to Cloudinary:', error);
+  const handleResumeChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setResumeData(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
-  
-
-  console.log(resumeData);
-
-
   const onSubmit = async (data) => {
     if (!resumeData) {
       console.error("resume data is missing.");
@@ -515,8 +476,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     setFirstName(data.firstName);
     setLastName(data.lastName);
     setEmail(data.email);
-    console.log(data);
-console.log('formData',formData);
+
     try {
       const response = await axios.post(
         "https://server-job-swift.vercel.app/upload-new",
@@ -674,10 +634,6 @@ console.log('formData',formData);
       ) : (
         <div className="mx-w-5xl container mx-auto">
           <div className="flex justify-center items-center">
-<h1>hello</h1>
-
-
-
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"

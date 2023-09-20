@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: "  https://server-hazel-nine.vercel.app/",
+    baseURL: "  http://localhost:5000/",
   });
 
   useEffect(() => {

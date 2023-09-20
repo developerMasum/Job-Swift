@@ -100,7 +100,7 @@ const Jobs = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`  https://server-hazel-nine.vercel.app/all-post/${id}`, {
+        fetch(`  http://localhost:5000/all-post/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

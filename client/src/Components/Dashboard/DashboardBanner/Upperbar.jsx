@@ -82,7 +82,7 @@ const UpperBar = () => {
 
   // useEffect(()=> {
   //   const fetchUsers = async () => {
-  //     const res = await axios.get(' https://server-hazel-nine.vercel.app/all-applications');
+  //     const res = await axios.get(' http://localhost:5000/all-applications');
   //     setSearch(res.data);
   //   }
   //   fetchUsers();

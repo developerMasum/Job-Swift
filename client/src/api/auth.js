@@ -1,7 +1,7 @@
 // for application submit
 
 // export const updateData = (id) => {
-//   fetch(`  https://server-hazel-nine.vercel.app/sourced/${id}`, {
+//   fetch(`  http://localhost:5000/sourced/${id}`, {
 //     method: "PATCH",
 //   })
 //     .then((res) => res.json())

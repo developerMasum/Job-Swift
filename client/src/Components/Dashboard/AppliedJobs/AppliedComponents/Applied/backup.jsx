@@ -82,7 +82,7 @@
 //                   <div className="flex justify-start gap-3 items-center ">
 //                     <div className="w-16 h-16 rounded-full overflow-hidden">
 //                       <img
-//                         src={`  https://server-hazel-nine.vercel.app/images/${candidate.image}`}
+//                         src={`  http://localhost:5000/images/${candidate.image}`}
 //                         alt=""
 //                         className="w-full h-full object-cover"
 //                       />

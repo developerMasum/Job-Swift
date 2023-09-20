@@ -53,8 +53,9 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   const handleDisQualify = (id) => {
     setIsModalOpen(true);
     try {
+      
       const response = fetch(
-        `  https://server-hazel-nine.vercel.app/applicant/stage/${id}`,
+        `  http://localhost:5000/applicant/stage/${id}`,
         {
           method: "PATCH",
           headers: {
@@ -65,6 +66,8 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
       );
 
       if (response) {
+
+        // closeModal()
         toast.success("This Candidate moved to Applied");
       } else {
         console.error("Failed to update stage.");

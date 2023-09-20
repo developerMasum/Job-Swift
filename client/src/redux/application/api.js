@@ -6,7 +6,7 @@ export const createApplicationPost = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "  https://server-hazel-nine.vercel.app/application-post",
+        "  http://localhost:5000/application-post",
         data
       );
       // console.log(response.data);
@@ -23,7 +23,7 @@ export const getAllApplications = createAsyncThunk(
   "getAllApplications",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("  https://server-hazel-nine.vercel.app/all-applications");
+      const response = await axios.get("  http://localhost:5000/all-applications");
       console.log(response.data);
       return response.data; // Return the data received from the server if needed
     } catch (error) {

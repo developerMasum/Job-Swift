@@ -160,7 +160,6 @@
 
 // export default Evaluate;
 
-
 import React from "react";
 
 const reasonsToChooseJobSwift = [
@@ -203,7 +202,7 @@ const reasonsToChooseJobSwift = [
 
 const Evaluate = () => {
   return (
-    <div className="bg-gray-100 py-12">
+    <div className=" py-12">
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold text-center text-teal-800 mb-8">
           Why Choose JobSwift?
