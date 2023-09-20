@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useLoaderData, useLocation } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { RiCloseLine, RiShareForwardLine } from "react-icons/ri";
+import { BiMessage} from "react-icons/bi";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { authContext } from "../../Auth/AuthProvider";
@@ -224,7 +225,34 @@ const Overview = () => {
           </TabPanel>
         </Tabs>
       </div>
-
+      <div className="space-y-4">
+        <div className="bg-neutral-100 text-center flex gap-7 justify-center  py-2">
+          <Link to="/" className="hover:underline text-gray-600">
+            View website
+          </Link>
+          <Link
+            to="../dashboard/jobs"
+            className="hover:underline text-gray-600"
+          >
+            View all jobs
+          </Link>
+          <Link
+            to="../dashboard/inbox-email"
+            className="hover:underline inline text-gray-600"
+          >
+         Inbox   <BiMessage size={20} className="inline"/>
+          </Link>
+        </div>
+        <div className="bg-neutral-100 flex gap-7 justify-center text-center py-2">
+          <p className="text-gray-700">Power By <span className="font-semibold">JobSwift ATS</span></p>
+          <Link
+            to="../dashboard/report-center"
+            className="hover:underline text-gray-600"
+          >
+            Report
+          </Link>
+        </div>
+      </div>
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
