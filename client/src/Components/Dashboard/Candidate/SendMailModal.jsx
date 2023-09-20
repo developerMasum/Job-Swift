@@ -4,6 +4,7 @@ import { FiSend } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 
 const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
+  console.log('value',value);
   const {
     register,
     handleSubmit,
@@ -30,6 +31,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
   }, []);
 
   const candidateEmail = mail.find((e) => e._id === value)?.email;
+  // console.log('candidateEmail',candidateEmail);
 
   useEffect(() => {
     if (candidateEmail) {
@@ -68,6 +70,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
         isOpen ? "block" : "hidden"
       } fixed inset-0 w-full h-full flex items-center justify-center z-50`}
     >
+  
       <div
         className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"
         onClick={handleClose}

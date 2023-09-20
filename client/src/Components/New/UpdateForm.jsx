@@ -599,7 +599,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   console.log(email);
 
   return (
-    <div className="border-2 border-gray-500 rounded-xl">
+    <div className="border-1 border-gray-500 rounded-xl">
       {isSubmitted ? (
         <div className="bg-gradient-to-br from-pink-200 to-blue-200 flex flex-col items-center justify-center rounded-lg p-12 space-y-6 shadow-md">
           <div className="text-green-500">
@@ -639,8 +639,8 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
               className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
               encType="multipart/form-data"
             >
-              <div className="bg-neutral-300 rounded-lg text-center py-2">
-                <h1 className="text-lg font-semibold text-gray-700">
+              <div className="bg-neutral-100 rounded-lg text-center py-2">
+                <h1 className="text-lg font-semibold text-teal-700">
                   Personal Details
                 </h1>
               </div>

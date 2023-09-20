@@ -82,7 +82,7 @@ const Overview = () => {
 
       <div className="border bg-[#eef1f1] rounded-sm ">
         <div className=" border-b border-gray-300 py-4">
-          <h1 className="text-2xl font-semibold text-center text-gray-800">
+          <h1 className="text-xl font-semibold text-center text-gray-800">
             Job Preview: {formData?.jobTitle}
           </h1>
         </div>
@@ -115,32 +115,33 @@ const Overview = () => {
       <div className=" my-6 mx-auto max-w-4xl">
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <div className="pb-5">
-            <TabList className="flex gap-5 justify-center cursor-pointer">
-              <Tab
-                className={`${
-                  activeTab === 0
-                    ? "bg-teal-700 hover:bg-teal-600 text-white"
-                    : "border border-teal-700 text-gray-700"
-                } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
-                onClick={() => handleTabClick(0)}
-              >
-                Overview
-              </Tab>
-              <Tab
-                className={`${
-                  activeTab === 1
-                    ? "bg-teal-700  hover:bg-teal-600 text-white"
-                    : "border border-teal-700 text-gray-700"
-                } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
-                onClick={() => handleTabClick(1)}
-              >
-                Application
-              </Tab>
-            </TabList>
+          <TabList className="flex gap-5 justify-center cursor-pointer">
+  <Tab
+    className={`${
+      activeTab === 0
+        ? "bg-teal-700 hover:bg-teal-600 text-white"
+        : "bg-teal-700 text-gray-100"
+    } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
+    onClick={() => handleTabClick(0)}
+  >
+    Overview
+  </Tab>
+  <Tab
+    className={`${
+      activeTab === 1
+        ? "bg-teal-700 hover:bg-teal-600 text-white"
+        : "bg-teal-700 text-gray-700"
+    } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
+    onClick={() => handleTabClick(1)}
+  >
+    Application
+  </Tab>
+</TabList>
+
           </div>
 
           <TabPanel>
-            <div className="bg-[#ffff]50 border-2 rounded-xl border-gray-500 px-2">
+            <div className="bg-[#ffff]50 border-1 rounded-xl border-gray-800 px-2">
               <div className="overview-content p-4 divide-y-2 leading-7 space-y-5">
                 {/* Job description */}
                 <div>
