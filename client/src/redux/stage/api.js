@@ -8,7 +8,7 @@ export const createSetStage = createAsyncThunk(
     // Destructure id and data from the argument
     try {
       const response = await axios.patch(
-        `http://localhost:5000/applicant/stage/${id}`,
+        `https://server-job-swift.vercel.app/applicant/stage/${id}`,
         data
       );
       return response.data; // Return the data received from the server if needed

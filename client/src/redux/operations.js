@@ -7,7 +7,7 @@ export const createUser = createAsyncThunk(
     const email = data.email;
     try {
       const response = await axios.put(
-        ` http://localhost:5000/user/${email}`,
+        ` https://server-job-swift.vercel.app/user/${email}`,
         data
       );
       return response.data; // Return the data received from the server if needed
@@ -22,7 +22,9 @@ export const getUsers = createAsyncThunk(
   "getUsers",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("  http://localhost:5000/users");
+      const response = await axios.get(
+        "  https://server-job-swift.vercel.app/users"
+      );
       return response.data; // Return the data received from the server if needed
     } catch (error) {
       // Return the error payload using rejectWithValue
@@ -38,7 +40,7 @@ export const createJobPost = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        " http://localhost:5000/job_post",
+        " https://server-job-swift.vercel.app/job_post",
         data
       );
       // console.log(response.data);
