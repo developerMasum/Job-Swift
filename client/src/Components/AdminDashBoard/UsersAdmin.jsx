@@ -15,7 +15,7 @@ const UsersAdmin = () => {
 
   const makeAdmin = (user) => {
     console.log("make admin", user);
-    fetch(` https://server-job-swift.vercel.app/users/admin/${user._id}`, {
+    fetch(` http://localhost:5000/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -45,7 +45,7 @@ const UsersAdmin = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(` https://server-job-swift.vercel.app/delete/${id}`, {
+        fetch(` http://localhost:5000/delete/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -64,77 +64,76 @@ const UsersAdmin = () => {
 
   return (
     <div className="pl-4 md:pl-48">
-    <div className="pt-12 pb-8">
-      <p className="font-bold">
-        Users : <span className="">{users.length}</span>
-      </p>
-      <p className="text-cyan-700 font-bold"> Managing the Team Members </p>
-    </div>
-    <div className="overflow-x-auto">
-      <table className="w-full table-auto border-collapse border-b">
-        <thead>
-          <tr>
-            <th className="bg-gray-200 text-left px-4 py-2 font-bold">
-              Serial
-            </th>
-            <th className="bg-gray-200 text-left px-4 py-2 font-bold">
-              Username
-            </th>
-            <th className="bg-gray-200 text-left px-4 py-2 font-bold">
-              Email
-            </th>
-            <th className="bg-gray-200 text-left px-4 py-2 font-bold">
-              Company Name
-            </th>
-            <th className="bg-gray-200 text-left px-4 py-2 font-bold">
-              Country
-            </th>
-            <th className="bg-gray-200 text-left px-4 py-2 font-bold">
-              Role
-            </th>
-            <th className="bg-gray-200 text-left px-4 py-2 font-bold">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={user._id} className="hover:bg-red-100">
-              <td className="border-t px-4 py-2 ">{index + 1}</td>
-              <td className="border-t px-4 py-2 ">
-                {user.firstName} {user.lastName}
-              </td>
-              <td className="border-t px-4 py-2 ">{user.email}</td>
-              <td className="border-t px-4 py-2 ">{user.companyName}</td>
-              <td className="border-t px-4 py-2 ">{user.country}</td>
-              <td className="border-t px-4 py-2 ">
-                {" "}
-                <button
-                  onClick={() => makeAdmin(user)}
-                  className="bg-cyan-500 flex gap-3 text-white px-2 py-1 rounded"
-                >
-                  {" "}
-                  <FaShekelSign />
-                  {user.role === "admin" ? "Admin" : "User"}
-                </button>
-              </td>
-              <td className="border-t px-4 py-2 ">
-                {" "}
-                <button
-                  onClick={() => handleDeleteUser(user._id)}
-                  className="bg-cyan-500 flex gap-3 text-white px-2 py-1 rounded"
-                >
-                  {" "}
-                  Delete{" "}
-                </button>
-              </td>
+      <div className="pt-12 pb-8">
+        <p className="font-bold">
+          Users : <span className="">{users.length}</span>
+        </p>
+        <p className="text-cyan-700 font-bold"> Managing the Team Members </p>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full table-auto border-collapse border-b">
+          <thead>
+            <tr>
+              <th className="bg-gray-200 text-left px-4 py-2 font-bold">
+                Serial
+              </th>
+              <th className="bg-gray-200 text-left px-4 py-2 font-bold">
+                Username
+              </th>
+              <th className="bg-gray-200 text-left px-4 py-2 font-bold">
+                Email
+              </th>
+              <th className="bg-gray-200 text-left px-4 py-2 font-bold">
+                Company Name
+              </th>
+              <th className="bg-gray-200 text-left px-4 py-2 font-bold">
+                Country
+              </th>
+              <th className="bg-gray-200 text-left px-4 py-2 font-bold">
+                Role
+              </th>
+              <th className="bg-gray-200 text-left px-4 py-2 font-bold">
+                Action
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={user._id} className="hover:bg-red-100">
+                <td className="border-t px-4 py-2 ">{index + 1}</td>
+                <td className="border-t px-4 py-2 ">
+                  {user.firstName} {user.lastName}
+                </td>
+                <td className="border-t px-4 py-2 ">{user.email}</td>
+                <td className="border-t px-4 py-2 ">{user.companyName}</td>
+                <td className="border-t px-4 py-2 ">{user.country}</td>
+                <td className="border-t px-4 py-2 ">
+                  {" "}
+                  <button
+                    onClick={() => makeAdmin(user)}
+                    className="bg-cyan-500 flex gap-3 text-white px-2 py-1 rounded"
+                  >
+                    {" "}
+                    <FaShekelSign />
+                    {user.role === "admin" ? "Admin" : "User"}
+                  </button>
+                </td>
+                <td className="border-t px-4 py-2 ">
+                  {" "}
+                  <button
+                    onClick={() => handleDeleteUser(user._id)}
+                    className="bg-cyan-500 flex gap-3 text-white px-2 py-1 rounded"
+                  >
+                    {" "}
+                    Delete{" "}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-  
   );
 };
 

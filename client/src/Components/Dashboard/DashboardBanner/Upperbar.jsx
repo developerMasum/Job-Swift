@@ -82,16 +82,14 @@ const UpperBar = () => {
 
   // useEffect(()=> {
   //   const fetchUsers = async () => {
-  //     const res = await axios.get('https://server-job-swift.vercel.app/all-applications');
+  //     const res = await axios.get('http://localhost:5000/all-applications');
   //     setSearch(res.data);
   //   }
   //   fetchUsers();
   // },[])
 
   useEffect(() => {
-    fetch(
-      `https://server-job-swift.vercel.app/candidateSearch?search=${search}`
-    )
+    fetch(`http://localhost:5000/candidateSearch?search=${search}`)
       .then((res) => res.json())
       .then((data) => setSearchData(data));
   }, [search]);

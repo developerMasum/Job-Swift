@@ -4,7 +4,7 @@ import { FiSend } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 
 const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
-  console.log('value',value);
+  console.log("value", value);
   const {
     register,
     handleSubmit,
@@ -17,9 +17,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(
-          " https://server-job-swift.vercel.app/all-applications"
-        );
+        const response = await fetch(" http://localhost:5000/all-applications");
         const data = await response.json();
         setMail(data);
       } catch (error) {
@@ -70,7 +68,6 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
         isOpen ? "block" : "hidden"
       } fixed inset-0 w-full h-full flex items-center justify-center z-50`}
     >
-  
       <div
         className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"
         onClick={handleClose}
