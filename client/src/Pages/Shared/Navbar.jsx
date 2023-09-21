@@ -158,9 +158,9 @@ const Navbar = () => {
                 </div>
               </div>
             </>) :
-            <div className="flex justify-between  gap-2 items-center">
+            <div className="flex justify-start  gap-2 items-center">
               <Link
-                className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block"
+                className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white  md:block"
                 to={"/login"}
               >
                 Login
