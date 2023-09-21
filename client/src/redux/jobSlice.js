@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { createUser, getUsers,createJobPost } from "./operations";
+import { createUser, getUsers,createJobPost} from "./operations";
 
 const jobSlice = createSlice({
   name: "jobs",
@@ -45,8 +45,10 @@ const jobSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message;
       })
+     
   },
 });
 
-export { createUser, getUsers,createJobPost };
+
+export  { createUser, getUsers,createJobPost };
 export default jobSlice.reducer;

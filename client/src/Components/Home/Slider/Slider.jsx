@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import SliderPreview from "./SliderPreview";
+// import SliderPreview from "./SliderPreview";
 
 
 const Slider = () => {

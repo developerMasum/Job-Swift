@@ -1,49 +1,45 @@
-import PaySection from "../../Components/Home/PaySection";
-import HrPlatform from "../../Components/Home/HrPlatform";
-import EmployeeExperience from "../../Components/Home/EmployeeExperience";
-import HeadlineBar from "../Shared/HeadlineBar";
-import MarketPlaceIntegrate from "../../Components/Home/MarketPlaceIntegrate/MarketPlaceIntegate";
-import Hiring from "../../Components/Home/Hiring/Hiring";
 import Banner from "../../Components/Home/Banner/Banner";
+import { Slide } from "react-awesome-reveal";
+import BannerCompany from "../../Components/Home/Banner/BannerCompany";
+import ProgramManager from "../../Components/ProgramManager/ProgramManager";
+import Evaluate from "../../Components/Home/Evaluate/Evaluate";
+import AtsFeature from "../../Components/AtsFeature/AtsFeature";
 import Slider from "../../Components/Home/Slider/Slider";
-import HrData from "../../Components/Home/MarketPlaceIntegrate/HrData";
 
 const Home = () => {
   return (
-    <div className="pt-5 lg:md:pt-16">
-      <HeadlineBar />
+    <div className="">
       <Banner />
-      <HrPlatform />
-     <div className="md:px-12">
-     <div className="mt-12">
-        <HrData />
+
+      <div>
+        <BannerCompany />
       </div>
 
+      <AtsFeature></AtsFeature>
+
       <div className="mt-12">
-        <PaySection />
-      </div>
-      <div className="mt-12">
-        <Hiring />
+        <ProgramManager />
       </div>
 
-      <div className="mt-16 mb-5">
-        <EmployeeExperience />
+      <div className="md:px-12">
+        <div className="mt-16 mb-5">
+          <Slide direction="right"></Slide>
+
+          <Evaluate></Evaluate>
+
+          {/* slider */}
+          <div className="mt-12">
+            <h2 className="md:text-4xl text-2xl mb-12 md:mb-0 font-bold text-center text-teal-700  font-sans ">
+              Why People Love JobSwift
+              <p className="text-sm font-bold text-slate-700 pt-3">
+                best companies employers feedback
+              </p>
+            </h2>
+            <Slider></Slider>
+          </div>
+        </div>
       </div>
-     </div>
-      <div className="mt-12 mb-12">
-        <MarketPlaceIntegrate />
-      </div>
-      {/* slider */}
-      <div className="mt-12">
-        <h2 className="text-5xl font-bold text-center text-primary font-sans italic ">
-          Why People LOVE JobSwift
-        </h2>
-        <Slider />
-        {/* slider addeed */}
-      </div>
-     
     </div>
   );
 };
-
 export default Home;

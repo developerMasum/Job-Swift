@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "senderName": "John Fredi",
+    "senderEmail": "john@gmail.com",
+    "date": "2023-09-12",
+    "subject": "Hello",
+    "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 2,
+    "senderName": "Alice Smith",
+    "senderEmail": "alice@gmail.com",
+    "date": "2023-09-13",
+    "subject": "Meeting Agenda",
+    "message": "Here is the agenda for our upcoming meeting.",
+    "senderImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 3,
+    "senderName": "Bob Johnson",
+    "senderEmail": "bob@gmail.com",
+    "date": "2023-09-14",
+    "subject": "Important Update",
+    "message": "Please review the attached document for an important update.",
+    "senderImage": "https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 4,
+    "senderName": "Eve Adams",
+    "senderEmail": "eve@gmail.com",
+    "date": "2023-09-15",
+    "subject": "Hello Again",
+    "message": "Just saying hi and checking in with you.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 5,
+    "senderName": "Grace Johnson",
+    "senderEmail": "grace@gmail.com",
+    "date": "2023-09-16",
+    "subject": "Project Update",
+    "message": "Here's the latest update on our project.",
+    "senderImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 6,
+    "senderName": "Sam Brown",
+    "senderEmail": "sam@gmail.com",
+    "date": "2023-09-17",
+    "subject": "Important Notice",
+    "message": "Please read this important notice carefully.",
+    "senderImage": "https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 7,
+    "senderName": "Linda Smith",
+    "senderEmail": "linda@gmail.com",
+    "date": "2023-09-18",
+    "subject": "Weekly Newsletter",
+    "message": "Check out our weekly newsletter for updates.",
+    "senderImage": "https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 8,
+    "senderName": "Michael Wilson",
+    "senderEmail": "michael@gmail.com",
+    "date": "2023-09-19",
+    "subject": "New Product Launch",
+    "message": "Introducing our latest product.",
+    "senderImage": "https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 9,
+    "senderName": "Sophia Turner",
+    "senderEmail": "sophia@gmail.com",
+    "date": "2023-09-20",
+    "subject": "Feedback Request",
+    "message": "We'd love to hear your feedback.",
+    "senderImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 10,
+    "senderName": "David Lee",
+    "senderEmail": "david@gmail.com",
+    "date": "2023-09-21",
+    "subject": "Meeting Rescheduled",
+    "message": "Our meeting has been rescheduled to a new date.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 11,
+    "senderName": "Sarah Wilson",
+    "senderEmail": "sarah@gmail.com",
+    "date": "2023-09-22",
+    "subject": "Request for Information",
+    "message": "I need some information regarding the project.",
+    "senderImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 12,
+    "senderName": "Mark Adams",
+    "senderEmail": "mark@gmail.com",
+    "date": "2023-09-23",
+    "subject": "Weekly Report",
+    "message": "Here's the weekly report for your review.",
+    "senderImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 13,
+    "senderName": "Laura Turner",
+    "senderEmail": "laura@gmail.com",
+    "date": "2023-09-24",
+    "subject": "Meeting Reminder",
+    "message": "Don't forget our meeting tomorrow at 10 AM.",
+    "senderImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 14,
+    "senderName": "Steve Brown",
+    "senderEmail": "steve@gmail.com",
+    "date": "2023-09-25",
+    "subject": "Project Proposal",
+    "message": "I've attached the project proposal for your consideration.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 15,
+    "senderName": "Olivia Johnson",
+    "senderEmail": "olivia.@gmail.com",
+    "date": "2023-09-26",
+    "subject": "Feedback Received",
+    "message": "Thank you for your feedback. We appreciate it.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 16,
+    "senderName": "Daniel Lee",
+    "senderEmail": "daniel@gmail.com",
+    "date": "2023-09-27",
+    "subject": "Weekly Update",
+    "message": "Here's the weekly update on our progress.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 17,
+    "senderName": "Emily Smith",
+    "senderEmail": "emily@gmail.com",
+    "date": "2023-09-28",
+    "subject": "Meeting Invitation",
+    "message": "You're invited to our team meeting next week.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 18,
+    "senderName": "William Adams",
+    "senderEmail": "william@gmail.com",
+    "date": "2023-09-29",
+    "subject": "New Feature Announcement",
+    "message": "Check out our latest feature announcement.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 19,
+    "senderName": "Sophia Turner",
+    "senderEmail": "sophia@gmail.com",
+    "date": "2023-09-30",
+    "subject": "Feedback Follow-up",
+    "message": "We appreciate your feedback. Here's our response.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 20,
+    "senderName": "James Smith",
+    "senderEmail": "james@gmail.com",
+    "date": "2023-10-01",
+    "subject": "Product Update",
+    "message": "Here's an update on our product development.",
+    "senderImage": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+  }
+]

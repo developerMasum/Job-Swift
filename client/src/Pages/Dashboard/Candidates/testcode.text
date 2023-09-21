@@ -1,0 +1,72 @@
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
+
+function CandidateStages({ id }) {
+  const [selectedItem, setSelectedItem] = useState("");
+  const [currentStage, setCurrentStage] = useState("");
+  //   get the stage info
+  const url = ` https://server-job-swift.vercel.app/all-applications/${id}`;
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((response) => {
+        setCurrentStage(response.data.stage);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  //   console.log(isHired);
+
+  const handleItemClick = async (event) => {
+    const itemName = event.target.textContent;
+    setSelectedItem(itemName);
+
+    try {
+      // Make a PATCH request to update the stage on the server
+      const response = await fetch(
+        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ stage: itemName }),
+        }
+      );
+
+      if (response.ok) {
+        toast.success(`stage updated to ${itemName}`);
+      } else {
+        console.error("Failed to update stage.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  return (
+    <div>
+      <ul className="p-2 shadow dropdown-content z-[1] bg-base-100 text-second rounded-box w-fit">
+        <li className="px-2 bg-green-500 rounded">
+          <a onClick={handleItemClick}>Sourced</a>
+        </li>
+        <li>
+          <a onClick={handleItemClick}>Applied</a>
+        </li>
+        <li>
+          <a onClick={handleItemClick}>Interview</a>
+        </li>
+        <li>
+          <a onClick={handleItemClick}>Offer</a>
+        </li>
+        <li>
+          <a onClick={handleItemClick}>Hired</a>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+export default CandidateStages;

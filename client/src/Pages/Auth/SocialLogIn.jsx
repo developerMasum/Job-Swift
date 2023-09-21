@@ -33,12 +33,14 @@ const SocialLogIn = () => {
     }
     return (
         <div>
-            <div className='divider'></div>
-            <div className='my-4 text-center'>
-                <button onClick={handleGoogle} className="btn btn-circle btn-outline">
-                    <FaGoogle></FaGoogle>
+            <div className=' divider my-1'></div>
+            
+                <button onClick={handleGoogle} className=' text-center border rounded-full py-2 px-5  hover:bg-[#2f5c58] hover:text-white text-white'>
+                    <span className='me-3'>Log in with google</span>
+                    <button onClick={handleGoogle} className="btn btn-circle   btn-sm">                    <FaGoogle className=''></FaGoogle>
+                    </button>
                 </button>
-            </div>
+            
         </div>
     );
 };

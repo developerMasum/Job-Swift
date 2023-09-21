@@ -1,37 +1,93 @@
+// import React from "react";
+// import { FaChevronRight } from "react-icons/fa";
+// import { Link } from "react-router-dom";
+
+// const HrPlatform = () => {
+//   return (
+//    <div className="bg-gray-100">
+//      <div className=" py-16 md:flex container gap-8 mx-auto justify-between items-center mt-8 md:mt-16 px-12 md:0">
+//       <div className="w-full md:w-1/2">
+//         <img
+//           src="https://i.ibb.co/Bg7bL6z/hrdone.png"
+//           alt="HR Image"
+//           className="w-full md:max-w-md mx-auto "
+//         />
+//       </div>
+//       <div className="w-full space-y-6 mt-6 md:mt-0 md:w-1/2">
+//         <h2 className="text-4xl font-bold text-cyan-500 md:text-3xl">
+//           Elevate Your Hiring Process with Job Swift
+//         </h2>
+//         <p className="text-lg text-gray-700 leading-7">
+//           Job Swift is your all-in-one ATS solution designed to streamline
+//           the hiring process. Discover the perfect candidates faster with our
+//           cutting-edge features, including:
+//         </p>
+//         <ul className="list-disc pl-6 text-gray-700">
+//           <li>Effortless Job Posting and Management</li>
+//           <li>Advanced Resume Screening</li>
+//           <li>Seamless Interview Scheduling</li>
+//           <li>Integrated Collaboration Tools</li>
+//           <li>Real-time Candidate Tracking</li>
+//         </ul>
+//         <div>
+//           <Link
+//             to="/demo-page"
+//             className="text-cyan-500 font-bold text-xl flex items-center space-x-1"
+//             title="Get My Free Demo"
+//           >
+//             Get My Free Demo <FaChevronRight />
+//           </Link>
+//         </div>
+//       </div>
+//     </div>
+//    </div>
+//   );
+// };
+
+// export default HrPlatform;
+
+
+
 import React from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const HrPlatform = () => {
   return (
-    <div className="flex flex-wrap max-w-[1100px] mx-auto justify-between items-center mt-8 md:mt-16 px-12 md:0">
-      <div className=" w-full md:w-1/2">
-        <img
-          src="https://i.ibb.co/KN1FwJP/image.webp"
-          alt="HrIamge"
-          width={1000}
-        />
-      </div>
-      <div className="w-full space-y-6 mt-6 md:mt-0 md:w-1/2 ">
-        <h2 className="text-primary md:text-2xl font-bold text-xl text-center md:text-start mb-2">
-          The Complete HR Platform
-        </h2>
-        <p className="text-secondary font-semibold leading-8">
-          Job Swift simplifies and supports every step in the employee
-          experience through its intuitive features and flexible integrations,
-          all connected to a single, secure source of data.
-        </p>
-        <div>
-          <Link
-            to="/demo-page"
-            className="text-[#00673b] font-bold text-lg  text-start md:text-start"
-            title="Get My Free Demo"
-          >
-            <h3 className="text-primary font-bold text-base text-start md:mt-8 mt-2 md:text-start">
-              Get My Free Demo
-              <FaChevronRight className="inline-block"></FaChevronRight>
-            </h3>
-          </Link>
+    <div className="bg-gray-100 py-16">
+      <div className="container mx-auto px-6 md:flex gap-8 justify-between items-center mt-8 md:mt-16">
+        <div className="w-full md:w-1/2">
+          <img
+            src="https://i.ibb.co/Bg7bL6z/hrdone.png"
+            alt="HR Image"
+            className="w-full md:max-w-md mx-auto rounded-lg"
+          />
+        </div>
+        <div className="w-full space-y-6 mt-6 md:mt-0 md:w-1/2">
+          <h2 className="text-4xl font-bold text-gray-500 md:text-3xl">
+            Elevate Your Hiring Process with Job Swift
+          </h2>
+          <p className="text-lg text-gray-700 leading-7">
+            Job Swift is your all-in-one ATS solution designed to streamline
+            the hiring process. Discover the perfect candidates faster with our
+            cutting-edge features, including:
+          </p>
+          <ul className="list-disc pl-6 text-gray-700">
+            <li>Effortless Job Posting and Management</li>
+            <li>Advanced Resume Screening</li>
+            <li>Seamless Interview Scheduling</li>
+            <li>Integrated Collaboration Tools</li>
+            <li>Real-time Candidate Tracking</li>
+          </ul>
+          <div className="max-w-[300px]">
+            <Link
+              to="/demo-page"
+              className="border-b-[1px] border-cyan-500 text-gray-500 font-bold text-xl flex items-center justify-center px-6 py-1 rounded-full hover:bg-border-[1px] hover:text-gray-600 hover:border-cyan-700 transition duration-300 ease-in-out"
+              title="Get My Free Demo"
+            >
+              Get My Free Demo <FaChevronRight className="ml-2" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -39,3 +95,4 @@ const HrPlatform = () => {
 };
 
 export default HrPlatform;
+
