@@ -9,8 +9,10 @@ import { BsPinAngle } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { getAllApplications } from "../../../redux/application/api";
+import LoaderInternal from "../../../Components/LoaderInternal/LoaderInternal";
 
 const PeopleSearch = () => {
+  const [loading, setLoading] = useState(false);
   const ref = useRef(null);
   const [application, setApplication] = useState(null);
   const [search, setSearch] = useState(null);
@@ -31,17 +33,21 @@ const PeopleSearch = () => {
   } = useForm();
 
   useEffect(() => {
-    const URL = ` http://localhost:5000/all-applications2?search=${search}`;
+    setLoading(true);
+    // Define the URL with the search parameter
+    const URL = `http://localhost:5000/all-applications2?search=${search}`;
+    
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
-        // Set the profile data in the state
         setApplication(data);
+        setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching profile data:", error);
+        console.error("Error fetching application data:", error);
+        // Mark loading as complete even on error
       });
-  }, [application, search]);
+  }, [search]); 
 
   const serchingPeople = (data) => {
     console.log(data.search);
@@ -165,46 +171,46 @@ const PeopleSearch = () => {
 
           {search ? (
             <>
-              {" "}
-              <div>
-                {application?.map((data, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="card card-side bg-green-100 shadow-md rounded-md my-8"
-                    >
-                      <figure>
-                        <img src={data?.image} alt="Not Found" />
-                      </figure>
-                      <div className="card-body">
-                        <h2 className="card-title">{data?.jobTitle}</h2>
-                        <p>{data?.summary}</p>
-                        {/* <div className="card-actions justify-end">
-                                        <button className="btn btn-primary">Watch</button>
-                                    </div> */}
-                      </div>
-                      <div className="flex justify-end mr-8 my-5">
-                        <div>
-                          <div>
-                            <span className="font-semibold mr-3">Email:</span>{" "}
-                            {data?.email}
-                          </div>
-                          <div>
-                            <span className="font-semibold mr-3">
-                              Location:
-                            </span>
-                            {data?.location}
-                          </div>
-                          <div>
-                            <span className="font-semibold mr-3">Stage:</span>
-                            {data?.stage}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+             
+              <div className="mx-4 md:mx-auto md:w-3/4">
+      <h2 className="text-3xl font-semibold mb-6">Application List</h2>
+      {loading ? (
+        
+       <div className="mt-32">
+         <LoaderInternal></LoaderInternal>
+       </div>
+      ) : (
+        // Display the table once data loading is complete
+        <div className="overflow-x-auto shadow-lg">
+          <table className="min-w-full shadow-md rounded-lg">
+            <thead>
+              <tr className= "bg-teal-600 text-white">
+                <th className="px-6 py-3 text-left text-sm font-semibold ">Image</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold ">Job Title</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold ">Summary</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold ">Email</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold ">Location</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold ">Stage</th>
+              </tr>
+            </thead>
+            <tbody>
+              {application.map((data, index) => (
+                <tr key={index} className={(index % 2 === 0 ? "bg-gray-100" : "bg-white")}>
+                  <td className="px-4 py-3">
+                    <img src={data?.image} alt="Not Found" className="w-10 h-10 rounded-full" />
+                  </td>
+                  <td className="px-4 py-3">{data?.jobTitle}</td>
+                  <td className="px-4 py-3">{data?.summary}</td>
+                  <td className="px-4 py-3">{data?.email}</td>
+                  <td className="px-4 py-3">{data?.location}</td>
+                  <td className="px-4 py-3">{data?.stage}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
             </>
           ) : (
             <>
