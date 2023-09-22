@@ -59,24 +59,20 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
   if (isLoading) {
     return <LoaderInternal></LoaderInternal>;
   }
-  
-  
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
   const handleDisQualify = (id) => {
     setIsModalOpen(true);
     try {
-      const response = fetch(
-        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ stage: "Disqualified" }),
-        }
-      );
+      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ stage: "Disqualified" }),
+      });
 
       if (response) {
         // closeModal()
@@ -219,7 +215,7 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
                           href="https://calendar.google.com/calendar/u/2/r"
                           className="flex items-center space-x-2 hover:text-blue-500 text-white "
                         >
-                          <BiSolidCalendarPlus  className="w-5 h-5" />
+                          <BiSolidCalendarPlus className="w-5 h-5" />
                           <span>Set Interview</span>
                         </a>
                         <a
@@ -230,14 +226,14 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
                           <span>Call</span>
                         </a>
 
-                         <button
+                        <button
                           onClick={() =>
                             handleDisQualify(selectedCandidate._id)
                           }
                           className="  px-2 rounded-md py-1 border text-sm border-red-500"
                         >
                           <BiSolidHand className="inline-block mr-2" />
-                           Send Rejection Mail
+                          Send Rejection Mail
                         </button>
                         <button
                           onClick={() =>

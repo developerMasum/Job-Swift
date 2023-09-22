@@ -67,16 +67,13 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   const handleDisQualify = (id) => {
     setIsModalOpen(true);
     try {
-      const response = fetch(
-        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ stage: "Disqualified" }),
-        }
-      );
+      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ stage: "Disqualified" }),
+      });
 
       if (response) {
         // closeModal()
@@ -88,9 +85,6 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
       console.error("Error:", error);
     }
   };
-
-
-
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
@@ -290,7 +284,6 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                     value={selectedCandidate?.email}
                     isOpen={isModalOpen}
                     onClose={closeModal}
-                   
                   />
 
                   <div className="px-6 py-4 border-t border-gray-200 text-start">

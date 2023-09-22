@@ -7,7 +7,7 @@ export const createFeedback = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "  https://server-job-swift.vercel.app/feedback",
+        "  http://localhost:5000/feedback",
         data
       );
       console.log(response.data);
@@ -26,9 +26,7 @@ export const getFeedback = createAsyncThunk(
   "getUsers",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "  https://server-job-swift.vercel.app/all-feedbacks"
-      );
+      const response = await axios.get("  http://localhost:5000/all-feedbacks");
 
       console.log(response.data);
       return response.data; // Return the data received from the server if needed

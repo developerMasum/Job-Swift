@@ -50,7 +50,7 @@ const LogIn = () => {
       // setLoading(true);
       const { user } = await logIn(email, password);
       const { data: dataToken } = await axios.post(
-        " https://server-job-swift.vercel.app/jwt",
+        " http://localhost:5000/jwt",
         {
           email: email,
         }
@@ -58,7 +58,7 @@ const LogIn = () => {
       //  console.log(dataToken.token);
       console.log("from error", user);
       const { data } = await axios.get(
-        `https://server-job-swift.vercel.app/users/admin/${user?.email}`,
+        `http://localhost:5000/users/admin/${user?.email}`,
         { headers: { Authorization: `Bearer ${dataToken.token}` } }
       );
       //  console.log('isadmin error',isAdmin);
