@@ -497,63 +497,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     setIsSubmitting(false);
   };
 
-  // for get data
-
-  // const onSubmit = async (data) => {
-  //   setIsSubmitting(true);
-  //   const isoDateString = new Date().toISOString();
-  //   const formData = new FormData();
-  //   formData.append("jobTitle", jobTitle);
-  //   formData.append("jobId", jobId);
-  //   formData.append("stage", "Sourced");
-  //   formData.append("jobPosterEmail", jobPosterEmail);
-  //   formData.append("firstName", data.firstName);
-  //   formData.append("lastName", data.lastName);
-  //   formData.append("email", data.email);
-  //   formData.append("phone", data.phone);
-  //   formData.append("address", data.address);
-  //   formData.append("coverLetter", data.coverLetter);
-  //   formData.append("summary", data.summary);
-  //   formData.append("date", isoDateString);
-  //   formData.append("educationList", JSON.stringify(educationList));
-  //   formData.append("experienceList", JSON.stringify(experienceList));
-
-  //   // Convert and append image to base64
-  //   const imageFile = data.image[0];
-  //   const imageBase64 = await convertFileToBase64(imageFile);
-  //   formData.append("imageBase64", imageBase64);
-
-  //   // Convert and append resume to base64
-  //   const resumeFile = data.resume[0];
-  //   const resumeBase64 = await convertFileToBase64(resumeFile);
-  //   formData.append("resumeBase64", resumeBase64);
-
-  //   console.log('formDat', formData);
-  //   setFirstName(data.firstName);
-  //   setLastName(data.lastName);
-  //   setEmail(data.email);
-
-  //   try {
-  //     const response = await axios.post(
-  //       "https://server-job-swift.vercel.app/upload-new",
-  //       formData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     );
-  //     console.log("from overview", response.data);
-  //     // updateData(appliedJobId);
-  //   } catch (error) {
-  //     console.error("from overview", error);
-  //   }
-
-  //   setTimeout(() => {
-  //     setIsSubmitting(false);
-  //     // setIsSubmitted(true);
-  //   }, 4000);
-  // };
+ 
 
   // Function to convert a file to base64
 

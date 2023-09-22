@@ -17,7 +17,7 @@ const PostJobs = ({ jobs,handleDelete }) => {
         <div className="flex lg:md:gap-2  items-center">
           <MdStar size={25} color="#ffca00" />
           <Link to={`applied-job/${jobs.jobId}`}>
-            <h2 className="lg:md:text-xl lg:md:font-medium  hover:underline">
+            <h2 className="lg:md:text-xl font-medium  hover:underline">
               {jobs?.jobTitleFor}
             </h2>
           </Link>
