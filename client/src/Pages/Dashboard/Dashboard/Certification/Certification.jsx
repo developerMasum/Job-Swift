@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 const Certification = () => {
   const { id } = useParams();
   const [certifiedData, setCertifiedData] = useState();
-
+  console.log(certifiedData);
   useEffect(() => {
     const URL = ` https://server-job-swift.vercel.app/all-applications/${id}`;
     fetch(URL)
@@ -26,26 +26,19 @@ const Certification = () => {
   }
 
   // State to manage form data and errors
+  // State to manage form data and errors
   const [formData, setFormData] = useState({
-    userName: "",
+    // userName: "",
     company: "",
-    title: "",
+    // title: "",
     startDate: "",
     logo: "",
     signature: "", // The signature image URL will be stored here
     signatureDetails: "",
   });
 
-  // State to manage form validation errors
-  const [formErrors, setFormErrors] = useState({
-    userName: "",
-    company: "",
-    title: "",
-    startDate: "",
-    logo: "",
-    signature: "",
-    signatureDetails: "",
-  });
+  // State to manage form errors
+  const [formErrors, setFormErrors] = useState({});
 
   // Function to handle input changes
   const handleInputChange = (e) => {
@@ -140,15 +133,28 @@ const Certification = () => {
     return isValid;
   };
 
+  // State to manage email modal visibility
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+
+  // Function to open the email modal
+  const openEmailModal = () => {
+    setIsEmailModalOpen(true);
+  };
+
+  // Function to close the email modal
+  const closeEmailModal = () => {
+    setIsEmailModalOpen(false);
+  };
+
   return (
-    <div className="pt-8 min-h-screen flex items-center justify-center">
+    <div className="pt-20 min-h-screen flex items-center justify-center">
       <div className="rounded-lg shadow-2xl p-4 md:p-8 w-full md:w-1/2">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
           Certification Form
         </h2>
         <form onSubmit={handleSubmit}>
           {/* User Name input */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label
               htmlFor="userName"
               className="text-sm md:text-base font-semibold"
@@ -168,7 +174,7 @@ const Certification = () => {
             {formErrors.userName && (
               <p className="text-red-500 text-sm mt-1">{formErrors.userName}</p>
             )}
-          </div>
+          </div> */}
           {/* Company Name input */}
           <div className="mb-4">
             <label
@@ -192,7 +198,7 @@ const Certification = () => {
             )}
           </div>
           {/* Job Title input */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label
               htmlFor="title"
               className="text-sm md:text-base font-semibold"
@@ -212,7 +218,7 @@ const Certification = () => {
             {formErrors.title && (
               <p className="text-red-500 text-sm mt-1">{formErrors.title}</p>
             )}
-          </div>
+          </div> */}
           {/* Hiring Date input */}
           <div className="mb-4">
             <label
@@ -325,60 +331,80 @@ const Certification = () => {
         onRequestClose={closeModal}
         contentLabel="Certificate Modal"
         ariaHideApp={false}
+        certifiedData={certifiedData}
       >
         <div className="pt-8 min-h-screen flex items-center justify-center">
-          <div className="bg-white rounded-lg shadow-xl p-4 md:p-8 w-1/2">
+          <div className=" bg-white rounded-lg shadow-xl p-4 md:p-8 w-1/2">
             {/* Certificate Content */}
             <div
               ref={pdfRef}
-              className="min-h-screen border-gray-400 flex items-center justify-center"
+              className="min-h-screen border-gray-400  flex items-center justify-center"
             >
               {/* ... (certificate content) ... */}
-              <div className="bg-white p-8 rounded-lg shadow-xl">
+              <div className="bg-gray-200  p-8 rounded-lg shadow-xl">
                 <div className="text-center mb-4">
                   <img
                     src={formData.logo}
                     alt="Company Logo"
                     className="w-16 h-16 mx-auto mb-2"
                   />
-                  <h1 className="text-4xl font-bold text-indigo-700">
-                    Offer Letter From{" "}
-                    <span className="text-teal-700">{formData.company}</span>
+                  <h1 className="text-2xl font-bold text-slate-700">
+                    Offer Letter From
+                    <span className="text-teal-700 mx-1">
+                      {formData.company}
+                    </span>
                   </h1>
                 </div>
                 <div className="mb-4">
                   <p className="text-xl font-semibold">
-                    Dear {formData.userName},
+                    Dear
+                    {/* {formData.userName} */}
+                    {certifiedData?.firstName && (
+                      <span className="mx-1 font-bold">
+                        {certifiedData.firstName}
+                      </span>
+                    )}
+                    ,
                   </p>
-                  <p className="text-2xl font-bold text-green-700">
+                  <p className="text-2xl font-bold text-teal-700">
                     Congratulations!
                   </p>
                 </div>
                 <p className="mb-6 text-lg">
                   We are pleased to offer you the position of
-                  <span className="text-2xl font-semibold mx-1 text-blue-700">
-                    {formData.title}
+                  <span className="text-xl font-bold mx-1 text-slate-700">
+                    {/* {formData.title} */}
+                    {certifiedData?.jobTitle && (
+                      <span>{certifiedData.jobTitle}</span>
+                    )}
                   </span>
                   at <span className="font-bold">{formData.company}</span>.
                 </p>
                 <div className="mb-6">
                   <p className="text-lg">
-                    During your training, you demonstrated exceptional skills in
-                    JavaScript, HTML, CSS, React, and the ability to apply these
-                    skills effectively to real-world projects.
+                    We are pleased to extend you an offer of employment at{" "}
+                    <span className="font-bold">{formData.company}</span> ,
+                    subject to the terms and conditions outlined in this offer
+                    letter. This offer is contingent upon your acceptance and
+                    successful completion of any background checks or other
+                    pre-employment requirements as may be required by the
+                    company.
                   </p>
                   <p className="text-lg">
                     Your dedication, hard work, and quick learning have made you
                     a valuable addition to our team.
                   </p>
                 </div>
-                <p className="mb-6 text-2xl font-semibold text-purple-700">
+                <p className="mb-6 text-sm font-semibold text-slate-700">
                   You Did It, and we are proud of you!
                 </p>
 
                 <div className="flex items-center justify-between">
                   <h2 className="text-3xl font-bold text-blue-700">
-                    {formData.title}
+                    {/* {formData.title} */}
+                    {certifiedData?.jobTitle && (
+                      <span>{certifiedData.jobTitle}</span>
+                    )}
                   </h2>
                   <div>
                     <img
@@ -390,33 +416,62 @@ const Certification = () => {
                     <p className="text-lg">{formData.signatureDetails}</p>
                   </div>
                 </div>
-                <div className="mt-8 flex justify-between">
-                  <p className="text-lg font-semibold text-red-700">
-                    Course Duration: 8 weeks
-                  </p>
-                  <p className="text-lg font-semibold text-pink-700">
-                    Certificate ID: 123456789
-                  </p>
-                </div>
               </div>
             </div>
             {/* Close and Download PDF buttons */}
-            <div className="md:flex justify-around w-1/2 mx-auto gap-4 mt-4">
+            <div className="grid md:grid-cols-3 gap-4 mt-4">
               <button
                 type="button"
                 onClick={closeModal}
-                className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md w-full md:w-1/2 transition duration-300 transform hover:scale-105"
+                className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md w-full  transition duration-300 transform hover:scale-105"
               >
                 Close
               </button>
               <button
                 type="button"
                 onClick={handleDownloadPDF}
-                className="border border-teal-700 hover:bg-green-700 text-gray-700 hover:text-white font-semibold py-2 px-4 rounded-md w-full md:w-1/2 transition duration-300 transform hover:scale-105"
+                className="border border-teal-700 hover:bg-green-700 text-gray-700 hover:text-white font-semibold py-2 px-4 rounded-md w-full  transition duration-300 transform hover:scale-105"
               >
                 Download PDF
               </button>
+              {/* Shared on Email button */}
+              <div>
+                <button
+                  type="button"
+                  onClick={openEmailModal}
+                  className="border border-gray-700 hover:bg-gray-950 hover:text-white font-semibold py-2 px-4 rounded-md w-full transition duration-300 transform hover:scale-105"
+                >
+                  Shared on Email
+                </button>
+              </div>
             </div>
+
+            {/* Email Modal */}
+            <Modal
+              isOpen={isEmailModalOpen}
+              onRequestClose={closeEmailModal}
+              contentLabel="Email Modal"
+              ariaHideApp={false}
+            >
+              {/* Email modal content */}
+              <div className="pt-8 min-h-screen flex items-center justify-center">
+                <div className="bg-white rounded-lg shadow-xl p-4 md:p-8 w-1/2">
+                  {/* Add your email modal content here */}
+                  <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
+                    Share via Email
+                  </h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Laudantium fugiat nesciunt praesentium dicta pariatur
+                    doloribus sint optio delectus qui facilis atque commodi,
+                    accusamus eaque ratione illum odit architecto ex reiciendis
+                    eos expedita voluptas quos, officia repellat quisquam? Totam
+                    consectetur magnam, temporibus repudiandae quo hic rem
+                    blanditiis recusandae? Temporibus, incidunt aperiam.
+                  </p>
+                </div>
+              </div>
+            </Modal>
           </div>
         </div>
       </Modal>

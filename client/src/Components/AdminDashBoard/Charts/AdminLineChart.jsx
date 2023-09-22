@@ -87,18 +87,14 @@ const AdminLineChart = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <div>
-        {" "}
         <p className="uppercase text-sm font-bold text-cyan-700 pb-6">
-          {" "}
-          Application wise hired candidate{" "}
+          Application wise hired candidate
         </p>
       </div>
-      <ResponsiveContainer width={600} height={400}>
+      <ResponsiveContainer width="100%" maxWidth="400px" height={400}>
         <LineChart
-          width={300}
-          height={100}
           data={data}
           margin={{
             top: 20,

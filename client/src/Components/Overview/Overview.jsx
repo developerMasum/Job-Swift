@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useLoaderData, useLocation } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { RiCloseLine, RiShareForwardLine } from "react-icons/ri";
+import { BiMessage} from "react-icons/bi";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { authContext } from "../../Auth/AuthProvider";
@@ -82,7 +83,7 @@ const Overview = () => {
 
       <div className="border bg-[#eef1f1] rounded-sm ">
         <div className=" border-b border-gray-300 py-4">
-          <h1 className="text-2xl font-semibold text-center text-gray-800">
+          <h1 className="text-xl font-semibold text-center text-gray-800">
             Job Preview: {formData?.jobTitle}
           </h1>
         </div>
@@ -114,33 +115,34 @@ const Overview = () => {
 
       <div className=" my-6 mx-auto max-w-4xl">
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <div>
-            <TabList className="flex gap-5 cursor-pointer">
-              <Tab
-                className={`${
-                  activeTab === 0
-                    ? "bg-teal-700 hover:bg-teal-600 text-white"
-                    : "border border-teal-700 text-gray-700"
-                } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
-                onClick={() => handleTabClick(0)}
-              >
-                Overview
-              </Tab>
-              <Tab
-                className={`${
-                  activeTab === 1
-                    ? "bg-teal-700 hover:bg-teal-600 text-white"
-                    : "border border-teal-700 text-gray-700"
-                } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
-                onClick={() => handleTabClick(1)}
-              >
-                Application
-              </Tab>
-            </TabList>
+          <div className="pb-5">
+          <TabList className="flex gap-5 justify-center cursor-pointer">
+  <Tab
+    className={`${
+      activeTab === 0
+        ? "bg-teal-700 hover:bg-teal-600 text-white"
+        : "bg-teal-700 text-gray-100"
+    } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
+    onClick={() => handleTabClick(0)}
+  >
+    Overview
+  </Tab>
+  <Tab
+    className={`${
+      activeTab === 1
+        ? "bg-teal-700 hover:bg-teal-600 text-white"
+        : "bg-teal-700 text-gray-700"
+    } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
+    onClick={() => handleTabClick(1)}
+  >
+    Application
+  </Tab>
+</TabList>
+
           </div>
 
           <TabPanel>
-            <div className="bg-[#ffff]50 border-[1px] px-2 rounded-sm">
+            <div className="bg-[#ffff]50 border-1 rounded-xl border-gray-800 px-2">
               <div className="overview-content p-4 divide-y-2 leading-7 space-y-5">
                 {/* Job description */}
                 <div>
@@ -224,7 +226,34 @@ const Overview = () => {
           </TabPanel>
         </Tabs>
       </div>
-
+      <div className="space-y-4">
+        <div className=" text-center flex gap-7 justify-center  py-2">
+          <Link to="/" className="hover:underline text-teal-700 font-semibold">
+            View website
+          </Link>
+          <Link
+            to="../dashboard/jobs"
+            className="hover:underline text-teal-700 font-semibold"
+          >
+            View all jobs
+          </Link>
+          <Link
+            to="../dashboard/inbox-email"
+            className="hover:underline inline text-teal-700 font-semibold"
+          >
+         Inbox   <BiMessage size={20} className="inline"/>
+          </Link>
+        </div>
+        <div className="bg-neutral-100 flex gap-7 justify-center text-center py-2">
+          <p className="text-gray-700">PoweredBy <span className="font-semibold text-teal-700 underline">JobSwift ATS</span></p>
+          <Link
+            to="../dashboard/report-center"
+            className="hover:underline font-semibold text-gray-700"
+          >
+            Report
+          </Link>
+        </div>
+      </div>
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">

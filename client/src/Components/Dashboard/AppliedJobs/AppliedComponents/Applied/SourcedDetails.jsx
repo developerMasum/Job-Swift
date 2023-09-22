@@ -51,7 +51,7 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
   const handleMoveToApplied = (id) => {
     console.log("Move to applied", id);
     try {
-      const response = fetch(`https://server-job-swift.vercel.app/applicant/stage/${id}`, {
+      const response = fetch(`https://server-hazel-nine.vercel.app/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -82,7 +82,7 @@ const Table = ({ sourcedCandi: candidates, isLoading }) => {
 // const handleDisQualify = (id) => {
 //   setIsModalOpen(true);
 //   try {
-//     const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
+//     const response = fetch(` https://server-hazel-nine.vercel.app/applicant/stage/${id}`, {
 //       method: "PATCH",
 //       headers: {
 //         "Content-Type": "application/json",

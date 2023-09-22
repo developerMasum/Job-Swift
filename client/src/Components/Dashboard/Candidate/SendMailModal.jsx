@@ -4,6 +4,7 @@ import { FiSend } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 
 const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
+  // console.log("value", value);
   const {
     register,
     handleSubmit,
@@ -28,6 +29,7 @@ const SendMailModal = ({ isOpen, onClose, onSubmit, value }) => {
   }, []);
 
   const candidateEmail = mail.find((e) => e._id === value)?.email;
+  console.log('candidateEmail',candidateEmail);
 
   useEffect(() => {
     if (candidateEmail) {

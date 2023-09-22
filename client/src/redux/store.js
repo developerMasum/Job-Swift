@@ -4,6 +4,7 @@ import jobReducer from "./jobSlice";
 import postReducer from "./postJob/postSlice";
 import applicationsReducer from "./application/applicationsSlice";
 import candidatesReducer from "./candidates/candidatesSlice";
+import stageReducer from "./stage/stageSlice";
 
 
 
@@ -12,7 +13,8 @@ const store = configureStore({
         counter: jobReducer,
        posts: postReducer,
        application:applicationsReducer,
-       candidates:candidatesReducer
+       candidates:candidatesReducer,
+       stage: stageReducer
        
         
     }

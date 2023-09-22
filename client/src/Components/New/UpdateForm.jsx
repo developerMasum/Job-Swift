@@ -488,10 +488,10 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
         }
       );
 
-      console.log("from overview", response.data);
+      // console.log("from overview", response.data);
       // updateData(appliedJobId);
     } catch (error) {
-      console.error("from overview", error);
+      // console.error("from overview", error);
     }
 
     setIsSubmitting(false);
@@ -599,7 +599,7 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
   console.log(email);
 
   return (
-    <div>
+    <div className="border-1 border-gray-500 rounded-xl">
       {isSubmitted ? (
         <div className="bg-gradient-to-br from-pink-200 to-blue-200 flex flex-col items-center justify-center rounded-lg p-12 space-y-6 shadow-md">
           <div className="text-green-500">
@@ -632,19 +632,19 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
           </p>
         </div>
       ) : (
-        <div className="mx-w-5xl container mx-auto">
+        <div className="mx-w-5xl container mx-auto pt-5">
           <div className="flex justify-center items-center">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="bg-white shadow-md rounded-lg w-full max-w-5xl p-6"
               encType="multipart/form-data"
             >
-              <div className="bg-neutral-100 p-2">
-                <h1 className="text-lg font-semibold text-gray-500">
+              <div className="bg-neutral-100 rounded-lg text-center py-2">
+                <h1 className="text-lg font-semibold text-teal-700">
                   Personal Details
                 </h1>
               </div>
-              <div className="md:flex gap-4">
+              <div className="md:flex gap-4 pt-2">
                 <div className="mb-4  w-full">
                   <label className="block mb-1" htmlFor="firstName">
                     First Name

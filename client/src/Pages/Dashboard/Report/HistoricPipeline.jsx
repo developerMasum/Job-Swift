@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
 import { FaAngleDoubleDown } from 'react-icons/fa';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { curveCardinal } from 'd3-shape';
 
 const HistoricPipeline = () => {
 
@@ -12,48 +12,51 @@ const HistoricPipeline = () => {
       ];
       const data = [
             {
-                  name: 'Page A',
-                  uv: 4000,
+                  name: 'June',
+                  uv: 2000,
                   pv: 2400,
                   amt: 2400,
             },
             {
-                  name: 'Page B',
+                  name: 'July',
                   uv: 3000,
                   pv: 1398,
                   amt: 2210,
             },
             {
-                  name: 'Page C',
+                  name: 'August',
                   uv: 2000,
                   pv: 9800,
                   amt: 2290,
             },
             {
-                  name: 'Page D',
+                  name: 'September',
                   uv: 2780,
                   pv: 3908,
                   amt: 2000,
             },
             {
-                  name: 'Page E',
+                  name: 'October',
                   uv: 1890,
                   pv: 4800,
                   amt: 2181,
             },
             {
-                  name: 'Page F',
+                  name: 'November',
                   uv: 2390,
                   pv: 3800,
                   amt: 2500,
             },
             {
-                  name: 'Page G',
+                  name: 'December',
                   uv: 3490,
                   pv: 4300,
                   amt: 2100,
             },
       ];
+
+      const cardinal = curveCardinal.tension(0.2);
+
       return (
             <div className='pt-20 '>
                   <div className="navbar  shadow-md p-4 shadow-slate-400 max-w-7xl mb-10">
@@ -76,27 +79,28 @@ const HistoricPipeline = () => {
                               <button className="btn btn-outline btn-sm">Export To CV</button>
                         </div>
                   </div>
-                  <ResponsiveContainer width="80%" height="50%">
-                        <AreaChart
-                              width={500}
-                              height={400}
-                              data={data}
-                              margin={{
-                                    top: 10,
-                                    right: 30,
-                                    left: 0,
-                                    bottom: 0,
-                              }}
-                        >
-                              <CartesianGrid strokeDasharray="3 3" />
-                              <XAxis dataKey="name" />
-                              <YAxis />
-                              <Tooltip />
-                              <Area type="monotone" dataKey="uv" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                              <Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-                              <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
-                        </AreaChart>
-                  </ResponsiveContainer>
+                  <div className='lg:md:ms-32'>
+                        <ResponsiveContainer width="80%" height="40%">
+                              <AreaChart
+                                    width={500}
+                                    height={400}
+                                    data={data}
+                                    margin={{
+                                          top: 10,
+                                          right: 30,
+                                          left: 0,
+                                          bottom: 0,
+                                    }}
+                              >
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" fillOpacity={0.3} />
+                                    <Area type={cardinal} dataKey="uv" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.3} />
+                              </AreaChart>
+                        </ResponsiveContainer>
+                  </div>
 
                   <div className='my-2 shadow-2xl mt-10 shadow-gray-400 p-12 border border-slate-200 rounded-lg'>
                         <div className="overflow-x-auto">

@@ -33,7 +33,7 @@ const ProgressCards = () => {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
       {data.map((singleData, index) => (
         <div key={index}>
           <div className="flex  items-center justify-between gap-6 shadow-lg p-4">

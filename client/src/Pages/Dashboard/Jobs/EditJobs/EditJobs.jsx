@@ -67,7 +67,7 @@ const EditJobs = () => {
     <div className="pt-20">
       <div className="md:flex justify-between items-center my-10">
         <div className=" w-full md:w-9/12 rounded-lg border-[1px]">
-          <div className="bg-gray-50 p-2">
+          <div className="bg-gray-50 p-4">
             <h1 className="text-lg text-gray-500 font-bold">
               Job title and Department details
             </h1>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 const BestTalent = () => {
@@ -15,10 +16,12 @@ const BestTalent = () => {
           along the way.
         </p>
         <div className="flex flex-col md:flex-row justify-center md:justify-start gap-4 md:gap-8 my-4">
-          <button className="btn btn-info   md:w-44">Get My Free Demo</button>
-          <button className="btn btn-outline btn-success  md:w-44 mt-4 md:mt-0">
+          <Link to={"/demo-page"} className="btn btn-info   md:w-44">
+            Get My Free Demo
+          </Link>
+          <Link to={"/register"} className="btn btn-outline btn-success  md:w-44 mt-4 md:mt-0">
             Try It Free
-          </button>
+          </Link>
         </div>
       </div>
       <div className="mt-6 md:mt-0">

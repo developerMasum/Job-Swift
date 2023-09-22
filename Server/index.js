@@ -1,20 +1,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const multer = require("multer");
 require("dotenv").config();
-const path = require("path");
 const sendMail = require("./sendMail");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const fileUpload = require("express-fileupload");
 
 const port = process.env.PORT || 5000;
-const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
+// const uploadPath = path.join(__dirname, "public", "images"); // Specify the destination directory for images
 
-if (!fs.existsSync(uploadPath)) {
-  fs.mkdirSync(uploadPath, { recursive: true });
-}
+// if (!fs.existsSync(uploadPath)) {
+//   fs.mkdirSync(uploadPath, { recursive: true });
+// }
 
 // middleware
 const corsOptions = {
@@ -37,8 +35,8 @@ app.use(fileUpload());
 //   next();
 // });
 
-const uploadDirectory = path.join(__dirname, "public", "uploads");
-app.use(express.static(uploadDirectory));
+// const uploadDirectory = path.join(__dirname, "public", "uploads");
+// app.use(express.static(uploadDirectory));
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const { log } = require("console");
@@ -47,6 +45,7 @@ const { log } = require("console");
 
 const verifyJWT = (req, res, next) => {
   const authorization = req.headers.authorization;
+  // console.log(req.headers);
   if (!authorization) {
     return res
       .status(401)
@@ -56,6 +55,7 @@ const verifyJWT = (req, res, next) => {
   const token = authorization.split(" ")[1];
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    // console.log(err);
     if (err) {
       return res
         .status(401)
@@ -66,28 +66,11 @@ const verifyJWT = (req, res, next) => {
   });
 };
 
-// ATSWebsite atswebsite2023
-// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mq0mae1.mongodb.net/?retryWrites=true&w=majority`
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/images");
-  },
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
 
-const upload = multer({ storage });
 
 // node mailer --mailing section --
 app.post("/mail", sendMail);
-// app.get('/show-mail', async(req,res)=>{
-//   const result = await UserCollection.find().toArray();
-//   res.send(result);
-// })
+
 
 const uri =
   "mongodb+srv://ATSWebsite:atswebsite2023@cluster0.3besjfn.mongodb.net/?retryWrites=true&w=majority";
@@ -462,15 +445,6 @@ async function run() {
       res.send(result);
     });
 
-    // get all application
-
-    // app.get("/all-applications/:id", async (req, res) => {
-    //   const id = req.params.id;
-    //   const query = { _id: new ObjectId(id) };
-    //   const result = await applicationsPostCollection.findOne(query);
-    //   res.send(result);
-
-    // });
     app.get("/all-applications/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -480,28 +454,16 @@ async function run() {
 
     // sorting get data -and get data all candidates
     app.get("/all-applications", async (req, res) => {
-      const sortOrder = req.query.sortOrder || "newest";
-
-      const sortOptions = {};
-
-      if (sortOrder === "newest") {
-        sortOptions.date = -1; // Sort by date in descending order (newest first)
-      } else if (sortOrder === "oldest") {
-        sortOptions.date = 1; // Sort by date in ascending order (oldest first)
-      }
-
       try {
-        const result = await applicationsPostCollection
-          .find()
-          .sort(sortOptions) // Apply the sorting options
-          .toArray();
-
+        const result = await applicationsPostCollection.find().toArray();
+    
         res.send(result);
       } catch (error) {
         console.error("Error fetching data:", error);
         res.status(500).json({ error: "Internal server error" });
       }
     });
+    
 
     // test  get candidate by specific jobs
     app.get("/all-candidate/:email", async (req, res) => {

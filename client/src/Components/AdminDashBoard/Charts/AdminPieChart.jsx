@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const AdminPieChart = () => {
   const data = [
@@ -25,26 +25,33 @@ const AdminPieChart = () => {
   };
 
   return (
- <div> 
-       <PieChart width={600} height={400}> {/* Adjust the width and height here */}
-      <Pie
-        data={data}
-        cx={300} // Adjust the center (x-coordinate) of the Pie Chart
-        cy={200} // Adjust the center (y-coordinate) of the Pie Chart
-        labelLine={false}
-        label={renderCustomizedLabel}
-        outerRadius={120} // Adjust the outer radius to make the chart bigger
-        fill="#8884d8"
-        dataKey="value"
-      >
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-      <Tooltip />
-      <Legend />
-    </PieChart>
- </div>
+    <div className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 my-8 ml-20">
+      <div>
+        <p className="uppercase text-sm font-bold text-cyan-700 pb-3">
+          Pie Chart Title
+        </p>
+      </div>
+      <ResponsiveContainer width="100%" aspect={1.5}>
+        <PieChart>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            label={renderCustomizedLabel}
+            outerRadius="70%"
+            fill="#8884d8"
+            dataKey="value"
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

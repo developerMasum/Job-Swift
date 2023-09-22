@@ -11,7 +11,7 @@ const CandidateTables = ({ candidatesData }) => {
   // console.log(candidates);
 
   const [candidates, setCandidates] = useState(candidatesData);
-  console.log(candidates);
+  // console.log(candidates);
 
   const [isChecked, setIsChecked] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,13 +71,13 @@ const CandidateTables = ({ candidatesData }) => {
   const openModal = () => {
     setIsModalOpen(true);
   };
-  
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
   const openMessageModal = () => {
-    setMessageModalOpen(true)
+    setMessageModalOpen(true);
   };
 
   const closeMessageModal = () => {
@@ -252,7 +252,7 @@ const CandidateTables = ({ candidatesData }) => {
                   />
                   <Link to={`profile/${deleteId}`}>
                     <button className="bg-[#00756a] px-2 py-1 rounded-xl  text-white ">
-                      Move to Next Step
+                      Move to Other Stage
                     </button>
                   </Link>
                 </div>
@@ -266,11 +266,11 @@ const CandidateTables = ({ candidatesData }) => {
             onSubmit={onSubmit}
           />
           <SendMessageModal
-           value={emailId}
-           isOpen={messageModalOpen}
-           onClose={closeMessageModal}
-           onSubmit={onSubmit}
-          > </SendMessageModal>
+            value={emailId}
+            isOpen={messageModalOpen}
+            onClose={closeMessageModal}
+            onSubmit={onSubmit}
+          ></SendMessageModal>
         </>
       )}
     </div>

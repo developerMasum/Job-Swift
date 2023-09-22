@@ -66,7 +66,6 @@ const SendMessageModal = ({ isOpen, onClose, onSubmit, value }) => {
         isOpen ? "block" : "hidden"
       } fixed inset-0 w-full h-full flex items-center justify-center z-50`}
     >
-        
       <div
         className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"
         onClick={handleClose}
@@ -168,7 +167,6 @@ const SendMessageModal = ({ isOpen, onClose, onSubmit, value }) => {
               >
                 Send <FiSend className="inline-block" />
               </button>
-              
             </div>
           </form>
         </div>

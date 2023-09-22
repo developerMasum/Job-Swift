@@ -63,15 +63,15 @@ const UsersAdmin = () => {
   };
 
   return (
-    <div className="pl-48">
+    <div className="pl-4 md:pl-48">
       <div className="pt-12 pb-8">
         <p className="font-bold">
           Users : <span className="">{users.length}</span>
         </p>
         <p className="text-cyan-700 font-bold"> Managing the Team Members </p>
       </div>
-      <div>
-        <table className="w-full border-collapse border-b">
+      <div className="overflow-x-auto">
+        <table className="w-full table-auto border-collapse border-b">
           <thead>
             <tr>
               <th className="bg-gray-200 text-left px-4 py-2 font-bold">
@@ -107,9 +107,7 @@ const UsersAdmin = () => {
                 <td className="border-t px-4 py-2 ">{user.email}</td>
                 <td className="border-t px-4 py-2 ">{user.companyName}</td>
                 <td className="border-t px-4 py-2 ">{user.country}</td>
-                {/* <td className="border-t px-4 py-2  ">
-            <button className="bg-cyan-500 flex gap-3 text-white px-2 py-1 rounded"> <BsUnlock /> user</button> </td> */}
-                <td>
+                <td className="border-t px-4 py-2 ">
                   {" "}
                   <button
                     onClick={() => makeAdmin(user)}
@@ -120,7 +118,7 @@ const UsersAdmin = () => {
                     {user.role === "admin" ? "Admin" : "User"}
                   </button>
                 </td>
-                <td>
+                <td className="border-t px-4 py-2 ">
                   {" "}
                   <button
                     onClick={() => handleDeleteUser(user._id)}

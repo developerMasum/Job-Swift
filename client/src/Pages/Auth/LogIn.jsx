@@ -12,14 +12,17 @@ import Loader from "../../Components/Loader/Loader";
 import useAdmin from "../../Hooks/AdminHook/useAdmin";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import "./LogIn.css";
+import axios from "axios";
+import useAxiosSecure from "../../Hooks/AdminHook/useAxiosSecure";
 
 const LogIn = () => {
-  // const [isAdmin] = useAdmin();
+  // const [isAdmin, isAdminLoading] = useAdmin();
+  // console.log("isadmin", isAdmin);
   const [showPassword, setShowPassword] = useState(false);
 
   // console.log('at login page',isAdmin);
 
-  // const isAdmin = useAdmin();
+  // const [isAdmin] = useAdmin();
   //   console.log(isAdmin);
   const emailRef = useRef();
 
@@ -31,56 +34,58 @@ const LogIn = () => {
   } = useForm();
   const { logIn, resetPassword, loading, userUpdatePassword } =
     useContext(authContext);
-  const location = useLocation();
   const navigate = useNavigate();
-  const destination = "/dashboard/jobs";
+  // const destination = isAdmin
+  //   ? "/dashboard/admin/dashboard"
+  //   : "/dashboard/jobs";
+  const [axiosSecure] = useAxiosSecure();
 
   // const [error, setError] = useState(null)
 
-  const onSubmit = (data) => {
-    // console.log(data)
-    // console.log(data.password)
-    const email = data.email;
-    const password = data.password;
-    // console.log(email, password);
-    //forget password reset
-    resetPassword(email)
-      .then(() => {
-        // Password reset email sent!
-        // ..
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState(null)
 
-    logIn(email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-        // console.log(user);
-
-        toast.success("Successfully LogIn");
-        navigate(destination);
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        toast.error(errorMessage);
-      });
+  const onSubmit = async ({ email, password }) => {
+    try {
+      // setLoading(true);
+      const { user } = await logIn(email, password);
+      const { data: dataToken } = await axios.post(
+        " http://localhost:5000/jwt",
+        {
+          email: email,
+        }
+      );
+      //  console.log(dataToken.token);
+      console.log("from error", user);
+      const { data } = await axios.get(
+        `http://localhost:5000/users/admin/${user?.email}`,
+        { headers: { Authorization: `Bearer ${dataToken.token}` } }
+      );
+      //  console.log('isadmin error',isAdmin);
+      toast.success("Successfully LogIn");
+      //  setLoading(false);
+      if (data.admin) {
+        navigate("/dashboard/admin/dashboard");
+      } else {
+        navigate("/dashboard/jobs");
+      }
+    } catch (error) {
+      //  setLoading(false);
+      console.error(error);
+      // toast.error(errorMessage);
+    }
   };
 
   return (
-    <div className="   lg:md:p-40 bg-gradient-to-r from-indigo-700 from-10% via-sky-800 via-30% to-emerald-500 to-90% ">
+    <div className="pt-20 pb-1 lg:md:p-40 bg-gradient-to-r from-indigo-700 from-10% via-sky-800 via-30% to-emerald-500 to-90% ">
       {/* // <div className="login_container"> */}
-      <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 rounded-2xl shadow-lg shadow-black ">
-        <div className="rounded-md">
+      <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 lg:md:rounded-2xl shadow-lg shadow-black ">
+        <div className="">
           {/* <img className="h-[380px] rounded-l-2xl" src={login} alt="" /> */}
           <img
-            src='https://i.ibb.co/Fqhmwhz/login01.png'
+            src="https://i.ibb.co/Fqhmwhz/login01.png"
             alt=""
-            className="h-[100%]  lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5"
+            className="h-[100%] lg:md:w-[400px] w-[100%] lg:md:rounded-l-2xl bg-white bg-opacity-40 p-5"
           />
         </div>
         <form
@@ -100,7 +105,7 @@ const LogIn = () => {
               ref={emailRef}
               {...register("email", { required: true })}
               placeholder="email"
-              className="rounded-md bg-[#2f5c58]  border-green-800 "
+              className="rounded-md bg-[#2f5c58]  border-green-800 bg-opacity-0"
             />
             {errors.email && (
               <span className="text-orange-800">This field is required</span>

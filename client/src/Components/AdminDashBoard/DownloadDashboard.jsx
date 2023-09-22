@@ -4,11 +4,10 @@ import { authContext } from "../../Auth/AuthProvider";
 
 const DownloadDashboard = () => {
   const { user } = useContext(authContext);
-  console.log(user);
-  // console.log(user);
+
   return (
-    <div className="flex justify-between items-center mb-10 ml-16">
-      <div>
+    <div className="lg:flex lg:justify-between lg:items-center lg:mb-10 lg:ml-16">
+      <div className="mb-4 lg:mb-0">
         <p className="text-sm font-bold space-x-2">
           {" "}
           Hey,{" "}
@@ -18,8 +17,8 @@ const DownloadDashboard = () => {
           Welcome to your dashboard
         </p>
       </div>
-      <div className="">
-        <button className="uppercase flex items-center justify-center gap-3  text-sm font-semibold border-2 border-cyan-500 text-gray-600 hover:bg-cyan-300 hover:text-white px-4 py-2 rounded-lg transition duration-300  ">
+      <div className="text-center lg:text-right">
+        <button className="uppercase flex items-center justify-center gap-3 text-sm font-semibold border-2 border-cyan-500 text-gray-600 hover:bg-cyan-300 hover:text-white px-4 py-2 rounded-lg transition duration-300">
           {" "}
           <BsDownload /> Download report{" "}
         </button>
@@ -29,3 +28,4 @@ const DownloadDashboard = () => {
 };
 
 export default DownloadDashboard;
+

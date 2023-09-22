@@ -18,19 +18,21 @@ import {
   BiCategoryAlt,
 } from "react-icons/bi";
 import toast from "react-hot-toast";
-import { HiX } from "react-icons/hi";
+// import { HiX } from "react-icons/hi";
 
 import { FaUserTie, FaMapMarkerAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import { GrSend } from "react-icons/gr";
 
 import { useEffect, useState } from "react";
 import Loader from "../../../Components/Loader/Loader";
-import ViewPdfCandidate from "./ViewPdfCandidate";
+// import ViewPdfCandidate from "./ViewPdfCandidate";
 import { PiGraduationCapBold } from "react-icons/pi";
 import CandidateStages from "./CandidateStages";
 import { RiCloseLine } from "react-icons/ri";
 import Calendar from "react-calendar"; // Import the react-calendar component
 import Swal from "sweetalert2";
+import SendMailModal from "../../../Components/Dashboard/Candidate/SendMailModal";
+import axios from "axios";
 
 const CandidiateUserDetails = () => {
   const { id } = useParams();
@@ -59,15 +61,15 @@ const CandidiateUserDetails = () => {
     setIsMessageModalOpen(false);
   };
   // For Calender Modal
-  const [isCalenderModalOpen, setIsCalenderModalOpen] = useState(false);
+  // const [isCalenderModalOpen, setIsCalenderModalOpen] = useState(false);
 
-  const openCalenderModal = () => {
-    setIsCalenderModalOpen(true);
-  };
+  // const openCalenderModal = () => {
+  //   setIsCalenderModalOpen(true);
+  // };
 
-  const closeCalenderModal = () => {
-    setIsCalenderModalOpen(false);
-  };
+  // const closeCalenderModal = () => {
+  //   setIsCalenderModalOpen(false);
+  // };
 
   // For Comments Modal
   const [isCommentsModalOpen, setIsCommentsModalOpen] = useState(false);
@@ -83,7 +85,7 @@ const CandidiateUserDetails = () => {
   // Email section
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [modalEmail, setModalEmail] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -93,29 +95,35 @@ const CandidiateUserDetails = () => {
     setPhone(e.target.value);
   };
 
-  const handleEmailChange = (e) => {
-    setModalEmail(e.target.value);
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  const handleEmailSubmit = (e) => {
-    e.preventDefault();
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
-    // Assuming you have some logic here to send the email
+  const onSubmit = (data) => {
+    const mailData = {
+      email: data.to,
+      subject: data.subject,
+      message: data.message,
+    };
 
-    // Show a success message using SweetAlert2
-    Swal.fire({
-      icon: "success",
-      title: "Success!",
-      text: "Your email has been sent successfully.",
-    });
+    // Send the POST request to the server
+    axios
+      .post(" http://localhost:5000/mail", mailData)
+      .then((response) => {
+        // The code inside this block will only run if the request is successful
+        toast.success("Email sent successfully!");
+      })
+      .catch((error) => {
+        // The code inside this block will run if there's an error with the request
+        console.error("Error sending email:", error);
+        toast.error("Error sending email.");
+      });
 
-    // Clear the input fields
-    setName("");
-    setPhone("");
-    setModalEmail("");
-
-    // Close the modal
-    closeEmailModal();
+    closeModal();
   };
 
   // Message section
@@ -236,6 +244,7 @@ const CandidiateUserDetails = () => {
     stage,
     educationList,
     date,
+    _id,
   } = userDetails2 || {};
 
   return (
@@ -250,24 +259,34 @@ const CandidiateUserDetails = () => {
               ></BiDotsHorizontal>
 
               <BiEnvelope
-                onClick={openEmailModal}
+                onClick={openModal}
+                title="Send Mail"
                 size={25}
                 className="text-swift"
               />
               <BiMessageCheck
                 onClick={openMessageModal}
                 size={25}
+                title="Send Message "
                 className="text-swift"
               />
-              <BiSolidCalendar
-                onClick={openCalenderModal}
-                size={35}
-                className="border-r-2 border-slate-400 pr-3 text-swift "
-              ></BiSolidCalendar>
+              <a
+                href="https://calendar.google.com/calendar/u/2/r"
+                target="_blank"
+              >
+                <BiSolidCalendar
+                  // onClick={openCalenderModal}
+                  size={35}
+                  title="Set Event"
+                  className="border-r-2 border-slate-400 pr-3 text-swift"
+                ></BiSolidCalendar>
+              </a>
+
               <BiSolidChat
                 onClick={openCommentsModal}
                 size={25}
                 className="text-swift"
+                title="Chat"
               />
 
               <div className="flex border-r-2 border-slate-400 pr-8 text-2xl">
@@ -277,6 +296,7 @@ const CandidiateUserDetails = () => {
               <BiSolidHand
                 onClick={() => handleDisQualified(id)}
                 size={25}
+                title="Disqualify"
                 className="text-red-700"
               ></BiSolidHand>
 
@@ -305,11 +325,7 @@ const CandidiateUserDetails = () => {
                       className="flex gap-2 items-center mb-2 font-semibold"
                       key={index}
                     >
-                      {" "}
-                      <PiGraduationCapBold
-                        size={20}
-                        className="text-swift"
-                      />{" "}
+                      <PiGraduationCapBold size={20} className="text-swift" />
                       {education?.institution}
                     </h2>
                   );
@@ -378,20 +394,17 @@ const CandidiateUserDetails = () => {
               {/* cover letter */}
               <div className="mb-2 border border-slate-100 py-5 pr-5 shadow-sm">
                 <p className="text-swift font-bold text-base mb-3">
-                  {" "}
-                  COVER LETTER{" "}
+                  COVER LETTER
                 </p>
                 {coverLetter ? (
                   <>
-                    {" "}
-                    <p className="w-5/6"> {coverLetter}</p>{" "}
+                    <p className="w-5/6"> {coverLetter}</p>
                   </>
                 ) : (
                   <>
-                    {" "}
                     <p className="text-red-800 font-semibold">
-                      The candidate did not provide a cover letter{" "}
-                    </p>{" "}
+                      The candidate did not provide a cover letter
+                    </p>
                   </>
                 )}
                 <div className="divider w-5/6"></div>
@@ -401,19 +414,23 @@ const CandidiateUserDetails = () => {
                 <p className="text-swift font-bold text-base mb-3"> SUMMARY </p>
                 {summary ? (
                   <>
-                    {" "}
-                    <p className="w-5/6"> {coverLetter}</p>{" "}
+                    <p className="w-5/6"> {coverLetter}</p>
                   </>
                 ) : (
                   <>
-                    {" "}
                     <p className="text-red-800 font-semibold">
-                      The candidate did not provide a cover letter{" "}
-                    </p>{" "}
+                      The candidate did not provide a cover letter
+                    </p>
                   </>
                 )}
                 <div className="divider w-5/6"></div>
               </div>
+              <SendMailModal
+                value={_id}
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                onSubmit={onSubmit}
+              />
 
               <div className="border max-w-3xl border-slate-200 p-10 text-center">
                 <iframe
@@ -568,86 +585,14 @@ const CandidiateUserDetails = () => {
         </div>
       </div>
       {/*Email Modal start*/}
-      {isEmailModalOpen && (
-        <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
-          <div className="modal-container bg-white md:w-1/2 lg:w-3/4 p-4 rounded-lg shadow-lg">
-            <div className="flex justify-between items-center mb-4">
-              {/* Modal title */}
-              <h2 className="mx-auto text-2xl font-bold text-gray-800">
-                Email Us
-              </h2>
-              {/* Close modal button */}
-              <button
-                onClick={closeEmailModal}
-                className="bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
-              >
-                <RiCloseLine className="text-lg" />
-              </button>
-            </div>
-            {/* Email Form */}
-            <form onSubmit={handleEmailSubmit} className="text-gray-700">
-              <div className="mb-4">
-                <label htmlFor="name" className="block mb-2 text-sm">
-                  Name:
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-400"
-                  value={name}
-                  onChange={handleNameChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="phone" className="block mb-2 text-sm">
-                  Phone:
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-400"
-                  value={phone}
-                  onChange={handlePhoneChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="email" className="block mb-2 text-sm">
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-400"
-                  value={email}
-                  onChange={handleEmailChange}
-                  required
-                />
-              </div>
-              <div className="flex justify-center">
-                <button
-                  type="submit"
-                  className="flex items-center gap-2 bg-teal-700 text-white px-4 py-2 rounded-md hover:bg-teal-500 focus:outline-none"
-                >
-                  <span>Send Email</span>
-                  <GrSend />
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+
       {/*Email Modal end*/}
 
       {/* Message Modal start*/}
       {isMessageModalOpen && (
-        <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50">
+        <div className="fixed bg-gray-200 inset-0 flex items-center justify-center z-50 ">
           <div className="modal-container bg-white md:w-1/2 lg:w-3/4 p-4 rounded-lg shadow-lg relative">
-            <div className="flex justify-between items-center mb-4"></div>
+            <div className="flex justify-between items-center mb-4 "></div>
             {/* Message Box */}
             <form onSubmit={handleMessageSubmit} className="text-gray-700">
               <div className="mb-4">
@@ -670,7 +615,7 @@ const CandidiateUserDetails = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="bg-teal-700 text-white px-4 py-2 rounded-md hover:bg-teal-500 focus:outline-none"
+                  className="bg-teal-700 w-1/2 text-white px-4 py-2 rounded-md hover:bg-teal-500 focus:outline-none"
                 >
                   Send Message
                 </button>
@@ -688,33 +633,7 @@ const CandidiateUserDetails = () => {
       )}
       {/* Message Modal end*/}
       {/* Calender Modal start*/}
-      {isCalenderModalOpen && (
-        <div className="fixed inset-0 bg-gray-600 flex items-center justify-center z-50">
-          <div className="modal-container bg-white p-4 md:p-8 lg:p-12 rounded-lg shadow-lg max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              {/* Modal title */}
-              <h2 className="text-2xl font-bold text-gray-800">Calendar</h2>
-              {/* Close modal button */}
-              <button
-                onClick={closeCalenderModal}
-                className="bg-[#d73939] text-white px-4 py-2 rounded-md hover:bg-[#4f0000] focus:outline-none"
-              >
-                <RiCloseLine className="text-lg" />
-              </button>
-            </div>
-            {/* Add your share options/content here */}
-            <div className="text-gray-700 mt-4">
-              {/* Render the react-calendar component */}
-              <Calendar
-                onChange={handleDateChange}
-                value={nDate}
-                calendarType="US"
-                className="calendar"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+
       {/* Calender Modal end*/}
       {/* Comments Modal start*/}
       {isCommentsModalOpen && (
