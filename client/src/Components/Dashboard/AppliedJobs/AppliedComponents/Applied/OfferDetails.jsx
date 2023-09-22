@@ -12,6 +12,8 @@ import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
 import NoContent from "../../NoContent";
 import { useDispatch, useSelector } from "react-redux";
 import { createSetStage } from "../../../../../redux/stage/api";
+import SendRejectionMail from "../../Modals/SendRejectionMail";
+import { BiSolidHand } from "react-icons/bi";
 
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
@@ -56,6 +58,39 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   if (isLoading) {
     return <LoaderInternal></LoaderInternal>;
   }
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const handleDisQualify = (id) => {
+    setIsModalOpen(true);
+    try {
+      const response = fetch(
+        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ stage: "Disqualified" }),
+        }
+      );
+
+      if (response) {
+        // closeModal()
+        toast.success("This Candidate is Disqualified");
+      } else {
+        console.error("Failed to update stage.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+
+
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
@@ -197,6 +232,16 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                           <AiOutlinePhone className="w-6 h-6" />
                           <span>Call</span>
                         </a>
+
+                        <button
+                          onClick={() =>
+                            handleDisQualify(selectedCandidate._id)
+                          }
+                          className="  px-2 rounded-md py-1 border text-sm border-red-500"
+                        >
+                          <BiSolidHand className="inline-block mr-2" />
+                          Disqualify & Rejection Mail
+                        </button>
                         <button
                           onClick={() =>
                             handleMoveToApplied(selectedCandidate?._id)
@@ -241,6 +286,12 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                       </p>
                     </div>
                   </div>
+                  <SendRejectionMail
+                    value={selectedCandidate?.email}
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                   
+                  />
 
                   <div className="px-6 py-4 border-t border-gray-200 text-start">
                     <h3 className="mb-5  text-teal-700 font-bold text-sm">

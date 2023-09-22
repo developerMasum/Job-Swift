@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { RiCloseLine, RiShareForwardLine } from "react-icons/ri";
-import { BiMessage} from "react-icons/bi";
+import { BiMessage } from "react-icons/bi";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { authContext } from "../../Auth/AuthProvider";
@@ -43,7 +43,6 @@ const Overview = () => {
     setIsModalOpen(false);
   };
 
-  
   const [activeTab, setActiveTab] = useState(0); // Initialize the active tab to 0 (the first tab)
 
   const handleTabClick = (index) => {
@@ -52,41 +51,10 @@ const Overview = () => {
 
   return (
     <div className="">
-      {/* <div className="border-[1px] ">
-        <div className="border-b-[1px]  bg-gray-100">
-        
-          <h1 className="text-2xl font-semibold mb-4 text-center">
-            Job Preview: {formData?.jobTitle}
-          </h1>
-        </div>
-
-        <div className="flex justify-between items-center bg-[#F5F5F5] border-b-[1px] shadow-md rounded-md p-4">
-          <div className="p-4">
-            
-            <h1 className="font-bold text-3xl text-[#00756a] mb-2">
-              {user?.displayName}
-            </h1>
-            <h1 className="text-xl font-semibold mb-4">{formData?.jobTitle}</h1>
-            <div className="flex text-gray-600">
-              <h2 className="mr-2">{formData?.jobLocation}</h2>
-              <h2 className="text-[#707070]">• {formData?.employmentType}</h2>
-            </div>
-          </div>
-          
-          <button
-            onClick={openModal}
-            className="flex items-center text-[#00756a] hover:text-[#004f46]"
-          >
-            <RiShareForwardLine className="text-2xl mr-1" />
-            <span className="font-semibold">Share Jobs</span>
-          </button>
-        </div>
-      </div> */}
-
       <div className="border bg-[#eef1f1] rounded-sm ">
         <div className=" border-b border-gray-300 py-4">
-          <h1 className="text-xl font-semibold text-center text-gray-800">
-            Job Preview: {formData?.jobTitle}
+          <h1 className="text-2xl font-semibold text-center text-teal-800">
+         {formData?.jobTitle}
           </h1>
         </div>
 
@@ -119,28 +87,23 @@ const Overview = () => {
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
           <div className="pb-5">
           <TabList className="flex gap-5 justify-center cursor-pointer">
-  <Tab
-    className={`${
-      activeTab === 0
-        ? "bg-teal-700 hover:bg-teal-600 text-white"
-        : "bg-teal-700 text-gray-100"
-    } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
-    onClick={() => handleTabClick(0)}
-  >
-    Overview
-  </Tab>
-  <Tab
-    className={`${
-      activeTab === 1
-        ? "bg-teal-700 hover:bg-teal-600 text-white"
-        : "bg-teal-700 text-gray-700"
-    } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
-    onClick={() => handleTabClick(1)}
-  >
-    Application
-  </Tab>
-</TabList>
-
+        <Tab
+          className={`${
+            activeTab === 0 ? "text-teal-700 text-lg font-semibold" : "text-green-700"
+          } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
+          onClick={() => handleTabClick(0)}
+        >
+          Overview
+        </Tab>
+        <Tab
+          className={`${
+            activeTab === 1 ? "text-red-700 text-lg font-semibold bg-teal-700" : "text-green-700"
+          } px-4 py-2 rounded-md transition-colors duration-300 ease-in-out`}
+          onClick={() => handleTabClick(1)}
+        >
+          Application
+        </Tab>
+      </TabList>
           </div>
 
           <TabPanel>
@@ -243,11 +206,16 @@ const Overview = () => {
             to="../dashboard/inbox-email"
             className="hover:underline inline text-teal-700 font-semibold"
           >
-         Inbox   <BiMessage size={20} className="inline"/>
+            Inbox <BiMessage size={20} className="inline" />
           </Link>
         </div>
         <div className="bg-neutral-100 flex gap-7 justify-center text-center py-2">
-          <p className="text-gray-700">PoweredBy <span className="font-semibold text-teal-700 underline">JobSwift ATS</span></p>
+          <p className="text-gray-700">
+            PoweredBy{" "}
+            <span className="font-semibold text-teal-700 underline">
+              JobSwift ATS
+            </span>
+          </p>
           <Link
             to="../dashboard/report-center"
             className="hover:underline font-semibold text-gray-700"
@@ -285,31 +253,31 @@ const Overview = () => {
         // </div>
 
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-black">
-        <div className="modal-container bg-white w-full md:w-[400px] p-4 rounded-lg shadow-lg">
-          <div className="flex justify-between items-center mb-4">
-            {/* Modal title */}
-            <h2 className="text-2xl font-bold text-gray-800 text-center">Share this job</h2>
-            {/* Close modal button */}
-            <button onClick={closeModal} className="text-gray-500">
-              <RiCloseLine className="text-lg" />
-            </button>
-          </div>
-          {/* Modal body */}
-          <div className="text-gray-700">
-            <SocialLink />
-          </div>
-          <div className="flex justify-center mt-6">
-            <button
-              onClick={closeModal}
-              className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-700 focus:outline-none"
-            >
-              Quit
-            </button>
+          <div className="modal-container bg-white w-full md:w-[400px] p-4 rounded-lg shadow-lg">
+            <div className="flex justify-between items-center mb-4">
+              {/* Modal title */}
+              <h2 className="text-2xl font-bold text-gray-800 text-center">
+                Share this job
+              </h2>
+              {/* Close modal button */}
+              <button onClick={closeModal} className="text-gray-500">
+                <RiCloseLine className="text-lg" />
+              </button>
+            </div>
+            {/* Modal body */}
+            <div className="text-gray-700">
+              <SocialLink />
+            </div>
+            <div className="flex justify-center mt-6">
+              <button
+                onClick={closeModal}
+                className="bg-red-500 text-white px-4 py-1 rounded-md hover:bg-red-700 focus:outline-none"
+              >
+                Quit
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-
-
       )}
     </div>
   );

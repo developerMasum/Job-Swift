@@ -12,6 +12,8 @@ import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
 import NoContent from "../../NoContent";
 import { useDispatch, useSelector } from "react-redux";
 import { createSetStage } from "../../../../../redux/stage/api";
+import SendRejectionMail from "../../Modals/SendRejectionMail";
+import { BiSolidCalendarPlus, BiSolidHand } from "react-icons/bi";
 
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
@@ -24,6 +26,7 @@ const formatDate = (dateString) => {
 
 const Table = ({ assessmentCandi: candidates, isLoading }) => {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const data = useSelector((state) => state.stage);
   useEffect(() => {
@@ -56,6 +59,35 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
   if (isLoading) {
     return <LoaderInternal></LoaderInternal>;
   }
+  
+  
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const handleDisQualify = (id) => {
+    setIsModalOpen(true);
+    try {
+      const response = fetch(
+        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ stage: "Disqualified" }),
+        }
+      );
+
+      if (response) {
+        // closeModal()
+        toast.success("This Candidate is Disqualified");
+      } else {
+        console.error("Failed to update stage.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   // handle next move to next stage - if you wanna send to Assesment, just replace to stage: 'stage name'
   const handleMoveToApplied = (id) => {
@@ -74,8 +106,8 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
           <div className="md:w-2/5 w-full border ">
             <table className="w-full shadow-lg rounded-lg overflow-hidden">
               {/* Head */}
-              <thead className="bg-teal-900 text-white">
-                <tr>
+              <thead className="bg-teal-900 text-white ">
+                <tr className="text-sm">
                   <th className="px-6 py-3 text-left">Select</th>
                   <th className="px-6 py-3">Candidate Information</th>
                   <th className="px-6 py-3">Job Status</th>
@@ -166,14 +198,14 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
               </tbody>
             </table>
           </div>
-          <div className="md:w-3/5 w-full">
+          <div className="md:w-3/5 w-full ">
             {selectedCandidate ? (
               <div>
                 {/* mail section */}
                 <div className="bg-white shadow-lg border mt-5 md:mt-0 rounded-lg overflow-hidden">
                   <div>
                     <div className="px-6 py-[5px] border-t bg-teal-900 text-white border-gray-200">
-                      <div className="flex items-center justify-around space-x-4">
+                      <div className="flex items-center justify-around space-x-4 text-sm">
                         <a
                           href={selectedCandidate.resume}
                           target="_blank"
@@ -184,11 +216,11 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
                           <span>Download Resume</span>
                         </a>
                         <a
-                          href={`mailto:${selectedCandidate.email}`}
+                          href="https://calendar.google.com/calendar/u/2/r"
                           className="flex items-center space-x-2 hover:text-blue-500 text-white "
                         >
-                          <AiOutlineMail className="w-6 h-6" />
-                          <span>Email</span>
+                          <BiSolidCalendarPlus  className="w-5 h-5" />
+                          <span>Set Interview</span>
                         </a>
                         <a
                           href={`tel:${selectedCandidate.phoneNumber}`}
@@ -197,11 +229,21 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
                           <AiOutlinePhone className="w-6 h-6" />
                           <span>Call</span>
                         </a>
+
+                         <button
+                          onClick={() =>
+                            handleDisQualify(selectedCandidate._id)
+                          }
+                          className="  px-2 rounded-md py-1 border text-sm border-red-500"
+                        >
+                          <BiSolidHand className="inline-block mr-2" />
+                           Send Rejection Mail
+                        </button>
                         <button
                           onClick={() =>
                             handleMoveToApplied(selectedCandidate?._id)
                           }
-                          className="border border-indigo-100 px-4 rounded-md py-1"
+                          className="border border-indigo-100 text-sm px-4 rounded-md py-1"
                         >
                           move to Interview
                         </button>
@@ -241,6 +283,12 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
                       </p>
                     </div>
                   </div>
+                  <SendRejectionMail
+                    value={selectedCandidate?.email}
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                    // onSubmit={onSubmit}
+                  />
 
                   <div className="px-6 py-4 border-t border-gray-200 text-start">
                     <h3 className="mb-5  text-teal-700 font-bold text-sm">

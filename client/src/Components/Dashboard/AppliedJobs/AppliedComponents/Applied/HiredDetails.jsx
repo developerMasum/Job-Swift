@@ -45,35 +45,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
   if (isLoading) {
     return <LoaderInternal></LoaderInternal>;
   }
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-  const handleDisQualify = (id) => {
-    setIsModalOpen(true);
-    try {
-      const response = fetch(
-        ` https://server-job-swift.vercel.app/applicant/stage/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ stage: "Disqualified" }),
-        }
-      );
-
-      if (response) {
-        // closeModal()
-        toast.success("This Candidate is Disqualified");
-      } else {
-        console.error("Failed to update stage.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  
 
   return (
     <div className="w-full overflow-x-auto">
@@ -84,7 +56,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
           <div className="md:w-2/5 w-full border ">
             <table className="w-full shadow-lg rounded-lg overflow-hidden">
               {/* Head */}
-              <thead className="bg-teal-900 text-white">
+              <thead className="bg-teal-900 text-white text-sm">
                 <tr>
                   <th className="px-6 py-3 text-left">Select</th>
                   <th className="px-6 py-3">Candidate Information</th>
@@ -207,20 +179,12 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                           <AiOutlinePhone className="w-6 h-6" />
                           <span>Call</span>
                         </a>
-                        <button
-                          onClick={() =>
-                            handleDisQualify(selectedCandidate._id)
-                          }
-                          className="  px-2 rounded-md py-1 border border-red-500"
-                        >
-                          <BiSolidHand className="inline-block mr-2" />
-                          Disqualify & Rejection Mail
-                        </button>
+                  
                         <Link
                           to={`/dashboard/get-certificate/${selectedCandidate._id}`}
-                          className=" border border-indigo-100 px-2 rounded-md py-1"
+                          className=" border border-indigo-100 px-2 text-sm rounded-md py-1"
                         >
-                          Sent Offer Letter
+                          Sent Hiring Certificate
                         </Link>
                       </div>
                     </div>
@@ -258,13 +222,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
                       </p>
                     </div>
                   </div>
-                  <SendRejectionMail
-                    value={selectedCandidate?.email}
-                    isOpen={isModalOpen}
-                    onClose={closeModal}
-                    // onSubmit={onSubmit}
-                  />
-
+                 
                   <div className="px-6 py-4 border-t border-gray-200 text-start">
                     <h3 className="mb-5  text-teal-700 font-bold text-sm">
                       Experience

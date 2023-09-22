@@ -11,7 +11,8 @@ const LinkResult = ({ inputValue }) => {
   const [error, setError] = useState(null); // Use null for initial state when dealing with errors
 
   const value = localStorage.getItem("URL");
-  const url = `https://www.youtube.com/watch?v=5Mi7RmmZj4Q&t=1322s/${value}`;
+  const url = `https://job-swift-git-masum-developermasum.vercel.app/${value}`;
+  console.log('aaa',url);
 
   const fetchData = async () => {
     try {

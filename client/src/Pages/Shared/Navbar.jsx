@@ -58,14 +58,14 @@ const Navbar = () => {
           className="flex items-center px-3 py-2 rounded text-black-500 hover:text-black-400"
         >
           <svg
-            className={`fill-current h-9 w-9 p-2 rounded-full bg-emerald-200 bg-opacity-80  ${isOpen ? "hidden" : "block"}`}
+            className={`fill-current h-9 w-9 p-2 rounded-full bg-emerald-700 bg-opacity-80  ${isOpen ? "hidden" : "block"}`}
             // viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
           </svg>
           <svg
-            className={`fill-current h-9 w-9  bg-emerald-200 bg-opacity-80 p-2 rounded-full ${isOpen ? "block" : "hidden"}`}
+            className={`fill-current h-9 w-9  bg-emerald-700 bg-opacity-80 p-2 rounded-full ${isOpen ? "block" : "hidden"}`}
             // viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -151,7 +151,7 @@ const Navbar = () => {
                 </div>
                 <div>
                   <Link to={"/dashboard/jobs"}>
-                    <button className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white hidden md:block">
+                    <button className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white  md:block">
                       Dashboard
                     </button>
                   </Link>
