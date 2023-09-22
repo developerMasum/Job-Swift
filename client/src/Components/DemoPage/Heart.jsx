@@ -1,7 +1,7 @@
 const Heart = () => {
   return (
     <div className="max-w-[1100px] mx-auto">
-      <div className="max-w-[800px] md:text-center mx-auto p-6 text-justify">
+      <div className="max-w-[800px] md:text-center mx-auto p-2 md:p-6 text-justify">
         <div className="space-y-6 mx-auto mb-4">
           <h1 className="text-3xl md:text-4xl justify-self-center text-swift font-extrabold">
             {" "}

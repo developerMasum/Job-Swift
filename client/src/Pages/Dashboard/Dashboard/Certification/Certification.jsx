@@ -197,29 +197,7 @@ const Certification = () => {
               <p className="text-red-500 text-sm mt-1">{formErrors.company}</p>
             )}
           </div>
-          {/* Job Title input */}
-          {/* <div className="mb-4">
-            <label
-              htmlFor="title"
-              className="text-sm md:text-base font-semibold"
-            >
-              Job Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              className={`border rounded w-full px-3 py-2 transition duration-300 hover:border-blue-500 focus:border-blue-500 focus:outline-none ${
-                formErrors.title ? "border-red-500" : ""
-              }`}
-              value={formData.title}
-              onChange={handleInputChange}
-            />
-            {formErrors.title && (
-              <p className="text-red-500 text-sm mt-1">{formErrors.title}</p>
-            )}
-          </div> */}
-          {/* Hiring Date input */}
+      
           <div className="mb-4">
             <label
               htmlFor="startDate"

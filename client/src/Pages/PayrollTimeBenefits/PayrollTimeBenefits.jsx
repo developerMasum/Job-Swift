@@ -12,7 +12,7 @@ import { FaChevronRight } from "react-icons/fa";
 
 const PayrollTimeBenefits = () => {
   return (
-    <div className="px-12 pt-16 pb-8">
+    <div className="px-2 md:px-12 pt-16 pb-8">
       <div className="text-center pt-16">
         <Title
           mainTitle="payroll-time-benefits"
@@ -53,7 +53,7 @@ const PayrollTimeBenefits = () => {
           <Title mainTitle="Explore Payroll, Time, & Benefits with Job Swift " />
         </div>
       </div>
-      <div className="px-10 text-swift grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pt-8">
+      <div className="px-2 md:px-10 text-swift grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pt-8">
         <div className="space-y-4 ">
           <img src={Payroll} alt="" />
           <h4 className="text-xl font-bold ">Payroll</h4>
@@ -141,7 +141,7 @@ const PayrollTimeBenefits = () => {
       </div>
 
       {/* 4th Part */}
-      <div className="px-10">
+      <div className="px-2 md:px-10">
         <div>
           <Title
             mainTitle={

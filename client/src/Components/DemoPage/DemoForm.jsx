@@ -151,8 +151,8 @@ const DemoForm = () => {
   };
 
   return (
-    <div className="w-full md:max-w-[500px] border-[1px] bg-neutral-50 rounded-t-lg mx-auto md:p-6">
-      <form className="space-y-4 p-6" onSubmit={handleSubmit(onSubmit)}>
+    <div className="w-full mt-4 md:max-w-[500px] border-[1px] bg-neutral-50 rounded-t-lg mx-auto md:p-6">
+      <form className="space-y-4 p-2 md:p-6" onSubmit={handleSubmit(onSubmit)}>
         <h1 className="text-swift font-[900] text-2xl text-center">
           See Job Swift in Action
         </h1>

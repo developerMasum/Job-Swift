@@ -3,7 +3,7 @@ import { FaFacebook, FaGithub, FaYoutube, FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer px-10 py-4 border-2 text-base-content border-sky-200">
+      <footer className="footer px-2 md:px-10 py-4 border-2 text-base-content border-sky-200">
         <div className="items-center grid-flow-col">
           <img
             className="h-12 border-2 border-sky-200 rounded-xl"
@@ -32,7 +32,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <footer className="footer p-10 bg-teal-100
+      <footer className="footer p-2 md:p-10 bg-teal-100
        bg-opacty-30  ">
         <div className="flex justify-between  w-5/6">
           <div className="flex flex-col">

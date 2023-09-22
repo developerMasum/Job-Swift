@@ -16,7 +16,7 @@ const GreatWork = () => {
           </p>
         </div>
       </div>
-      <div className="md:flex justify-between items-center gap-4 m-10">
+      <div className="md:flex justify-between items-center gap-4 m-2 md:m-10">
         <img
           src="https://i.ibb.co/3dtRSYk/project-Image1.webp"
           alt="GratImag"
