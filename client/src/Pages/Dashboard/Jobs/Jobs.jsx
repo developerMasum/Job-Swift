@@ -137,7 +137,8 @@ const Jobs = () => {
           </Link>
         </div>
       </div>
-      <div className="mx-2 md:ml-16 flex gap-8 border-[1px] rounded-md   border-gray-300 p-6 items-center bg-white justify-between">
+
+      <div className="mx-2 lg:md:mx-0 flex gap-8 border-[1px] rounded-md   border-gray-300 p-6 items-center bg-white justify-between">
         <div className="flex flex-col space-y-3">
           <h2 className="text-xl font-bold text-second"> Post a job</h2>
           <p className="text-gray-500">

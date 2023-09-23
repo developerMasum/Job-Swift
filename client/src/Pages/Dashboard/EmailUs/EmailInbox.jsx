@@ -12,40 +12,53 @@ const EmailInbox = () => {
   }, []);
 
   return (
-    <div className="mx-4 md:mx-auto w-3/4">
-      {/* Add margin on mobile and remove on medium (md) screens */}
-      <h2 className="text-2xl font-semibold mb-4">Email Inbox</h2>
-      <div className="grid gap-2">
-        {email.map((e) => (
-          <div
-            key={e.id}
-            className="bg-white p-4 shadow-sm rounded-lg grid grid-cols-12 transform hover:scale-105 transition-transform duration-300"
-          >
-            <div className="col-span-12 md:col-span-2">
-              {/* Full width on mobile and 2 columns on medium screens */}
-              <img
-                src={e.senderImage}
-                alt={`${e.senderName}'s profile`}
-                className="w-16 h-16 rounded-full mx-auto"
-              />
-            </div>
-            <div className="col-span-12 md:col-span-10">
-              {/* Full width on mobile and 10 columns on medium screens */}
-              <div className="flex flex-col md:flex-row justify-between">
-                <div>
-                  <p className="text-lg font-semibold">{e.senderName}</p>
-                  <p className="text-gray-500">{e.senderEmail}</p>
-                </div>
-                <div className="mt-2 md:mt-0">
-                  {/* Add top margin only on mobile */}
-                  <p className="text-gray-500">{e.date}</p>
-                  <p className="text-gray-500">{e.subject}</p>
-                </div>
-              </div>
-              <div className="mt-2">{e.message}</div>
-            </div>
-          </div>
-        ))}
+    <div className="mx-4 md:mx-auto md:w-3/4">
+      <h2 className="text-3xl font-semibold mb-6">Email Inbox</h2>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border rounded-lg">
+          <thead className="bg-teal-700 text-white">
+            <tr>
+              <th className="px-6 py-3 text-left text-sm font-semibold ">
+                Sender
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-semibold">
+                Email
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-semibold">
+                Date
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-semibold">
+                Subject
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-semibold">
+                Message
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {email.map((e) => (
+              <tr key={e.id} className="border-t hover:bg-gray-100">
+                <td className="px-6 py-4">
+                  <div className="flex items-center space-x-2">
+                    <img
+                      src={e.senderImage}
+                      alt={`${e.senderName}'s profile`}
+                      className="w-10 h-10 rounded-full"
+                    />
+                    <div className="text-sm">
+                      <p className="font-semibold">{e.senderName}</p>
+                      <p className="text-gray-500">{e.senderEmail}</p>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-6 py-4">{e.senderEmail}</td>
+                <td className="px-6 py-4">{e.date}</td>
+                <td className="px-6 py-4">{e.subject}</td>
+                <td className="px-6 py-4">{e.message}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
