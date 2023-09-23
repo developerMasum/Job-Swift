@@ -50,7 +50,7 @@ const LogIn = () => {
       // setLoading(true);
       const { user } = await logIn(email, password);
       const { data: dataToken } = await axios.post(
-        " http://localhost:5000/jwt",
+        " https://server-job-swift.vercel.app/jwt",
         {
           email: email,
         }
@@ -58,7 +58,7 @@ const LogIn = () => {
       //  console.log(dataToken.token);
       console.log("from error", user);
       const { data } = await axios.get(
-        `http://localhost:5000/users/admin/${user?.email}`,
+        `https://server-job-swift.vercel.app/users/admin/${user?.email}`,
         { headers: { Authorization: `Bearer ${dataToken.token}` } }
       );
       //  console.log('isadmin error',isAdmin);
@@ -77,15 +77,15 @@ const LogIn = () => {
   };
 
   return (
-    <div className="   lg:md:p-40 bg-gradient-to-r from-indigo-700 from-10% via-sky-800 via-30% to-emerald-500 to-90% ">
+    <div className="pt-20 pb-1 lg:md:p-40 bg-gradient-to-r from-indigo-700 from-10% via-sky-800 via-30% to-emerald-500 to-90% ">
       {/* // <div className="login_container"> */}
-      <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 rounded-2xl shadow-lg shadow-black ">
-        <div className="rounded-md">
+      <div className=" lg:md:flex lg:flex-row  lg:w-2/3  mx-auto pb-0 lg:md:rounded-2xl shadow-lg shadow-black ">
+        <div className="">
           {/* <img className="h-[380px] rounded-l-2xl" src={login} alt="" /> */}
           <img
             src="https://i.ibb.co/Fqhmwhz/login01.png"
             alt=""
-            className="h-[100%]  lg:md:w-[400px] w-[100%] rounded-l-2xl bg-white bg-opacity-40 p-5"
+            className="h-[100%] lg:md:w-[400px] w-[100%] lg:md:rounded-l-2xl bg-white bg-opacity-40 p-5"
           />
         </div>
         <form
@@ -105,7 +105,7 @@ const LogIn = () => {
               ref={emailRef}
               {...register("email", { required: true })}
               placeholder="email"
-              className="rounded-md bg-[#2f5c58]  border-green-800 "
+              className="rounded-md bg-[#2f5c58]  border-green-800 bg-opacity-0"
             />
             {errors.email && (
               <span className="text-orange-800">This field is required</span>

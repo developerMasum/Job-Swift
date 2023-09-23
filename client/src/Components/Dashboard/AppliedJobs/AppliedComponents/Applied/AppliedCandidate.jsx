@@ -1,6 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { AiFillDelete } from "react-icons/ai";
+import { BiSolidHand } from "react-icons/bi";
+import SendRejectionMail from "../../Modals/SendRejectionMail";
+
 import {
   HiChat,
   HiHand,
@@ -51,6 +55,8 @@ const AppliedCandidate = ({ candidates, stageName }) => {
     (candidate) => candidate.isChecked
   ).length;
 
+
+
   return (
     <div>
       <div className="mt-5 text-second">
@@ -99,7 +105,7 @@ const AppliedCandidate = ({ candidates, stageName }) => {
                   <div className="flex justify-start gap-3 items-center ">
                     <div className="w-16 h-16 rounded-full overflow-hidden">
                       <img
-                        src={`  http://localhost:5000/${candidate.image}`}
+                        src={`  https://server-job-swift.vercel.app/${candidate.image}`}
                         alt=""
                         className="w-full h-full object-cover"
                       />

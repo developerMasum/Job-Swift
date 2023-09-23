@@ -111,8 +111,8 @@ const PeopleSearch = () => {
   useEffect(() => {
     setLoading(true);
     // Define the URL with the search parameter
-    const URL = `http://localhost:5000/all-applications2?search=${search}`;
-    
+    const URL = `https://server-job-swift.vercel.app/all-applications2?search=${search}`;
+
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -123,7 +123,7 @@ const PeopleSearch = () => {
         console.error("Error fetching application data:", error);
         // Mark loading as complete even on error
       });
-  }, [search]); 
+  }, [search]);
 
   const serchingPeople = (data) => {
     console.log(data.search);
@@ -250,46 +250,67 @@ const PeopleSearch = () => {
           </div>
           {search ? (
             <>
-             
               <div className="mx-4 md:mx-auto md:w-3/4">
-      <h2 className="text-3xl font-semibold mb-6">Application List</h2>
-      {loading ? (
-        
-       <div className="mt-32">
-         <LoaderInternal></LoaderInternal>
-       </div>
-      ) : (
-        // Display the table once data loading is complete
-        <div className="overflow-x-auto shadow-lg">
-          <table className="min-w-full shadow-md rounded-lg">
-            <thead>
-              <tr className= "bg-teal-600 text-white">
-                <th className="px-6 py-3 text-left text-sm font-semibold ">Image</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold ">Job Title</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold ">Summary</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold ">Email</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold ">Location</th>
-                <th className="px-6 py-3 text-left text-sm font-semibold ">Stage</th>
-              </tr>
-            </thead>
-            <tbody>
-              {application.map((data, index) => (
-                <tr key={index} className={(index % 2 === 0 ? "bg-gray-100" : "bg-white")}>
-                  <td className="px-4 py-3">
-                    <img src={data?.image} alt="Not Found" className="w-10 h-10 rounded-full" />
-                  </td>
-                  <td className="px-4 py-3">{data?.jobTitle}</td>
-                  <td className="px-4 py-3">{data?.summary}</td>
-                  <td className="px-4 py-3">{data?.email}</td>
-                  <td className="px-4 py-3">{data?.location}</td>
-                  <td className="px-4 py-3">{data?.stage}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
+                <h2 className="text-3xl font-semibold mb-6">
+                  Application List
+                </h2>
+                {loading ? (
+                  <div className="mt-32">
+                    <LoaderInternal></LoaderInternal>
+                  </div>
+                ) : (
+                  // Display the table once data loading is complete
+                  <div className="overflow-x-auto shadow-lg">
+                    <table className="min-w-full shadow-md rounded-lg">
+                      <thead>
+                        <tr className="bg-teal-600 text-white">
+                          <th className="px-6 py-3 text-left text-sm font-semibold ">
+                            Image
+                          </th>
+                          <th className="px-6 py-3 text-left text-sm font-semibold ">
+                            Job Title
+                          </th>
+                          <th className="px-6 py-3 text-left text-sm font-semibold ">
+                            Summary
+                          </th>
+                          <th className="px-6 py-3 text-left text-sm font-semibold ">
+                            Email
+                          </th>
+                          <th className="px-6 py-3 text-left text-sm font-semibold ">
+                            Location
+                          </th>
+                          <th className="px-6 py-3 text-left text-sm font-semibold ">
+                            Stage
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {application.map((data, index) => (
+                          <tr
+                            key={index}
+                            className={
+                              index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                            }
+                          >
+                            <td className="px-4 py-3">
+                              <img
+                                src={data?.image}
+                                alt="Not Found"
+                                className="w-10 h-10 rounded-full"
+                              />
+                            </td>
+                            <td className="px-4 py-3">{data?.jobTitle}</td>
+                            <td className="px-4 py-3">{data?.summary}</td>
+                            <td className="px-4 py-3">{data?.email}</td>
+                            <td className="px-4 py-3">{data?.location}</td>
+                            <td className="px-4 py-3">{data?.stage}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
             </>
           ) : (
             <>

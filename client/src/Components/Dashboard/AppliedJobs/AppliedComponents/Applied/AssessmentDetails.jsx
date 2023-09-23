@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-
+import { toast } from "react-hot-toast";
 import {
   AiOutlineFilePdf,
   AiOutlineMail,
   AiOutlinePhone,
 } from "react-icons/ai";
-import { Link } from "react-router-dom";
-
-import toast from "react-hot-toast";
 import LoaderInternal from "../../../../LoaderInternal/LoaderInternal";
 import NoContent from "../../NoContent";
 import { useDispatch, useSelector } from "react-redux";
@@ -66,7 +63,7 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
   const handleDisQualify = (id) => {
     setIsModalOpen(true);
     try {
-      const response = fetch(` http://localhost:5000/applicant/stage/${id}`, {
+      const response = fetch(` https://server-job-swift.vercel.app/applicant/stage/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -285,6 +282,15 @@ const Table = ({ assessmentCandi: candidates, isLoading }) => {
                     onClose={closeModal}
                     // onSubmit={onSubmit}
                   />
+
+{/* ___________________________ */}
+                  {/* <SendRejectionMail
+                    value={selectedCandidate?.email}
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                  // onSubmit={onSubmit}
+                  /> */}
+  {/* ___________________________ */}
 
                   <div className="px-6 py-4 border-t border-gray-200 text-start">
                     <h3 className="mb-5  text-teal-700 font-bold text-sm">

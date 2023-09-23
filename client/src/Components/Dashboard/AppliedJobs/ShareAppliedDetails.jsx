@@ -74,7 +74,7 @@ const Table = ({ appliedCandi: candidates, isLoading }) => {
           <div className="md:w-2/5 w-full border ">
             <table className="w-full shadow-lg rounded-lg overflow-hidden">
               {/* Head */}
-              <thead className="bg-teal-900 text-white">
+              <thead className="bg-teal-900 text-white text-sm">
                 <tr>
                   <th className="px-6 py-3 text-left">Select</th>
                   <th className="px-6 py-3">Candidate Information</th>
