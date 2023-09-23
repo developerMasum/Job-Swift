@@ -1,8 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { AiOutlineCloudUpload, AiFillCheckCircle } from "react-icons/ai";
-import { RiDeleteBin2Line } from "react-icons/ri";
-
 // for education and experience
 
 import {
@@ -493,6 +490,10 @@ const UpdateForm = ({ jobTitle, jobPosterEmail, jobId }) => {
     } catch (error) {
       // console.error("from overview", error);
     }
+    setTimeout(() => {
+          setIsSubmitting(false);
+          setIsSubmitted(true);
+        }, 4000);
 
     setIsSubmitting(false);
   };
