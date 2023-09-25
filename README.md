@@ -80,7 +80,7 @@ Start the server
 ## Contributors
 
 - [Md Masum (Team Lead)](https://github.com/developerMasum)
-- [@Your Name](https://www.github.com/octokatherine)
+- [Md Arifur Rahman(Team Member)](https://github.com/sojibpannashovon2)
 - [@Your Name](https://www.github.com/octokatherine)
 - [@Your Name ](https://www.github.com/octokatherine)
 - [@Your Name](https://www.github.com/octokatherine)
@@ -88,6 +88,6 @@ Start the server
 
 ## Feedback
 
-If you have any feedback, please reach out to us at md.masum0058@gmail.com
+If you have any feedback, please reach out to us at md.masum0058@gmail.com, mdarifur554@gmail.com
 
  
