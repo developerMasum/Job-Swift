@@ -9,14 +9,16 @@ import {BsBookmarkHeart, BsBookmarkHeartFill, BsCheckLg, BsPinAngle} from "react
 import {RxCross2} from "react-icons/rx";
 import {Link} from "react-router-dom";
 import PinedSearch from "./PinedSearch";
+import Loader from "../../../Components/Loader/Loader";
+import LoaderInternal from "../../../Components/LoaderInternal/LoaderInternal";
 
 const PeopleSearch = () => {
     const [application, setApplication] = useState(null);
     const [search, setSearch] = useState(null);
-
+    const [loading, isLoading] = useState(false)
 
     const ref = useRef(null);
-    // console.log("Get application", application);
+    console.log("Get application", application);
     // console.log("dfghsdjg", bookMark);
 
     const options = [];
@@ -115,6 +117,7 @@ const PeopleSearch = () => {
         setSearch(data.search);
     };
 
+
     return (
         <div className="pt-20 lg:md:px-24 bg-white px-4">
             <Tabs className="pt-3 ">
@@ -129,6 +132,8 @@ const PeopleSearch = () => {
 
                 {/* tab 1----------------------------- */}
                 <TabPanel className={"bg-[#fff]"}>
+
+
                     <div className="">
                         <form className="pt-3 "
                             ref={ref}
@@ -159,22 +164,7 @@ const PeopleSearch = () => {
 
                                 <div className="flex">
                                     {/* Dropdown */}
-                                    <div className="rounded-l-md h-10 mt-[8px] lg:md:w-[10%]">
-                                        <select className="pt-[6px] ps-3"
-                                            onChange={handleSelect}>
-                                            {
-                                            options.map((option, index) => (
-                                                <option className=""
-                                                    key={index}
-                                                    value={
-                                                        option.level
-                                                }>
-                                                    {
-                                                    option.level
-                                                } </option>
-                                            ))
-                                        } </select>
-                                    </div>
+
                                     {/* -------------- */}
                                     <div className="w-[100%]">
                                         {/* <input className='mt-2 border border-[#c4cfde] rounded-l-md w-[20%] h-10 ' {...register('search')} /> */}
@@ -195,14 +185,14 @@ const PeopleSearch = () => {
                             <div className="lg:md:flex lg:md:justify-between grid justify-center ">
                                 <div className="pt-5">
                                     <h2>Location</h2>
-                                    <input type="location" className="mt-2 border border-[#c4cfde] rounded-md w-[300px] h-10 " {...register("location", { required: true })}/> {
+                                    <input type="location" className="mt-2 border border-[#c4cfde] rounded-md w-[250px] h-10 " {...register("location", { required: true })}/> {
                                     errors.location && (
                                         <p className="text-red-400 mt-1">Location is required.</p>
                                     )
                                 } </div>
                                 <div className="pt-5">
                                     <h2>Company</h2>
-                                    <input type="company" className="mt-2 border border-[#c4cfde] rounded-md w-[300px] h-10" {...register("company", { required: true })}/> {
+                                    <input type="company" className="mt-2 border border-[#c4cfde] rounded-md w-[250px] h-10" {...register("company", { required: true })}/> {
                                     errors.company && (
                                         <p className="text-red-400 mt-1">
                                             Company name is required.
@@ -211,7 +201,7 @@ const PeopleSearch = () => {
                                 } </div>
                                 <div className="pt-5">
                                     <h2>University</h2>
-                                    <input type="university" className="mt-2 border border-[#c4cfde] rounded-md  h-10 w-[300px]" {...register("university", { required: true })}/> {
+                                    <input type="university" className="mt-2 border border-[#c4cfde] rounded-md  h-10 w-[250px]" {...register("university", { required: true })}/> {
                                     errors.university && (
                                         <p className="text-red-400 mt-1">
                                             University name is required.
@@ -219,123 +209,155 @@ const PeopleSearch = () => {
                                     )
                                 } </div>
                                 <div className="py-12 flex items-center ">
-                                    <input className="py-[8px] mt-1 border-lime-900 bg-emerald-700 w-[300px] text-white rounded-md hover:bg-orange-500 hover:border-0 " type="submit"/>
+                                    <input className="py-[8px] mt-1 border-lime-900 bg-emerald-700 w-[250px] text-white rounded-md hover:bg-orange-500 hover:border-0 " type="submit"/>
                                 </div>
                             </div>
                         </form>
                     </div>
-
                     {
-                    search ? (
-                        <>
-                            <div className="grid grid-cols-1 lg:md:grid-cols-3 gap-4">
-                                {
-                                application ?. map((data, index) => {
-                                    const BookMark = checkBookMark(data ?. _id)
-                                    return (
-                                        <div key={index}
-                                            className="card w-full h-full bg-green-100 shadow-xl border border-slate-200">
-                                            <div className="flex justify-end px-6 py-3">
-                                                {
-                                                BookMark ? <BsBookmarkHeartFill onClick={
-                                                        () => handleRemoveBookMark(data ?. _id)
-                                                    }
-                                                    className="text-xl"></BsBookmarkHeartFill> : <BsBookmarkHeart className="text-xl hover:bg-lime-500"
+                    search ? <>
 
-                                                    onClick={
-                                                        () => handleBookMark(data ?. _id, data.location, data.image, data ?. jobTitle, data ?. summary, data ?. email, data ?. stage)
-                                                }></BsBookmarkHeart>
-                                            } </div>
-                                            <figure className="px-6 ">
-                                                <img src={
-                                                        data ?. image
-                                                    }
-                                                    alt="Not Found"
-                                                    className="rounded-xl h-64"/>
-                                            </figure>
-                                            <div className="card-body  ">
-                                                <h2 className=" text-center text-xl font-bold">
-                                                    {
-                                                    data ?. jobTitle
-                                                }</h2>
-                                                <p>{
-                                                    data ?. summary ?. slice(0, 200)
-                                                }.....</p>
-                                                {/* <div className="card-actions">
-                                                    <button className="btn btn-primary">Buy Now</button>
-                                                </div> */}
-                                                <div>
-                                                    <h2 className="font-semibold">
-                                                        Name : {
-                                                        data.firstName
-                                                    } </h2>
-                                                </div>
-                                                <div className=" mr-8 my-5">
+                        <div className="text-center mt-8">
+                            <h1 className="text-3xl font-bold mb-8">Application List</h1>
 
-                                                    <div>
+
+                            {
+                            loading ? <>
+                                <div className="mt-32">
+                                    <LoaderInternal></LoaderInternal>
+                                </div>
+                            </> : <>
+                                <div className="overflow-x-auto  mb-24">
+
+
+                                    <table className="max-w-6xl ">
+                                        {/* head */}
+
+                                        <thead className="">
+
+
+                                            <tr className="font-semibold text-lg text-white bg-emerald-700  shadow-lg  ">
+
+
+                                                <th className="p-3">Mark</th>
+                                                <th className="p-3">Image</th>
+                                                <th className="p-3">Job Title</th>
+                                                {/* <th classNap-3me="">Summary</th> */}
+                                                <th className="p-3">Email</th>
+                                                <th className="p-3">Location</th>
+                                                <th className="p-3">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody> {
+                                            application ?. map((data, index) => {
+                                                const BookMark = checkBookMark(data ?. _id)
+
+                                                return <tr key={index}
+                                                    className="border border-slate-400 shadow-md ">
+                                                    <th className="px-8">
+                                                        {
+                                                        BookMark ? <BsBookmarkHeartFill onClick={
+                                                                () => handleRemoveBookMark(data ?. _id)
+                                                            }
+                                                            className="text-xl"></BsBookmarkHeartFill> : <BsBookmarkHeart className="text-xl hover:bg-lime-500"
+
+                                                            onClick={
+                                                                () => handleBookMark(data ?. _id, data.location, data.image, data ?. jobTitle, data ?. summary, data ?. email, data ?. stage)
+                                                        }></BsBookmarkHeart>
+                                                    } </th>
+                                                    <td className="px-8 rounded-lg">
+
+                                                        <img src={
+                                                                data ?. image
+                                                            }
+                                                            alt="Not Found"
+                                                            className="rounded-lg h-24 w-24 py-3"/>
+                                                    </td>
+
+                                                    <td className=" text-center text-md px-8">
+
+                                                        {
+                                                        data ?. jobTitle
+                                                    } </td>
+
+                                                    {/* <td>
+                                            <p>{
+                                                data ?. summary ?. slice(0, 100)
+                                            }.....</p>
+                                        </td> */}
+
+                                                    <td className="px-6">
+
                                                         <span className="font-semibold mr-3">Email:</span>
 
                                                         {
                                                         data ?. email
-                                                    } </div>
-                                                    <div>
+                                                    } </td>
+                                                    <td className="px-8">
+
+
                                                         <span className="font-semibold mr-3">
                                                             Location:
                                                         </span>
                                                         {
                                                         data ?. location
-                                                    } </div>
-                                                    <div>
+                                                    } </td>
+                                                    <td className="px-8">
+
+
                                                         <span className="font-semibold mr-3">Stage:</span>
                                                         {
                                                         data ?. stage
-                                                    } </div>
-                                                </div>
+                                                    } </td>
 
+                                                </tr>
 
-                                            </div>
-                                        </div>
-                                    );
-                                })
-                            } </div>
-                            {" "} </>
-                    ) : (
-                        <>
-                            <div className="grid justify-center py-10 bg-[#f2f4f5] px-2 border-t-4 ">
-                                <img className="w-40 mx-auto" src="https://i.ibb.co/xjQYzwJ/people-Search.png" alt="img"/>
-                                <div className="text-center text-[#333e49]">
-                                    <h2 className="text-black text-2xl my-3">
-                                        Find the right candidate with People Search
-                                    </h2>
-                                    <p>
-                                        Publish a job and receive 75 profile views
-                                        <br/>
-                                        <span>
-                                            to use on People Search, including AI Recruiter.
-                                        </span>
-                                        <br/>
-                                    </p>
-                                    <Link to="/dashboard/jobs/post-job">
-                                        <button className="my-5 btn rounded-lg bg-[#00756a] text-white hover:bg-orange-600">
-                                            Publish a job
-                                        </button>
-                                    </Link>
-
-                                    <p className="">
-                                        How to use{" "}
-                                        <a className="text-[#00756a] hover:underline" href="">
-                                            People Search
-                                        </a>
-                                        {" "}
-                                        and{" "}
-                                        <a className="text-[#00756a] hover:underline" href="">
-                                            AI Recruiter
-                                        </a>
-                                    </p>
+                                        })
+                                        } </tbody>
+                                    </table>
                                 </div>
+
+
+                            </>
+                        } </div>
+                    </> : <>
+
+
+                        <div className="grid justify-center py-10 bg-[#f2f4f5] px-2 border-t-4 ">
+                            <img className="w-40 mx-auto" src="https://i.ibb.co/xjQYzwJ/people-Search.png" alt="img"/>
+                            <div className="text-center text-[#333e49]">
+                                <h2 className="text-black text-2xl my-3">
+                                    Find the right candidate with People Search
+                                </h2>
+                                <p>
+                                    Publish a job and receive 75 profile views
+                                    <br/>
+                                    <span>
+                                        to use on People Search, including AI Recruiter.
+                                    </span>
+                                    <br/>
+                                </p>
+                                <Link to="/dashboard/jobs/post-job">
+                                    <button className="my-5 btn rounded-lg bg-[#00756a] text-white hover:bg-orange-600">
+                                        Publish a job
+                                    </button>
+                                </Link>
+
+                                <p className="">
+                                    How to use{" "}
+                                    <a className="text-[#00756a] hover:underline" href="">
+                                        People Search
+                                    </a>
+                                    {" "}
+                                    and{" "}
+                                    <a className="text-[#00756a] hover:underline" href="">
+                                        AI Recruiter
+                                    </a>
+                                </p>
                             </div>
-                        </>
-                    )
+                        </div>
+
+                    </>
                 } </TabPanel>
 
                 {/* tab 2------------------------------ */}
