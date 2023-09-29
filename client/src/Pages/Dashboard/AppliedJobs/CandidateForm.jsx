@@ -1,27 +1,20 @@
-// Import React and useState from the 'react' library
+
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-// Import icons from react-icons library
 import { AiOutlinePlus } from "react-icons/ai";
-import { BiDownArrowAlt } from "react-icons/bi";
 
-// Define the CandidateForm component and receive the 'closeModal' prop
 const CandidateForm = ({ closeModal }) => {
-  // Initialize a state variable 'isOpen' using useState, initially set to false
   const [isOpen, setIsOpen] = useState(false);
 
-  // Define the 'toggleDropdown' function to toggle the dropdown menu
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-  // Define the 'handleSubmit' function to handle form submission
+
   const handleSubmit = (e) => {
     e.preventDefault();
     toast.success('candidate added successfully')
     closeModal();
-
-    // Access form data using e.target
     const formData = {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
@@ -30,15 +23,10 @@ const CandidateForm = ({ closeModal }) => {
       phoneNumber: e.target.phoneNumber.value,
     };
 
-    // Log the form data to the console
     console.log("Form Data:", formData);
-
-    // Handle form submission here, e.g., send data to a server or update state
  e.target.reset();
-    // Close the modal
   };
 
-  // Define the 'handleCancel' function to close the modal when the "Cancel" button is clicked
   const handleCancel = () => {
     closeModal();
   };
@@ -58,35 +46,7 @@ const CandidateForm = ({ closeModal }) => {
             >
               Cancel
             </a>
-            <div className="btn-group items-center relative text-left">
-              {/* Render a button for "Add to Applied" */}
-              <button className="btn bg-emerald-600">Add to Applied</button>
-              {/* Render a dropdown button */}
-              <button
-                className="btn bg-emerald-600"
-                onClick={toggleDropdown}
-                aria-haspopup="true"
-                aria-expanded={isOpen ? "true" : "false"}
-              >
-                <BiDownArrowAlt size={24} />
-              </button>
-              {isOpen && (
-                // Render the dropdown menu when 'isOpen' is true
-                <div className="origin-top-right absolute right-0 mt-2 md:mt-80 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ">
-                  <div className="py-1">
-                    <ul>
-                      <li className="px-4 py-2">Soured</li>
-                      <li className="px-4 py-2">Applied</li>
-                      <li className="px-4 py-2">Phone Screen</li>
-                      <li className="px-4 py-2">Assessment</li>
-                      <li className="px-4 py-2">Interview</li>
-                      <li className="px-4 py-2">Offer</li>
-                      <li className="px-4 py-2">Hired</li>
-                    </ul>
-                  </div>
-                </div>
-              )}
-            </div>
+            
           </div>
         </div>
         {/* Horizontal line */}
@@ -180,14 +140,12 @@ const CandidateForm = ({ closeModal }) => {
           </form>
         </div>
       </div>
-      <div className="mt-8 flex justify-between border w-full md:w-2/3 mx-auto p-4">
+      <div className="mt-8 flex justify-between text-gray-800 border w-full md:w-2/3 mx-auto p-4">
         <p>Add details tags, source, comment (optional)</p>
-        {/* Render a plus icon */}
         <AiOutlinePlus size={24} />
       </div>
     </>
   );
 };
 
-// Export the CandidateForm component as the default export
 export default CandidateForm;

@@ -105,14 +105,14 @@ const AppliedJobs = () => {
             {isOpen ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
           </div>
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-end px-8 rounded-lg">
           {isOpen && (
             <div className="absolute w-58 space-y-4 rounded-lg  shadow-lg bg-white">
-              <div className="hover:bg-emerald-400 cursor-pointer hover:text-white px-3 py-1">
+              <div className="hover:bg-teal-600 cursor-pointer rounded-lg hover:text-white px-3 py-1">
                 <div>
                   <AddCandidatesModal />
                 </div>
-                <p className="text-sm text-second">
+                <p className="text-sm text-second hover:text-white">
                   Enter candidate name and details
                 </p>
               </div>
