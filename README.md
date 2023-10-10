@@ -82,12 +82,12 @@ Start the server
 - [Md Masum (Team Lead)](https://github.com/developerMasum)
 - [Md Arifur Rahman(Team Member)](https://github.com/sojibpannashovon2)
 - [Kabir Hossen (Team Member) ](https://github.com/programmer-kabir)
-- [@Your Name ](https://www.github.com/octokatherine)
-- [@Your Name](https://www.github.com/octokatherine)
-- [@Your Name](https://www.github.com/octokatherine)
+- [@Saiful Islam ](https://github.com/saifulaija)
+- [@Ashik Faysal](https://github.com/Ashik-Faysal)
+- [@Anik Biswas](https://github.com/anik12136)
 
 ## Feedback
 
-If you have any feedback, please reach out to us at md.masum0058@gmail.com, mdarifur554@gmail.com
+If you have any feedback, please reach out to us at md.masum0058@gmail.com
 
  
